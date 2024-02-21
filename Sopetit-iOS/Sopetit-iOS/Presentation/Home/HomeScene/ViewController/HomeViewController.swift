@@ -13,6 +13,13 @@ import SafariServices
 
 final class HomeViewController: UIViewController {
     
+    enum AnimationKeyFrames: CGFloat {
+        case start = 0
+        case eatDaily = 21
+        case eatHappy = 45
+        case end = 68
+    }
+    
     // MARK: - Properties
     
     var homeEntity = HomeEntity(name: "", dollType: "", frameImageURL: "", dailyCottonCount: 0, happinessCottonCount: 0, conversations: [])
@@ -199,15 +206,11 @@ extension HomeViewController: UICollectionViewDelegate {
                 patchCottonAPI(cottonType: "DAILY", indexPath: indexPath)
                 if self.cottonDailyNum > 0 {
                     self.homeView.isAnimate = true
-                    homeView.lottieEatingDaily.isHidden = false
-                    homeView.lottieHello.isHidden = true
-                    homeView.lottieEatingHappy.isHidden = true
-                    homeView.lottieEatingDaily.loopMode = .playOnce
-                    homeView.lottieEatingDaily.play()
+                    homeView.animationView.play(fromFrame: AnimationKeyFrames.eatDaily.rawValue,
+                                                toFrame: AnimationKeyFrames.eatHappy.rawValue,
+                                                loopMode: .playOnce)
                     homeView.bubbleLabel.text = I18N.Home.cottonTitle
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
-                        self.homeView.lottieEatingDaily.isHidden = true
-                        self.homeView.lottieHello.isHidden = false
                         self.homeView.isAnimate = false
                         self.homeView.refreshBubbleLabel()
                     }
@@ -218,15 +221,11 @@ extension HomeViewController: UICollectionViewDelegate {
                 patchCottonAPI(cottonType: "HAPPINESS", indexPath: indexPath)
                 if self.cottonHappyyNum > 0 {
                     self.homeView.isAnimate = true
-                    homeView.lottieEatingHappy.isHidden = false
-                    homeView.lottieHello.isHidden = true
-                    homeView.lottieEatingDaily.isHidden = true
-                    homeView.lottieEatingHappy.loopMode = .playOnce
-                    homeView.lottieEatingHappy.play()
+                    homeView.animationView.play(fromFrame: AnimationKeyFrames.eatHappy.rawValue,
+                                                toFrame: AnimationKeyFrames.end.rawValue,
+                                                loopMode: .playOnce)
                     homeView.bubbleLabel.text = I18N.Home.cottonTitle
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
-                        self.homeView.lottieEatingDaily.isHidden = true
-                        self.homeView.lottieHello.isHidden = false
                         self.homeView.isAnimate = false
                         self.homeView.refreshBubbleLabel()
                     }

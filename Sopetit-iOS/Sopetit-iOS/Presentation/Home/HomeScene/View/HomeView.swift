@@ -13,6 +13,13 @@ import Kingfisher
 
 final class HomeView: UIView {
     
+    enum AnimationKeyFrames: CGFloat {
+        case start = 0
+        case eatDaily = 21
+        case eatHappy = 45
+        case end = 68
+    }
+    
     // MARK: - Properties
     
     var isAnimate: Bool = false
@@ -55,9 +62,7 @@ final class HomeView: UIView {
         return imageView
     }()
     
-    var lottieHello: LottieAnimationView
-    var lottieEatingDaily: LottieAnimationView
-    var lottieEatingHappy: LottieAnimationView
+    var animationView: LottieAnimationView
     
     let bubbleLabel: UILabel = {
         let label = UILabel()
@@ -105,12 +110,9 @@ final class HomeView: UIView {
     // MARK: - Life Cycles
     
     init() {
-        lottieHello = LottieAnimationView()
-        lottieEatingDaily = LottieAnimationView()
-        lottieEatingHappy = LottieAnimationView()
+        animationView = LottieAnimationView()
         super.init(frame: .zero)
         
-        setUI()
         setHierarchy()
         setLayout()
         setAddTarget()
@@ -128,30 +130,20 @@ final class HomeView: UIView {
 extension HomeView {
     func setDoll(dollType: String) {
         DispatchQueue.main.async {
-            let helloAnimation = LottieAnimation.named("\(dollType.lowercased())_hello")
-            self.lottieHello.animation = helloAnimation
-            let eatingDailyAnimation = LottieAnimation.named("\(dollType.lowercased())_eating_daily")
-            self.lottieEatingDaily.animation = eatingDailyAnimation
-            let eatingHappyAnimation = LottieAnimation.named("\(dollType.lowercased())_eating_happy")
-            self.lottieEatingHappy.animation = eatingHappyAnimation
+            let allAnimation = LottieAnimation.named("\(dollType.lowercased())_all")
+            self.animationView.animation = allAnimation
         }
     }
 }
 
 extension HomeView {
     
-    func setUI() {
-        lottieHello.isHidden = false
-        lottieEatingDaily.isHidden = true
-        lottieEatingHappy.isHidden = true
-    }
-    
     func setHierarchy() {
         self.addSubviews(backgroundImageView, softieImageView, moneyButton, settingButton, bubbleImageView, shadowImageView, dollNameLabel, actionCollectionView)
                 
         bubbleImageView.addSubview(bubbleLabel)
         
-        addSubviews(lottieEatingDaily, lottieEatingHappy, lottieHello)
+        addSubviews(animationView)
         self.bringSubviewToFront(actionCollectionView)
     }
     
@@ -181,7 +173,7 @@ extension HomeView {
             $0.centerX.equalToSuperview()
             $0.width.equalTo(200)
             $0.height.equalTo(68)
-            $0.top.equalTo(lottieHello.snp.top).inset(22)
+            $0.top.equalTo(animationView.snp.top).inset(22)
         }
         
         bubbleLabel.snp.makeConstraints {
@@ -189,19 +181,7 @@ extension HomeView {
             $0.centerY.equalToSuperview().offset(-4)
         }
         
-        lottieEatingDaily.snp.makeConstraints {
-            $0.width.equalTo(414)
-            $0.height.equalTo(418)
-            $0.center.equalToSuperview()
-        }
-        
-        lottieEatingHappy.snp.makeConstraints {
-            $0.width.equalTo(414)
-            $0.height.equalTo(418)
-            $0.center.equalToSuperview()
-        }
-        
-        lottieHello.snp.makeConstraints {
+        animationView.snp.makeConstraints {
             $0.width.equalTo(414)
             $0.height.equalTo(418)
             $0.center.equalToSuperview()
@@ -211,11 +191,11 @@ extension HomeView {
             $0.width.equalTo(123)
             $0.height.equalTo(23)
             $0.centerX.equalToSuperview()
-            $0.bottom.equalTo(lottieHello.snp.bottom).offset(-105)
+            $0.bottom.equalTo(animationView.snp.bottom).offset(-105)
         }
         
         dollNameLabel.snp.makeConstraints {
-            $0.bottom.equalTo(lottieHello.snp.bottom).inset(54)
+            $0.bottom.equalTo(animationView.snp.bottom).inset(54)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(63)
             $0.height.equalTo(34)
@@ -234,18 +214,16 @@ extension HomeView {
             target: self,
             action: #selector(dollTapped)
         )
-        lottieHello.addGestureRecognizer(dollTapGesture)
+        animationView.addGestureRecognizer(dollTapGesture)
     }
     
     @objc
     func dollTapped() {
         if !(isAnimate) {
             isAnimate = true
-            lottieHello.isHidden = false
-            lottieEatingDaily.isHidden = true
-            lottieEatingHappy.isHidden = true
-            lottieHello.loopMode = .playOnce
-            lottieHello.play()
+            animationView.play(fromFrame: AnimationKeyFrames.start.rawValue,
+                                         toFrame: AnimationKeyFrames.eatDaily.rawValue,
+                                         loopMode: .playOnce)
             refreshBubbleLabel()
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
                 self.isAnimate = false
