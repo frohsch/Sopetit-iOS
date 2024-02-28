@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0016380D2B8FA1A80099A77D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0016380C2B8FA1A80099A77D /* LoginViewModel.swift */; };
 		004029062B4EDCF6002127BC /* ActionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004029052B4EDCF6002127BC /* ActionCollectionViewCell.swift */; };
 		006AD5BA2B6AAAD100070178 /* ReissueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006AD5B92B6AAAD100070178 /* ReissueService.swift */; };
 		0084F19B2B4A895700F87860 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084F19A2B4A895700F87860 /* LoginView.swift */; };
@@ -158,6 +159,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0016380C2B8FA1A80099A77D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		004029052B4EDCF6002127BC /* ActionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionCollectionViewCell.swift; sourceTree = "<group>"; };
 		0046E1EC2B5514EE00C9565E /* Sopetit-iOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Sopetit-iOS.entitlements"; sourceTree = "<group>"; };
 		006AD5B92B6AAAD100070178 /* ReissueService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReissueService.swift; sourceTree = "<group>"; };
@@ -324,6 +326,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0016380B2B8FA0570099A77D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0016380C2B8FA1A80099A77D /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		004029072B4EE87D002127BC /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -1023,6 +1033,7 @@
 			isa = PBXGroup;
 			children = (
 				A42C33322B3EAFFA00C4B477 /* View */,
+				0016380B2B8FA0570099A77D /* ViewModel */,
 				A42C33312B3EAFF100C4B477 /* ViewController */,
 			);
 			path = LoginScene;
@@ -1519,6 +1530,7 @@
 				A42C32C92B3EAB4500C4B477 /* UIStackView+.swift in Sources */,
 				A488FE8E2B697C0E000B4809 /* VersionEntity.swift in Sources */,
 				09C1A6562B52955500C1A57D /* DailyRoutineCardCollectionViewCell.swift in Sources */,
+				0016380D2B8FA1A80099A77D /* LoginViewModel.swift in Sources */,
 				09B2535C2B4D538E005E7032 /* SelectHappyCategoryViewController.swift in Sources */,
 				0947CF132B67862C007D0763 /* DailyRoutineCollectionViewCell.swift in Sources */,
 				045DFE812B515FAE005D69EA /* WithdrawViewController.swift in Sources */,

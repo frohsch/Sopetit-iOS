@@ -15,8 +15,7 @@ final class LoginViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var kakaoEntity: LoginEntity?
-    private var appleEntity: LoginEntity?
+    private let viewModel = LoginViewModel()
     
     // MARK: - UI Components
     
@@ -25,7 +24,6 @@ final class LoginViewController: UIViewController {
     // MARK: - Life Cycles
     
     override func loadView() {
-
         self.view = loginView
     }
     
@@ -35,70 +33,19 @@ final class LoginViewController: UIViewController {
         setUI()
         setDelegate()
     }
-}
-
-// MARK: - Extensions
-
-extension LoginViewController {
     
-    func setUI() {
+    // MARK: - Setup
+    
+    private func setUI() {
         self.navigationController?.navigationBar.isHidden = true
     }
     
-    func setDelegate() {
+    private func setDelegate() {
         loginView.loginDelegate = self
     }
 }
 
-// MARK: - Network
-
-extension LoginViewController {
-    func postLoginAPI(socialAccessToken: String, socialType: String) {
-        AuthService.shared.postLoginAPI(socialAccessToken: socialAccessToken, socialType: socialType) { networkResult in
-            switch networkResult {
-            case .success(let data):
-                if let data = data as? GenericResponse<LoginEntity> {
-                    switch socialType {
-                    case "KAKAO":
-                        if let kakaoData = data.data {
-                            UserManager.shared.updateSocialType(socialType)
-                            self.kakaoEntity = kakaoData
-                            self.checkKakaoUser()
-                            if kakaoData.isMemberDollExist {
-                                UserManager.shared.hasPostMember()
-                                let nav = TabBarController()
-                                self.navigationController?.pushViewController(nav, animated: true)
-                            } else {
-                                let nav = StoryTellingViewController()
-                                self.navigationController?.pushViewController(nav, animated: true)
-                            }
-                        }
-                    case "APPLE":
-                        if let appleData = data.data {
-                            UserManager.shared.updateSocialType(socialType)
-                            self.appleEntity = appleData
-                            self.checkAppleUser()
-                            if appleData.isMemberDollExist {
-                                UserManager.shared.hasPostMember()
-                                let nav = TabBarController()
-                                self.navigationController?.pushViewController(nav, animated: true)
-                            } else {
-                                let nav = StoryTellingViewController()
-                                self.navigationController?.pushViewController(nav, animated: true)
-                            }
-                        }
-                    default:
-                        break
-                    }
-                }
-            case .requestErr, .serverErr:
-                break
-            default:
-                break
-            }
-        }
-    }
-}
+// MARK: - Extensions
 
 extension LoginViewController: LoginDelegate {
     
@@ -109,7 +56,22 @@ extension LoginViewController: LoginDelegate {
                     self.showKakaoLoginFailMessage()
                 } else {
                     if let accessToken = oauthToken?.accessToken {
-                        self.postLoginAPI(socialAccessToken: accessToken, socialType: "KAKAO")
+                        self.viewModel.postLoginAPI(socialAccessToken: accessToken, socialType: "KAKAO") { result in
+                            switch result {
+                            case .success:
+                                self.viewModel.checkKakaoUser()
+                                if self.viewModel.kakaoEntity!.isMemberDollExist {
+                                    UserManager.shared.hasPostMember()
+                                    let nav = TabBarController()
+                                    self.navigationController?.pushViewController(nav, animated: true)
+                                } else {
+                                    let nav = StoryTellingViewController()
+                                    self.navigationController?.pushViewController(nav, animated: true)
+                                }
+                            case .failure(let error):
+                                print("Kakao Login Error: \(error.localizedDescription)")
+                            }
+                        }
                     }
                 }
             }
@@ -119,7 +81,22 @@ extension LoginViewController: LoginDelegate {
                     self.showKakaoLoginFailMessage()
                 } else {
                     if let accessToken = oauthToken?.accessToken {
-                        self.postLoginAPI(socialAccessToken: accessToken, socialType: "KAKAO")
+                        self.viewModel.postLoginAPI(socialAccessToken: accessToken, socialType: "KAKAO") { result in
+                            switch result {
+                            case .success:
+                                self.viewModel.checkKakaoUser()
+                                if self.viewModel.kakaoEntity!.isMemberDollExist {
+                                    UserManager.shared.hasPostMember()
+                                    let nav = TabBarController()
+                                    self.navigationController?.pushViewController(nav, animated: true)
+                                } else {
+                                    let nav = StoryTellingViewController()
+                                    self.navigationController?.pushViewController(nav, animated: true)
+                                }
+                            case .failure(let error):
+                                print("Kakao Login Error: \(error.localizedDescription)")
+                            }
+                        }
                     }
                 }
             }
@@ -128,11 +105,6 @@ extension LoginViewController: LoginDelegate {
     
     func showKakaoLoginFailMessage() {
         print("카카오 로그인 실패")
-    }
-    
-    func checkKakaoUser() {
-        guard let kakaoEntity = kakaoEntity else { return }
-        UserManager.shared.updateToken(kakaoEntity.accessToken, kakaoEntity.refreshToken)
     }
     
     func appleLogin() {
@@ -147,25 +119,34 @@ extension LoginViewController: LoginDelegate {
         
         authorizationController.performRequests()
     }
-    
-    func checkAppleUser() {
-        guard let appleEntity = appleEntity else { return }
-        UserManager.shared.updateToken(appleEntity.accessToken, appleEntity.refreshToken)
-    }
 }
 
-extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizationControllerPresentationContextProviding {
+extension LoginViewController: ASAuthorizationControllerDelegate {
     
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
         if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
-            
             let userIdentifier = appleIDCredential.user
             let identityToken = appleIDCredential.identityToken
             
             UserManager.shared.setUserIdForApple(userId: userIdentifier)
             
             if let tokenString = String(data: identityToken!, encoding: .utf8) {
-                postLoginAPI(socialAccessToken: tokenString, socialType: "APPLE")
+                self.viewModel.postLoginAPI(socialAccessToken: tokenString, socialType: "APPLE") { result in
+                    switch result {
+                    case .success:
+                        self.viewModel.checkAppleUser()
+                        if self.viewModel.appleEntity!.isMemberDollExist {
+                            UserManager.shared.hasPostMember()
+                            let nav = TabBarController()
+                            self.navigationController?.pushViewController(nav, animated: true)
+                        } else {
+                            let nav = StoryTellingViewController()
+                            self.navigationController?.pushViewController(nav, animated: true)
+                        }
+                    case .failure(let error):
+                        print("Apple Login Error: \(error.localizedDescription)")
+                    }
+                }
             }
         }
     }
@@ -173,6 +154,9 @@ extension LoginViewController: ASAuthorizationControllerDelegate, ASAuthorizatio
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         print("Apple Login failed with error: \(error.localizedDescription)")
     }
+}
+
+extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
     
     func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
         return  self.view.window!
