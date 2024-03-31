@@ -12,11 +12,6 @@
 		006AD5BA2B6AAAD100070178 /* ReissueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006AD5B92B6AAAD100070178 /* ReissueService.swift */; };
 		0084F19B2B4A895700F87860 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084F19A2B4A895700F87860 /* LoginView.swift */; };
 		0084F19D2B4A896500F87860 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084F19C2B4A896500F87860 /* LoginViewController.swift */; };
-		009D872F2B84F49A00A211CA /* brown_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 009D872B2B84F49A00A211CA /* brown_all.json */; };
-		009D87342B84FD0500A211CA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 009D87332B84FD0500A211CA /* GoogleService-Info.plist */; };
-		009D873A2B86223200A211CA /* gray_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 009D87372B86223200A211CA /* gray_all.json */; };
-		009D873E2B8624D800A211CA /* white_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 009D873C2B8624D800A211CA /* white_all.json */; };
-		009D873F2B8624D800A211CA /* red_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 009D873D2B8624D800A211CA /* red_all.json */; };
 		00A8E39A2B4D8B0D001461CE /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A8E3992B4D8B0D001461CE /* HomeView.swift */; };
 		00A8E39C2B4D8B20001461CE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A8E39B2B4D8B20001461CE /* HomeViewController.swift */; };
 		00B68F392B5935A300ED8CF6 /* happy_complete_ios.json in Resources */ = {isa = PBXBuildFile; fileRef = 00B68F382B5935A300ED8CF6 /* happy_complete_ios.json */; };
@@ -26,6 +21,11 @@
 		00CCDCC62B51B5C8007DD0E6 /* SplashThreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCDCC52B51B5C8007DD0E6 /* SplashThreeView.swift */; };
 		00CCDCC82B51B5D8007DD0E6 /* SplashFourView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCDCC72B51B5D8007DD0E6 /* SplashFourView.swift */; };
 		00CCDCD22B53CB40007DD0E6 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCDCD12B53CB40007DD0E6 /* SplashViewController.swift */; };
+		00EF4A052BB9868900C704D4 /* brown_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 00EF4A042BB9868900C704D4 /* brown_all.json */; };
+		00EF4A072BB986B500C704D4 /* white_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 00EF4A062BB986B500C704D4 /* white_all.json */; };
+		00EF4A092BB9870300C704D4 /* red_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 00EF4A082BB9870300C704D4 /* red_all.json */; };
+		00EF4A0B2BB9871B00C704D4 /* gray_all.json in Resources */ = {isa = PBXBuildFile; fileRef = 00EF4A0A2BB9871B00C704D4 /* gray_all.json */; };
+		00EF4A0D2BB9879400C704D4 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00EF4A0C2BB9879400C704D4 /* GoogleService-Info.plist */; };
 		045DFE792B504E26005D69EA /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045DFE782B504E26005D69EA /* SettingView.swift */; };
 		045DFE7B2B504E38005D69EA /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045DFE7A2B504E38005D69EA /* SettingViewController.swift */; };
 		045DFE7E2B50F14C005D69EA /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045DFE7D2B50F14C005D69EA /* SettingTableViewCell.swift */; };
@@ -165,12 +165,7 @@
 		006AD5B92B6AAAD100070178 /* ReissueService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReissueService.swift; sourceTree = "<group>"; };
 		0084F19A2B4A895700F87860 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0084F19C2B4A896500F87860 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		009D872B2B84F49A00A211CA /* brown_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = brown_all.json; path = ../../../../../../../../Desktop/brown_all.json; sourceTree = "<group>"; };
-		009D87332B84FD0500A211CA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		009D87352B84FD4D00A211CA /* ReleaseConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ReleaseConfig.xcconfig; sourceTree = "<group>"; };
-		009D87372B86223200A211CA /* gray_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = gray_all.json; path = ../../../../../../../../Downloads/gray_all.json; sourceTree = "<group>"; };
-		009D873C2B8624D800A211CA /* white_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = white_all.json; path = ../../../../../../../../Downloads/white_all.json; sourceTree = "<group>"; };
-		009D873D2B8624D800A211CA /* red_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = red_all.json; path = ../../../../../../../../Downloads/red_all.json; sourceTree = "<group>"; };
 		00A8E3992B4D8B0D001461CE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		00A8E39B2B4D8B20001461CE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		00B68F382B5935A300ED8CF6 /* happy_complete_ios.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = happy_complete_ios.json; sourceTree = "<group>"; };
@@ -180,6 +175,11 @@
 		00CCDCC52B51B5C8007DD0E6 /* SplashThreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashThreeView.swift; sourceTree = "<group>"; };
 		00CCDCC72B51B5D8007DD0E6 /* SplashFourView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashFourView.swift; sourceTree = "<group>"; };
 		00CCDCD12B53CB40007DD0E6 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		00EF4A042BB9868900C704D4 /* brown_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = brown_all.json; sourceTree = "<group>"; };
+		00EF4A062BB986B500C704D4 /* white_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = white_all.json; sourceTree = "<group>"; };
+		00EF4A082BB9870300C704D4 /* red_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = red_all.json; sourceTree = "<group>"; };
+		00EF4A0A2BB9871B00C704D4 /* gray_all.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gray_all.json; sourceTree = "<group>"; };
+		00EF4A0C2BB9879400C704D4 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		045DFE782B504E26005D69EA /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		045DFE7A2B504E38005D69EA /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		045DFE7D2B50F14C005D69EA /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
@@ -623,7 +623,7 @@
 		A42C327A2B3DB8F400C4B477 /* Sopetit-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				009D87332B84FD0500A211CA /* GoogleService-Info.plist */,
+				00EF4A0C2BB9879400C704D4 /* GoogleService-Info.plist */,
 				0046E1EC2B5514EE00C9565E /* Sopetit-iOS.entitlements */,
 				A42C32A12B3EA98400C4B477 /* Application */,
 				A42C32A02B3EA98000C4B477 /* Global */,
@@ -782,10 +782,10 @@
 		A42C32AF2B3EAA5300C4B477 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
-				009D873D2B8624D800A211CA /* red_all.json */,
-				009D873C2B8624D800A211CA /* white_all.json */,
-				009D87372B86223200A211CA /* gray_all.json */,
-				009D872B2B84F49A00A211CA /* brown_all.json */,
+				00EF4A0A2BB9871B00C704D4 /* gray_all.json */,
+				00EF4A082BB9870300C704D4 /* red_all.json */,
+				00EF4A062BB986B500C704D4 /* white_all.json */,
+				00EF4A042BB9868900C704D4 /* brown_all.json */,
 				00B68F3A2B5935AC00ED8CF6 /* daily_complete_ios.json */,
 				00B68F382B5935A300ED8CF6 /* happy_complete_ios.json */,
 			);
@@ -1372,19 +1372,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				009D873A2B86223200A211CA /* gray_all.json in Resources */,
+				00EF4A092BB9870300C704D4 /* red_all.json in Resources */,
 				A4832BAB2B4ACF09007879FF /* omyu-pretty.ttf in Resources */,
 				A42C336C2B41EF2F00C4B477 /* .swiftlint.yml in Resources */,
-				009D873E2B8624D800A211CA /* white_all.json in Resources */,
+				00EF4A0B2BB9871B00C704D4 /* gray_all.json in Resources */,
+				00EF4A072BB986B500C704D4 /* white_all.json in Resources */,
 				A42C33642B413F2100C4B477 /* Pretendard-SemiBold.otf in Resources */,
 				00B68F3B2B5935AC00ED8CF6 /* daily_complete_ios.json in Resources */,
-				009D87342B84FD0500A211CA /* GoogleService-Info.plist in Resources */,
+				00EF4A052BB9868900C704D4 /* brown_all.json in Resources */,
 				A42C32882B3DB8F500C4B477 /* LaunchScreen.storyboard in Resources */,
 				A42C32852B3DB8F500C4B477 /* Assets.xcassets in Resources */,
 				00B68F392B5935A300ED8CF6 /* happy_complete_ios.json in Resources */,
 				A42C33652B413F2100C4B477 /* Pretendard-Medium.otf in Resources */,
-				009D872F2B84F49A00A211CA /* brown_all.json in Resources */,
-				009D873F2B8624D800A211CA /* red_all.json in Resources */,
+				00EF4A0D2BB9879400C704D4 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
