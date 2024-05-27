@@ -33,14 +33,14 @@ final class TabBarController: UITabBarController {
 private extension TabBarController {
     
     func setTabBarItems() {
-        let dailyVC = UINavigationController(rootViewController: DailyRoutineViewController())
+        let ongoingVC = UINavigationController(rootViewController: OngoingViewController())
         let homeVC = UINavigationController(rootViewController: HomeViewController())
-        let happyVC = UINavigationController(rootViewController: HappyRoutineViewController())
+        let achieveVC = UINavigationController(rootViewController: AchieveViewController())
         
         tabs = [
-            dailyVC,
+            ongoingVC,
             homeVC,
-            happyVC
+            achieveVC
         ]
         
         TabBarItemType.allCases.forEach {
@@ -49,7 +49,7 @@ private extension TabBarController {
             tabs[$0.rawValue].tabBarItem.tag = $0.rawValue
         }
         
-        let tabBarItemTitles: [String] = [I18N.TabBar.daily, I18N.TabBar.home, I18N.TabBar.happy]
+        let tabBarItemTitles: [String] = [I18N.TabBar.ongoing, I18N.TabBar.home, I18N.TabBar.achieve]
         
         for (index, tabTitle) in tabBarItemTitles.enumerated() {
             let tabBarItem = TabBarItemType(rawValue: index)?.setTabBarItem()
@@ -65,6 +65,7 @@ private extension TabBarController {
     func setTabBarUI() {
         tabBar.backgroundColor = .white
         tabBar.tintColor = .SoftieMain1
+        tabBar.unselectedItemTintColor = .Gray200
     }
     
     func getSafeAreaBottomHeight() -> CGFloat {
