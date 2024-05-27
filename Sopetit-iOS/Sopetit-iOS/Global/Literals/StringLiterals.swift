@@ -105,9 +105,9 @@ enum I18N {
     }
     
     enum TabBar {
-        static let daily = "데일리 루틴"
+        static let ongoing = "진행 중"
         static let home = "홈"
-        static let happy = "행복 루틴"
+        static let achieve = "달성도"
     }
     
     enum DailyRoutine {
