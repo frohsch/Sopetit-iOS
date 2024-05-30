@@ -75,11 +75,31 @@ extension UILabel {
     }
     
     func setUnderlinePartFontChange(targetString: String, font: UIFont) {
-            let fullText = self.text ?? ""
-            let range = (fullText as NSString).range(of: targetString)
-            let attributedString = NSMutableAttributedString(string: fullText)
-            attributedString.addAttribute(.font, value: font, range: range)
-            attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
-            self.attributedText = attributedString
+        let fullText = self.text ?? ""
+        let range = (fullText as NSString).range(of: targetString)
+        let attributedString = NSMutableAttributedString(string: fullText)
+        attributedString.addAttribute(.font, value: font, range: range)
+        attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range)
+        self.attributedText = attributedString
+    }
+    
+    func asLineHeight(_ fontStyle: FontLevel) {
+        
+        let lineHeight = fontStyle.lineHeight
+        
+        if let text = text {
+            let style = NSMutableParagraphStyle()
+            style.maximumLineHeight = lineHeight
+            style.minimumLineHeight = lineHeight
+            
+            let attributes: [NSAttributedString.Key: Any] = [
+                .paragraphStyle: style,
+                .baselineOffset: (lineHeight - font.lineHeight) / 4
+            ]
+            
+            let attrString = NSAttributedString(string: text,
+                                                attributes: attributes)
+            self.attributedText = attrString
         }
+    }
 }
