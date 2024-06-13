@@ -16,6 +16,14 @@ extension UIColor {
         return UIColor(hex: "#F76D6D")
     }
     
+    static var SoftieYellow: UIColor {
+        return UIColor(hex: "#FEE500")
+    }
+    
+    static var SoftieBlue: UIColor {
+        return UIColor(hex: "#7B89D1")
+    }
+    
     static var Purple200: UIColor {
         return UIColor(hex: "#8e77f5")
     }
@@ -28,6 +36,10 @@ extension UIColor {
         return UIColor(hex: "#E09EFF")
     }
     
+    static var Brown50: UIColor {
+        return UIColor(hex: "#fff7e6")
+    }
+    
     static var Brown100: UIColor {
         return UIColor(hex: "#d4bba5")
     }
@@ -36,12 +48,20 @@ extension UIColor {
         return UIColor(hex: "#c4ac98")
     }
     
+    static var Brown400: UIColor {
+        return UIColor(hex: "#C0804C")
+    }
+    
     static var Gray50: UIColor {
         return UIColor(hex: "#F8F8F8")
     }
     
     static var Gray100: UIColor {
         return UIColor(hex: "#F4F4F4")
+    }
+    
+    static var Gray200: UIColor {
+        return UIColor(hex: "#e9ebed")
     }
     
     static var Gray300: UIColor {
