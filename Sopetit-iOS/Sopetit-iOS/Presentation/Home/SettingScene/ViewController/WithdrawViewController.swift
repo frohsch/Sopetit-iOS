@@ -37,7 +37,7 @@ final class WithdrawViewController: UIViewController {
 extension WithdrawViewController {
 
     func setUI() {
-        self.view.backgroundColor = .SoftieBack
+        self.view.backgroundColor = .Gray50
     }
     
     func setDelegate() {

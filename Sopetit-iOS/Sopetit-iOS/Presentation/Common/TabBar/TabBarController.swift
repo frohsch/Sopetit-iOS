@@ -64,8 +64,8 @@ private extension TabBarController {
     
     func setTabBarUI() {
         tabBar.backgroundColor = .white
-        tabBar.tintColor = .SoftieMain1
-        tabBar.unselectedItemTintColor = .Gray200
+        tabBar.tintColor = .Gray650
+        tabBar.unselectedItemTintColor = .Gray300
     }
     
     func getSafeAreaBottomHeight() -> CGFloat {

@@ -22,7 +22,7 @@ final class SplashFourView: UIView {
     
     let mentLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .SoftieMain2
+        label.textColor = .Brown50
         label.font = .fontGuide(.body2)
         label.text = I18N.Splash.mentTitle
         return label
@@ -55,7 +55,7 @@ final class SplashFourView: UIView {
 extension SplashFourView {
     
     func setUI() {
-        backgroundColor = UIColor.SoftieMain1
+        backgroundColor = UIColor.Gray650
     }
     
     func setHierarchy() {

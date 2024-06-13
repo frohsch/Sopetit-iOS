@@ -18,7 +18,8 @@ final class DollChoiceView: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = I18N.Onboarding.dollChoiceTitle
-        label.font = .fontGuide(.body1)
+        label.font = .fontGuide(.head1)
+        label.asLineHeight(.head1)
         label.textColor = .Gray700
         return label
     }()
@@ -26,8 +27,9 @@ final class DollChoiceView: UIView {
     private let subTitleLabel: UILabel = {
         let label = UILabel()
         label.text = I18N.Onboarding.dollSubTitle
-        label.font = .fontGuide(.body4)
-        label.textColor = .Gray400
+        label.font = .fontGuide(.body2)
+        label.asLineHeight(.body2)
+        label.textColor = .Gray500
         return label
     }()
     
@@ -42,17 +44,17 @@ final class DollChoiceView: UIView {
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.isUserInteractionEnabled = true
         collectionView.allowsSelection = true
-        collectionView.backgroundColor = .SoftieBack
+        collectionView.backgroundColor = .Gray50
         return collectionView
     }()
     
     lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle(I18N.Onboarding.buttonTitle, for: .normal)
-        button.setTitleColor(.Gray300, for: .disabled)
-        button.setTitleColor(.Gray000, for: .normal)
-        button.setBackgroundColor(.Gray100, for: .disabled)
-        button.setBackgroundColor(.SoftieMain1, for: .normal)
+        button.setTitleColor(.SoftieWhite, for: .disabled)
+        button.setTitleColor(.SoftieWhite, for: .normal)
+        button.setBackgroundColor(.Gray300, for: .disabled)
+        button.setBackgroundColor(.Gray650, for: .normal)
         button.titleLabel?.font = .fontGuide(.body1)
         button.layer.cornerRadius = 12
         button.isEnabled = false
@@ -81,7 +83,7 @@ final class DollChoiceView: UIView {
 extension DollChoiceView {
 
     func setUI() {
-        backgroundColor = .SoftieBack
+        backgroundColor = .Gray50
     }
     
     func setHierarchy() {

@@ -24,8 +24,8 @@ final class WithdrawView: UIView {
     let bodyLabel: UILabel = {
         let label = UILabel()
         label.text = I18N.Setting.withdraw_head
-        label.font = .fontGuide(.body4)
-        label.textColor = .Gray300
+        label.font = .fontGuide(.body2)
+        label.textColor = .Gray500
         return label
     }()
     
@@ -33,7 +33,7 @@ final class WithdrawView: UIView {
         let button = UIButton()
         button.backgroundColor = .Gray100
         button.setTitle("더 써볼래", for: .normal)
-        button.setTitleColor(.Gray300, for: .normal)
+        button.setTitleColor(.Gray100, for: .normal)
         button.titleLabel?.font = .fontGuide(.body1)
         button.layer.cornerRadius = 12
         button.clipsToBounds = true
@@ -44,7 +44,7 @@ final class WithdrawView: UIView {
         let button = UIButton()
         button.backgroundColor = .SoftieRed
         button.setTitle("탈퇴할래", for: .normal)
-        button.setTitleColor(.Gray000, for: .normal)
+        button.setTitleColor(.SoftieRed, for: .normal)
         button.titleLabel?.font = .fontGuide(.body1)
         button.layer.cornerRadius = 12
         button.clipsToBounds = true
@@ -67,7 +67,7 @@ final class WithdrawView: UIView {
         let label = UILabel()
         label.text = I18N.Setting.withdraw
         label.numberOfLines = 2
-        label.font = .fontGuide(.bubble18)
+        label.font = .fontGuide(.bubble1)
         label.textColor = .Gray700
         label.textAlignment = .center
         return label
@@ -94,7 +94,7 @@ final class WithdrawView: UIView {
 extension WithdrawView {
 
     func setUI() {
-        self.backgroundColor = .SoftieBack
+        self.backgroundColor = .Gray50
     }
     
     func setHierarchy() {

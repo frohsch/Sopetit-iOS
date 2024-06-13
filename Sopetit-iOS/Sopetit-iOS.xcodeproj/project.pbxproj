@@ -101,9 +101,7 @@
 		A4648BA02C043417001EB031 /* AddRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4648B9F2C043417001EB031 /* AddRoutineView.swift */; };
 		A4648BA22C04348E001EB031 /* OngoingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4648BA12C04348E001EB031 /* OngoingViewController.swift */; };
 		A4648BA42C0434A9001EB031 /* AddRoutineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4648BA32C0434A9001EB031 /* AddRoutineViewController.swift */; };
-		A4832BA42B4A5C37007879FF /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4832BA32B4A5C37007879FF /* BottomSheetViewController.swift */; };
 		A4832BAB2B4ACF09007879FF /* omyu-pretty.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4832BAA2B4ACF09007879FF /* omyu-pretty.ttf */; };
-		A4832BAD2B4AF081007879FF /* BottomSheetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4832BAC2B4AF081007879FF /* BottomSheetType.swift */; };
 		A488FE8B2B697BB7000B4809 /* UpdateAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A488FE8A2B697BB7000B4809 /* UpdateAlertView.swift */; };
 		A488FE8E2B697C0E000B4809 /* VersionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A488FE8D2B697C0E000B4809 /* VersionEntity.swift */; };
 		A49BFDD52B4D5F0800035EB6 /* StroyTellingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49BFDD42B4D5F0800035EB6 /* StroyTellingViewController.swift */; };
@@ -124,7 +122,6 @@
 		A49BFE232B4E565D00035EB6 /* RoutineChoiceEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49BFE222B4E565D00035EB6 /* RoutineChoiceEntity.swift */; };
 		A49BFE282B4E856600035EB6 /* DollNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49BFE272B4E856600035EB6 /* DollNameViewController.swift */; };
 		A49BFE2A2B4E857300035EB6 /* DollNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49BFE292B4E857300035EB6 /* DollNameView.swift */; };
-		A49BFE412B5065DE00035EB6 /* AlertMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49BFE402B5065DE00035EB6 /* AlertMessageView.swift */; };
 		A49BFE492B50FC7A00035EB6 /* DailyRoutineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49BFE482B50FC7A00035EB6 /* DailyRoutineService.swift */; };
 		A49BFE4B2B50FC8300035EB6 /* HappyRoutineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49BFE4A2B50FC8300035EB6 /* HappyRoutineService.swift */; };
 		A49BFE4D2B51275C00035EB6 /* UIImageView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49BFE4C2B51275C00035EB6 /* UIImageView+.swift */; };
@@ -223,9 +220,7 @@
 		A4648B9F2C043417001EB031 /* AddRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineView.swift; sourceTree = "<group>"; };
 		A4648BA12C04348E001EB031 /* OngoingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingViewController.swift; sourceTree = "<group>"; };
 		A4648BA32C0434A9001EB031 /* AddRoutineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineViewController.swift; sourceTree = "<group>"; };
-		A4832BA32B4A5C37007879FF /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		A4832BAA2B4ACF09007879FF /* omyu-pretty.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "omyu-pretty.ttf"; sourceTree = "<group>"; };
-		A4832BAC2B4AF081007879FF /* BottomSheetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetType.swift; sourceTree = "<group>"; };
 		A488FE882B6979FE000B4809 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		A488FE8A2B697BB7000B4809 /* UpdateAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAlertView.swift; sourceTree = "<group>"; };
 		A488FE8D2B697C0E000B4809 /* VersionEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionEntity.swift; sourceTree = "<group>"; };
@@ -247,7 +242,6 @@
 		A49BFE222B4E565D00035EB6 /* RoutineChoiceEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineChoiceEntity.swift; sourceTree = "<group>"; };
 		A49BFE272B4E856600035EB6 /* DollNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DollNameViewController.swift; sourceTree = "<group>"; };
 		A49BFE292B4E857300035EB6 /* DollNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DollNameView.swift; sourceTree = "<group>"; };
-		A49BFE402B5065DE00035EB6 /* AlertMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertMessageView.swift; sourceTree = "<group>"; };
 		A49BFE482B50FC7A00035EB6 /* DailyRoutineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRoutineService.swift; sourceTree = "<group>"; };
 		A49BFE4A2B50FC8300035EB6 /* HappyRoutineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyRoutineService.swift; sourceTree = "<group>"; };
 		A49BFE4C2B51275C00035EB6 /* UIImageView+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+.swift"; sourceTree = "<group>"; };
@@ -683,9 +677,7 @@
 			children = (
 				A488FE892B697BAB000B4809 /* UpdateAlert */,
 				093C1E052B4CFDAF00EF84AB /* NavigationBar */,
-				A49BFE422B5069CF00035EB6 /* AlertMessage */,
 				A49BFDE62B4D7EEB00035EB6 /* CustomProgress */,
-				A4832BA22B4A5C1C007879FF /* BottomSheet */,
 				A42C33382B3EB01C00C4B477 /* TabBar */,
 			);
 			path = Common;
@@ -872,15 +864,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		A4832BA22B4A5C1C007879FF /* BottomSheet */ = {
-			isa = PBXGroup;
-			children = (
-				A4832BAC2B4AF081007879FF /* BottomSheetType.swift */,
-				A4832BA32B4A5C37007879FF /* BottomSheetViewController.swift */,
-			);
-			path = BottomSheet;
-			sourceTree = "<group>";
-		};
 		A488FE892B697BAB000B4809 /* UpdateAlert */ = {
 			isa = PBXGroup;
 			children = (
@@ -1059,14 +1042,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		A49BFE422B5069CF00035EB6 /* AlertMessage */ = {
-			isa = PBXGroup;
-			children = (
-				A49BFE402B5065DE00035EB6 /* AlertMessageView.swift */,
-			);
-			path = AlertMessage;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1207,7 +1182,6 @@
 				A49BFE1F2B4E542B00035EB6 /* RoutineChoiceView.swift in Sources */,
 				A49BFE4B2B50FC8300035EB6 /* HappyRoutineService.swift in Sources */,
 				A49BFDE12B4D7A5400035EB6 /* DollChoiceViewController.swift in Sources */,
-				A4832BA42B4A5C37007879FF /* BottomSheetViewController.swift in Sources */,
 				A42C33042B3EAE4F00C4B477 /* AuthService.swift in Sources */,
 				A4648BA02C043417001EB031 /* AddRoutineView.swift in Sources */,
 				00CCDCC82B51B5D8007DD0E6 /* SplashFourView.swift in Sources */,
@@ -1245,7 +1219,6 @@
 				A42C33702B42DAAB00C4B477 /* StringLiterals.swift in Sources */,
 				004029062B4EDCF6002127BC /* ActionCollectionViewCell.swift in Sources */,
 				A42C32C72B3EAB3B00C4B477 /* UIViewController+.swift in Sources */,
-				A4832BAD2B4AF081007879FF /* BottomSheetType.swift in Sources */,
 				A42C32C32B3EAB2400C4B477 /* UITextField+.swift in Sources */,
 				A42C32BF2B3EAB0E00C4B477 /* UIImage+.swift in Sources */,
 				098DFCA52B568A010099063D /* HappinessRoutineIdEntity.swift in Sources */,
@@ -1256,7 +1229,6 @@
 				098DFCA12B5662F00099063D /* HappinessRoutineEntity.swift in Sources */,
 				A488FE8B2B697BB7000B4809 /* UpdateAlertView.swift in Sources */,
 				A49BFE4F2B53CE7700035EB6 /* DollImageEntity.swift in Sources */,
-				A49BFE412B5065DE00035EB6 /* AlertMessageView.swift in Sources */,
 				006AD5BA2B6AAAD100070178 /* ReissueService.swift in Sources */,
 				00CCDCC42B51B5BD007DD0E6 /* SplashTwoView.swift in Sources */,
 				093C1E072B4CFDDF00EF84AB /* CustomNavigationBarView.swift in Sources */,

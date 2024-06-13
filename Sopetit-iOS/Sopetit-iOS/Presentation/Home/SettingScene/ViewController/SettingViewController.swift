@@ -20,7 +20,7 @@ final class SettingViewController: UIViewController {
     
     let customNaviBar = CustomNavigationBarView()
     let settingView = SettingView()
-    private let logoutBottom = BottomSheetViewController(bottomStyle: .logoutBottom)
+//    private let logoutBottom = BottomSheetViewController(bottomStyle: .logoutBottom)
     
     // MARK: - Life Cycles
     
@@ -42,7 +42,7 @@ extension SettingViewController {
     func setUI() {
         self.view.backgroundColor = .SoftieWhite
         self.navigationController?.navigationBar.isHidden = true
-        logoutBottom.modalPresentationStyle = .overFullScreen
+//        logoutBottom.modalPresentationStyle = .overFullScreen
     }
     
     func setHierarchy() {
@@ -65,7 +65,7 @@ extension SettingViewController {
     func setDelegate() {
         settingView.tableView.delegate = self
         settingView.tableView.dataSource = self
-        logoutBottom.buttonDelegate = self
+//        logoutBottom.buttonDelegate = self
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
 }
@@ -85,7 +85,7 @@ extension SettingViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let separatorView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: 1))
-        separatorView.backgroundColor = .SoftieBack
+        separatorView.backgroundColor = .Gray50
         return separatorView
     }
     
@@ -131,7 +131,7 @@ extension SettingViewController: UITableViewDelegate {
     }
     
     private func presentLogoutBottom() {
-        self.present(logoutBottom, animated: false, completion: nil)
+//        self.present(logoutBottom, animated: false, completion: nil)
     }
     
     private func pushWithdrawView() {
@@ -181,8 +181,8 @@ extension SettingViewController: UITableViewDataSource {
             cell.isUserInteractionEnabled = false
         case [3, 0]:
             cell.settingLabel.text = I18N.Setting.logoutTItle
-            cell.settingLabel.textColor = .Gray300
-            cell.settingLabel.font = .fontGuide(.body4)
+            cell.settingLabel.textColor = .Gray400
+            cell.settingLabel.font = .fontGuide(.body2)
             cell.iconImage.snp.updateConstraints {
                 $0.size.equalTo(0)
             }
@@ -191,8 +191,8 @@ extension SettingViewController: UITableViewDataSource {
             }
         case [3, 1]:
             cell.settingLabel.text = I18N.Setting.withdrawTitle
-            cell.settingLabel.textColor = .Gray300
-            cell.settingLabel.setUnderlinePartFontChange(targetString: I18N.Setting.withdrawTitle, font: .fontGuide(.body4))
+            cell.settingLabel.textColor = .Gray400
+            cell.settingLabel.setUnderlinePartFontChange(targetString: I18N.Setting.withdrawTitle, font: .fontGuide(.body2))
             cell.iconImage.snp.updateConstraints {
                 $0.size.equalTo(0)
             }
@@ -252,14 +252,14 @@ extension SettingViewController: BackButtonProtocol {
     }
 }
 
-extension SettingViewController: BottomSheetButtonDelegate {
-    
-    func addButtonTapped() { }
-    
-    func deleteButtonTapped() {
-        self.dismiss(animated: false)
-        postLogoutAPI()
-    }
-    
-    func completeButtonTapped() { }
-}
+//extension SettingViewController: BottomSheetButtonDelegate {
+//    
+//    func addButtonTapped() { }
+//    
+//    func deleteButtonTapped() {
+//        self.dismiss(animated: false)
+//        postLogoutAPI()
+//    }
+//    
+//    func completeButtonTapped() { }
+//}

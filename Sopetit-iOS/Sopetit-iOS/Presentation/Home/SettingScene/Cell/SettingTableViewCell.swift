@@ -38,7 +38,7 @@ final class SettingTableViewCell: UITableViewCell, UITableViewRegisterable {
     
     let separateLine: UIView = {
         let view = UIView()
-        view.backgroundColor = .SoftieBack
+        view.backgroundColor = .Gray50
         return view
     }()
     

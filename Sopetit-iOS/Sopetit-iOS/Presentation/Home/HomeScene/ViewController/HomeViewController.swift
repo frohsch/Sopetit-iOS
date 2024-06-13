@@ -75,7 +75,7 @@ extension HomeViewController {
     func setDataBind(model: HomeEntity) {
         homeView.setDataBind(model: model)
         let string = model.name
-        let nameWidth = string.size(withAttributes: [NSAttributedString.Key.font: UIFont.fontGuide(.bubble16)]).width
+        let nameWidth = string.size(withAttributes: [NSAttributedString.Key.font: UIFont.fontGuide(.bubble2)]).width
         homeView.dollNameLabel.snp.updateConstraints {
             $0.width.equalTo(nameWidth + 26)
         }

@@ -110,7 +110,6 @@ enum I18N {
         static let achieve = "달성도"
     }
     
-    
     enum Setting {
         static let settingTitle = "설정"
         static let withdraw = "정말 가는거야..? 나는 영영 사라져..."
