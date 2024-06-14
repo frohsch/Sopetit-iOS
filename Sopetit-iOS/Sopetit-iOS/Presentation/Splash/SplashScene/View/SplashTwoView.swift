@@ -22,7 +22,7 @@ final class SplashTwoView: UIView {
     
     let mentLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .Gray400
+        label.textColor = .Gray650
         label.font = .fontGuide(.body2)
         label.text = I18N.Splash.mentTitle
         return label
@@ -55,7 +55,7 @@ final class SplashTwoView: UIView {
 extension SplashTwoView {
     
     func setUI() {
-        backgroundColor = UIColor.SoftieMain2
+        backgroundColor = UIColor.Brown50
     }
     
     func setHierarchy() {

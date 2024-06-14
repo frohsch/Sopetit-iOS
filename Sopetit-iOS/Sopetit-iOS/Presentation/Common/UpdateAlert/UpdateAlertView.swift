@@ -41,13 +41,13 @@ final class UpdateAlertView: UIView {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.font = .fontGuide(.body1)
-        label.textColor = .Gray600
+        label.textColor = .Gray700
         return label
     }()
     
     private let subTitleLabel: UILabel = {
         let label = UILabel()
-        label.font = .fontGuide(.body4)
+        label.font = .fontGuide(.body2)
         label.textColor = .Gray500
         label.numberOfLines = 0
         return label

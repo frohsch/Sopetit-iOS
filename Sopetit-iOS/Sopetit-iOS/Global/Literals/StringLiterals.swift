@@ -105,18 +105,9 @@ enum I18N {
     }
     
     enum TabBar {
-        static let daily = "데일리 루틴"
+        static let ongoing = "진행 중"
         static let home = "홈"
-        static let happy = "행복 루틴"
-    }
-    
-    enum DailyRoutine {
-        static let complete = "완료하기"
-        static let completed = "달성 완료"
-        static let addDailyRoutine = "데일리 루틴 추가"
-        static let addDailyBottomTitle = "데일리 루틴을 1개 추가했어요"
-        static let completeDailyRoutine = "데일리 루틴을 완료했어요!"
-        static let getCotton = "솜뭉치 1개 획득"
+        static let achieve = "달성도"
     }
     
     enum Setting {
@@ -137,5 +128,9 @@ enum I18N {
     enum SessionExpiredAlert {
         static let title = "인증 세션이 만료되었습니다."
         static let message = "원활한 앱 사용을 위해\n다시 로그인 해주세요."
+    }
+    
+    enum Ongoing {
+        static let ongoingReadyTitle = "달성도는 준비 중이에요\n곧 만나요!"
     }
 }
