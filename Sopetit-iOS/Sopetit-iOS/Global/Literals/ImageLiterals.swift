@@ -181,5 +181,10 @@ enum ImageLiterals {
         static var icnMore: UIImage { .load(name: "more") }
         static var check: UIImage { .load(name: "check") }
         static var checkEmpty: UIImage { .load(name: "check_empty") }
+        
+        static var emptychallenge: UIImage { .load(name: "emptychallenge") }
+        static var emptyroutine: UIImage { .load(name: "emptyroutine") }
+        static var readyfor: UIImage { .load(name: "readyfor") }
+        
     }
 }

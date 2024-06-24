@@ -23,6 +23,8 @@ class ActiveRoutineView: UIView {
         return label
     }()
     
+    let routineEmptyView = RoutineEmptyView()
+    
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         return scrollView
@@ -47,6 +49,8 @@ class ActiveRoutineView: UIView {
     }()
     
     let challengeRoutineCardView = ChallengeRoutineCardView()
+    
+    let challengeRoutineEmptyView = ChallengeRoutineEmptyView()
     
     let divisionView: UIView = {
         let view = UIView()
@@ -145,7 +149,6 @@ private extension ActiveRoutineView {
         
         self.dailyContentView.addSubviews(challengeTitleLabel, challengeInfoButton, challengeRoutineCardView, divisionView, dailyTitleLabel, dailyInfoButton, dailyCollectionView
         )
-        
     }
     
     func setLayout() {
@@ -227,5 +230,68 @@ private extension ActiveRoutineView {
         dateFormatter.dateFormat = "yyyy년 M월 d일"
         let formattedDate = dateFormatter.string(from: currentDate)
         dateLabel.text = formattedDate
+    }
+}
+
+extension ActiveRoutineView {
+    
+    func setChallengeRoutineEmpty() {
+        self.challengeTitleLabel.removeFromSuperview()
+        self.challengeInfoButton.removeFromSuperview()
+        self.challengeRoutineCardView.removeFromSuperview()
+        
+        self.dailyContentView.addSubview(challengeRoutineEmptyView)
+        
+        challengeRoutineEmptyView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(142)
+        }
+        
+        divisionView.snp.remakeConstraints {
+            $0.top.equalTo(challengeRoutineEmptyView.snp.bottom)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(2)
+        }
+    }
+    
+    func setChallengeRoutine() {
+        self.challengeRoutineEmptyView.removeFromSuperview()
+
+        self.dailyContentView.addSubviews(challengeTitleLabel, challengeInfoButton, challengeRoutineCardView)
+        
+        challengeTitleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(4)
+            $0.leading.equalToSuperview().inset(20)
+            $0.height.equalTo(20)
+        }
+        
+        challengeInfoButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(20)
+            $0.centerY.equalTo(challengeTitleLabel.snp.centerY)
+            $0.size.equalTo(20)
+        }
+        
+        challengeRoutineCardView.snp.makeConstraints {
+            $0.top.equalTo(challengeTitleLabel.snp.bottom).offset(16)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
+        }
+        
+        divisionView.snp.remakeConstraints {
+            $0.top.equalTo(challengeRoutineCardView.snp.bottom).offset(16)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(2)
+        }
+    }
+    
+    func setEmptyView() {
+        scrollView.removeFromSuperview()
+        floatingButton.removeFromSuperview()
+        self.addSubviews(routineEmptyView)
+        
+        routineEmptyView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
 }

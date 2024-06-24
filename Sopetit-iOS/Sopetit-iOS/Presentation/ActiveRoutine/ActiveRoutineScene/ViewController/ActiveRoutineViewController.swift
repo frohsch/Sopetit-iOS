@@ -8,7 +8,8 @@
 import UIKit
 
 class ActiveRoutineViewController: UIViewController {
-
+    
+    private let challengeRoutine = ChallengeRoutine.dummy()
     private let data = NewDailyRoutineEntity.dummy()
     let activeRoutineView = ActiveRoutineView()
     
@@ -22,6 +23,8 @@ class ActiveRoutineViewController: UIViewController {
         setUI()
         setDelegate()
         setRegister()
+        setData()
+        activeRoutineView.setEmptyView()
     }
 }
 
@@ -39,6 +42,12 @@ private extension ActiveRoutineViewController {
     func setRegister() {
         NewDailyRoutineCollectionViewCell.register(target: activeRoutineView.dailyCollectionView)
         NewDailyRoutineHeaderView.register(target: activeRoutineView.dailyCollectionView)
+    }
+    
+    func setData() {
+        if challengeRoutine.theme == "" {
+            activeRoutineView.setChallengeRoutineEmpty()
+        }
     }
 }
 

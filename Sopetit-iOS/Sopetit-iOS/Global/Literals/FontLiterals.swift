@@ -52,9 +52,9 @@ extension FontLevel {
         switch self {
         case .head1, .head2, .bubble20:
             return 20
-        case .head3, .head4, .bubble18:
+        case .head4, .bubble18:
             return 18
-        case .body1, .bubble16:
+        case .head3, .body1, .bubble16:
             return 16
         case .body2, .body3, .body4, .bubble14:
             return 14
