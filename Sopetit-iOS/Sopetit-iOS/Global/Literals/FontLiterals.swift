@@ -54,9 +54,9 @@ extension FontLevel {
             return 20
         case .head3, .head4, .bubble18:
             return 18
-        case .body1, .body2, .bubble16:
+        case .body1, .bubble16:
             return 16
-        case .body3, .body4, .bubble14:
+        case .body2, .body3, .body4, .bubble14:
             return 14
         case .caption1, .caption2:
             return 12

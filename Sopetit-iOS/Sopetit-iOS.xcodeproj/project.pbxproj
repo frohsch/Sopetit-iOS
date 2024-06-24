@@ -77,6 +77,12 @@
 		09C1A6582B5297B200C1A57D /* DailyRoutineTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C1A6572B5297B200C1A57D /* DailyRoutineTheme.swift */; };
 		09C1A65A2B5297BC00C1A57D /* DailyRoutineCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C1A6592B5297BC00C1A57D /* DailyRoutineCard.swift */; };
 		09C1A65C2B529D2E00C1A57D /* DailyRoutineThemeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C1A65B2B529D2E00C1A57D /* DailyRoutineThemeCollectionViewCell.swift */; };
+		09C94A462C1AB10F00720272 /* ActiveRoutineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C94A452C1AB10F00720272 /* ActiveRoutineViewController.swift */; };
+		09C94A482C1AB15400720272 /* ActiveRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C94A472C1AB15400720272 /* ActiveRoutineView.swift */; };
+		09C94A4C2C1AC18000720272 /* NewDailyRoutineCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C94A4B2C1AC18000720272 /* NewDailyRoutineCollectionViewCell.swift */; };
+		09C94A522C1AD34E00720272 /* ChallengeRoutineCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C94A512C1AD34E00720272 /* ChallengeRoutineCardView.swift */; };
+		09C94A542C1B22F900720272 /* NewDailyRoutineHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C94A532C1B22F900720272 /* NewDailyRoutineHeaderView.swift */; };
+		09C94A562C1B6B6100720272 /* NewDailyRoutineEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09C94A552C1B6B6100720272 /* NewDailyRoutineEntity.swift */; };
 		A42C327C2B3DB8F400C4B477 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C327B2B3DB8F400C4B477 /* AppDelegate.swift */; };
 		A42C327E2B3DB8F400C4B477 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C327D2B3DB8F400C4B477 /* SceneDelegate.swift */; };
 		A42C32852B3DB8F500C4B477 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A42C32842B3DB8F500C4B477 /* Assets.xcassets */; };
@@ -226,6 +232,12 @@
 		09C1A6572B5297B200C1A57D /* DailyRoutineTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRoutineTheme.swift; sourceTree = "<group>"; };
 		09C1A6592B5297BC00C1A57D /* DailyRoutineCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRoutineCard.swift; sourceTree = "<group>"; };
 		09C1A65B2B529D2E00C1A57D /* DailyRoutineThemeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRoutineThemeCollectionViewCell.swift; sourceTree = "<group>"; };
+		09C94A452C1AB10F00720272 /* ActiveRoutineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveRoutineViewController.swift; sourceTree = "<group>"; };
+		09C94A472C1AB15400720272 /* ActiveRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveRoutineView.swift; sourceTree = "<group>"; };
+		09C94A4B2C1AC18000720272 /* NewDailyRoutineCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDailyRoutineCollectionViewCell.swift; sourceTree = "<group>"; };
+		09C94A512C1AD34E00720272 /* ChallengeRoutineCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeRoutineCardView.swift; sourceTree = "<group>"; };
+		09C94A532C1B22F900720272 /* NewDailyRoutineHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDailyRoutineHeaderView.swift; sourceTree = "<group>"; };
+		09C94A552C1B6B6100720272 /* NewDailyRoutineEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDailyRoutineEntity.swift; sourceTree = "<group>"; };
 		A42C32782B3DB8F400C4B477 /* Sopetit-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sopetit-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A42C327B2B3DB8F400C4B477 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A42C327D2B3DB8F400C4B477 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -604,6 +616,50 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		09C94A402C1AB0A900720272 /* ActiveRoutine */ = {
+			isa = PBXGroup;
+			children = (
+				09C94A412C1AB0D500720272 /* ActiveRoutineScene */,
+			);
+			path = ActiveRoutine;
+			sourceTree = "<group>";
+		};
+		09C94A412C1AB0D500720272 /* ActiveRoutineScene */ = {
+			isa = PBXGroup;
+			children = (
+				09C94A442C1AB0F000720272 /* Cell */,
+				09C94A432C1AB0EA00720272 /* View */,
+				09C94A422C1AB0E200720272 /* ViewController */,
+			);
+			path = ActiveRoutineScene;
+			sourceTree = "<group>";
+		};
+		09C94A422C1AB0E200720272 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				09C94A452C1AB10F00720272 /* ActiveRoutineViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		09C94A432C1AB0EA00720272 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				09C94A472C1AB15400720272 /* ActiveRoutineView.swift */,
+				09C94A512C1AD34E00720272 /* ChallengeRoutineCardView.swift */,
+				09C94A532C1B22F900720272 /* NewDailyRoutineHeaderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		09C94A442C1AB0F000720272 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				09C94A4B2C1AC18000720272 /* NewDailyRoutineCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		A42C326F2B3DB8F400C4B477 = {
 			isa = PBXGroup;
 			children = (
@@ -640,6 +696,7 @@
 		A42C329E2B3EA97100C4B477 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				09C94A402C1AB0A900720272 /* ActiveRoutine */,
 				A42C330A2B3EAEC300C4B477 /* Common */,
 				00CCDCBD2B51B388007DD0E6 /* Splash */,
 				A42C33092B3EAEC000C4B477 /* Auth */,
@@ -904,6 +961,7 @@
 				098DFCA82B57EAE40099063D /* DailyThemesEntity.swift */,
 				098DFCAA2B580A1A0099063D /* DailyRoutinesEntity.swift */,
 				098DFCAC2B58418B0099063D /* DailyRoutineIdEntity.swift */,
+				09C94A552C1B6B6100720272 /* NewDailyRoutineEntity.swift */,
 			);
 			path = Daily;
 			sourceTree = "<group>";
@@ -1418,11 +1476,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				00CCDCD22B53CB40007DD0E6 /* SplashViewController.swift in Sources */,
+				09C94A4C2C1AC18000720272 /* NewDailyRoutineCollectionViewCell.swift in Sources */,
 				09B253632B4D561C005E7032 /* HappyRoutineTagView.swift in Sources */,
 				09B253742B4E4B05005E7032 /* AddHappyRoutineViewController.swift in Sources */,
 				A42C333A2B3EB02A00C4B477 /* TabBarController.swift in Sources */,
 				A42C32FC2B3EAE0000C4B477 /* HappinessEntity.swift in Sources */,
 				A42C32D52B3EABAF00C4B477 /* UICollectionViewRegisterable.swift in Sources */,
+				09C94A562C1B6B6100720272 /* NewDailyRoutineEntity.swift in Sources */,
 				09B2536F2B4E3640005E7032 /* HappyRoutineCategoryCollectionViewCell.swift in Sources */,
 				093C1E042B4CFD9E00EF84AB /* HappyRoutineEmptyView.swift in Sources */,
 				09C1A65C2B529D2E00C1A57D /* DailyRoutineThemeCollectionViewCell.swift in Sources */,
@@ -1468,6 +1528,7 @@
 				A42C32CF2B3EAB7700C4B477 /* UIColor+.swift in Sources */,
 				098DFCA32B567E500099063D /* HappinessMemberEntity.swift in Sources */,
 				A49BFDDA2B4D5F4600035EB6 /* StoryTellingSecondView.swift in Sources */,
+				09C94A482C1AB15400720272 /* ActiveRoutineView.swift in Sources */,
 				097224832B4F782D00CB7893 /* HappyRoutineView.swift in Sources */,
 				A42C32F62B3EADE300C4B477 /* HomeEntity.swift in Sources */,
 				09B2537D2B4E5279005E7032 /* HappyRoutineCardCollectionViewCell.swift in Sources */,
@@ -1488,6 +1549,7 @@
 				098DFCAB2B580A1A0099063D /* DailyRoutinesEntity.swift in Sources */,
 				A42C32E52B3EAC8B00C4B477 /* GenericResponse.swift in Sources */,
 				098DFCA12B5662F00099063D /* HappinessRoutineEntity.swift in Sources */,
+				09C94A522C1AD34E00720272 /* ChallengeRoutineCardView.swift in Sources */,
 				A488FE8B2B697BB7000B4809 /* UpdateAlertView.swift in Sources */,
 				A49BFE4F2B53CE7700035EB6 /* DollImageEntity.swift in Sources */,
 				A49BFE412B5065DE00035EB6 /* AlertMessageView.swift in Sources */,
@@ -1514,6 +1576,7 @@
 				A42C32EB2B3EACAC00C4B477 /* URLConstant.swift in Sources */,
 				A4D2EB092B57D07A00493D8C /* HomeCottonEntity.swift in Sources */,
 				045DFE792B504E26005D69EA /* SettingView.swift in Sources */,
+				09C94A542C1B22F900720272 /* NewDailyRoutineHeaderView.swift in Sources */,
 				A49BFE1D2B4E541C00035EB6 /* RoutineChoiceViewController.swift in Sources */,
 				045DFE862B539BC3005D69EA /* WithdrawView.swift in Sources */,
 				A49BFE492B50FC7A00035EB6 /* DailyRoutineService.swift in Sources */,
@@ -1541,6 +1604,7 @@
 				092AE2BF2B540B7B00E9A20D /* CompleteHappyRoutineViewController.swift in Sources */,
 				A49BFE622B558B2E00035EB6 /* MemberEntity.swift in Sources */,
 				A49BFDD52B4D5F0800035EB6 /* StroyTellingViewController.swift in Sources */,
+				09C94A462C1AB10F00720272 /* ActiveRoutineViewController.swift in Sources */,
 				A42C327E2B3DB8F400C4B477 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
