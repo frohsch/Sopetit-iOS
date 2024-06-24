@@ -41,7 +41,7 @@ final class RoutineChoiceView: UIView {
         let label = UILabel()
         label.text = I18N.Onboarding.routineChoiceTitle
         label.textColor = .Gray700
-        label.font = .fontGuide(.bubble16)
+        label.font = .fontGuide(.bubble2)
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -59,7 +59,7 @@ final class RoutineChoiceView: UIView {
         collectionView.allowsSelection = true
         collectionView.isScrollEnabled = true
         collectionView.allowsMultipleSelection = true
-        collectionView.backgroundColor = .SoftieBack
+        collectionView.backgroundColor = .Gray50
         collectionView.contentInset = UIEdgeInsets(top: 30, left: 20, bottom: 30, right: 20)
         return collectionView
     }()
@@ -77,8 +77,8 @@ final class RoutineChoiceView: UIView {
     lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle(I18N.Onboarding.routineNextButtonTitle, for: .normal)
-        button.setTitleColor(.Gray000, for: .normal)
-        button.setBackgroundColor(.SoftieMain1, for: .normal)
+        button.setTitleColor(.SoftieWhite, for: .normal)
+        button.setBackgroundColor(.Gray650, for: .normal)
         button.titleLabel?.font = .fontGuide(.body1)
         button.layer.cornerRadius = 12
         button.isEnabled = false
@@ -87,13 +87,13 @@ final class RoutineChoiceView: UIView {
     
     private lazy var topLayer: CAGradientLayer = {
         let gradient = CAGradientLayer()
-        gradient.colors = [UIColor.SoftieBack.withAlphaComponent(1).cgColor, UIColor.SoftieBack.withAlphaComponent(0.9).cgColor, UIColor.SoftieBack.withAlphaComponent(0).cgColor]
+        gradient.colors = [UIColor.Gray50.withAlphaComponent(1).cgColor, UIColor.Gray50.withAlphaComponent(0.9).cgColor, UIColor.Gray50.withAlphaComponent(0).cgColor]
         return gradient
     }()
     
     private lazy var bottomLayer: CAGradientLayer = {
         let gradient = CAGradientLayer()
-        gradient.colors = [UIColor.SoftieBack.withAlphaComponent(0).cgColor, UIColor.SoftieBack.withAlphaComponent(0.9).cgColor, UIColor.SoftieBack.withAlphaComponent(1).cgColor]
+        gradient.colors = [UIColor.Gray50.withAlphaComponent(0).cgColor, UIColor.Gray50.withAlphaComponent(0.9).cgColor, UIColor.Gray50.withAlphaComponent(1).cgColor]
         return gradient
     }()
     
@@ -101,7 +101,7 @@ final class RoutineChoiceView: UIView {
         let label = UILabel()
         label.text = I18N.Onboarding.routineInfoTitle
         label.textColor = .SoftieRed
-        label.font = .fontGuide(.body4)
+        label.font = .fontGuide(.body2)
         label.isHidden = true
         return label
     }()
@@ -144,7 +144,7 @@ final class RoutineChoiceView: UIView {
 extension RoutineChoiceView {
 
     func setUI() {
-        backgroundColor = .SoftieBack
+        backgroundColor = .Gray50
     }
     
     func setHierarchy() {

@@ -45,19 +45,19 @@ final class CustomNavigationBarView: UIView {
         set { backButton.isHidden = !newValue }
     }
     
-    var isCancelButtonIncluded: Bool {
-        get { !cancelButton.isHidden }
-        set { cancelButton.isHidden = !newValue }
-    }
-    
-    var isEditButtonIncluded: Bool {
-        get { !editButton.isHidden }
-        set { editButton.isHidden = !newValue }
-    }
+//    var isCancelButtonIncluded: Bool {
+//        get { !cancelButton.isHidden }
+//        set { cancelButton.isHidden = !newValue }
+//    }
+//    
+//    var isEditButtonIncluded: Bool {
+//        get { !editButton.isHidden }
+//        set { editButton.isHidden = !newValue }
+//    }
     
     var backButtonAction: (() -> Void)?
-    var editButtonAction: (() -> Void)?
-    var cancelButtonAction: (() -> Void)?
+//    var editButtonAction: (() -> Void)?
+//    var cancelButtonAction: (() -> Void)?
     
     // MARK: - UI Components
     
@@ -96,23 +96,23 @@ final class CustomNavigationBarView: UIView {
         return button
     }()
     
-    lazy var cancelButton: UIButton = {
-        let button = UIButton()
-        button.setTitle(I18N.CustomNavi.cancel, for: .normal)
-        button.setTitleColor(.Gray400, for: .normal)
-        button.titleLabel?.font = .fontGuide(.body4)
-        button.isHidden = true
-        return button
-    }()
-    
-    lazy var editButton: UIButton = {
-        let button = UIButton()
-        button.setTitle(I18N.CustomNavi.edit, for: .normal)
-        button.setTitleColor(.Gray400, for: .normal)
-        button.titleLabel?.font = .fontGuide(.body4)
-        button.isHidden = true
-        return button
-    }()
+//    lazy var cancelButton: UIButton = {
+//        let button = UIButton()
+//        button.setTitle(I18N.CustomNavi.cancel, for: .normal)
+//        button.setTitleColor(.Gray400, for: .normal)
+//        button.titleLabel?.font = .fontGuide(.head3)
+//        button.isHidden = true
+//        return button
+//    }()
+//    
+//    lazy var editButton: UIButton = {
+//        let button = UIButton()
+//        button.setTitle(I18N.CustomNavi.edit, for: .normal)
+//        button.setTitleColor(.Gray400, for: .normal)
+//        button.titleLabel?.font = .fontGuide(.head3)
+//        button.isHidden = true
+//        return button
+//    }()
     
     // MARK: - Life Cycles
     
@@ -135,11 +135,11 @@ final class CustomNavigationBarView: UIView {
 private extension CustomNavigationBarView {
 
     func setUI() {
-        self.backgroundColor = .SoftieBack
+        self.backgroundColor = .Gray50
     }
     
     func setHierarchy() {
-        self.addSubviews(backButton, cancelButton, editButton, titleView, leftTitleView)
+        self.addSubviews(backButton, titleView, leftTitleView)
         titleView.addSubview(titleLabel)
         leftTitleView.addSubview(leftTitleLabel)
     }
@@ -176,25 +176,25 @@ private extension CustomNavigationBarView {
             $0.size.equalTo(38)
         }
         
-        cancelButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(6)
-            $0.centerY.equalToSuperview()
-            $0.width.equalTo(53)
-            $0.height.equalTo(41)
-        }
-        
-        editButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(6)
-            $0.centerY.equalToSuperview()
-            $0.width.equalTo(53)
-            $0.height.equalTo(41)
-        }
+//        cancelButton.snp.makeConstraints {
+//            $0.trailing.equalToSuperview().inset(6)
+//            $0.centerY.equalToSuperview()
+//            $0.width.equalTo(53)
+//            $0.height.equalTo(41)
+//        }
+//        
+//        editButton.snp.makeConstraints {
+//            $0.trailing.equalToSuperview().inset(6)
+//            $0.centerY.equalToSuperview()
+//            $0.width.equalTo(53)
+//            $0.height.equalTo(41)
+//        }
     }
     
     func setAddTarget() {
         backButton.addTarget(self, action: #selector(isTapped), for: .touchUpInside)
-        cancelButton.addTarget(self, action: #selector(isTapped), for: .touchUpInside)
-        editButton.addTarget(self, action: #selector(isTapped), for: .touchUpInside)
+//        cancelButton.addTarget(self, action: #selector(isTapped), for: .touchUpInside)
+//        editButton.addTarget(self, action: #selector(isTapped), for: .touchUpInside)
     }
     
     @objc
@@ -202,10 +202,10 @@ private extension CustomNavigationBarView {
         switch sender {
         case backButton:
             delegate?.tapBackButton()
-        case cancelButton:
-            cancelButtonAction?()
-        case editButton:
-            editButtonAction?()
+//        case cancelButton:
+//            cancelButtonAction?()
+//        case editButton:
+//            editButtonAction?()
         default:
             break
         }

@@ -48,7 +48,7 @@ final class ThemeSelectView: UIView {
     lazy var bubbleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .Gray700
-        label.font = .fontGuide(.bubble16)
+        label.font = .fontGuide(.bubble2)
         label.textAlignment = .center
         label.numberOfLines = 0
         return label
@@ -68,7 +68,7 @@ final class ThemeSelectView: UIView {
         collectionView.allowsSelection = true
         collectionView.isScrollEnabled = true
         collectionView.allowsMultipleSelection = true
-        collectionView.backgroundColor = .SoftieBack
+        collectionView.backgroundColor = .Gray50
         return collectionView
     }()
     
@@ -76,9 +76,9 @@ final class ThemeSelectView: UIView {
         let button = UIButton()
         button.setTitle(I18N.Onboarding.themeButtonTitle, for: .normal)
         button.setTitleColor(.Gray300, for: .disabled)
-        button.setTitleColor(.Gray000, for: .normal)
+        button.setTitleColor(.SoftieWhite, for: .normal)
         button.setBackgroundColor(.Gray100, for: .disabled)
-        button.setBackgroundColor(.SoftieMain1, for: .normal)
+        button.setBackgroundColor(.Gray650, for: .normal)
         button.titleLabel?.font = .fontGuide(.body1)
         button.layer.cornerRadius = 12
         button.isEnabled = false
@@ -108,7 +108,7 @@ final class ThemeSelectView: UIView {
 extension ThemeSelectView {
 
     func setUI() {
-        backgroundColor = .SoftieBack
+        backgroundColor = .Gray50
     }
     
     func setHierarchy() {

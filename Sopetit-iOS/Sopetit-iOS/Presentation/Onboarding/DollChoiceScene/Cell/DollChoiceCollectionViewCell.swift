@@ -44,7 +44,7 @@ final class DollChoiceCollectionViewCell: UICollectionViewCell, UICollectionView
 extension DollChoiceCollectionViewCell {
 
     func setUI() {
-        backgroundColor = .SoftieBack
+        backgroundColor = .Gray50
     }
     
     func setHierarchy() {

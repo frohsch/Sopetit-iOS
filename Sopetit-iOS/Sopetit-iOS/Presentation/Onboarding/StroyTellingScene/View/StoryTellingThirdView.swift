@@ -37,10 +37,10 @@ final class StoryTellingThirdView: UIView {
     lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle(I18N.Onboarding.thirdButtonTitle, for: .normal)
-        button.setTitleColor(.Gray500, for: .normal)
+        button.setTitleColor(.Gray700, for: .normal)
         button.setBackgroundColor(.SoftieWhite, for: .normal)
         button.setBackgroundColor(.SoftieWhite, for: .highlighted)
-        button.titleLabel?.font = .fontGuide(.bubble20)
+        button.titleLabel?.font = .fontGuide(.bubble1)
         button.layer.cornerRadius = 12
         return button
     }()
@@ -73,7 +73,7 @@ final class StoryTellingThirdView: UIView {
 private extension StoryTellingThirdView {
     
     func setUI() {
-        backgroundColor = .SoftieBack
+        backgroundColor = .Gray50
     }
     
     func setHierarchy() {

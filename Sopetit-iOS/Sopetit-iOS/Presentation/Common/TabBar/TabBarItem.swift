@@ -6,32 +6,32 @@
 import UIKit
 
 enum TabBarItemType: Int, CaseIterable {
+    case ongoing
     case home
-    case actionList
-    case myPage
+    case achieve
 }
 
 extension TabBarItemType {
     
     var unSelectedIcon: UIImage {
         switch self {
+        case .ongoing:
+            return UIImage(resource: .icNavi1)
         case .home:
-            return ImageLiterals.BottomNavi.icNavi1
-        case .actionList:
-            return ImageLiterals.BottomNavi.icNavi2
-        case .myPage:
-            return ImageLiterals.BottomNavi.icNavi3
+            return UIImage(resource: .icNavi2)
+        case .achieve:
+            return UIImage(resource: .icNavi3)
         }
     }
     
     var selectedIcon: UIImage {
         switch self {
+        case .ongoing:
+            return UIImage(resource: .icNavi1Filled)
         case .home:
-            return ImageLiterals.BottomNavi.icNavi1Filled
-        case .actionList:
-            return ImageLiterals.BottomNavi.icNavi2Filled
-        case .myPage:
-            return ImageLiterals.BottomNavi.icNavi3Filled
+            return UIImage(resource: .icNavi2Filled)
+        case .achieve:
+            return UIImage(resource: .icNavi3Filled)
         }
     }
     

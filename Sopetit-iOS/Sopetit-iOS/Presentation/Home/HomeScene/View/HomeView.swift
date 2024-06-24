@@ -67,7 +67,7 @@ final class HomeView: UIView {
     let bubbleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
-        label.font = .fontGuide(.bubble18)
+        label.font = .fontGuide(.bubble1)
         label.textAlignment = .center
         return label
     }()
@@ -82,10 +82,10 @@ final class HomeView: UIView {
     let dollNameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .Gray700
-        label.font = .fontGuide(.bubble16)
-        label.backgroundColor = UIColor.SoftieHomeFill
+        label.font = .fontGuide(.bubble2)
+        label.backgroundColor = .Brown100
         label.layer.borderWidth = 1
-        label.layer.borderColor = UIColor.SoftieHomeStroke.cgColor
+        label.layer.borderColor = UIColor.Brown200.cgColor
         label.layer.cornerRadius = 17
         label.clipsToBounds = true
         label.textAlignment = .center

@@ -34,15 +34,17 @@ final class ActionCollectionViewCell: UICollectionViewCell, UICollectionViewRegi
     
     var numberLabel: UILabel = {
         let label = UILabel()
-        label.font = .fontGuide(.body4)
-        label.textColor = UIColor.Gray300
+        label.font = .fontGuide(.body2)
+        label.textColor = UIColor.Gray400
+        label.asLineHeight(.body2)
         return label
     }()
     
     private let actionLabel: UILabel = {
         let label = UILabel()
-        label.font = .fontGuide(.body4)
+        label.font = .fontGuide(.body2)
         label.textColor = UIColor.Gray500
+        label.asLineHeight(.body2)
         return label
     }()
     
@@ -66,7 +68,7 @@ final class ActionCollectionViewCell: UICollectionViewCell, UICollectionViewRegi
 extension ActionCollectionViewCell {
 
     func setUI() {
-        backgroundColor = UIColor.Gray000
+        backgroundColor = .Gray100
         self.layer.masksToBounds = true
         self.layer.cornerRadius = 16
     }
