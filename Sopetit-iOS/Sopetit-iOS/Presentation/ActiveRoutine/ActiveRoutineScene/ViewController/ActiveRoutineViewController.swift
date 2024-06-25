@@ -24,7 +24,6 @@ class ActiveRoutineViewController: UIViewController {
         setDelegate()
         setRegister()
         setData()
-        activeRoutineView.setEmptyView()
     }
 }
 
@@ -45,7 +44,7 @@ private extension ActiveRoutineViewController {
     }
     
     func setData() {
-        if challengeRoutine.theme == "" {
+        if challengeRoutine.theme == "" || challengeRoutine.theme.isEmpty {
             activeRoutineView.setChallengeRoutineEmpty()
         }
     }

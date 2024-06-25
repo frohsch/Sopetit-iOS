@@ -44,6 +44,7 @@ class ChallengeRoutineEmptyView: UIView {
         setUI()
         setHierarchy()
         setLayout()
+        setAddTarget()
     }
     
     @available(*, unavailable)
@@ -80,6 +81,20 @@ private extension ChallengeRoutineEmptyView {
             $0.centerX.equalToSuperview()
             $0.width.equalTo(78)
             $0.height.equalTo(56)
+        }
+    }
+    
+    func setAddTarget() {
+        addRoutineButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+    }
+    
+    @objc
+    func tapButton(_ sender: UIButton) {
+        switch sender {
+        case addRoutineButton:
+            print("addRoutineButton tapped")
+        default:
+            break
         }
     }
 }

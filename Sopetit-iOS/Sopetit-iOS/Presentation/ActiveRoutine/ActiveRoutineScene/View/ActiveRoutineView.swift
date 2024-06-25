@@ -38,8 +38,8 @@ class ActiveRoutineView: UIView {
         return label
     }()
     
-    let challengeInfoButton: UIButton = {
-        let button = UIButton()
+    let challengeInfoButton: CustomButton = {
+        let button = CustomButton()
         button.setTitle("?", for: .normal)
         button.setTitleColor(.Gray500, for: .normal)
         button.titleLabel?.font = .fontGuide(.caption2)
@@ -66,8 +66,8 @@ class ActiveRoutineView: UIView {
         return label
     }()
     
-    let dailyInfoButton: UIButton = {
-        let button = UIButton()
+    let dailyInfoButton: CustomButton = {
+        let button = CustomButton()
         button.setTitle("?", for: .normal)
         button.setTitleColor(.Gray500, for: .normal)
         button.titleLabel?.font = .fontGuide(.caption2)
@@ -114,26 +114,12 @@ class ActiveRoutineView: UIView {
         setHierarchy()
         setLayout()
         setDateLabel()
+        setAddTarget()
     }
     
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        if let button = self as? UIButton {
-            let buttonFrame = CGRect(
-                x: button.bounds.origin.x - (38 - button.bounds.origin.x)/2,
-                y: button.bounds.origin.y - (38 - button.bounds.origin.y)/2,
-                width: 38,
-                height: 38
-            )
-            if buttonFrame.contains(point) {
-                return button
-            }
-        }
-        return super.hitTest(point, with: event)
     }
 }
 
@@ -230,6 +216,23 @@ private extension ActiveRoutineView {
         dateFormatter.dateFormat = "yyyy년 M월 d일"
         let formattedDate = dateFormatter.string(from: currentDate)
         dateLabel.text = formattedDate
+    }
+    
+    func setAddTarget() {
+        challengeInfoButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+        dailyInfoButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+    }
+    
+    @objc
+    func tapButton(_ sender: UIButton) {
+        switch sender {
+        case challengeInfoButton:
+            print("challengeInfoButton tapped")
+        case dailyInfoButton:
+            print("dailyInfoButton tapped")
+        default:
+            break
+        }
     }
 }
 

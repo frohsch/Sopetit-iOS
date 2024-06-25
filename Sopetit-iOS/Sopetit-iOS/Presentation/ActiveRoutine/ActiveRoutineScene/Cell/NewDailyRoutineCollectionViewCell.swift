@@ -12,36 +12,6 @@ final class NewDailyRoutineCollectionViewCell: UICollectionViewCell, UICollectio
     static let isFromNib: Bool = false
     
     private var index: Int = 0
-//    private var isEnabled: Bool = true {
-//        didSet {
-//            switch isEnabled {
-//            case true:
-//                completeButton.isEnabled = true
-//                completeButton.setTitle(I18N.DailyRoutine.complete, for: .normal)
-//                completeButton.backgroundColor = .SoftieMain1
-//                completeButton.setTitleColor(.SoftieWhite, for: .normal)
-//            case false:
-//                completeButton.isEnabled = false
-//                completeButton.setTitle(I18N.DailyRoutine.completed, for: .normal)
-//                completeButton.backgroundColor = .Gray100
-//                completeButton.setTitleColor(.Gray300, for: .normal)
-//            }
-//        }
-//    }
-//    
-//    var radioStatus: Bool = false {
-//        didSet {
-//            switch radioStatus {
-//            case true:
-//                radioButton.setImage(ImageLiterals.DailyRoutine.btnRadiobtnSelected, for: .normal)
-//                radioDelegate?.selectRadioButton(index: self.index)
-//            case false:
-//                radioButton.setImage(ImageLiterals.DailyRoutine.btnRadiobtnNone, for: .normal)
-//                radioDelegate?.unselectRadioButton(index: self.index)
-//
-//            }
-//        }
-//    }
     
     var isEditing: Bool = false {
         didSet {
@@ -75,8 +45,8 @@ final class NewDailyRoutineCollectionViewCell: UICollectionViewCell, UICollectio
         return label
     }()
     
-    private lazy var radioButton: UIButton = {
-        let button = UIButton()
+    private lazy var radioButton: CustomButton = {
+        let button = CustomButton()
         button.setImage(ImageLiterals.ActiveRoutine.checkEmpty, for: .normal)
         return button
     }()
@@ -89,8 +59,8 @@ final class NewDailyRoutineCollectionViewCell: UICollectionViewCell, UICollectio
         return label
     }()
     
-    let ellipsisButton: UIButton = {
-        let button = UIButton()
+    let ellipsisButton: CustomButton = {
+        let button = CustomButton()
         button.setImage(ImageLiterals.ActiveRoutine.icnMore, for: .normal)
         return button
     }()

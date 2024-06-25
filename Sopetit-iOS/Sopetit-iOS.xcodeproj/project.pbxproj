@@ -65,6 +65,7 @@
 		09AE9FC62C29D64E009DB756 /* ChallengeRoutineEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AE9FC52C29D64E009DB756 /* ChallengeRoutineEmptyView.swift */; };
 		09AE9FC82C29DB10009DB756 /* ChallengeRoutineEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AE9FC72C29DB10009DB756 /* ChallengeRoutineEntity.swift */; };
 		09AE9FCA2C29DF00009DB756 /* RoutineEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AE9FC92C29DF00009DB756 /* RoutineEmptyView.swift */; };
+		09AE9FCD2C2A5693009DB756 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09AE9FCC2C2A5693009DB756 /* CustomButton.swift */; };
 		09B2535C2B4D538E005E7032 /* SelectHappyCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B2535B2B4D538E005E7032 /* SelectHappyCategoryViewController.swift */; };
 		09B253612B4D53E7005E7032 /* SelectHappyCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B253602B4D53E7005E7032 /* SelectHappyCategoryView.swift */; };
 		09B253632B4D561C005E7032 /* HappyRoutineTagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B253622B4D561C005E7032 /* HappyRoutineTagView.swift */; };
@@ -223,6 +224,7 @@
 		09AE9FC52C29D64E009DB756 /* ChallengeRoutineEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeRoutineEmptyView.swift; sourceTree = "<group>"; };
 		09AE9FC72C29DB10009DB756 /* ChallengeRoutineEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeRoutineEntity.swift; sourceTree = "<group>"; };
 		09AE9FC92C29DF00009DB756 /* RoutineEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEmptyView.swift; sourceTree = "<group>"; };
+		09AE9FCC2C2A5693009DB756 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		09B2535B2B4D538E005E7032 /* SelectHappyCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectHappyCategoryViewController.swift; sourceTree = "<group>"; };
 		09B253602B4D53E7005E7032 /* SelectHappyCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectHappyCategoryView.swift; sourceTree = "<group>"; };
 		09B253622B4D561C005E7032 /* HappyRoutineTagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappyRoutineTagView.swift; sourceTree = "<group>"; };
@@ -506,6 +508,14 @@
 			path = BottomCTAButton;
 			sourceTree = "<group>";
 		};
+		09AE9FCB2C2A5684009DB756 /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				09AE9FCC2C2A5693009DB756 /* CustomButton.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
 		09B2535D2B4D539A005E7032 /* SelectHappyCategoryScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -633,6 +643,7 @@
 		09C94A412C1AB0D500720272 /* ActiveRoutineScene */ = {
 			isa = PBXGroup;
 			children = (
+				09AE9FCB2C2A5684009DB756 /* Component */,
 				09C94A442C1AB0F000720272 /* Cell */,
 				09C94A432C1AB0EA00720272 /* View */,
 				09C94A422C1AB0E200720272 /* ViewController */,
@@ -1513,6 +1524,7 @@
 				093C1E022B4CFD8100EF84AB /* HappyRoutineViewController.swift in Sources */,
 				A42C33042B3EAE4F00C4B477 /* AuthService.swift in Sources */,
 				00CCDCC82B51B5D8007DD0E6 /* SplashFourView.swift in Sources */,
+				09AE9FCD2C2A5693009DB756 /* CustomButton.swift in Sources */,
 				A49BFE2A2B4E857300035EB6 /* DollNameView.swift in Sources */,
 				A42C32B72B3EAAD800C4B477 /* ImageLiterals.swift in Sources */,
 				09AE9FCA2C29DF00009DB756 /* RoutineEmptyView.swift in Sources */,
