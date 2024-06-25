@@ -28,14 +28,16 @@ final class DollNameView: UIView {
         label.numberOfLines = 0
         label.setLineSpacing(lineSpacing: 4)
         label.textAlignment = .center
+        label.asLineHeight(.head1)
         return label
     }()
     
     private let subTitleLabel: UILabel = {
         let label = UILabel()
         label.text = I18N.Onboarding.dollNameSubTitle
-        label.font = .fontGuide(.body4)
-        label.textColor = .Gray400
+        label.font = .fontGuide(.body2)
+        label.asLineHeight(.body2)
+        label.textColor = .Gray500
         return label
     }()
     
@@ -47,10 +49,10 @@ final class DollNameView: UIView {
         textField.setPlaceholderColor(.Gray200)
         textField.textAlignment = .center
         textField.textColor = .Gray700
-        textField.font = .fontGuide(.body4)
+        textField.font = .fontGuide(.body2)
         textField.clipsToBounds = true
         textField.layer.cornerRadius = 20
-        textField.layer.borderColor = UIColor.Gray200.cgColor
+        textField.layer.borderColor = UIColor.Gray300.cgColor
         textField.layer.borderWidth = 1
         textField.backgroundColor = .SoftieWhite
         textField.becomeFirstResponder()
@@ -61,7 +63,7 @@ final class DollNameView: UIView {
         let label = UILabel()
         label.text = I18N.Onboarding.dollNameInfoTitle
         label.textColor = .SoftieRed
-        label.font = .fontGuide(.caption1)
+        label.font = .fontGuide(.caption2)
         label.isHidden = true
         return label
     }()
@@ -69,10 +71,10 @@ final class DollNameView: UIView {
     lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle(I18N.Onboarding.dollNameButtonTitle, for: .normal)
-        button.setTitleColor(.Gray300, for: .disabled)
-        button.setTitleColor(.Gray000, for: .normal)
-        button.setBackgroundColor(.Gray100, for: .disabled)
-        button.setBackgroundColor(.SoftieMain1, for: .normal)
+        button.setTitleColor(.SoftieWhite, for: .disabled)
+        button.setTitleColor(.SoftieWhite, for: .normal)
+        button.setBackgroundColor(.Gray300, for: .disabled)
+        button.setBackgroundColor(.Gray650, for: .normal)
         button.titleLabel?.font = .fontGuide(.body1)
         button.layer.cornerRadius = 12
         button.isEnabled = false
@@ -100,7 +102,7 @@ final class DollNameView: UIView {
 extension DollNameView {
 
     func setUI() {
-        backgroundColor = .SoftieBack
+        backgroundColor = .Gray50
         
         lottieHello.frame = bounds
         lottieHello.center = center

@@ -66,7 +66,7 @@ final class CustomProgressView: UIView {
 extension CustomProgressView {
 
     func setUI() {
-        backgroundColor = .SoftieBack
+        backgroundColor = .Gray50
     }
     
     func setHierarchy() {
@@ -104,19 +104,19 @@ extension CustomProgressView {
     func setProgress(num: Int) {
         switch num {
         case 1:
-            progressView1.backgroundColor = .SoftieMain1
+            progressView1.backgroundColor = .Gray650
         case 2:
-            progressView1.backgroundColor = .SoftieMain1
-            progressView2.backgroundColor = .SoftieMain1
+            progressView1.backgroundColor = .Gray650
+            progressView2.backgroundColor = .Gray650
         case 3:
-            progressView1.backgroundColor = .SoftieMain1
-            progressView2.backgroundColor = .SoftieMain1
-            progressView3.backgroundColor = .SoftieMain1
+            progressView1.backgroundColor = .Gray650
+            progressView2.backgroundColor = .Gray650
+            progressView3.backgroundColor = .Gray650
         case 4:
-            progressView1.backgroundColor = .SoftieMain1
-            progressView2.backgroundColor = .SoftieMain1
-            progressView3.backgroundColor = .SoftieMain1
-            progressView4.backgroundColor = .SoftieMain1
+            progressView1.backgroundColor = .Gray650
+            progressView2.backgroundColor = .Gray650
+            progressView3.backgroundColor = .Gray650
+            progressView4.backgroundColor = .Gray650
         default:
             break
         }

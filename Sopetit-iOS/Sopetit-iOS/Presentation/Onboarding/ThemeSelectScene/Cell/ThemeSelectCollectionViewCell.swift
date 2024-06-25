@@ -65,7 +65,7 @@ final class ThemeSelectCollectionViewCell: UICollectionViewCell, UICollectionVie
 extension ThemeSelectCollectionViewCell {
     
     func setUI() {
-        backgroundColor = .SoftieBack
+        backgroundColor = .Gray50
     }
     
     func setHierarchy() {

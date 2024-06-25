@@ -21,47 +21,60 @@ enum FontLevel {
     
     case body1
     case body2
-    case body3
-    case body4
     
     case caption1
     case caption2
-    case caption3
-    case caption4
     
-    case bubble14
-    case bubble16
-    case bubble18
-    case bubble20
+    case bubble1
+    case bubble2
 }
 
 extension FontLevel {
     
     var fontWeight: String {
         switch self {
-        case .head1, .head3, .body1, .body3, .caption1, .caption3:
+        case .head1, .head2, .head3, .head4:
             return FontName.PretendardSemiBold.rawValue
-        case .head2, .head4, .body2, .body4, .caption2, .caption4:
+        case .body1, .body2, .caption1, .caption2:
             return FontName.PretendardMedium.rawValue
-        case .bubble14, .bubble16, .bubble18, .bubble20:
+        case .bubble1, .bubble2:
             return FontName.OmyuPretty.rawValue
         }
     }
     
     var fontSize: CGFloat {
         switch self {
-        case .head1, .head2, .bubble20:
+        case .head1:
             return 20
-        case .head4, .bubble18:
+        case .head2, .bubble1:
             return 18
-        case .head3, .body1, .bubble16:
+        case .head3, .body1, .bubble2:
             return 16
-        case .body2, .body3, .body4, .bubble14:
+        case .head4, .body2:
             return 14
-        case .caption1, .caption2:
+        case .caption1:
             return 12
-        case .caption3, .caption4:
+        case .caption2:
             return 10
+        }
+    }
+    
+    var lineHeight: CGFloat {
+        switch self {
+        case .head1:
+            return 56
+        case .head2:
+            return 28
+        case .head3, .body1:
+            return 24
+        case .head4, .body2:
+            return 20
+        case .caption1:
+            return 18
+        case .caption2:
+            return 12
+        default:
+            return 0
         }
     }
 }

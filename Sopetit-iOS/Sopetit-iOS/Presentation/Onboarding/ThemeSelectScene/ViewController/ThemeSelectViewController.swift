@@ -48,9 +48,9 @@ extension ThemeSelectViewController {
     func setUI() {
         themeSelectView.bubbleLabel.text = "안녕 난 \(doll)!\n나와 함께 루틴을 만들어볼까?"
         if doll == "안녕" {
-            themeSelectView.bubbleLabel.secondColorChange(targetString: doll, textColor: .SoftieBrown)
+            themeSelectView.bubbleLabel.secondColorChange(targetString: doll, textColor: .Brown400)
         } else {
-            themeSelectView.bubbleLabel.partColorChange(targetString: doll, textColor: .SoftieBrown)
+            themeSelectView.bubbleLabel.partColorChange(targetString: doll, textColor: .Brown400)
         }
         self.navigationController?.navigationBar.isHidden = true
         self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
