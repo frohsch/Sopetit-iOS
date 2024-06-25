@@ -99,4 +99,8 @@ extension UIColor {
     static var Gray1000: UIColor {
         return UIColor(hex: "#000000").withAlphaComponent(0.7)
     }
+    
+    static var Pink50: UIColor {
+        return UIColor(hex: "#F9EAEC")
+    }
 }
