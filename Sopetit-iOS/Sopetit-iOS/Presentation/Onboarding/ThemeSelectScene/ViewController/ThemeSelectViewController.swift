@@ -84,9 +84,8 @@ extension ThemeSelectViewController: UICollectionViewDelegate {
                     selectedCount += 1
                     selectedCategory.append(themeEntity.themes[indexPath.item].themeID)
                     selectedCell.isSelected = true
-                    selectedCell.themeIcon.backgroundColor = .Gray100
-                    selectedCell.themeIcon.layer.borderColor = UIColor.Gray400.cgColor
-                    selectedCell.themeIcon.layer.borderWidth = 2
+                    selectedCell.backgroundColor = .Gray200
+                    selectedCell.layer.borderColor = UIColor.Gray650.cgColor
                     if selectedCount == 3 {
                         themeSelectView.nextButton.isEnabled = true
                     }
@@ -106,14 +105,22 @@ extension ThemeSelectViewController: UICollectionViewDelegate {
                 }
                 selectedCount -= 1
                 selectedCell.isSelected = false
-                selectedCell.themeIcon.backgroundColor = .SoftieWhite
-                selectedCell.themeIcon.layer.borderColor = UIColor.Gray100.cgColor
-                selectedCell.themeIcon.layer.borderWidth = 1
+                selectedCell.backgroundColor = .SoftieWhite
+                selectedCell.layer.borderColor = UIColor.Gray200.cgColor
                 themeSelectView.nextButton.isEnabled = false
             }
             return true
         }
         return true
+    }
+}
+
+extension ThemeSelectViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let string = themeEntity.themes[indexPath.item].title
+        let cellSize = CGSize(width: string.size(withAttributes: [NSAttributedString.Key.font: UIFont.fontGuide(.body1)]).width + 64, height: 48)
+        return cellSize
     }
 }
 
