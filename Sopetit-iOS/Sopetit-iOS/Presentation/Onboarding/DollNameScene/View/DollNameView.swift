@@ -18,6 +18,12 @@ final class DollNameView: UIView {
     
     // MARK: - UI Components
     
+    let navigationView: CustomNavigationBarView = {
+        let navi = CustomNavigationBarView()
+        navi.isBackButtonIncluded = true
+        return navi
+    }()
+    
     private let progressView = CustomProgressView(progressNum: 2)
     
     private let titleLabel: UILabel = {
@@ -28,7 +34,6 @@ final class DollNameView: UIView {
         label.numberOfLines = 0
         label.setLineSpacing(lineSpacing: 4)
         label.textAlignment = .center
-        label.asLineHeight(.head1)
         return label
     }()
     
@@ -112,12 +117,17 @@ extension DollNameView {
     }
     
     func setHierarchy() {
-        addSubviews(progressView, titleLabel, subTitleLabel, lottieHello, nameTextField, infoLabel, nextButton)
+        addSubviews(navigationView, progressView, titleLabel, subTitleLabel, lottieHello, nameTextField, infoLabel, nextButton)
     }
     
     func setLayout() {
+        navigationView.snp.makeConstraints {
+            $0.top.equalTo(safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
         progressView.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide).offset(23)
+            $0.top.equalTo(navigationView.snp.bottom).offset(4)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(5)
         }
@@ -170,24 +180,10 @@ extension DollNameView {
     }
     
     func setDoll(doll: String) {
-        var animationName = ""
-        
-        switch doll {
-        case "BROWN":
-            animationName = "brown_hello"
-        case "GRAY":
-            animationName = "gray_hello"
-        case "WHITE":
-            animationName = "white_hello"
-        case "RED":
-            animationName = "red_hello"
-        default:
-            break
-        }
-        
-        lottieHello = LottieAnimationView(name: animationName)
-        lottieHello.loopMode = .loop
-        lottieHello.play()
+        lottieHello = LottieAnimationView(name: "\(doll.lowercased())_all")
+        lottieHello.play(fromFrame: LottieFrameTime.start.rawValue,
+                         toFrame: LottieFrameTime.eatDaily.rawValue,
+                         loopMode: .loop)
         
         addSubview(lottieHello)
         lottieHello.snp.makeConstraints {
