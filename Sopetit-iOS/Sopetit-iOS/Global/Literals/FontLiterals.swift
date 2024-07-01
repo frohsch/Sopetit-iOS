@@ -21,6 +21,7 @@ enum FontLevel {
     
     case body1
     case body2
+    case body3
     
     case caption1
     case caption2
@@ -33,7 +34,7 @@ extension FontLevel {
     
     var fontWeight: String {
         switch self {
-        case .head1, .head2, .head3, .head4:
+        case .head1, .head2, .head3, .head4, .body3:
             return FontName.PretendardSemiBold.rawValue
         case .body1, .body2, .caption1, .caption2:
             return FontName.PretendardMedium.rawValue
@@ -50,7 +51,7 @@ extension FontLevel {
             return 18
         case .head3, .body1, .bubble2:
             return 16
-        case .head4, .body2:
+        case .head4, .body2, .body3:
             return 14
         case .caption1:
             return 12
