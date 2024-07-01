@@ -138,7 +138,7 @@ extension DollNameView {
         }
         
         subTitleLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(4)
             $0.centerX.equalToSuperview()
         }
         

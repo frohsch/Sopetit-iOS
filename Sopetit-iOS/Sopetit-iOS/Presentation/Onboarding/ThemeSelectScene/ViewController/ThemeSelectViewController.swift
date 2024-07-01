@@ -53,12 +53,13 @@ extension ThemeSelectViewController {
             themeSelectView.bubbleLabel.partColorChange(targetString: doll, textColor: .Brown400)
         }
         self.navigationController?.navigationBar.isHidden = true
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
     
     func setDelegate() {
         collectionView.delegate = self
         collectionView.dataSource = self
+        themeSelectView.navigationView.delegate = self
     }
     
     func setAddTarget() {
@@ -71,6 +72,13 @@ extension ThemeSelectViewController {
         nav.selectedTheme = selectedCategory
         nav.userDollName = doll
         self.navigationController?.pushViewController(nav, animated: true)
+    }
+}
+
+extension ThemeSelectViewController: BackButtonProtocol {
+    
+    func tapBackButton() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

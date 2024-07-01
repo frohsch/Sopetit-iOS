@@ -13,6 +13,12 @@ final class ThemeSelectView: UIView {
 
     // MARK: - UI Components
     
+    let navigationView: CustomNavigationBarView = {
+        let navi = CustomNavigationBarView()
+        navi.isBackButtonIncluded = true
+        return navi
+    }()
+    
     private let progressView = CustomProgressView(progressNum: 3)
     
     private let backgroundView: UIView = {
@@ -112,12 +118,17 @@ extension ThemeSelectView {
     func setHierarchy() {
         stackview.addArrangedSubviews(bearImage, bubbleImage)
         bubbleImage.addSubview(bubbleLabel)
-        addSubviews(progressView, collectionView, nextButton, backgroundView, stackview)
+        addSubviews(navigationView, progressView, collectionView, nextButton, backgroundView, stackview)
     }
     
     func setLayout() {
+        navigationView.snp.makeConstraints {
+            $0.top.equalTo(safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
         progressView.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide).offset(23)
+            $0.top.equalTo(navigationView.snp.bottom).offset(4)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(5)
         }
