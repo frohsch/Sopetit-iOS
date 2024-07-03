@@ -48,7 +48,7 @@ enum I18N {
         static let buttonTitle = "이 친구와 함께 할래"
         static let themeButtonTitle = "다 선택했어"
         static let themeTitle = "내가 원하는 모습을 선택해봐!\n처음엔 3개만 선택할 수 있어"
-        static let routineChoiceTitle = "관심사를 바탕으로 루틴을 추천해줄게!\n하고 싶은 루틴 3개를 선택해봐!"
+        static let routineChoiceTitle = "처음에는 작고 가볍게 시작하기 위해\n3개의 루틴만 선택할 수 있어!"
         static let routineBackButtonTitle = "테마 다시 고를래"
         static let routineNextButtonTitle = "친구 만날 준비 끝!"
         static let routineInfoTitle = "최대 3개 선택 가능합니다"
