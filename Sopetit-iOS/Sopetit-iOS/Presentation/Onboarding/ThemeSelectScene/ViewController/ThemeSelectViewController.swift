@@ -44,7 +44,7 @@ final class ThemeSelectViewController: UIViewController {
 // MARK: - Extensions
 
 extension ThemeSelectViewController {
-
+    
     func setUI() {
         themeSelectView.bubbleLabel.text = "안녕 난 \(doll)!\n나와 함께 루틴을 만들어볼까?"
         if doll == "안녕" {
@@ -157,6 +157,14 @@ private extension ThemeSelectViewController {
                         self.themeEntity = listData
                     }
                     self.collectionView.reloadData()
+                }
+            case .reissue:
+                ReissueService.shared.postReissueAPI(refreshToken: UserManager.shared.getRefreshToken) { success in
+                    if success {
+                        self.getThemeAPI()
+                    } else {
+                        self.makeSessionExpiredAlert()
+                    }
                 }
             case .requestErr, .serverErr:
                 break

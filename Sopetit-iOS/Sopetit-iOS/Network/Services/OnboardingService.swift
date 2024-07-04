@@ -67,10 +67,10 @@ extension OnBoardingService {
         }
     
     func getOnboardingRoutineAPI(
-        routineID: Int,
+        routineID: String,
         completion: @escaping (NetworkResult<Any>) -> Void) {
-            let url = URLConstant.routineURL + String(routineID)
-            let header: HTTPHeaders = NetworkConstant.hasTokenHeader
+            let url = URLConstant.routineURL + routineID
+            let header: HTTPHeaders = NetworkConstant.noTokenHeader
             let dataRequest = AF.request(url,
                                          method: .get,
                                          encoding: JSONEncoding.default,
