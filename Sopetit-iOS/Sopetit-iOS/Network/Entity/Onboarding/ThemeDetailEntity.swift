@@ -13,7 +13,7 @@ struct ThemeDetailEntity {
 }
 
 extension ThemeDetailEntity {
-    static func getTheme(id: Int) -> ThemeDetailEntity{
+    static func getTheme(id: Int) -> ThemeDetailEntity {
         switch id {
         case 1:
             return ThemeDetailEntity(themeTitle: "관계 쌓기", themeImage: UIImage(resource: .theme1))
@@ -23,12 +23,12 @@ extension ThemeDetailEntity {
             return ThemeDetailEntity(themeTitle: "나와 친해지기", themeImage: UIImage(resource: .theme7))
         case 4:
             return ThemeDetailEntity(themeTitle: "마음 챙김", themeImage: UIImage(resource: .theme2))
+        case 5:
+            return ThemeDetailEntity(themeTitle: "건강한 몸", themeImage: UIImage(resource: .theme6))
         case 6:
             return ThemeDetailEntity(themeTitle: "통통한 통장", themeImage: UIImage(resource: .theme3))
         case 7:
             return ThemeDetailEntity(themeTitle: "산뜻한 일상", themeImage: UIImage(resource: .theme4))
-        case 10:
-            return ThemeDetailEntity(themeTitle: "건강한 몸", themeImage: UIImage(resource: .theme6))
         default:
             return ThemeDetailEntity(themeTitle: "", themeImage: UIImage())
         }

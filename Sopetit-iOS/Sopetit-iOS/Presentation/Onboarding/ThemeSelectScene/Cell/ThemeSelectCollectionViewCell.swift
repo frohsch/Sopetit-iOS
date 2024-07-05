@@ -98,12 +98,12 @@ extension ThemeSelectCollectionViewCell {
                 return UIImage(resource: .theme7)
             case 4:
                 return UIImage(resource: .theme2)
+            case 5:
+                return UIImage(resource: .theme6)
             case 6:
                 return UIImage(resource: .theme3)
             case 7:
                 return UIImage(resource: .theme4)
-            case 10:
-                return UIImage(resource: .theme6)
             default:
                 return UIImage()
             }
