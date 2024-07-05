@@ -69,31 +69,50 @@ final class RoutineChoiceView: UIView {
         return collectionView
     }()
     
-//    lazy var routineFirstCollectionView: UICollectionView = {
-//    }()
-//    
-//    lazy var routineSecondCollectionView: UICollectionView = {
-//    }()
-//    
-//    lazy var routineThirdCollectionView: UICollectionView = {
-//    }()
+    lazy var routineFirstCollectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .vertical
+        flowLayout.minimumLineSpacing = 4
+        flowLayout.itemSize = CGSize(width: SizeLiterals.Screen.screenWidth - 40, height: 56)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView.showsHorizontalScrollIndicator = true
+        collectionView.allowsSelection = true
+        collectionView.isScrollEnabled = true
+        collectionView.allowsMultipleSelection = true
+        collectionView.backgroundColor = .clear
+        collectionView.contentInset = UIEdgeInsets(top: 7, left: 0, bottom: 0, right: 0)
+        return collectionView
+    }()
     
-//    lazy var collectionView: UICollectionView = {
-//        let flowLayout = UICollectionViewFlowLayout()
-//        flowLayout.scrollDirection = .vertical
-//        flowLayout.minimumLineSpacing = 8
-//        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-//        collectionView.showsVerticalScrollIndicator = true
-//        collectionView.clipsToBounds = true
-//        collectionView.contentInsetAdjustmentBehavior = .never
-//        collectionView.isUserInteractionEnabled = true
-//        collectionView.allowsSelection = true
-//        collectionView.isScrollEnabled = true
-//        collectionView.allowsMultipleSelection = true
-//        collectionView.backgroundColor = .Gray50
-//        collectionView.contentInset = UIEdgeInsets(top: 30, left: 20, bottom: 30, right: 20)
-//        return collectionView
-//    }()
+    lazy var routineSecondCollectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .vertical
+        flowLayout.minimumLineSpacing = 4
+        flowLayout.itemSize = CGSize(width: SizeLiterals.Screen.screenWidth - 40, height: 56)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView.showsHorizontalScrollIndicator = true
+        collectionView.allowsSelection = true
+        collectionView.isScrollEnabled = true
+        collectionView.allowsMultipleSelection = true
+        collectionView.backgroundColor = .clear
+        collectionView.contentInset = UIEdgeInsets(top: 7, left: 0, bottom: 0, right: 0)
+        return collectionView
+    }()
+    
+    lazy var routineThirdCollectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .vertical
+        flowLayout.minimumLineSpacing = 4
+        flowLayout.itemSize = CGSize(width: SizeLiterals.Screen.screenWidth - 40, height: 56)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView.showsHorizontalScrollIndicator = true
+        collectionView.allowsSelection = true
+        collectionView.isScrollEnabled = true
+        collectionView.allowsMultipleSelection = true
+        collectionView.backgroundColor = .clear
+        collectionView.contentInset = UIEdgeInsets(top: 7, left: 0, bottom: 0, right: 0)
+        return collectionView
+    }()
     
     lazy var nextButton: UIButton = {
         let button = UIButton()
@@ -154,12 +173,15 @@ extension RoutineChoiceView {
 
     func setUI() {
         backgroundColor = .Gray50
+        routineSecondCollectionView.isHidden = true
+        routineThirdCollectionView.isHidden = true
     }
     
     func setHierarchy() {
         stackview.addArrangedSubviews(bearImage, bubbleImage)
         bubbleImage.addSubview(bubbleLabel)
-        addSubviews(navigationView, progressView, stackview, themeCollectionView, nextButton)
+        addSubviews(navigationView, progressView, stackview, themeCollectionView, nextButton,
+                    routineFirstCollectionView, routineSecondCollectionView, routineThirdCollectionView)
     }
     
     func setLayout() {
@@ -201,6 +223,27 @@ extension RoutineChoiceView {
             $0.height.equalTo(42)
         }
         
+        routineFirstCollectionView.snp.makeConstraints {
+            $0.top.equalTo(themeCollectionView.snp.bottom).offset(5)
+            $0.bottom.equalTo(nextButton.snp.top).offset(-29)
+            $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
+            $0.centerX.equalToSuperview()
+        }
+        
+        routineSecondCollectionView.snp.makeConstraints {
+            $0.top.equalTo(themeCollectionView.snp.bottom).offset(5)
+            $0.bottom.equalTo(nextButton.snp.top).offset(-29)
+            $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
+            $0.centerX.equalToSuperview()
+        }
+        
+        routineThirdCollectionView.snp.makeConstraints {
+            $0.top.equalTo(themeCollectionView.snp.bottom).offset(5)
+            $0.bottom.equalTo(nextButton.snp.top).offset(-29)
+            $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
+            $0.centerX.equalToSuperview()
+        }
+        
         nextButton.snp.makeConstraints {
             $0.bottom.equalTo(safeAreaLayoutGuide).offset(-SizeLiterals.Screen.screenHeight * 17 / 812)
             $0.centerX.equalToSuperview()
@@ -211,6 +254,9 @@ extension RoutineChoiceView {
     
     func setRegisterCell() {
         RoutineThemeCollectionViewCell.register(target: themeCollectionView)
+        RoutineChoiceCollectionViewCell.register(target: routineFirstCollectionView)
+        RoutineChoiceCollectionViewCell.register(target: routineSecondCollectionView)
+        RoutineChoiceCollectionViewCell.register(target: routineThirdCollectionView)
     }
     
     func setDataBind(model: DollImageEntity) {
