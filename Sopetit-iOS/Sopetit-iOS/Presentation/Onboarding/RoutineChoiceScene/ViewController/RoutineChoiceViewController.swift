@@ -21,7 +21,7 @@ final class RoutineChoiceViewController: UIViewController {
     // MARK: - UI Components
     
     private let routineChoiceView = RoutineChoiceView()
-    private lazy var collectionView = routineChoiceView.collectionView
+    private lazy var themeCollectionView = routineChoiceView.themeCollectionView
     
     // MARK: - Life Cycles
     
@@ -51,32 +51,32 @@ extension RoutineChoiceViewController {
     }
     
     func setDelegate() {
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        routineChoiceView.navigationView.delegate = self
+        themeCollectionView.delegate = self
+        themeCollectionView.dataSource = self
     }
     
     func setAddTarget() {
-        routineChoiceView.backButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
         routineChoiceView.nextButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
     }
     
     @objc
     func buttonTapped(_ sender: UIButton) {
-        switch sender {
-        case routineChoiceView.backButton:
-            self.navigationController?.popViewController(animated: true)
-        case routineChoiceView.nextButton:
-            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                  let keyWindow = windowScene.windows.first else {
-                return
-            }
-            let nav = TabBarController()
-            postMemberAPI()
-            UserManager.shared.hasPostMember()
-            keyWindow.rootViewController = UINavigationController(rootViewController: nav)
-        default:
-            break
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let keyWindow = windowScene.windows.first else {
+            return
         }
+        let nav = TabBarController()
+        postMemberAPI()
+        UserManager.shared.hasPostMember()
+        keyWindow.rootViewController = UINavigationController(rootViewController: nav)
+    }
+}
+
+extension RoutineChoiceViewController: BackButtonProtocol {
+    
+    func tapBackButton() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
 
@@ -84,29 +84,27 @@ extension RoutineChoiceViewController {
 
 extension RoutineChoiceViewController {
     func getRoutineAPI() {
-        for i in selectedTheme {
-            OnBoardingService.shared.getOnboardingRoutineAPI(routineID: i) { networkResult in
-                switch networkResult {
-                case .success(let data):
-                    if let data = data as? GenericResponse<RoutineChoiceEntity> {
-                        if let listData = data.data {
-                            self.routineEntity.append(contentsOf: listData.routines)
-                        }
+        let orderArray = [1, 4, 6, 7, 2, 10, 3]
+        let orderDict = Dictionary(uniqueKeysWithValues: orderArray.enumerated().map { ($1, $0) })
+        selectedTheme.sort { (a, b) -> Bool in
+            let orderA = orderDict[a] ?? Int.max
+            let orderB = orderDict[b] ?? Int.max
+            return orderA < orderB
+        }
+        let routineID = selectedTheme.map { String($0) }.joined(separator: ",")
+        
+        OnBoardingService.shared.getOnboardingRoutineAPI(routineID: routineID) { networkResult in
+            switch networkResult {
+            case .success(let data):
+                if let data = data as? GenericResponse<RoutineChoiceEntity> {
+                    if let listData = data.data {
+                        dump(listData)
                     }
-                    self.collectionView.reloadData()
-                case .reissue:
-                    ReissueService.shared.postReissueAPI(refreshToken: UserManager.shared.getRefreshToken) { success in
-                        if success {
-                            self.getRoutineAPI()
-                        } else {
-                            self.makeSessionExpiredAlert()
-                        }
-                    }
-                case .requestErr, .serverErr:
-                    break
-                default:
-                    break
                 }
+            case .requestErr, .serverErr:
+                break
+            default:
+                break
             }
         }
     }
@@ -153,74 +151,38 @@ extension RoutineChoiceViewController {
 
 extension RoutineChoiceViewController: UICollectionViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        if let selectedCell = collectionView.cellForItem(at: indexPath) as? RoutineChoiceCollectionViewCell {
-            if !selectedCell.isSelected {
-                if selectedCount < 3 {
-                    selectedCount += 1
-                    selectedRoutine.append(routineEntity[indexPath.item].routineID)
-                    selectedCell.isSelected = true
-                    selectedCell.routineLabel.backgroundColor = .Gray100
-                    selectedCell.routineLabel.layer.borderColor = UIColor.Gray400.cgColor
-                    selectedCell.routineLabel.layer.borderWidth = 2
-                    routineChoiceView.infoLabel.isHidden = true
-                    makeVibrate()
-                } else {
-                    routineChoiceView.infoLabel.isHidden = false
-                    return false
-                }
-            }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? RoutineThemeCollectionViewCell {
+            cell.backgroundColor = .SoftieWhite
+            cell.routineThemeLabel.textColor = .Gray700
         }
-        updateButton()
-        return true
     }
     
-    func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool {
-        if let selectedCell = collectionView.cellForItem(at: indexPath) as? RoutineChoiceCollectionViewCell {
-            if selectedCell.isSelected {
-                if let index = selectedRoutine.firstIndex(where: { num in num == routineEntity[indexPath.item].routineID }) {
-                    selectedRoutine.remove(at: index)
-                }
-                selectedCount -= 1
-                if selectedCount <= 3 {
-                    routineChoiceView.infoLabel.isHidden = true
-                }
-                selectedCell.isSelected = false
-                selectedCell.routineLabel.backgroundColor = .SoftieWhite
-                selectedCell.routineLabel.layer.borderColor = UIColor.Gray100.cgColor
-                selectedCell.routineLabel.layer.borderWidth = 1
-            }
-            updateButton()
-            return true
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? RoutineThemeCollectionViewCell {
+            cell.backgroundColor = .clear
+            cell.routineThemeLabel.textColor = .Gray500
         }
-        return true
-    }
-    
-    func updateButton() {
-        routineChoiceView.nextButton.isEnabled = selectedCount > 0
-    }
-}
-
-extension RoutineChoiceViewController: UICollectionViewDelegateFlowLayout {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let string = routineEntity[indexPath.item].content
-        let cellSize = CGSize(width: string.size(withAttributes: [NSAttributedString.Key.font: UIFont.fontGuide(.body2)]).width + 40, height: string.size(withAttributes: [NSAttributedString.Key.font: UIFont.fontGuide(.body2)]).height + 28)
-        return cellSize
     }
 }
 
 extension RoutineChoiceViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = RoutineChoiceCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
-        let isSelected = selectedRoutine.contains(routineEntity[indexPath.item].routineID)
-        cell.setCellSelected(selected: isSelected)
-        cell.setDataBind(model: routineEntity[indexPath.item])
+        let cell = RoutineThemeCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
+        cell.setDataBind(themeID: selectedTheme[indexPath.item])
+        if indexPath.item == 0 {
+            collectionView.selectItem(at: indexPath, animated: false, scrollPosition: .init())
+            cell.backgroundColor = .SoftieWhite
+            cell.routineThemeLabel.textColor = .Gray700
+        } else {
+            cell.backgroundColor = .clear
+            cell.routineThemeLabel.textColor = .Gray500
+        }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return routineEntity.count
+        return 3
     }
 }

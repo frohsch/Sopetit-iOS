@@ -13,6 +13,12 @@ final class RoutineChoiceView: UIView {
 
     // MARK: - UI Components
     
+    let navigationView: CustomNavigationBarView = {
+        let navi = CustomNavigationBarView()
+        navi.isBackButtonIncluded = true
+        return navi
+    }()
+    
     private let progressView = CustomProgressView(progressNum: 4)
     
     private let bearImage: UIImageView = {
@@ -47,63 +53,66 @@ final class RoutineChoiceView: UIView {
         return label
     }()
     
-    lazy var collectionView: UICollectionView = {
+    lazy var themeCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
-        flowLayout.scrollDirection = .vertical
-        flowLayout.minimumLineSpacing = 8
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.minimumLineSpacing = 4
+        flowLayout.itemSize = CGSize(width: (SizeLiterals.Screen.screenWidth - 57) / 3, height: 34)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        collectionView.showsVerticalScrollIndicator = true
-        collectionView.clipsToBounds = true
-        collectionView.contentInsetAdjustmentBehavior = .never
-        collectionView.isUserInteractionEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.allowsSelection = true
-        collectionView.isScrollEnabled = true
-        collectionView.allowsMultipleSelection = true
-        collectionView.backgroundColor = .Gray50
-        collectionView.contentInset = UIEdgeInsets(top: 30, left: 20, bottom: 30, right: 20)
+        collectionView.isScrollEnabled = false
+        collectionView.allowsMultipleSelection = false
+        collectionView.backgroundColor = .Gray200
+        collectionView.contentInset = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+        collectionView.layer.cornerRadius = 8
         return collectionView
     }()
     
-    lazy var backButton: UIButton = {
-        let button = UIButton()
-        button.setTitle(I18N.Onboarding.routineBackButtonTitle, for: .normal)
-        button.setTitleColor(.Gray300, for: .normal)
-        button.setBackgroundColor(.Gray100, for: .normal)
-        button.titleLabel?.font = .fontGuide(.body1)
-        button.layer.cornerRadius = 12
-        return button
-    }()
+//    lazy var routineFirstCollectionView: UICollectionView = {
+//    }()
+//    
+//    lazy var routineSecondCollectionView: UICollectionView = {
+//    }()
+//    
+//    lazy var routineThirdCollectionView: UICollectionView = {
+//    }()
+    
+//    lazy var collectionView: UICollectionView = {
+//        let flowLayout = UICollectionViewFlowLayout()
+//        flowLayout.scrollDirection = .vertical
+//        flowLayout.minimumLineSpacing = 8
+//        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+//        collectionView.showsVerticalScrollIndicator = true
+//        collectionView.clipsToBounds = true
+//        collectionView.contentInsetAdjustmentBehavior = .never
+//        collectionView.isUserInteractionEnabled = true
+//        collectionView.allowsSelection = true
+//        collectionView.isScrollEnabled = true
+//        collectionView.allowsMultipleSelection = true
+//        collectionView.backgroundColor = .Gray50
+//        collectionView.contentInset = UIEdgeInsets(top: 30, left: 20, bottom: 30, right: 20)
+//        return collectionView
+//    }()
     
     lazy var nextButton: UIButton = {
         let button = UIButton()
+        button.setTitle(I18N.Onboarding.routineBackButtonTitle, for: .disabled)
         button.setTitle(I18N.Onboarding.routineNextButtonTitle, for: .normal)
+        button.setTitleColor(.SoftieWhite, for: .disabled)
         button.setTitleColor(.SoftieWhite, for: .normal)
+        button.setBackgroundColor(.Gray300, for: .disabled)
         button.setBackgroundColor(.Gray650, for: .normal)
         button.titleLabel?.font = .fontGuide(.body1)
-        button.layer.cornerRadius = 12
+        button.layer.cornerRadius = 10
         button.isEnabled = false
         return button
-    }()
-    
-    private lazy var topLayer: CAGradientLayer = {
-        let gradient = CAGradientLayer()
-        gradient.colors = [UIColor.Gray50.withAlphaComponent(1).cgColor, UIColor.Gray50.withAlphaComponent(0.9).cgColor, UIColor.Gray50.withAlphaComponent(0).cgColor]
-        return gradient
     }()
     
     private lazy var bottomLayer: CAGradientLayer = {
         let gradient = CAGradientLayer()
         gradient.colors = [UIColor.Gray50.withAlphaComponent(0).cgColor, UIColor.Gray50.withAlphaComponent(0.9).cgColor, UIColor.Gray50.withAlphaComponent(1).cgColor]
         return gradient
-    }()
-    
-    let infoLabel: UILabel = {
-        let label = UILabel()
-        label.text = I18N.Onboarding.routineInfoTitle
-        label.textColor = .SoftieRed
-        label.font = .fontGuide(.body2)
-        label.isHidden = true
-        return label
     }()
     
     // MARK: - Life Cycles
@@ -120,17 +129,17 @@ final class RoutineChoiceView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        topLayer.frame = CGRect(x: SizeLiterals.Screen.screenWidth * 20 / 375,
-                                    y: collectionView.frame.origin.y,
-                                    width: SizeLiterals.Screen.screenWidth * 335 / 375,
-                                    height: 30)
-        self.layer.addSublayer(topLayer)
-        let collectionViewBottomY = collectionView.frame.origin.y + collectionView.frame.size.height
-        bottomLayer.frame = CGRect(x: SizeLiterals.Screen.screenWidth * 20 / 375,
-                                   y: collectionViewBottomY - 30,
-                                   width: SizeLiterals.Screen.screenWidth * 335 / 375,
-                                   height: 30)
-        self.layer.addSublayer(bottomLayer)
+//        topLayer.frame = CGRect(x: SizeLiterals.Screen.screenWidth * 20 / 375,
+//                                    y: collectionView.frame.origin.y,
+//                                    width: SizeLiterals.Screen.screenWidth * 335 / 375,
+//                                    height: 30)
+//        self.layer.addSublayer(topLayer)
+//        let collectionViewBottomY = collectionView.frame.origin.y + collectionView.frame.size.height
+//        bottomLayer.frame = CGRect(x: SizeLiterals.Screen.screenWidth * 20 / 375,
+//                                   y: collectionViewBottomY - 30,
+//                                   width: SizeLiterals.Screen.screenWidth * 335 / 375,
+//                                   height: 30)
+//        self.layer.addSublayer(bottomLayer)
     }
     
     @available(*, unavailable)
@@ -150,12 +159,17 @@ extension RoutineChoiceView {
     func setHierarchy() {
         stackview.addArrangedSubviews(bearImage, bubbleImage)
         bubbleImage.addSubview(bubbleLabel)
-        addSubviews(progressView, stackview, collectionView, backButton, nextButton, infoLabel)
+        addSubviews(navigationView, progressView, stackview, themeCollectionView, nextButton)
     }
     
     func setLayout() {
+        navigationView.snp.makeConstraints {
+            $0.top.equalTo(safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
         progressView.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide).offset(23)
+            $0.top.equalTo(navigationView.snp.bottom).offset(4)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(5)
         }
@@ -180,35 +194,23 @@ extension RoutineChoiceView {
             $0.height.equalTo(60)
         }
         
-        collectionView.snp.makeConstraints {
-            $0.top.equalTo(bubbleImage.snp.bottom).offset(SizeLiterals.Screen.screenHeight * 24 / 812)
+        themeCollectionView.snp.makeConstraints {
+            $0.top.equalTo(bubbleImage.snp.bottom).offset(SizeLiterals.Screen.screenHeight * 20 / 812)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(SizeLiterals.Screen.screenWidth * 351 / 375)
-            $0.height.equalTo(SizeLiterals.Screen.screenHeight * 440 / 812)
-        }
-        
-        backButton.snp.makeConstraints {
-            $0.bottom.equalTo(safeAreaLayoutGuide).offset(-SizeLiterals.Screen.screenHeight * 17 / 812)
-            $0.leading.equalToSuperview().inset(20)
-            $0.width.equalTo((SizeLiterals.Screen.screenWidth - 51) / 2)
-            $0.height.equalTo(56)
+            $0.width.equalTo(SizeLiterals.Screen.screenWidth - 41)
+            $0.height.equalTo(42)
         }
         
         nextButton.snp.makeConstraints {
             $0.bottom.equalTo(safeAreaLayoutGuide).offset(-SizeLiterals.Screen.screenHeight * 17 / 812)
-            $0.trailing.equalToSuperview().inset(20)
-            $0.width.equalTo((SizeLiterals.Screen.screenWidth - 51) / 2)
-            $0.height.equalTo(56)
-        }
-        
-        infoLabel.snp.makeConstraints {
-            $0.bottom.equalTo(backButton.snp.top).offset(-SizeLiterals.Screen.screenHeight * 27 / 812)
             $0.centerX.equalToSuperview()
+            $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
+            $0.height.equalTo(56)
         }
     }
     
     func setRegisterCell() {
-        RoutineChoiceCollectionViewCell.register(target: collectionView)
+        RoutineThemeCollectionViewCell.register(target: themeCollectionView)
     }
     
     func setDataBind(model: DollImageEntity) {
