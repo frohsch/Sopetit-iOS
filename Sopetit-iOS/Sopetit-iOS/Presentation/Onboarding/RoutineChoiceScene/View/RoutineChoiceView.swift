@@ -134,6 +134,33 @@ final class RoutineChoiceView: UIView {
         return gradient
     }()
     
+    private let toastView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .Gray400
+        view.layer.cornerRadius = 22
+        return view
+    }()
+    
+    let toastStackview: UIStackView = {
+        let stackview = UIStackView()
+        stackview.axis = .horizontal
+        stackview.spacing = 6
+        stackview.alignment = .center
+        return stackview
+    }()
+    
+    private let toastImage = UIImageView(image: UIImage(resource: .icWarning))
+    
+    private let toastLabel: UILabel = {
+        let label = UILabel()
+        label.text = I18N.Onboarding.toastTitle
+        label.textColor = .SoftieWhite
+        label.textAlignment = .center
+        label.font = .fontGuide(.body2)
+        label.asLineHeight(.body2)
+        return label
+    }()
+    
     // MARK: - Life Cycles
     
     override init(frame: CGRect) {
@@ -175,13 +202,16 @@ extension RoutineChoiceView {
         backgroundColor = .Gray50
         routineSecondCollectionView.isHidden = true
         routineThirdCollectionView.isHidden = true
+        toastView.isHidden = true
     }
     
     func setHierarchy() {
         stackview.addArrangedSubviews(bearImage, bubbleImage)
+        toastStackview.addArrangedSubviews(toastImage, toastLabel)
         bubbleImage.addSubview(bubbleLabel)
+        toastView.addSubview(toastStackview)
         addSubviews(navigationView, progressView, stackview, themeCollectionView, nextButton,
-                    routineFirstCollectionView, routineSecondCollectionView, routineThirdCollectionView)
+                    routineFirstCollectionView, routineSecondCollectionView, routineThirdCollectionView, toastView)
     }
     
     func setLayout() {
@@ -250,6 +280,21 @@ extension RoutineChoiceView {
             $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
             $0.height.equalTo(56)
         }
+        
+        toastView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(nextButton.snp.top).offset(-16)
+            $0.width.equalTo(184)
+            $0.height.equalTo(44)
+        }
+        
+        toastStackview.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+        
+        toastImage.snp.makeConstraints {
+            $0.size.equalTo(18)
+        }
     }
     
     func setRegisterCell() {
@@ -261,5 +306,12 @@ extension RoutineChoiceView {
     
     func setDataBind(model: DollImageEntity) {
         bearImage.kfSetImage(url: model.faceImageURL)
+    }
+    
+    func setToastMessage() {
+        toastView.isHidden = false
+        UIView.animate(withDuration: 0.5, delay: 0.7, options: .curveEaseOut, animations: {
+            self.toastView.alpha = 0.0
+        })
     }
 }
