@@ -15,6 +15,12 @@ final class RoutineChoiceCollectionViewCell: UICollectionViewCell, UICollectionV
 
     static let isFromNib: Bool = false
     
+    override var isSelected: Bool {
+        didSet {
+            routineChoiceButton.isSelected = isSelected
+        }
+    }
+    
     // MARK: - UI Components
     
     let routineLabel: UILabel = {

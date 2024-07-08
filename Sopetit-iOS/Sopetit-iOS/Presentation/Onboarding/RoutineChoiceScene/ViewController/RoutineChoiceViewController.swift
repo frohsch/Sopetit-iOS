@@ -15,6 +15,7 @@ final class RoutineChoiceViewController: UIViewController {
     var userDollName: String = ""
     private var selectedCount: Int = 0
     private var selectedRoutine: [Int] = []
+    private var selectedThemeIndexPath: IndexPath? = [0, 0]
     private var routineEntity: [[Routine]] = Array(repeating: [], count: 3)
     private var dollEntity = DollImageEntity(faceImageURL: "")
     
@@ -48,7 +49,7 @@ final class RoutineChoiceViewController: UIViewController {
 // MARK: - Extensions
 
 extension RoutineChoiceViewController {
-
+    
     func setUI() {
         self.navigationController?.navigationBar.isHidden = true
     }
@@ -56,7 +57,7 @@ extension RoutineChoiceViewController {
     func setDelegate() {
         routineChoiceView.navigationView.delegate = self
         
-        let collectionViews : [UICollectionView] = [themeCollectionView, routineFirstCollectionView, routineSecondCollectionView, routineThirdCollectionView]
+        let collectionViews: [UICollectionView] = [themeCollectionView, routineFirstCollectionView, routineSecondCollectionView, routineThirdCollectionView]
         collectionViews.forEach {
             $0.delegate = self
             $0.dataSource = self
@@ -96,6 +97,39 @@ extension RoutineChoiceViewController {
         default:
             break
         }
+    }
+    
+    func setSelectedCell(in collectionView: UICollectionView, at indexPath: IndexPath, routineIndex: Int) -> Bool {
+        if let selectedCell = collectionView.cellForItem(at: indexPath) as? RoutineChoiceCollectionViewCell {
+            if !selectedCell.isSelected {
+                if selectedCount < 3 {
+                    makeVibrate()
+                    selectedCount += 1
+                    selectedRoutine.append(routineEntity[routineIndex][indexPath.item].routineID)
+                    selectedCell.isSelected = true
+                    if selectedCount == 3 {
+                        routineChoiceView.nextButton.isEnabled = true
+                    }
+                } else {
+                    return false
+                }
+            }
+        }
+        return true
+    }
+    
+    func setDeselectedCell(in collectionView: UICollectionView, at indexPath: IndexPath, routineIndex: Int) -> Bool {
+        if let deselectedCell = collectionView.cellForItem(at: indexPath) as? RoutineChoiceCollectionViewCell {
+            if deselectedCell.isSelected {
+                if let index = selectedRoutine.firstIndex(where: { num in num == routineEntity[routineIndex][indexPath.item].routineID }) {
+                    selectedRoutine.remove(at: index)
+                }
+                selectedCount -= 1
+                deselectedCell.isSelected = false
+                routineChoiceView.nextButton.isEnabled = false
+            }
+        }
+        return true
     }
 }
 
@@ -184,28 +218,48 @@ extension RoutineChoiceViewController {
 
 extension RoutineChoiceViewController: UICollectionViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
         switch collectionView {
         case themeCollectionView:
+            if let previousIndexPath = selectedThemeIndexPath {
+                if let previousCell = collectionView.cellForItem(at: previousIndexPath) as? RoutineThemeCollectionViewCell {
+                    previousCell.isSelected = false
+                    previousCell.backgroundColor = .clear
+                    previousCell.routineThemeLabel.textColor = .Gray500
+                }
+            }
+            
             if let cell = collectionView.cellForItem(at: indexPath) as? RoutineThemeCollectionViewCell {
+                cell.isSelected = true
                 cell.backgroundColor = .SoftieWhite
                 cell.routineThemeLabel.textColor = .Gray700
             }
+            selectedThemeIndexPath = indexPath
             self.setCollectionView(idx: indexPath.item)
+            return true
+        case routineFirstCollectionView:
+            return setSelectedCell(in: collectionView, at: indexPath, routineIndex: 0)
+        case routineSecondCollectionView:
+            return setSelectedCell(in: collectionView, at: indexPath, routineIndex: 1)
+        case routineThirdCollectionView:
+            return setSelectedCell(in: collectionView, at: indexPath, routineIndex: 2)
         default:
-            break
+            return false
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, shouldDeselectItemAt indexPath: IndexPath) -> Bool {
         switch collectionView {
         case themeCollectionView:
-            if let cell = collectionView.cellForItem(at: indexPath) as? RoutineThemeCollectionViewCell {
-                cell.backgroundColor = .clear
-                cell.routineThemeLabel.textColor = .Gray500
-            }
+            return false
+        case routineFirstCollectionView:
+            return setDeselectedCell(in: collectionView, at: indexPath, routineIndex: 0)
+        case routineSecondCollectionView:
+            return setDeselectedCell(in: collectionView, at: indexPath, routineIndex: 1)
+        case routineThirdCollectionView:
+            return setDeselectedCell(in: collectionView, at: indexPath, routineIndex: 2)
         default:
-            break
+            return false
         }
     }
 }
