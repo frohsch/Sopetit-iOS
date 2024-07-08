@@ -43,7 +43,7 @@ final class RoutineChoiceView: UIView {
         return image
     }()
     
-    private lazy var bubbleLabel: UILabel = {
+    let bubbleLabel: UILabel = {
         let label = UILabel()
         label.text = I18N.Onboarding.routineChoiceTitle
         label.textColor = .Gray700
@@ -130,7 +130,7 @@ final class RoutineChoiceView: UIView {
     
     private lazy var bottomLayer: CAGradientLayer = {
         let gradient = CAGradientLayer()
-        gradient.colors = [UIColor.Gray50.withAlphaComponent(0).cgColor, UIColor.Gray50.withAlphaComponent(0.9).cgColor, UIColor.Gray50.withAlphaComponent(1).cgColor]
+        gradient.colors = [UIColor.SoftieWhite.withAlphaComponent(0).cgColor, UIColor.SoftieWhite.withAlphaComponent(1).cgColor]
         return gradient
     }()
     
@@ -225,21 +225,21 @@ extension RoutineChoiceView {
         
         routineFirstCollectionView.snp.makeConstraints {
             $0.top.equalTo(themeCollectionView.snp.bottom).offset(5)
-            $0.bottom.equalTo(nextButton.snp.top).offset(-29)
+            $0.bottom.equalTo(nextButton.snp.top).offset(-20)
             $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
             $0.centerX.equalToSuperview()
         }
         
         routineSecondCollectionView.snp.makeConstraints {
             $0.top.equalTo(themeCollectionView.snp.bottom).offset(5)
-            $0.bottom.equalTo(nextButton.snp.top).offset(-29)
+            $0.bottom.equalTo(nextButton.snp.top).offset(-20)
             $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
             $0.centerX.equalToSuperview()
         }
         
         routineThirdCollectionView.snp.makeConstraints {
             $0.top.equalTo(themeCollectionView.snp.bottom).offset(5)
-            $0.bottom.equalTo(nextButton.snp.top).offset(-29)
+            $0.bottom.equalTo(nextButton.snp.top).offset(-20)
             $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
             $0.centerX.equalToSuperview()
         }

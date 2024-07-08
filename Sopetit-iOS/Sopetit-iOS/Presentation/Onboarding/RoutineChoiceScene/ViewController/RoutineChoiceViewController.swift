@@ -107,6 +107,8 @@ extension RoutineChoiceViewController {
                     selectedCount += 1
                     selectedRoutine.append(routineEntity[routineIndex][indexPath.item].routineID)
                     selectedCell.isSelected = true
+                    routineChoiceView.bubbleLabel.text = "아래에서 루틴을 골라봐\n지금까지 \(selectedCount)/3개를 추가했어!"
+                    routineChoiceView.bubbleLabel.partColorChange(targetString: "\(selectedCount)/3", textColor: .Red200)
                     if selectedCount == 3 {
                         routineChoiceView.nextButton.isEnabled = true
                     }
@@ -126,6 +128,8 @@ extension RoutineChoiceViewController {
                 }
                 selectedCount -= 1
                 deselectedCell.isSelected = false
+                routineChoiceView.bubbleLabel.text = "아래에서 루틴을 골라봐\n지금까지 \(selectedCount)/3개를 추가했어!"
+                routineChoiceView.bubbleLabel.partColorChange(targetString: "\(selectedCount)/3", textColor: .Red200)
                 routineChoiceView.nextButton.isEnabled = false
             }
         }
