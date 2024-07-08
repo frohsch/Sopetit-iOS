@@ -51,7 +51,7 @@ final class DollNameView: UIView {
     let nameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = I18N.Onboarding.textfieldPlaceholder
-        textField.setPlaceholderColor(.Gray200)
+        textField.setPlaceholderColor(.Gray300)
         textField.textAlignment = .center
         textField.textColor = .Gray700
         textField.font = .fontGuide(.body2)
