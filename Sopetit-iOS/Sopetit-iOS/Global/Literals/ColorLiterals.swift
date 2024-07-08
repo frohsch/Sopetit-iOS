@@ -12,7 +12,11 @@ extension UIColor {
         return UIColor(hex: "#FFFFFF")
     }
     
-    static var SoftieRed: UIColor {
+    static var Red50: UIColor {
+        return UIColor(hex: "#F9E2E2")
+    }
+    
+    static var Red200: UIColor {
         return UIColor(hex: "#F76D6D")
     }
     

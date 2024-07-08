@@ -67,7 +67,7 @@ final class DollNameView: UIView {
     let infoLabel: UILabel = {
         let label = UILabel()
         label.text = I18N.Onboarding.dollNameInfoTitle
-        label.textColor = .SoftieRed
+        label.textColor = .Red200
         label.font = .fontGuide(.caption2)
         label.isHidden = true
         return label

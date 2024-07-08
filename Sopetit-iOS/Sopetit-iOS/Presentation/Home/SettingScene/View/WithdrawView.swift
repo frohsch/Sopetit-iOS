@@ -16,7 +16,7 @@ final class WithdrawView: UIView {
         let label = UILabel()
         label.text = "소프티를 정말 탈퇴하시나요?"
         label.textColor = .Gray700
-        label.partColorChange(targetString: "탈퇴", textColor: .SoftieRed)
+        label.partColorChange(targetString: "탈퇴", textColor: .Red200)
         label.font = .fontGuide(.head1)
         return label
     }()
@@ -42,9 +42,9 @@ final class WithdrawView: UIView {
     
     lazy var rightButton: UIButton = {
         let button = UIButton()
-        button.backgroundColor = .SoftieRed
+        button.backgroundColor = .Red200
         button.setTitle("탈퇴할래", for: .normal)
-        button.setTitleColor(.SoftieRed, for: .normal)
+        button.setTitleColor(.Red200, for: .normal)
         button.titleLabel?.font = .fontGuide(.body1)
         button.layer.cornerRadius = 12
         button.clipsToBounds = true
