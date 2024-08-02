@@ -98,17 +98,17 @@ extension DollChoiceView {
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(progressView.snp.bottom).offset(29)
+            $0.top.equalTo(progressView.snp.bottom).offset(28)
             $0.centerX.equalToSuperview()
         }
         
         subTitleLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom).offset(8)
+            $0.top.equalTo(titleLabel.snp.bottom).offset(4)
             $0.centerX.equalToSuperview()
         }
         
         dollCollectionView.snp.makeConstraints {
-            $0.top.equalTo(subTitleLabel.snp.bottom).offset(SizeLiterals.Screen.screenHeight * 102 / 812)
+            $0.top.equalTo(subTitleLabel.snp.bottom).offset(SizeLiterals.Screen.screenHeight * 97 / 812)
             $0.centerX.equalToSuperview().inset(20)
             $0.size.equalTo(335)
         }

@@ -23,9 +23,9 @@ enum URLConstant {
     
     // MARK: - OnBoarding URL
     
-    static let themeURL = baseURL + "/api/v1/routines/daily/themes"
+    static let themeURL = baseURL + "/api/v2/themes"
     static let dollImageURL = baseURL + "/api/v1/dolls/image/"
-    static let routineURL = baseURL + "/api/v1/routines/daily/theme/"
+    static let routineURL = baseURL + "/api/v2/routines/daily?themeIds="
     static let memberURL = baseURL + "/api/v1/members"
     
     // MARK: - Home URL
@@ -48,4 +48,5 @@ enum URLConstant {
     static let happinessRoutineURL = baseURL + "/api/v1/routines/happiness/routine/"
     static let happinessMemberURL = baseURL + "/api/v1/routines/happiness/member"
     static let happinessMemberRoutineURL = baseURL + "/api/v1/routines/happiness/member/routine/"
+
 }

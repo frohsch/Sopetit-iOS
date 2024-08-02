@@ -13,13 +13,10 @@ struct ThemeSelectEntity: Codable {
 
 struct Theme: Codable {
     let themeID: Int
-    let name: String
-    let iconImageURL, backgroundImageURL: String
+    let title, subTitle, description: String
 
     enum CodingKeys: String, CodingKey {
         case themeID = "themeId"
-        case name
-        case iconImageURL = "iconImageUrl"
-        case backgroundImageURL = "backgroundImageUrl"
+        case title, subTitle, description
     }
 }

@@ -50,10 +50,11 @@ extension DollNameViewController {
     func setUI() {
         dollNameView.setDoll(doll: UserManager.shared.getDollType)
         self.navigationController?.navigationBar.isHidden = true
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
 
     func setDelegate() {
+        dollNameView.navigationView.delegate = self
         textfield.delegate = self
     }
     
@@ -73,6 +74,13 @@ extension DollNameViewController {
 }
 
 // MARK: - Network
+
+extension DollNameViewController: BackButtonProtocol {
+    
+    func tapBackButton() {
+        self.navigationController?.popViewController(animated: true)
+    }
+}
 
 extension DollNameViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
