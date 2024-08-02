@@ -30,16 +30,38 @@ final class TutorialView: UIView {
     lazy var tutorialCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
+        flowLayout.minimumInteritemSpacing = 0
         flowLayout.itemSize = CGSize(width: SizeLiterals.Screen.screenWidth * 320 / 375, height: 385)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.clipsToBounds = true
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.isUserInteractionEnabled = true
-        collectionView.allowsSelection = true
+        collectionView.allowsSelection = false
         collectionView.backgroundColor = .clear
-        collectionView.isPagingEnabled = true
+        collectionView.isPagingEnabled = false
         return collectionView
+    }()
+    
+    lazy var pageControl: UIPageControl = {
+        let pageControl = UIPageControl(frame: CGRect(x: 0, y: 0, width: 320, height: 30))
+        pageControl.numberOfPages = 3
+        pageControl.currentPage = 0
+        pageControl.isUserInteractionEnabled = false
+        pageControl.pageIndicatorTintColor = .Gray300
+        pageControl.currentPageIndicatorTintColor = .Gray650
+        pageControl.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+        return pageControl
+    }()
+    
+    let nextButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("다음", for: .normal)
+        button.setTitleColor(.SoftieWhite, for: .normal)
+        button.titleLabel?.font = .fontGuide(.body1)
+        button.backgroundColor = .Gray650
+        button.layer.cornerRadius = 10
+        return button
     }()
     
     // MARK: - Life Cycles
@@ -69,7 +91,7 @@ extension TutorialView {
     
     func setHierarchy() {
         addSubviews(backgroundView, tutorialView)
-        tutorialView.addSubview(tutorialCollectionView)
+        tutorialView.addSubviews(tutorialCollectionView, nextButton, pageControl)
     }
     
     func setLayout() {
@@ -87,6 +109,18 @@ extension TutorialView {
             $0.centerX.equalToSuperview()
             $0.width.equalTo(SizeLiterals.Screen.screenWidth * 320 / 375)
             $0.height.equalTo(385)
+        }
+        
+        pageControl.snp.makeConstraints {
+            $0.bottom.equalTo(nextButton.snp.top).offset(-32)
+            $0.centerX.equalToSuperview()
+        }
+        
+        nextButton.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(40)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
+            $0.height.equalTo(SizeLiterals.Screen.screenHeight * 56 / 812)
         }
     }
     
