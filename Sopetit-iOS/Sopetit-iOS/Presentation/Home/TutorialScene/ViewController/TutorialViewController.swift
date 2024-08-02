@@ -37,6 +37,7 @@ final class TutorialViewController: UIViewController {
 extension TutorialViewController {
     
     func setUI() {
+        self.view.backgroundColor = .clear
         self.navigationController?.navigationBar.isHidden = true
     }
     
@@ -59,7 +60,8 @@ extension TutorialViewController {
             let nextIndexPath = IndexPath(item: nextItem, section: 0)
             collectionView.scrollToItem(at: nextIndexPath, at: .centeredHorizontally, animated: true)
         } else {
-            print("홈으로 이동~")
+            UserManager.shared.setShowTutorial()
+            self.dismiss(animated: false)
         }
     }
     
