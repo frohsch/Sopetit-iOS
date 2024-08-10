@@ -14,6 +14,7 @@ final class AddRoutineViewController: UIViewController {
     // MARK: - UI Components
     
     private var addRoutineView = AddRoutineView()
+    private lazy var collectionView = addRoutineView.makerCollectionView
     
     // MARK: - Life Cycles
     
@@ -25,6 +26,7 @@ final class AddRoutineViewController: UIViewController {
         super.viewDidLoad()
         
         setUI()
+        setDelegate()
     }
 }
 
@@ -34,5 +36,29 @@ extension AddRoutineViewController {
     
     func setUI() {
         self.navigationController?.navigationBar.isHidden = true
+    }
+    
+    func setDelegate() {
+        collectionView.delegate = self
+        collectionView.dataSource = self
+    }
+}
+
+extension AddRoutineViewController: UICollectionViewDelegate {
+    
+}
+
+extension AddRoutineViewController: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView, 
+                        numberOfItemsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, 
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = MakersCollectionViewCell.dequeueReusableCell(collectionView: collectionView,
+                                                                indexPath: indexPath)
+        return cell
     }
 }

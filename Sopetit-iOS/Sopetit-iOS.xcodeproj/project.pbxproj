@@ -12,7 +12,6 @@
 		006AD5BA2B6AAAD100070178 /* ReissueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006AD5B92B6AAAD100070178 /* ReissueService.swift */; };
 		0084F19B2B4A895700F87860 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084F19A2B4A895700F87860 /* LoginView.swift */; };
 		0084F19D2B4A896500F87860 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084F19C2B4A896500F87860 /* LoginViewController.swift */; };
-		00A4AA102BFCD4C200FB4D46 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 00A4AA0F2BFCD4C200FB4D46 /* GoogleService-Info.plist */; };
 		00A4AA132BFCD81400FB4D46 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 00A4AA122BFCD81400FB4D46 /* FirebaseAnalytics */; };
 		00A4AA152BFCD81400FB4D46 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */ = {isa = PBXBuildFile; productRef = 00A4AA142BFCD81400FB4D46 /* FirebaseAnalyticsOnDeviceConversion */; };
 		00A4AA172BFCD81400FB4D46 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 00A4AA162BFCD81400FB4D46 /* FirebaseAnalyticsSwift */; };
@@ -56,6 +55,9 @@
 		09BCA9FA2C2A7773006E876D /* ChallengeRoutineCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BCA9F92C2A7773006E876D /* ChallengeRoutineCardView.swift */; };
 		09BCA9FD2C2A77FC006E876D /* NewDailyRoutineCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BCA9FC2C2A77FC006E876D /* NewDailyRoutineCollectionViewCell.swift */; };
 		09BCAA002C2A783C006E876D /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BCA9FF2C2A783C006E876D /* CustomButton.swift */; };
+		A40F9EFD2C6798A5004DD1A1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A40F9EFC2C6798A5004DD1A1 /* GoogleService-Info.plist */; };
+		A40F9F012C67C28B004DD1A1 /* MakersEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F002C67C28B004DD1A1 /* MakersEntity.swift */; };
+		A40F9F042C67C3C6004DD1A1 /* MakersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F032C67C3C6004DD1A1 /* MakersCollectionViewCell.swift */; };
 		A42C327C2B3DB8F400C4B477 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C327B2B3DB8F400C4B477 /* AppDelegate.swift */; };
 		A42C327E2B3DB8F400C4B477 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C327D2B3DB8F400C4B477 /* SceneDelegate.swift */; };
 		A42C32852B3DB8F500C4B477 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A42C32842B3DB8F500C4B477 /* Assets.xcassets */; };
@@ -150,8 +152,6 @@
 		006AD5B92B6AAAD100070178 /* ReissueService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReissueService.swift; sourceTree = "<group>"; };
 		0084F19A2B4A895700F87860 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0084F19C2B4A896500F87860 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		009D87352B84FD4D00A211CA /* ReleaseConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ReleaseConfig.xcconfig; sourceTree = "<group>"; };
-		00A4AA0F2BFCD4C200FB4D46 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		00A8E3992B4D8B0D001461CE /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		00A8E39B2B4D8B20001461CE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		00B68F382B5935A300ED8CF6 /* happy_complete_ios.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = happy_complete_ios.json; sourceTree = "<group>"; };
@@ -190,6 +190,11 @@
 		09BCA9F92C2A7773006E876D /* ChallengeRoutineCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeRoutineCardView.swift; sourceTree = "<group>"; };
 		09BCA9FC2C2A77FC006E876D /* NewDailyRoutineCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDailyRoutineCollectionViewCell.swift; sourceTree = "<group>"; };
 		09BCA9FF2C2A783C006E876D /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		A40F9EF92C679827004DD1A1 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		A40F9EFB2C67985C004DD1A1 /* ReleaseConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ReleaseConfig.xcconfig; sourceTree = "<group>"; };
+		A40F9EFC2C6798A5004DD1A1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A40F9F002C67C28B004DD1A1 /* MakersEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakersEntity.swift; sourceTree = "<group>"; };
+		A40F9F032C67C3C6004DD1A1 /* MakersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakersCollectionViewCell.swift; sourceTree = "<group>"; };
 		A42C32782B3DB8F400C4B477 /* Sopetit-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sopetit-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A42C327B2B3DB8F400C4B477 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A42C327D2B3DB8F400C4B477 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -241,7 +246,6 @@
 		A4648BA12C04348E001EB031 /* OngoingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OngoingViewController.swift; sourceTree = "<group>"; };
 		A4648BA32C0434A9001EB031 /* AddRoutineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineViewController.swift; sourceTree = "<group>"; };
 		A4832BAA2B4ACF09007879FF /* omyu-pretty.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "omyu-pretty.ttf"; sourceTree = "<group>"; };
-		A488FE882B6979FE000B4809 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		A488FE8A2B697BB7000B4809 /* UpdateAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAlertView.swift; sourceTree = "<group>"; };
 		A488FE8D2B697C0E000B4809 /* VersionEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionEntity.swift; sourceTree = "<group>"; };
 		A49BFDD42B4D5F0800035EB6 /* StroyTellingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StroyTellingViewController.swift; sourceTree = "<group>"; };
@@ -389,6 +393,22 @@
 			path = Component;
 			sourceTree = "<group>";
 		};
+		A40F9EFF2C67C09B004DD1A1 /* AddRoutine */ = {
+			isa = PBXGroup;
+			children = (
+				A40F9F002C67C28B004DD1A1 /* MakersEntity.swift */,
+			);
+			path = AddRoutine;
+			sourceTree = "<group>";
+		};
+		A40F9F022C67C3B3004DD1A1 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				A40F9F032C67C3C6004DD1A1 /* MakersCollectionViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		A42C326F2B3DB8F400C4B477 = {
 			isa = PBXGroup;
 			children = (
@@ -408,7 +428,7 @@
 		A42C327A2B3DB8F400C4B477 /* Sopetit-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				00A4AA0F2BFCD4C200FB4D46 /* GoogleService-Info.plist */,
+				A40F9EFC2C6798A5004DD1A1 /* GoogleService-Info.plist */,
 				0046E1EC2B5514EE00C9565E /* Sopetit-iOS.entitlements */,
 				A42C32A12B3EA98400C4B477 /* Application */,
 				A42C32A02B3EA98000C4B477 /* Global */,
@@ -416,8 +436,8 @@
 				A42C329E2B3EA97100C4B477 /* Presentation */,
 				A42C32892B3DB8F500C4B477 /* Info.plist */,
 				A42C336B2B41EF2F00C4B477 /* .swiftlint.yml */,
-				A488FE882B6979FE000B4809 /* Config.xcconfig */,
-				009D87352B84FD4D00A211CA /* ReleaseConfig.xcconfig */,
+				A40F9EF92C679827004DD1A1 /* Config.xcconfig */,
+				A40F9EFB2C67985C004DD1A1 /* ReleaseConfig.xcconfig */,
 			);
 			path = "Sopetit-iOS";
 			sourceTree = "<group>";
@@ -622,6 +642,7 @@
 		A42C32EC2B3EAD5C00C4B477 /* Routine */ = {
 			isa = PBXGroup;
 			children = (
+				A40F9EFF2C67C09B004DD1A1 /* AddRoutine */,
 				09BCA9EE2C2A7697006E876D /* Ongoing */,
 				A42C32F82B3EADF000C4B477 /* Daily */,
 				A42C32F72B3EADE600C4B477 /* Happiness */,
@@ -868,6 +889,7 @@
 		A4648B932C04334A001EB031 /* AddRoutineScene */ = {
 			isa = PBXGroup;
 			children = (
+				A40F9F022C67C3B3004DD1A1 /* Cell */,
 				A4648B962C04335F001EB031 /* View */,
 				A4648B952C04335A001EB031 /* ViewController */,
 			);
@@ -1215,7 +1237,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00A4AA102BFCD4C200FB4D46 /* GoogleService-Info.plist in Resources */,
+				A40F9EFD2C6798A5004DD1A1 /* GoogleService-Info.plist in Resources */,
 				00EF4A092BB9870300C704D4 /* red_all.json in Resources */,
 				A4832BAB2B4ACF09007879FF /* omyu-pretty.ttf in Resources */,
 				A42C336C2B41EF2F00C4B477 /* .swiftlint.yml in Resources */,
@@ -1311,6 +1333,7 @@
 				A42C327C2B3DB8F400C4B477 /* AppDelegate.swift in Sources */,
 				0470C2532B57F03100CE43D6 /* DailyDeleteEntity.swift in Sources */,
 				A42C32D32B3EABA300C4B477 /* UITableViewRegisterable.swift in Sources */,
+				A40F9F042C67C3C6004DD1A1 /* MakersCollectionViewCell.swift in Sources */,
 				00A8E39A2B4D8B0D001461CE /* HomeView.swift in Sources */,
 				A42C32A52B3EA9A000C4B477 /* UserManager.swift in Sources */,
 				00A8E39C2B4D8B20001461CE /* HomeViewController.swift in Sources */,
@@ -1343,6 +1366,7 @@
 				00CCDCC22B51B5AF007DD0E6 /* SplashOneView.swift in Sources */,
 				0463F89B2B4ADE4A0089B526 /* TabBarItem.swift in Sources */,
 				A42C32EB2B3EACAC00C4B477 /* URLConstant.swift in Sources */,
+				A40F9F012C67C28B004DD1A1 /* MakersEntity.swift in Sources */,
 				A4D2EB092B57D07A00493D8C /* HomeCottonEntity.swift in Sources */,
 				045DFE792B504E26005D69EA /* SettingView.swift in Sources */,
 				A49BFE1D2B4E541C00035EB6 /* RoutineChoiceViewController.swift in Sources */,
@@ -1505,7 +1529,7 @@
 		};
 		A42C328D2B3DB8F500C4B477 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A488FE882B6979FE000B4809 /* Config.xcconfig */;
+			baseConfigurationReference = A40F9EF92C679827004DD1A1 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -1542,6 +1566,7 @@
 		};
 		A42C328E2B3DB8F500C4B477 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A40F9EFB2C67985C004DD1A1 /* ReleaseConfig.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
