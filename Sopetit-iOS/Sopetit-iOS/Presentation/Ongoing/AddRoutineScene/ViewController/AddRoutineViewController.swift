@@ -14,7 +14,8 @@ final class AddRoutineViewController: UIViewController {
     // MARK: - UI Components
     
     private var addRoutineView = AddRoutineView()
-    private lazy var collectionView = addRoutineView.makerCollectionView
+    private lazy var makerCollectionView = addRoutineView.makerCollectionView
+    private var makersEntity = MakersEntity.makersInitialEntity()
     
     // MARK: - Life Cycles
     
@@ -27,6 +28,7 @@ final class AddRoutineViewController: UIViewController {
         
         setUI()
         setDelegate()
+        getMakersAPI()
     }
 }
 
@@ -39,8 +41,37 @@ extension AddRoutineViewController {
     }
     
     func setDelegate() {
-        collectionView.delegate = self
-        collectionView.dataSource = self
+        makerCollectionView.delegate = self
+        makerCollectionView.dataSource = self
+    }
+}
+
+// MARK: - Network
+
+extension AddRoutineViewController {
+    
+    func getMakersAPI() {
+        AddDailyRoutineService.shared.getMakers { networkResult in
+            switch networkResult {
+            case .success(let data):
+                if let data = data as? GenericResponse<MakersEntity> {
+                    if let listData = data.data {
+                        self.makersEntity = listData
+                    }
+                }
+                self.makerCollectionView.reloadData()
+            case .reissue:
+                ReissueService.shared.postReissueAPI(refreshToken: UserManager.shared.getRefreshToken) { success in
+                    if success {
+                        self.getMakersAPI()
+                    } else {
+                        self.makeSessionExpiredAlert()
+                    }
+                }
+            default:
+                break
+            }
+        }
     }
 }
 
@@ -52,13 +83,14 @@ extension AddRoutineViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, 
                         numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return makersEntity.makers.count
     }
     
     func collectionView(_ collectionView: UICollectionView, 
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = MakersCollectionViewCell.dequeueReusableCell(collectionView: collectionView,
                                                                 indexPath: indexPath)
+        cell.setDataBind(model: makersEntity.makers[indexPath.item])
         return cell
     }
 }

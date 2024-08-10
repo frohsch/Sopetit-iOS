@@ -25,3 +25,15 @@ struct Maker: Codable {
         case description, content, tags
     }
 }
+
+extension MakersEntity {
+    
+    static func makersInitialEntity() -> MakersEntity {
+        return MakersEntity(makers: [Maker(makerID: 0,
+                                           themeID: 0,
+                                           profileImageURL: "",
+                                           description: "",
+                                           content: "",
+                                           tags: [])])
+    }
+}

@@ -48,5 +48,9 @@ enum URLConstant {
     static let happinessRoutineURL = baseURL + "/api/v1/routines/happiness/routine/"
     static let happinessMemberURL = baseURL + "/api/v1/routines/happiness/member"
     static let happinessMemberRoutineURL = baseURL + "/api/v1/routines/happiness/member/routine/"
+    
+    // MARK: - AddRoutine URL
+    
+    static let makersURL = baseURL + "/api/v2/makers"
 
 }
