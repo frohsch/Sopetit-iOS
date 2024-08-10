@@ -16,6 +16,7 @@ final class UserManager {
     @UserDefaultWrapper<String>(key: "userIdentifier") private(set) var appleUserIdentifier
     @UserDefaultWrapper<Bool>(key: "postMember") private(set) var postMember
     @UserDefaultWrapper<String>(key: "dollType") private(set) var dollType
+    @UserDefaultWrapper<Bool>(key: "showTutorial") private(set) var showTutorial
     
     var hasAccessToken: Bool { return self.accessToken != nil }
     var getAccessToken: String { return self.accessToken ?? "" }
@@ -23,6 +24,7 @@ final class UserManager {
     var getSocialType: String { return self.socialType ?? "" }
     var isPostMemeber: Bool { return self.postMember ?? false }
     var getDollType: String { return self.dollType ?? "BROWN" }
+    var isShowTutorial: Bool { return self.showTutorial ?? false }
     
     private init() {}
 }
@@ -64,5 +66,10 @@ extension UserManager {
         self.refreshToken = nil
         self.appleUserIdentifier = nil
         self.postMember = false
+        self.showTutorial = false
+    }
+    
+    func setShowTutorial() {
+        self.showTutorial = true
     }
 }
