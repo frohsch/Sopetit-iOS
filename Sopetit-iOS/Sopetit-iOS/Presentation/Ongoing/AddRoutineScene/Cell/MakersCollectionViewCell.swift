@@ -15,6 +15,7 @@ final class MakersCollectionViewCell: UICollectionViewCell,
     // MARK: - Properties
 
     static let isFromNib: Bool = false
+    var chipData: [String] = []
     
     // MARK: - UI Components
     
@@ -44,6 +45,18 @@ final class MakersCollectionViewCell: UICollectionViewCell,
         return label
     }()
     
+    lazy var makerChipCollectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.minimumInteritemSpacing = 4
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.isUserInteractionEnabled = false
+        collectionView.allowsSelection = false
+        collectionView.backgroundColor = .clear
+        return collectionView
+    }()
+    
     // MARK: - Life Cycles
     
     override init(frame: CGRect) {
@@ -52,6 +65,8 @@ final class MakersCollectionViewCell: UICollectionViewCell,
         setUI()
         setHierarchy()
         setLayout()
+        setDelegate()
+        setRegisterCell()
     }
     
     required init?(coder: NSCoder) {
@@ -74,7 +89,8 @@ private extension MakersCollectionViewCell {
         addSubviews(makerProfileImage,
                     makerGoButton,
                     makerDescriptionLabel,
-                    makerContentLabel)
+                    makerContentLabel,
+                    makerChipCollectionView)
     }
     
     func setLayout() {
@@ -99,6 +115,23 @@ private extension MakersCollectionViewCell {
             $0.top.equalTo(makerDescriptionLabel.snp.bottom).offset(2)
             $0.leading.equalTo(makerProfileImage.snp.leading)
         }
+        
+        
+        makerChipCollectionView.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(16)
+            $0.leading.equalToSuperview().inset(20)
+            $0.width.equalTo(180)
+            $0.height.equalTo(20)
+        }
+    }
+    
+    func setDelegate() {
+        makerChipCollectionView.delegate = self
+        makerChipCollectionView.dataSource = self
+    }
+    
+    func setRegisterCell() {
+        MakersChipCollectionViewCell.register(target: makerChipCollectionView)
     }
 }
 
@@ -108,5 +141,34 @@ extension MakersCollectionViewCell {
         makerProfileImage.kfSetImage(url: model.profileImageURL)
         makerDescriptionLabel.text = model.description
         makerContentLabel.text = model.content
+        chipData = model.tags
+    }
+}
+
+extension MakersCollectionViewCell: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let string = chipData[indexPath.item]
+        let cellSize = CGSize(width: string.size(withAttributes: [NSAttributedString.Key.font: UIFont.fontGuide(.caption2)]).width + 16, height: 20)
+        return cellSize
+    }
+    
+}
+
+extension MakersCollectionViewCell: UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
+        return chipData.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = MakersChipCollectionViewCell.dequeueReusableCell(collectionView: collectionView,
+                                                                indexPath: indexPath)
+        cell.setDataBind(model: chipData[indexPath.item])
+        return cell
     }
 }

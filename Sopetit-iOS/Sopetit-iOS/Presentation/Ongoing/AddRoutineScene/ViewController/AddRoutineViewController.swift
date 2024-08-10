@@ -91,6 +91,7 @@ extension AddRoutineViewController: UICollectionViewDataSource {
         let cell = MakersCollectionViewCell.dequeueReusableCell(collectionView: collectionView,
                                                                 indexPath: indexPath)
         cell.setDataBind(model: makersEntity.makers[indexPath.item])
+        cell.makerChipCollectionView.reloadData()
         return cell
     }
 }
