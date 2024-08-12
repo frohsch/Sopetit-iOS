@@ -32,6 +32,15 @@ private extension OngoingViewController {
     func setUI() {
         self.navigationController?.navigationBar.isHidden = true
         heightForContentView(numberOfSection: dailyRoutine.count, texts: dailyRoutine)
+        
+        ongoingView.floatingButton.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+    }
+    
+    @objc
+    func buttonTapped() {
+        let nav = AddRoutineViewController()
+        nav.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(nav, animated: true)
     }
     
     func setDelegate() {
