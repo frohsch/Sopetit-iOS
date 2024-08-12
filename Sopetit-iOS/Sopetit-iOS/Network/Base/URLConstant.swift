@@ -52,5 +52,5 @@ enum URLConstant {
     // MARK: - AddRoutine URL
     
     static let makersURL = baseURL + "/api/v2/makers"
-
+    static let dailyThemeURL = baseURL + "/api/v2/routines/daily/theme/"
 }
