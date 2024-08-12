@@ -93,4 +93,8 @@ extension RoutineChoiceCollectionViewCell {
         routineLabel.text = model.content
         routineLabel.asLineHeight(.body2)
     }
+    
+    func setAddRoutineBind(model: Routines) {
+        routineLabel.text = model.content
+    }
 }

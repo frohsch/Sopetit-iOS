@@ -141,7 +141,22 @@ extension AddRoutineViewController {
 }
 
 extension AddRoutineViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch collectionView {
+        case makerCollectionView:
+            let nav = AddRoutineDetailViewController()
+            nav.theme = .maker
+            nav.id = makersEntity.makers[indexPath.item].makerID
+            self.navigationController?.pushViewController(nav, animated: true)
+        case routineCollectionView:
+            let nav = AddRoutineDetailViewController()
+            nav.theme = .routine
+            nav.id = routineEntity.themes[indexPath.item].themeID
+            self.navigationController?.pushViewController(nav, animated: true)
+        default:
+            break
+        }
+    }
 }
 
 extension AddRoutineViewController: UICollectionViewDataSource {
