@@ -15,7 +15,9 @@ final class AddRoutineViewController: UIViewController {
     
     private var addRoutineView = AddRoutineView()
     private lazy var makerCollectionView = addRoutineView.makerCollectionView
+    private lazy var routineCollectionView = addRoutineView.totalRoutineCollectionView
     private var makersEntity = MakersEntity.makersInitialEntity()
+    private var routineEntity = ThemeSelectEntity(themes: [])
     
     // MARK: - Life Cycles
     
@@ -29,6 +31,7 @@ final class AddRoutineViewController: UIViewController {
         setUI()
         setDelegate()
         getMakersAPI()
+        getThemeAPI()
     }
 }
 
@@ -43,6 +46,8 @@ extension AddRoutineViewController {
     func setDelegate() {
         makerCollectionView.delegate = self
         makerCollectionView.dataSource = self
+        routineCollectionView.delegate = self
+        routineCollectionView.dataSource = self
     }
 }
 
@@ -73,6 +78,32 @@ extension AddRoutineViewController {
             }
         }
     }
+    
+    func getThemeAPI() {
+        OnBoardingService.shared.getOnboardingThemeAPI { networkResult in
+            switch networkResult {
+            case .success(let data):
+                if let data = data as? GenericResponse<ThemeSelectEntity> {
+                    if let listData = data.data {
+                        self.routineEntity = listData
+                    }
+                    self.routineCollectionView.reloadData()
+                }
+            case .reissue:
+                ReissueService.shared.postReissueAPI(refreshToken: UserManager.shared.getRefreshToken) { success in
+                    if success {
+                        self.getThemeAPI()
+                    } else {
+                        self.makeSessionExpiredAlert()
+                    }
+                }
+            case .requestErr, .serverErr:
+                break
+            default:
+                break
+            }
+        }
+    }
 }
 
 extension AddRoutineViewController: UICollectionViewDelegate {
@@ -83,15 +114,30 @@ extension AddRoutineViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, 
                         numberOfItemsInSection section: Int) -> Int {
-        return makersEntity.makers.count
+        switch collectionView {
+        case makerCollectionView:
+            return makersEntity.makers.count
+        case routineCollectionView:
+            return routineEntity.themes.count
+        default:
+            return 0
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, 
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = MakersCollectionViewCell.dequeueReusableCell(collectionView: collectionView,
-                                                                indexPath: indexPath)
-        cell.setDataBind(model: makersEntity.makers[indexPath.item])
-        cell.makerChipCollectionView.reloadData()
-        return cell
+        switch collectionView {
+        case makerCollectionView:
+            let cell = MakersCollectionViewCell.dequeueReusableCell(collectionView: makerCollectionView, indexPath: indexPath)
+            cell.setDataBind(model: makersEntity.makers[indexPath.item])
+            cell.makerChipCollectionView.reloadData()
+            return cell
+        case routineCollectionView:
+            let cell = TotalRoutineCollectionViewCell.dequeueReusableCell(collectionView: routineCollectionView, indexPath: indexPath)
+            cell.setDataBind(model: routineEntity.themes[indexPath.item])
+            return cell
+        default:
+            return UICollectionViewCell()
+        }
     }
 }

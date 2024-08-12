@@ -58,6 +58,32 @@ final class AddRoutineView: UIView {
         return collectionView
     }()
     
+    private let totalRoutineTitle: UILabel = {
+        let label = UILabel()
+        label.text = "전체 루틴 테마"
+        label.textColor = .Gray700
+        label.font = .fontGuide(.head3)
+        label.asLineHeight(.head3)
+        return label
+    }()
+    
+    lazy var totalRoutineCollectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .vertical
+        flowLayout.minimumInteritemSpacing = 4
+        flowLayout.itemSize = CGSize(width: SizeLiterals.Screen.screenWidth - 40,
+                                     height: 80)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.clipsToBounds = true
+        collectionView.contentInsetAdjustmentBehavior = .never
+        collectionView.isUserInteractionEnabled = true
+        collectionView.allowsSelection = true
+        collectionView.backgroundColor = .clear
+        collectionView.isScrollEnabled = false
+        return collectionView
+    }()
+    
     // MARK: - Life Cycles
     
     override init(frame: CGRect) {
@@ -86,7 +112,8 @@ private extension AddRoutineView {
     func setHierarchy() {
         addSubviews(navigationView,
                     makerRoutineTitle, makerImageView, makerInfoButton,
-                    makerCollectionView)
+                    makerCollectionView,
+                    totalRoutineTitle, totalRoutineCollectionView)
     }
     
     func setLayout() {
@@ -117,9 +144,22 @@ private extension AddRoutineView {
             $0.width.equalTo(SizeLiterals.Screen.screenWidth)
             $0.height.equalTo(168)
         }
+        
+        totalRoutineTitle.snp.makeConstraints {
+            $0.top.equalTo(makerCollectionView.snp.bottom).offset(20)
+            $0.leading.equalToSuperview().inset(20)
+        }
+        
+        totalRoutineCollectionView.snp.makeConstraints {
+            $0.top.equalTo(totalRoutineTitle.snp.bottom).offset(8)
+            $0.leading.trailing.equalToSuperview()
+            $0.width.equalTo(SizeLiterals.Screen.screenWidth)
+            $0.height.equalTo(584)
+        }
     }
     
     func setRegisterCell() {
         MakersCollectionViewCell.register(target: makerCollectionView)
+        TotalRoutineCollectionViewCell.register(target: totalRoutineCollectionView)
     }
 }

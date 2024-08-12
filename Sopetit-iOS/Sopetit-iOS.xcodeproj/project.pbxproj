@@ -59,6 +59,7 @@
 		A40F9F012C67C28B004DD1A1 /* MakersEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F002C67C28B004DD1A1 /* MakersEntity.swift */; };
 		A40F9F042C67C3C6004DD1A1 /* MakersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F032C67C3C6004DD1A1 /* MakersCollectionViewCell.swift */; };
 		A40F9F062C67D1AE004DD1A1 /* MakersChipCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F052C67D1AE004DD1A1 /* MakersChipCollectionViewCell.swift */; };
+		A40F9F082C69A06E004DD1A1 /* TotalRoutineCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F072C69A06E004DD1A1 /* TotalRoutineCollectionViewCell.swift */; };
 		A42C327C2B3DB8F400C4B477 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C327B2B3DB8F400C4B477 /* AppDelegate.swift */; };
 		A42C327E2B3DB8F400C4B477 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C327D2B3DB8F400C4B477 /* SceneDelegate.swift */; };
 		A42C32852B3DB8F500C4B477 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A42C32842B3DB8F500C4B477 /* Assets.xcassets */; };
@@ -197,6 +198,7 @@
 		A40F9F002C67C28B004DD1A1 /* MakersEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakersEntity.swift; sourceTree = "<group>"; };
 		A40F9F032C67C3C6004DD1A1 /* MakersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakersCollectionViewCell.swift; sourceTree = "<group>"; };
 		A40F9F052C67D1AE004DD1A1 /* MakersChipCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakersChipCollectionViewCell.swift; sourceTree = "<group>"; };
+		A40F9F072C69A06E004DD1A1 /* TotalRoutineCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalRoutineCollectionViewCell.swift; sourceTree = "<group>"; };
 		A42C32782B3DB8F400C4B477 /* Sopetit-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sopetit-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A42C327B2B3DB8F400C4B477 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A42C327D2B3DB8F400C4B477 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 			children = (
 				A40F9F052C67D1AE004DD1A1 /* MakersChipCollectionViewCell.swift */,
 				A40F9F032C67C3C6004DD1A1 /* MakersCollectionViewCell.swift */,
+				A40F9F072C69A06E004DD1A1 /* TotalRoutineCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1377,6 +1380,7 @@
 				045DFE862B539BC3005D69EA /* WithdrawView.swift in Sources */,
 				09BCA9F62C2A7751006E876D /* ChallengeRoutineEmptyView.swift in Sources */,
 				A4D9F6ED2C5D2F9900A9F719 /* TutorialCollectionViewCell.swift in Sources */,
+				A40F9F082C69A06E004DD1A1 /* TotalRoutineCollectionViewCell.swift in Sources */,
 				A42C32C12B3EAB1A00C4B477 /* UIView+.swift in Sources */,
 				A42C32E72B3EAC9500C4B477 /* NetworkConstant.swift in Sources */,
 				09BCAA002C2A783C006E876D /* CustomButton.swift in Sources */,
