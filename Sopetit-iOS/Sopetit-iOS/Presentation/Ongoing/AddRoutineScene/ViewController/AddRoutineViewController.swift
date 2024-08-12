@@ -48,6 +48,14 @@ extension AddRoutineViewController {
         makerCollectionView.dataSource = self
         routineCollectionView.delegate = self
         routineCollectionView.dataSource = self
+        addRoutineView.navigationView.delegate = self
+    }
+}
+
+extension AddRoutineViewController: BackButtonProtocol {
+    
+    func tapBackButton() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
 
