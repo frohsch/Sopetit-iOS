@@ -30,6 +30,7 @@ final class AddRoutineViewController: UIViewController {
         
         setUI()
         setDelegate()
+        setButton()
         getMakersAPI()
         getThemeAPI()
     }
@@ -49,6 +50,31 @@ extension AddRoutineViewController {
         routineCollectionView.delegate = self
         routineCollectionView.dataSource = self
         addRoutineView.navigationView.delegate = self
+    }
+    
+    func setButton() {
+        addRoutineView.makerInfoButton.addTarget(self,
+                                                 action: #selector(buttonTapped),
+                                                 for: .touchUpInside)
+        addRoutineView.routineInfoExitButton.addTarget(self,
+                                                 action: #selector(buttonTapped),
+                                                 for: .touchUpInside)
+
+    }
+    
+    @objc
+    func buttonTapped(_ sender: UIButton) {
+        switch sender {
+        case addRoutineView.makerInfoButton:
+            addRoutineView.backgroundView.isHidden = false
+            addRoutineView.routineInfoView.isHidden = false
+            addRoutineView.routineInfoView.bringSubviewToFront(addRoutineView)
+        case addRoutineView.routineInfoExitButton:
+            addRoutineView.backgroundView.isHidden = true
+            addRoutineView.routineInfoView.isHidden = true
+        default:
+            break
+        }
     }
 }
 
