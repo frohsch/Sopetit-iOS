@@ -21,6 +21,13 @@ final class AddRoutineView: UIView {
         return navi
     }()
     
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
+        return scrollView
+    }()
+    private let contentView = UIView()
+    
     private let makerRoutineTitle: UILabel = {
         let label = UILabel()
         label.text = "이런 루틴은 어때요?"
@@ -111,9 +118,11 @@ private extension AddRoutineView {
     
     func setHierarchy() {
         addSubviews(navigationView,
-                    makerRoutineTitle, makerImageView, makerInfoButton,
-                    makerCollectionView,
-                    totalRoutineTitle, totalRoutineCollectionView)
+                    scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubviews(makerRoutineTitle, makerImageView, makerInfoButton,
+                                makerCollectionView,
+                                totalRoutineTitle, totalRoutineCollectionView)
     }
     
     func setLayout() {
@@ -122,8 +131,19 @@ private extension AddRoutineView {
             $0.leading.trailing.equalToSuperview()
         }
         
+        scrollView.snp.makeConstraints {
+            $0.top.equalTo(navigationView.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints {
+            $0.edges.equalTo(scrollView)
+            $0.width.equalTo(scrollView.snp.width)
+            $0.height.equalTo(scrollView.snp.height).priority(.low)
+        }
+        
         makerRoutineTitle.snp.makeConstraints {
-            $0.top.equalTo(navigationView.snp.bottom).offset(19)
+            $0.top.equalToSuperview().inset(19)
             $0.leading.equalToSuperview().inset(20)
         }
         
@@ -133,7 +153,7 @@ private extension AddRoutineView {
         }
         
         makerInfoButton.snp.makeConstraints {
-            $0.top.equalTo(navigationView.snp.bottom).offset(21)
+            $0.top.equalToSuperview().inset(21)
             $0.trailing.equalToSuperview().inset(29)
             $0.size.equalTo(20)
         }
@@ -152,9 +172,9 @@ private extension AddRoutineView {
         
         totalRoutineCollectionView.snp.makeConstraints {
             $0.top.equalTo(totalRoutineTitle.snp.bottom).offset(8)
-            $0.leading.trailing.equalToSuperview()
-            $0.width.equalTo(SizeLiterals.Screen.screenWidth)
-            $0.height.equalTo(584)
+            $0.leading.trailing.bottom.equalToSuperview()
+            $0.width.equalToSuperview()
+            $0.height.equalTo(630)
         }
     }
     

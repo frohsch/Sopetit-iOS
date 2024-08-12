@@ -104,7 +104,9 @@ extension TotalRoutineCollectionViewCell {
     
     func setDataBind(model: Theme) {
         routineTitleLabel.text = model.title
+        routineTitleLabel.asLineHeight(.head3)
         routineSubTitleLabel.text = model.subTitle
+        routineSubTitleLabel.asLineHeight(.caption2)
         routineImage.image = {
             switch model.themeID {
             case 1:
