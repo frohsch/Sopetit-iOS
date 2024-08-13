@@ -60,11 +60,13 @@
 		A40F9F042C67C3C6004DD1A1 /* MakersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F032C67C3C6004DD1A1 /* MakersCollectionViewCell.swift */; };
 		A40F9F062C67D1AE004DD1A1 /* MakersChipCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F052C67D1AE004DD1A1 /* MakersChipCollectionViewCell.swift */; };
 		A40F9F082C69A06E004DD1A1 /* TotalRoutineCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F072C69A06E004DD1A1 /* TotalRoutineCollectionViewCell.swift */; };
-		A40F9F102C69D08D004DD1A1 /* RoutineWithDetailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F0F2C69D08D004DD1A1 /* RoutineWithDetailCollectionViewCell.swift */; };
+		A40F9F102C69D08D004DD1A1 /* AddChallengeRoutineCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F0F2C69D08D004DD1A1 /* AddChallengeRoutineCollectionViewCell.swift */; };
 		A40F9F122C69D0C6004DD1A1 /* AddRoutineDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F112C69D0C6004DD1A1 /* AddRoutineDetailView.swift */; };
 		A40F9F142C69D0CC004DD1A1 /* AddRoutineDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F132C69D0CC004DD1A1 /* AddRoutineDetailViewController.swift */; };
 		A40F9F182C69F35C004DD1A1 /* DailyThemeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F172C69F35C004DD1A1 /* DailyThemeEntity.swift */; };
 		A40F9F1A2C6AD944004DD1A1 /* AddRoutineInfoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F192C6AD943004DD1A1 /* AddRoutineInfoEntity.swift */; };
+		A40F9F1C2C6AE42E004DD1A1 /* RoutineChallengeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F1B2C6AE42E004DD1A1 /* RoutineChallengeEntity.swift */; };
+		A40F9F1E2C6AE65C004DD1A1 /* AddChallengeRoutineHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F1D2C6AE65C004DD1A1 /* AddChallengeRoutineHeaderView.swift */; };
 		A42C327C2B3DB8F400C4B477 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C327B2B3DB8F400C4B477 /* AppDelegate.swift */; };
 		A42C327E2B3DB8F400C4B477 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C327D2B3DB8F400C4B477 /* SceneDelegate.swift */; };
 		A42C32852B3DB8F500C4B477 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A42C32842B3DB8F500C4B477 /* Assets.xcassets */; };
@@ -204,11 +206,13 @@
 		A40F9F032C67C3C6004DD1A1 /* MakersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakersCollectionViewCell.swift; sourceTree = "<group>"; };
 		A40F9F052C67D1AE004DD1A1 /* MakersChipCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakersChipCollectionViewCell.swift; sourceTree = "<group>"; };
 		A40F9F072C69A06E004DD1A1 /* TotalRoutineCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalRoutineCollectionViewCell.swift; sourceTree = "<group>"; };
-		A40F9F0F2C69D08D004DD1A1 /* RoutineWithDetailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineWithDetailCollectionViewCell.swift; sourceTree = "<group>"; };
+		A40F9F0F2C69D08D004DD1A1 /* AddChallengeRoutineCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChallengeRoutineCollectionViewCell.swift; sourceTree = "<group>"; };
 		A40F9F112C69D0C6004DD1A1 /* AddRoutineDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineDetailView.swift; sourceTree = "<group>"; };
 		A40F9F132C69D0CC004DD1A1 /* AddRoutineDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineDetailViewController.swift; sourceTree = "<group>"; };
 		A40F9F172C69F35C004DD1A1 /* DailyThemeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyThemeEntity.swift; sourceTree = "<group>"; };
 		A40F9F192C6AD943004DD1A1 /* AddRoutineInfoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineInfoEntity.swift; sourceTree = "<group>"; };
+		A40F9F1B2C6AE42E004DD1A1 /* RoutineChallengeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineChallengeEntity.swift; sourceTree = "<group>"; };
+		A40F9F1D2C6AE65C004DD1A1 /* AddChallengeRoutineHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChallengeRoutineHeaderView.swift; sourceTree = "<group>"; };
 		A42C32782B3DB8F400C4B477 /* Sopetit-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sopetit-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A42C327B2B3DB8F400C4B477 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A42C327D2B3DB8F400C4B477 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -413,6 +417,7 @@
 				A40F9F002C67C28B004DD1A1 /* MakersEntity.swift */,
 				A40F9F172C69F35C004DD1A1 /* DailyThemeEntity.swift */,
 				A40F9F192C6AD943004DD1A1 /* AddRoutineInfoEntity.swift */,
+				A40F9F1B2C6AE42E004DD1A1 /* RoutineChallengeEntity.swift */,
 			);
 			path = AddRoutine;
 			sourceTree = "<group>";
@@ -448,6 +453,7 @@
 		A40F9F0B2C69D032004DD1A1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A40F9F1D2C6AE65C004DD1A1 /* AddChallengeRoutineHeaderView.swift */,
 				A40F9F112C69D0C6004DD1A1 /* AddRoutineDetailView.swift */,
 			);
 			path = View;
@@ -456,7 +462,7 @@
 		A40F9F0C2C69D035004DD1A1 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				A40F9F0F2C69D08D004DD1A1 /* RoutineWithDetailCollectionViewCell.swift */,
+				A40F9F0F2C69D08D004DD1A1 /* AddChallengeRoutineCollectionViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1340,6 +1346,7 @@
 				A40F9F122C69D0C6004DD1A1 /* AddRoutineDetailView.swift in Sources */,
 				A4D9F6E32C5D2D7700A9F719 /* HomeTutorialEntity.swift in Sources */,
 				A42C32FC2B3EAE0000C4B477 /* HappinessEntity.swift in Sources */,
+				A40F9F1C2C6AE42E004DD1A1 /* RoutineChallengeEntity.swift in Sources */,
 				A42C32D52B3EABAF00C4B477 /* UICollectionViewRegisterable.swift in Sources */,
 				A40F9F062C67D1AE004DD1A1 /* MakersChipCollectionViewCell.swift in Sources */,
 				A42C32BB2B3EAAEA00C4B477 /* FontLiterals.swift in Sources */,
@@ -1365,7 +1372,7 @@
 				09BCA9F42C2A7741006E876D /* RoutineEmptyView.swift in Sources */,
 				A42C32BD2B3EAAF200C4B477 /* SizeLiterals.swift in Sources */,
 				A42C32C52B3EAB2B00C4B477 /* UIButton+.swift in Sources */,
-				A40F9F102C69D08D004DD1A1 /* RoutineWithDetailCollectionViewCell.swift in Sources */,
+				A40F9F102C69D08D004DD1A1 /* AddChallengeRoutineCollectionViewCell.swift in Sources */,
 				045DFE7E2B50F14C005D69EA /* SettingTableViewCell.swift in Sources */,
 				A49BFDDC2B4D5F5E00035EB6 /* StoryTellingThirdView.swift in Sources */,
 				A42C32CD2B3EAB5600C4B477 /* UILabel+.swift in Sources */,
@@ -1422,6 +1429,7 @@
 				A49BFDF22B4DA53A00035EB6 /* ThemeSelectEntity.swift in Sources */,
 				A49BFDE92B4D873400035EB6 /* DollChoiceCollectionViewCell.swift in Sources */,
 				00CCDCC22B51B5AF007DD0E6 /* SplashOneView.swift in Sources */,
+				A40F9F1E2C6AE65C004DD1A1 /* AddChallengeRoutineHeaderView.swift in Sources */,
 				0463F89B2B4ADE4A0089B526 /* TabBarItem.swift in Sources */,
 				A42C32EB2B3EACAC00C4B477 /* URLConstant.swift in Sources */,
 				A40F9F012C67C28B004DD1A1 /* MakersEntity.swift in Sources */,
