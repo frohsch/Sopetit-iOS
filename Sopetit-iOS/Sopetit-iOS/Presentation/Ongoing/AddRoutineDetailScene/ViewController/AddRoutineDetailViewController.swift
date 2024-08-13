@@ -32,8 +32,8 @@ final class AddRoutineDetailViewController: UIViewController {
         
         setUI()
         setDelegate()
+        setAddGesture()
         getDailyThemeAPI(id: addRoutineInfoEntity.id)
-        getChallengeRoutineAPI(id: addRoutineInfoEntity.id)
     }
 }
 
@@ -51,6 +51,26 @@ extension AddRoutineDetailViewController {
         routineDailyCV.dataSource = self
         challengeCV.delegate = self
         challengeCV.dataSource = self
+    }
+    
+    func setAddGesture() {
+        let tapDailyMenu = UITapGestureRecognizer(target: self, 
+                                                  action: #selector(dailyMenuTapped))
+        let tapChallengeMenu = UITapGestureRecognizer(target: self, 
+                                                      action: #selector(challengeMenuTapped))
+        addRoutineDetailView.dailyMenuView.addGestureRecognizer(tapDailyMenu)
+        addRoutineDetailView.challengeMenuView.addGestureRecognizer(tapChallengeMenu)
+    }
+    
+    @objc
+    func dailyMenuTapped() {
+        addRoutineDetailView.setMenuSelected(dailyTapped: true)
+    }
+    
+    @objc
+    func challengeMenuTapped() {
+        addRoutineDetailView.setMenuSelected(dailyTapped: false)
+        getChallengeRoutineAPI(id: addRoutineInfoEntity.id)
     }
 }
 
@@ -99,7 +119,7 @@ extension AddRoutineDetailViewController {
                     }
                 }
                 self.heightForContentView(numberOfSection: self.challengeThemeEntity.routines.count,
-                                     texts: self.challengeThemeEntity.routines)
+                                          texts: self.challengeThemeEntity.routines)
                 self.challengeCV.reloadData()
             case .reissue:
                 ReissueService.shared.postReissueAPI(refreshToken: UserManager.shared.getRefreshToken) { success in
@@ -121,25 +141,25 @@ extension AddRoutineDetailViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, 
                         shouldSelectItemAt indexPath: IndexPath) -> Bool {
         return true
-//        switch collectionView {
-//        case routineDailyCV:
-//            return true
-//            return setSelectedCell(in: collectionView, at: indexPath, routineIndex: 0)
-//        default:
-//            return false
-//        }
+        //        switch collectionView {
+        //        case routineDailyCV:
+        //            return true
+        //            return setSelectedCell(in: collectionView, at: indexPath, routineIndex: 0)
+        //        default:
+        //            return false
+        //        }
     }
     
     func collectionView(_ collectionView: UICollectionView, 
                         shouldDeselectItemAt indexPath: IndexPath) -> Bool {
         return true
-//        switch collectionView {
-//        case routineDailyCV:
-//            return setDeselectedCell(in: collectionView, at: indexPath, routineIndex: 0)
-//            return true
-//        default:
-//            return false
-//        }
+        //        switch collectionView {
+        //        case routineDailyCV:
+        //            return setDeselectedCell(in: collectionView, at: indexPath, routineIndex: 0)
+        //            return true
+        //        default:
+        //            return false
+        //        }
     }
 }
 
@@ -214,8 +234,8 @@ extension AddRoutineDetailViewController: UICollectionViewDelegateFlowLayout {
             }()
             label.sizeThatFits(CGSize(width: SizeLiterals.Screen.screenWidth - 80, height: 20))
             let height = heightForView(text: label.text ?? "",
-                                           font: label.font,
-                                           width: SizeLiterals.Screen.screenWidth - 80) + 94
+                                       font: label.font,
+                                       width: SizeLiterals.Screen.screenWidth - 80) + 94
             return CGSize(width: SizeLiterals.Screen.screenWidth - 40, height: height)
         default:
             return CGSize()

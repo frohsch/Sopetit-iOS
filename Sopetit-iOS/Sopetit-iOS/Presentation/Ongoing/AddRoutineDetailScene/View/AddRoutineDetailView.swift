@@ -71,9 +71,10 @@ final class AddRoutineDetailView: UIView {
         return button
     }()
     
-    private let dailyMenuView: UIView = {
+    let dailyMenuView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
+        view.isUserInteractionEnabled = true
         return view
     }()
     
@@ -108,9 +109,10 @@ final class AddRoutineDetailView: UIView {
         return view
     }()
     
-    private let challengeMenuView: UIView = {
+    let challengeMenuView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
+        view.isUserInteractionEnabled = true
         return view
     }()
     
@@ -217,7 +219,7 @@ private extension AddRoutineDetailView {
             challengeRoutineTitle.textColor = .Gray700
             challengeUnderLine.isHidden = false
             challengeUnderLine.backgroundColor = .Gray650
-            routineDailyCollectionView.isHidden = true
+            routineDailyCollectionView.removeFromSuperview()
         case .routine:
             cardTitleLabel.text = info.title
             cardDescriptionLabel.text = info.description
@@ -245,7 +247,6 @@ private extension AddRoutineDetailView {
             makerNameLabel.isHidden = true
             makerButton.isHidden = true
             dailyMenuView.isHidden = false
-            routineDailyCollectionView.isHidden = true
         }
     }
     
@@ -264,8 +265,8 @@ private extension AddRoutineDetailView {
                                 menuUnderlineView,
                                 dailyMenuView,
                                 challengeMenuView,
-                                routineDailyCollectionView,
-                                challengeCollectionView)
+                                routineDailyCollectionView
+        )
         cardImageView.addSubview(cardTitleLabel)
         dailyMenuView.addSubviews(dailyStackView,
                                   dailyUnderLine)
@@ -384,14 +385,6 @@ private extension AddRoutineDetailView {
         routineDailyCollectionView.snp.makeConstraints {
             $0.top.equalTo(menuUnderlineView.snp.bottom).offset(20)
             $0.centerX.equalToSuperview()
-//            $0.bottom.equalToSuperview()
-            $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
-            $0.height.equalTo(700)
-        }
-        
-        challengeCollectionView.snp.makeConstraints {
-            $0.top.equalTo(menuUnderlineView.snp.bottom)
-            $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview()
             $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
             $0.height.equalTo(700)
@@ -402,5 +395,43 @@ private extension AddRoutineDetailView {
         RoutineChoiceCollectionViewCell.register(target: routineDailyCollectionView)
         AddChallengeRoutineCollectionViewCell.register(target: challengeCollectionView)
         AddChallengeRoutineHeaderView.register(target: challengeCollectionView)
+    }
+}
+
+extension AddRoutineDetailView {
+    
+    func setMenuSelected(dailyTapped: Bool) {
+        [dailyRoutineTitle,
+         dailyRoutineCount].forEach {
+            $0.textColor = dailyTapped ? .Gray700 : .Gray400
+        }
+        [challengeRoutineTitle,
+         challengeRoutineCount].forEach {
+            $0.textColor = dailyTapped ? .Gray400 : .Gray700
+        }
+        dailyUnderLine.isHidden = dailyTapped ? false : true
+        challengeUnderLine.isHidden = dailyTapped ? true : false
+        
+        if dailyTapped {
+            challengeCollectionView.removeFromSuperview()
+            contentView.addSubview(routineDailyCollectionView)
+            routineDailyCollectionView.snp.makeConstraints {
+                $0.top.equalTo(menuUnderlineView.snp.bottom).offset(20)
+                $0.centerX.equalToSuperview()
+                $0.bottom.equalToSuperview()
+                $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
+                $0.height.equalTo(700)
+            }
+        } else {
+            routineDailyCollectionView.removeFromSuperview()
+            contentView.addSubview(challengeCollectionView)
+            challengeCollectionView.snp.makeConstraints {
+                $0.top.equalTo(menuUnderlineView.snp.bottom)
+                $0.centerX.equalToSuperview()
+                $0.bottom.equalToSuperview()
+                $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
+                $0.height.equalTo(700)
+            }
+        }
     }
 }
