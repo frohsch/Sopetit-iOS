@@ -145,13 +145,19 @@ extension AddRoutineViewController: UICollectionViewDelegate {
         switch collectionView {
         case makerCollectionView:
             let nav = AddRoutineDetailViewController()
-            nav.theme = .maker
-            nav.id = makersEntity.makers[indexPath.item].makerID
+            let makerTheme: Maker = makersEntity.makers[indexPath.item]
+            nav.addRoutineInfoEntity = AddRoutineInfoEntity(themeStyle: .maker,
+                                                            id: makerTheme.makerID,
+                                                            title: "",
+                                                            description: "")
             self.navigationController?.pushViewController(nav, animated: true)
         case routineCollectionView:
             let nav = AddRoutineDetailViewController()
-            nav.theme = .routine
-            nav.id = routineEntity.themes[indexPath.item].themeID
+            let routineTheme: Theme = routineEntity.themes[indexPath.item]
+            nav.addRoutineInfoEntity = AddRoutineInfoEntity(themeStyle: .routine,
+                                                            id: routineTheme.themeID,
+                                                            title: routineTheme.title,
+                                                            description: routineTheme.description)
             self.navigationController?.pushViewController(nav, animated: true)
         default:
             break

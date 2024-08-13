@@ -26,6 +26,7 @@ final class AddRoutineDetailView: UIView {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
         scrollView.contentInsetAdjustmentBehavior = .never
+        scrollView.bounces = false
         return scrollView
     }()
     private let contentView = UIView()
@@ -168,10 +169,11 @@ final class AddRoutineDetailView: UIView {
     
     // MARK: - Life Cycles
     
-    init(theme: AddRoutineTheme) {
-        self.theme = theme
+    init(info: AddRoutineInfoEntity) {
+        self.theme = info.themeStyle
         super.init(frame: .zero)
         
+        bindUI(info: info)
         setUI()
         setHierarchy()
         setLayout()
@@ -188,11 +190,10 @@ final class AddRoutineDetailView: UIView {
 
 private extension AddRoutineDetailView {
     
-    func setUI() {
-        self.backgroundColor = .Gray50
-        
-        switch theme {
+    func bindUI(info: AddRoutineInfoEntity) {
+        switch info.themeStyle {
         case .maker:
+            cardTitleLabel.isHidden = true
             makerNameLabel.isHidden = false
             cardImageView.image = UIImage(resource: .makerCard)
             makerButton.isHidden = false
@@ -202,12 +203,38 @@ private extension AddRoutineDetailView {
             challengeUnderLine.backgroundColor = .Gray650
             routineDailyCollectionView.isHidden = true
         case .routine:
+            cardTitleLabel.text = info.title
+            cardDescriptionLabel.text = info.description
+            cardImageView.image = {
+                switch info.id {
+                case 1:
+                    return UIImage(resource: .cardTheme1)
+                case 2:
+                    return UIImage(resource: .cardTheme5)
+                case 3:
+                    return UIImage(resource: .cardTheme7)
+                case 4:
+                    return UIImage(resource: .cardTheme2)
+                case 5:
+                    return UIImage(resource: .cardTheme6)
+                case 6:
+                    return UIImage(resource: .cardTheme3)
+                case 7:
+                    return UIImage(resource: .cardTheme4)
+                default:
+                    return UIImage()
+                }
+            }()
             makerNameLabel.text = ""
             makerNameLabel.isHidden = true
             makerButton.isHidden = true
             dailyMenuView.isHidden = false
             routineDailyCollectionView.isHidden = false
         }
+    }
+    
+    func setUI() {
+        self.backgroundColor = .Gray50
     }
     
     func setHierarchy() {
@@ -254,11 +281,11 @@ private extension AddRoutineDetailView {
             $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
             $0.width.equalTo(SizeLiterals.Screen.screenWidth)
-            $0.height.equalTo(256)
+            $0.height.equalTo(SizeLiterals.Screen.screenHeight * 256 / 812)
         }
         
         cardTitleLabel.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(126)
+            $0.top.equalToSuperview().inset(SizeLiterals.Screen.screenHeight * 100 / 812)
             $0.centerX.equalToSuperview()
         }
         
@@ -349,5 +376,32 @@ private extension AddRoutineDetailView {
     
     func setRegisterCell() {
         RoutineChoiceCollectionViewCell.register(target: routineDailyCollectionView)
+    }
+}
+
+extension AddRoutineDetailView {
+    
+    func setDailyView(descrip: String, themeId: Int) {
+        cardDescriptionLabel.text = descrip
+        cardImageView.image = {
+            switch themeId {
+            case 1:
+                return UIImage(resource: .theme1)
+            case 2:
+                return UIImage(resource: .theme5)
+            case 3:
+                return UIImage(resource: .theme7)
+            case 4:
+                return UIImage(resource: .theme2)
+            case 5:
+                return UIImage(resource: .theme6)
+            case 6:
+                return UIImage(resource: .theme3)
+            case 7:
+                return UIImage(resource: .theme4)
+            default:
+                return UIImage()
+            }
+        }()
     }
 }

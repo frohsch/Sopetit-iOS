@@ -9,20 +9,14 @@ import UIKit
 
 import SnapKit
 
-enum AddRoutineTheme {
-    case routine
-    case maker
-}
-
 final class AddRoutineDetailViewController: UIViewController {
     
-    var theme: AddRoutineTheme?
-    var id: Int = 0
     private var dailyThemeEntity = DailyThemeEntity(routines: [])
+    var addRoutineInfoEntity = AddRoutineInfoEntity.addRoutineInfoInitial()
     
     // MARK: - UI Components
     
-    private lazy var addRoutineDetailView = AddRoutineDetailView(theme: theme ?? .routine)
+    private lazy var addRoutineDetailView = AddRoutineDetailView(info: addRoutineInfoEntity)
     private lazy var routineDailyCV = addRoutineDetailView.routineDailyCollectionView
     
     // MARK: - Life Cycles
@@ -36,7 +30,7 @@ final class AddRoutineDetailViewController: UIViewController {
         
         setUI()
         setDelegate()
-        getDailyThemeAPI(id: self.id)
+        getDailyThemeAPI(id: addRoutineInfoEntity.id)
     }
 }
 
@@ -67,8 +61,6 @@ extension AddRoutineDetailViewController: BackButtonProtocol {
 extension AddRoutineDetailViewController {
     
     func getDailyThemeAPI(id: Int) {
-        print("🔥🔥🔥")
-        print(id)
         AddDailyRoutineService.shared.getDailyRoutine(id: id) { networkResult in
             switch networkResult {
             case .success(let data):
@@ -77,12 +69,11 @@ extension AddRoutineDetailViewController {
                         self.dailyThemeEntity = listData
                     }
                 }
-                dump(data)
                 self.routineDailyCV.reloadData()
             case .reissue:
                 ReissueService.shared.postReissueAPI(refreshToken: UserManager.shared.getRefreshToken) { success in
                     if success {
-                        self.getDailyThemeAPI(id: self.id)
+                        self.getDailyThemeAPI(id: self.addRoutineInfoEntity.id)
                     } else {
                         self.makeSessionExpiredAlert()
                     }
