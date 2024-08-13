@@ -156,14 +156,30 @@ final class AddRoutineDetailView: UIView {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
         flowLayout.minimumLineSpacing = 4
-        flowLayout.itemSize = CGSize(width: SizeLiterals.Screen.screenWidth - 40, height: 56)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        collectionView.showsHorizontalScrollIndicator = true
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.allowsSelection = true
         collectionView.isScrollEnabled = false
         collectionView.allowsMultipleSelection = true
         collectionView.backgroundColor = .clear
         collectionView.contentInset = UIEdgeInsets(top: 7, left: 0, bottom: 0, right: 0)
+        return collectionView
+    }()
+    
+    lazy var challengeCollectionView: UICollectionView = {
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.scrollDirection = .vertical
+        flowLayout.minimumLineSpacing = 4
+        flowLayout.headerReferenceSize = CGSize(width: SizeLiterals.Screen.screenWidth - 55,
+                                                height: 44)
+        flowLayout.sectionInset = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.allowsSelection = true
+        collectionView.isScrollEnabled = false
+        collectionView.allowsMultipleSelection = true
+        collectionView.backgroundColor = .clear
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
         return collectionView
     }()
     
@@ -229,7 +245,7 @@ private extension AddRoutineDetailView {
             makerNameLabel.isHidden = true
             makerButton.isHidden = true
             dailyMenuView.isHidden = false
-            routineDailyCollectionView.isHidden = false
+            routineDailyCollectionView.isHidden = true
         }
     }
     
@@ -248,7 +264,8 @@ private extension AddRoutineDetailView {
                                 menuUnderlineView,
                                 dailyMenuView,
                                 challengeMenuView,
-                                routineDailyCollectionView)
+                                routineDailyCollectionView,
+                                challengeCollectionView)
         cardImageView.addSubview(cardTitleLabel)
         dailyMenuView.addSubviews(dailyStackView,
                                   dailyUnderLine)
@@ -267,8 +284,7 @@ private extension AddRoutineDetailView {
         }
         
         scrollView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
         
         contentView.snp.makeConstraints {
@@ -368,6 +384,14 @@ private extension AddRoutineDetailView {
         routineDailyCollectionView.snp.makeConstraints {
             $0.top.equalTo(menuUnderlineView.snp.bottom).offset(20)
             $0.centerX.equalToSuperview()
+//            $0.bottom.equalToSuperview()
+            $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
+            $0.height.equalTo(700)
+        }
+        
+        challengeCollectionView.snp.makeConstraints {
+            $0.top.equalTo(menuUnderlineView.snp.bottom)
+            $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview()
             $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
             $0.height.equalTo(700)
@@ -376,32 +400,7 @@ private extension AddRoutineDetailView {
     
     func setRegisterCell() {
         RoutineChoiceCollectionViewCell.register(target: routineDailyCollectionView)
-    }
-}
-
-extension AddRoutineDetailView {
-    
-    func setDailyView(descrip: String, themeId: Int) {
-        cardDescriptionLabel.text = descrip
-        cardImageView.image = {
-            switch themeId {
-            case 1:
-                return UIImage(resource: .theme1)
-            case 2:
-                return UIImage(resource: .theme5)
-            case 3:
-                return UIImage(resource: .theme7)
-            case 4:
-                return UIImage(resource: .theme2)
-            case 5:
-                return UIImage(resource: .theme6)
-            case 6:
-                return UIImage(resource: .theme3)
-            case 7:
-                return UIImage(resource: .theme4)
-            default:
-                return UIImage()
-            }
-        }()
+        AddChallengeRoutineCollectionViewCell.register(target: challengeCollectionView)
+        AddChallengeRoutineHeaderView.register(target: challengeCollectionView)
     }
 }
