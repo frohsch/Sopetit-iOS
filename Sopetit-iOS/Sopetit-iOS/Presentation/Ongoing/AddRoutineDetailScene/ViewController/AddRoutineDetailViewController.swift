@@ -54,9 +54,9 @@ extension AddRoutineDetailViewController {
     }
     
     func setAddGesture() {
-        let tapDailyMenu = UITapGestureRecognizer(target: self, 
+        let tapDailyMenu = UITapGestureRecognizer(target: self,
                                                   action: #selector(dailyMenuTapped))
-        let tapChallengeMenu = UITapGestureRecognizer(target: self, 
+        let tapChallengeMenu = UITapGestureRecognizer(target: self,
                                                       action: #selector(challengeMenuTapped))
         addRoutineDetailView.dailyMenuView.addGestureRecognizer(tapDailyMenu)
         addRoutineDetailView.challengeMenuView.addGestureRecognizer(tapChallengeMenu)
@@ -94,6 +94,7 @@ extension AddRoutineDetailViewController {
                         self.dailyThemeEntity = listData
                     }
                 }
+                self.heightForRoutineContentView(texts: self.dailyThemeEntity.routines)
                 self.routineDailyCV.reloadData()
             case .reissue:
                 ReissueService.shared.postReissueAPI(refreshToken: UserManager.shared.getRefreshToken) { success in
@@ -118,8 +119,8 @@ extension AddRoutineDetailViewController {
                         self.challengeThemeEntity = listData
                     }
                 }
-                self.heightForContentView(numberOfSection: self.challengeThemeEntity.routines.count,
-                                          texts: self.challengeThemeEntity.routines)
+                self.heightForChallengeContentView(numberOfSection: self.challengeThemeEntity.routines.count,
+                                                   texts: self.challengeThemeEntity.routines)
                 self.challengeCV.reloadData()
             case .reissue:
                 ReissueService.shared.postReissueAPI(refreshToken: UserManager.shared.getRefreshToken) { success in
@@ -138,7 +139,7 @@ extension AddRoutineDetailViewController {
 
 extension AddRoutineDetailViewController: UICollectionViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, 
+    func collectionView(_ collectionView: UICollectionView,
                         shouldSelectItemAt indexPath: IndexPath) -> Bool {
         return true
         //        switch collectionView {
@@ -150,7 +151,7 @@ extension AddRoutineDetailViewController: UICollectionViewDelegate {
         //        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, 
+    func collectionView(_ collectionView: UICollectionView,
                         shouldDeselectItemAt indexPath: IndexPath) -> Bool {
         return true
         //        switch collectionView {
@@ -174,7 +175,7 @@ extension AddRoutineDetailViewController: UICollectionViewDataSource {
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, 
+    func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch collectionView {
         case routineDailyCV:
@@ -190,7 +191,7 @@ extension AddRoutineDetailViewController: UICollectionViewDataSource {
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, 
+    func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
         switch collectionView {
         case routineDailyCV:
@@ -243,7 +244,7 @@ extension AddRoutineDetailViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func heightForView(text: String, font: UIFont, width: CGFloat) -> CGFloat {
-        let label: UILabel = UILabel(frame: CGRect(x: 0, y: 0, 
+        let label: UILabel = UILabel(frame: CGRect(x: 0, y: 0,
                                                    width: width,
                                                    height: CGFloat.greatestFiniteMagnitude))
         label.numberOfLines = 0
@@ -255,8 +256,8 @@ extension AddRoutineDetailViewController: UICollectionViewDelegateFlowLayout {
         return label.frame.height
     }
     
-    func heightForContentView(numberOfSection: Int,
-                              texts: [RoutineChallenge]) {
+    func heightForChallengeContentView(numberOfSection: Int,
+                                       texts: [RoutineChallenge]) {
         var height = Double(numberOfSection) * 18.0
         
         for i in texts {
@@ -269,10 +270,38 @@ extension AddRoutineDetailViewController: UICollectionViewDelegateFlowLayout {
             height += 44
         }
         height += 108
-        challengeCV.snp.updateConstraints {
-            $0.height.equalTo(height)
+        
+        UIView.animate(withDuration: 0.3) {
+            self.addRoutineDetailView.challengeCollectionView.snp.makeConstraints {
+                $0.top.equalTo(self.addRoutineDetailView.menuUnderlineView.snp.bottom)
+                $0.centerX.equalToSuperview()
+                $0.bottom.equalToSuperview()
+                $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
+                $0.height.equalTo(height)
+            }
+            self.challengeCV.layoutIfNeeded()
         }
-        challengeCV.setNeedsLayout()
-        challengeCV.layoutIfNeeded()
+    }
+    
+    func heightForRoutineContentView(texts: [Routines]) {
+        var height = Double(1) * 18.0
+        
+        for i in texts {
+            let textHeight = heightForView(text: i.content,
+                                           font: .fontGuide(.body2),
+                                           width: SizeLiterals.Screen.screenWidth - 80) + 94
+            height += textHeight
+        }
+        
+        UIView.animate(withDuration: 0.3) {
+            self.addRoutineDetailView.routineDailyCollectionView.snp.makeConstraints {
+                $0.top.equalTo(self.addRoutineDetailView.menuUnderlineView.snp.bottom).offset(20)
+                $0.centerX.equalToSuperview()
+                $0.bottom.equalToSuperview()
+                $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
+                $0.height.equalTo(height)
+            }
+            self.challengeCV.layoutIfNeeded()
+        }
     }
 }

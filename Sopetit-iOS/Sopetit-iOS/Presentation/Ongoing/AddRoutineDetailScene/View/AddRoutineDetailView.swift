@@ -148,7 +148,7 @@ final class AddRoutineDetailView: UIView {
         return view
     }()
     
-    private let menuUnderlineView: UIView = {
+    let menuUnderlineView: UIView = {
         let view = UIView()
         view.backgroundColor = .Gray200
         return view
@@ -387,7 +387,6 @@ private extension AddRoutineDetailView {
             $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview()
             $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
-            $0.height.equalTo(700)
         }
     }
     
@@ -420,7 +419,6 @@ extension AddRoutineDetailView {
                 $0.centerX.equalToSuperview()
                 $0.bottom.equalToSuperview()
                 $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
-                $0.height.equalTo(700)
             }
         } else {
             routineDailyCollectionView.removeFromSuperview()
@@ -430,7 +428,6 @@ extension AddRoutineDetailView {
                 $0.centerX.equalToSuperview()
                 $0.bottom.equalToSuperview()
                 $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
-                $0.height.equalTo(700)
             }
         }
     }

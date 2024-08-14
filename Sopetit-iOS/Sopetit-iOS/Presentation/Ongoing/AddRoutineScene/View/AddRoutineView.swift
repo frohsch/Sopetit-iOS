@@ -61,7 +61,7 @@ final class AddRoutineView: UIView {
         collectionView.isUserInteractionEnabled = true
         collectionView.allowsSelection = true
         collectionView.backgroundColor = .clear
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 40)
         return collectionView
     }()
     
