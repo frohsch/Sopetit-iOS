@@ -221,10 +221,6 @@ private extension AddRoutineDetailView {
             makerImageView.kfSetImage(url: info.img)
             makerButton.isHidden = false
             dailyMenuView.isHidden = true
-            challengeRoutineTitle.textColor = .Gray700
-            challengeUnderLine.isHidden = false
-            challengeUnderLine.backgroundColor = .Gray650
-            routineDailyCollectionView.removeFromSuperview()
         case .routine:
             cardTitleLabel.text = info.title
             cardDescriptionLabel.text = info.description

@@ -33,7 +33,6 @@ final class AddRoutineDetailViewController: UIViewController {
         setUI()
         setDelegate()
         setAddGesture()
-        getDailyThemeAPI(id: addRoutineInfoEntity.id)
     }
 }
 
@@ -43,6 +42,13 @@ extension AddRoutineDetailViewController {
     
     func setUI() {
         self.navigationController?.navigationBar.isHidden = true
+        
+        if addRoutineInfoEntity.themeStyle == .routine {
+            getDailyThemeAPI(id: addRoutineInfoEntity.id)
+        } else {
+            addRoutineDetailView.setMenuSelected(dailyTapped: false)
+            getChallengeRoutineAPI(id: addRoutineInfoEntity.id)
+        }
     }
     
     func setDelegate() {
