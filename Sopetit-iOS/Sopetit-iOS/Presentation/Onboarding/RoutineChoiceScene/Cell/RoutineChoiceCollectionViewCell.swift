@@ -21,6 +21,15 @@ final class RoutineChoiceCollectionViewCell: UICollectionViewCell, UICollectionV
         }
     }
     
+    var hasRoutine: Bool = false {
+        didSet {
+            self.backgroundColor = hasRoutine ? .Gray200 : .SoftieWhite
+            self.layer.borderColor = hasRoutine ? UIColor.Gray300.cgColor : UIColor.Gray200.cgColor
+            routineLabel.textColor = hasRoutine ? .Gray400 : .Gray700
+            routineChoiceButton.isHidden = hasRoutine ? true : false
+        }
+    }
+    
     // MARK: - UI Components
     
     let routineLabel: UILabel = {

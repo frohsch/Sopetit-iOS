@@ -200,14 +200,17 @@ extension AddRoutineDetailViewController: UICollectionViewDataSource {
         switch collectionView {
         case routineDailyCV:
             let cell = RoutineChoiceCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
-            cell.setAddRoutineBind(model: dailyThemeEntity.routines[indexPath.item])
+            let dailyRoutines = dailyThemeEntity.routines[indexPath.item]
+            cell.setAddRoutineBind(model: dailyRoutines)
+            cell.hasRoutine = dailyRoutines.existedInMember
             return cell
         case challengeCV:
-            var routines: Challenge = challengeThemeEntity.routines[indexPath.section].challenges[indexPath.item]
+            let routines: Challenge = challengeThemeEntity.routines[indexPath.section].challenges[indexPath.item]
             let cell = AddChallengeRoutineCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
-            cell.setRoutineChallengeBind(model: challengeThemeEntity.routines[indexPath.section].challenges[indexPath.item])
+            cell.setRoutineChallengeBind(model: routines)
+            cell.hasRoutine = routines.hasRoutine
             cell.buttonAction = { [weak self] in
-                var bottomSheetEntity = AddRoutineBottomSheetEntity(content: routines.content,
+                let bottomSheetEntity = AddRoutineBottomSheetEntity(content: routines.content,
                                                                     description: routines.description,
                                                                     time: routines.requiredTime,
                                                                     place: routines.place)

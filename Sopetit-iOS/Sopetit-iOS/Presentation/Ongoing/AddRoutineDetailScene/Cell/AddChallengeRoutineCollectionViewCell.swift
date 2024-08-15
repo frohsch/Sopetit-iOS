@@ -18,7 +18,10 @@ final class AddChallengeRoutineCollectionViewCell: UICollectionViewCell,
     
     var hasRoutine: Bool = false {
         didSet {
-            
+            self.backgroundColor = hasRoutine ? .Gray200 : .SoftieWhite
+            self.layer.borderColor = hasRoutine ? UIColor.Gray300.cgColor : UIColor.Gray200.cgColor
+            challengeChoiceButton.isHidden = hasRoutine ? true : false
+            challengeDivideView.backgroundColor = hasRoutine ? .Gray300 : .Gray200
         }
     }
     
