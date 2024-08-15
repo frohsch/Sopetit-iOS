@@ -66,6 +66,15 @@ extension AddRoutineDetailViewController {
                                                       action: #selector(challengeMenuTapped))
         addRoutineDetailView.dailyMenuView.addGestureRecognizer(tapDailyMenu)
         addRoutineDetailView.challengeMenuView.addGestureRecognizer(tapChallengeMenu)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideBottomSheetAction))
+        addRoutineDetailView.bottomSheetView.backgroundView.addGestureRecognizer(tapGesture)
+        
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(hideBottomSheetAction))
+        swipeGesture.direction = .down
+        addRoutineDetailView.addGestureRecognizer(swipeGesture)
+        
+        addRoutineDetailView.bottomSheetView.detailCheckButton.addTarget(self, action:  #selector(hideBottomSheetAction), for: .touchUpInside)
     }
     
     @objc
@@ -77,6 +86,11 @@ extension AddRoutineDetailViewController {
     func challengeMenuTapped() {
         addRoutineDetailView.setMenuSelected(dailyTapped: false)
         getChallengeRoutineAPI(id: addRoutineInfoEntity.id)
+    }
+    
+    @objc
+    func hideBottomSheetAction() {
+        addRoutineDetailView.bottomSheetView.isHidden = true
     }
 }
 
@@ -189,8 +203,17 @@ extension AddRoutineDetailViewController: UICollectionViewDataSource {
             cell.setAddRoutineBind(model: dailyThemeEntity.routines[indexPath.item])
             return cell
         case challengeCV:
+            var routines: Challenge = challengeThemeEntity.routines[indexPath.section].challenges[indexPath.item]
             let cell = AddChallengeRoutineCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
             cell.setRoutineChallengeBind(model: challengeThemeEntity.routines[indexPath.section].challenges[indexPath.item])
+            cell.buttonAction = { [weak self] in
+                var bottomSheetEntity = AddRoutineBottomSheetEntity(content: routines.content,
+                                                                    description: routines.description,
+                                                                    time: routines.requiredTime,
+                                                                    place: routines.place)
+                self?.addRoutineDetailView.bottomSheetView.isHidden = false
+                self?.addRoutineDetailView.bottomSheetView.bindUI(model: bottomSheetEntity)
+            }
             return cell
         default:
             return UICollectionViewCell()

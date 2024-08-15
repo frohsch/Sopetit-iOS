@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 final class AddChallengeRoutineCollectionViewCell: UICollectionViewCell,
-                                                UICollectionViewRegisterable {
+                                                   UICollectionViewRegisterable {
     
     // MARK: - Properties
     
@@ -21,6 +21,8 @@ final class AddChallengeRoutineCollectionViewCell: UICollectionViewCell,
             
         }
     }
+    
+    var buttonAction: (() -> Void)?
     
     override var isSelected: Bool {
         didSet {
@@ -63,10 +65,11 @@ final class AddChallengeRoutineCollectionViewCell: UICollectionViewCell,
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-    
+        
         setUI()
         setHierarchy()
         setLayout()
+        setAddTarget()
     }
     
     required init?(coder: NSCoder) {
@@ -91,7 +94,7 @@ private extension AddChallengeRoutineCollectionViewCell {
         self.layer.borderColor = UIColor.Gray200.cgColor
         self.layer.borderWidth = 1
     }
-
+    
     func setHierarchy() {
         addSubviews(challengeRoutineLabel,
                     challengeDivideView,
@@ -124,6 +127,16 @@ private extension AddChallengeRoutineCollectionViewCell {
             $0.trailing.equalToSuperview().inset(12)
             $0.size.equalTo(38)
         }
+    }
+    
+    func setAddTarget() {
+        challengeDetailButton.addTarget(self,
+                                        action: #selector(buttonTapped),
+                                        for: .touchUpInside)
+    }
+    
+    @objc func buttonTapped() {
+        buttonAction?()
     }
 }
 

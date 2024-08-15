@@ -186,6 +186,8 @@ final class AddRoutineDetailView: UIView {
         return collectionView
     }()
     
+    let bottomSheetView = AddRoutineDetailBottomSheetView()
+    
     // MARK: - Life Cycles
     
     init(info: AddRoutineInfoEntity) {
@@ -255,11 +257,13 @@ private extension AddRoutineDetailView {
     
     func setUI() {
         self.backgroundColor = .Gray50
+        bottomSheetView.isHidden = true
     }
     
     func setHierarchy() {
         addSubviews(scrollView,
-                    navigationView)
+                    navigationView,
+                    bottomSheetView)
         scrollView.addSubview(contentView)
         contentView.addSubviews(cardImageView,
                                 makerNameLabel,
@@ -286,6 +290,10 @@ private extension AddRoutineDetailView {
         navigationView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview()
+        }
+        
+        bottomSheetView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
         
         scrollView.snp.makeConstraints {
