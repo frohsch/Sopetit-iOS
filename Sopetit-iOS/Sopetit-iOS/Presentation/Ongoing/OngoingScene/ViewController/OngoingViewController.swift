@@ -9,8 +9,8 @@ import UIKit
 
 class OngoingViewController: UIViewController {
     
-    private let challengeRoutine = ChallengeRoutine.dummy()
-    private let dailyRoutine = NewDailyRoutineEntity.dummy()
+    private var challengeRoutine = ChallengeRoutine(theme: "", routine: "")
+    private var dailyRoutineEntity = NewDailyRoutineEntity(routines: [])
     let ongoingView = OngoingView()
     
     override func loadView() {
@@ -24,6 +24,8 @@ class OngoingViewController: UIViewController {
         setDelegate()
         setRegister()
         setData()
+        getDailyRoutine()
+        getChallengeRoutine()
     }
 }
 
@@ -31,7 +33,7 @@ private extension OngoingViewController {
     
     func setUI() {
         self.navigationController?.navigationBar.isHidden = true
-        heightForContentView(numberOfSection: dailyRoutine.count, texts: dailyRoutine)
+        heightForContentView(numberOfSection: dailyRoutineEntity.routines.count, texts: dailyRoutineEntity)
     }
     
     func setDelegate() {
@@ -54,17 +56,20 @@ private extension OngoingViewController {
 extension OngoingViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return dailyRoutine.count
+        if dailyRoutineEntity.routines.isEmpty {
+            ongoingView.setEmptyView()
+        }
+        return dailyRoutineEntity.routines.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(dailyRoutine[section].routines.count)
-        return dailyRoutine[section].routines.count
+        print(dailyRoutineEntity.routines[section].routines.count)
+        return dailyRoutineEntity.routines[section].routines.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = NewDailyRoutineCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
-        cell.setDataBind(text: dailyRoutine[indexPath.section].routines[indexPath.item].routine)
+        cell.setDataBind(text: dailyRoutineEntity.routines[indexPath.section].routines[indexPath.item].content)
         return cell
     }
     
@@ -75,7 +80,7 @@ extension OngoingViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             let headerView = NewDailyRoutineHeaderView.dequeueReusableHeaderView(collectionView: ongoingView.dailyCollectionView, indexPath: indexPath)
-            headerView.setDataBind(text: dailyRoutine[indexPath.section].theme)
+            headerView.setDataBind(text: dailyRoutineEntity.routines[indexPath.section].themeName)
             return headerView
         }
         return UICollectionReusableView()
@@ -87,7 +92,7 @@ extension OngoingViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let label: UILabel = {
             let label = UILabel()
-            label.text = dailyRoutine[indexPath.section].routines[indexPath.item].routine
+            label.text = dailyRoutineEntity.routines[indexPath.section].routines[indexPath.item].content
             label.font = .fontGuide(.body2)
             return label
         }()
@@ -109,20 +114,99 @@ extension OngoingViewController: UICollectionViewDelegateFlowLayout {
         return label.frame.height
     }
     
-    func heightForContentView(numberOfSection: Int, texts: [NewDailyRoutineEntity]) {
+    func heightForContentView(numberOfSection: Int, texts: NewDailyRoutineEntity) {
         var height = Double(numberOfSection) * 18.0
         
-        for i in texts {
+        for i in texts.routines {
             for j in i.routines {
-                let textHeight = heightForView(text: j.routine, font: .fontGuide(.body2), width: SizeLiterals.Screen.screenWidth - 151) + 36
+                let textHeight = heightForView(text: j.content, font: .fontGuide(.body2), width: SizeLiterals.Screen.screenWidth - 151) + 36
                 height += textHeight
             }
             height += 18
         }
-        height += Double(16 * (texts.count - 1) + 54)
+        height += Double(16 * (texts.routines.count - 1) + 54)
         
         ongoingView.dailyCollectionView.snp.updateConstraints {
             $0.height.equalTo(height)
+        }
+    }
+}
+
+extension OngoingViewController: ButtonProtocol {
+    func tapRadioButton() {
+        print("aaa")
+        let vc = GetCottonViewController()
+        self.present(vc, animated: true)
+    }
+}
+
+extension OngoingViewController: OngoingButtonProtocol {
+    
+    func tapChallengeInfoButton() {
+        print("tapChallengeInfoButtonVC")
+    }
+    
+    func tapDailyInfoButton() {
+        print("tapDailyInfoButtonVC")
+    }
+    
+    func tapFloatingButton() {
+        print("tapFloatingButtonVC")
+        let vc = AddRoutineViewController()
+        self.present(vc, animated: true)
+        
+    }
+}
+
+extension OngoingViewController {
+    func getDailyRoutine() {
+        print("💚💚💚💚💚💚💚")
+        DailyRoutineService.shared.getDailyRoutine { networkResult in
+            switch networkResult {
+            case .success(let data):
+                if let data = data as? GenericResponse<NewDailyRoutineEntity> {
+                    if let listData = data.data {
+                        self.dailyRoutineEntity = listData
+                    }
+                    if self.dailyRoutineEntity.routines.isEmpty {
+                        print("????")
+                        self.ongoingView.setEmptyView()
+                    } else {
+                        print("💚💚aaa💚💚💚💚💚")
+                        self.ongoingView.dailyCollectionView.reloadData()
+                    }
+                }
+            case .requestErr, .serverErr:
+                break
+            default:
+                break
+            }
+        }
+    }
+    
+    func getChallengeRoutine() {
+        print("💚💚💚💚💚💚💚")
+        DailyRoutineService.shared.getChallengeRoutine { networkResult in
+            switch networkResult {
+            case .success(let data):
+                print("aaaaaaa")
+                if let data = data as? GenericResponse<ChallengeRoutine> {
+                    if let listData = data.data {
+                        self.challengeRoutine = listData
+                    }
+                    print("💚💚aaa💚💚💚💚💚")
+                    if self.challengeRoutine.theme.isEmpty {
+                        self.ongoingView.setChallengeRoutineEmpty()
+                    } else {
+                        self.ongoingView.setChallengeRoutine(routine: self.challengeRoutine)
+                    }
+                }
+            case .requestErr, .serverErr:
+                print("DDDDD")
+                break
+            default:
+                break
+            }
         }
     }
 }

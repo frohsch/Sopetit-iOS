@@ -9,7 +9,16 @@ import UIKit
 
 import SnapKit
 
+protocol OngoingButtonProtocol: AnyObject {
+    
+    func tapChallengeInfoButton()
+    func tapDailyInfoButton()
+    func tapFloatingButton()
+}
+
 class OngoingView: UIView {
+    
+    weak var delegate: OngoingButtonProtocol?
     
     private let dateView: UIView = {
         let view = UIView()
@@ -221,15 +230,21 @@ private extension OngoingView {
     func setAddTarget() {
         challengeInfoButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
         dailyInfoButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+        floatingButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
     }
     
     @objc
     func tapButton(_ sender: UIButton) {
         switch sender {
         case challengeInfoButton:
+            delegate?.tapChallengeInfoButton()
             print("challengeInfoButton tapped")
         case dailyInfoButton:
+            delegate?.tapDailyInfoButton()
             print("dailyInfoButton tapped")
+        case floatingButton:
+            delegate?.tapFloatingButton()
+            print("floatingButton tapped")
         default:
             break
         }
@@ -258,7 +273,8 @@ extension OngoingView {
         }
     }
     
-    func setChallengeRoutine() {
+    func setChallengeRoutine(routine: ChallengeRoutine) {
+        challengeRoutineCardView.setDataBind(data: routine)
         self.challengeRoutineEmptyView.removeFromSuperview()
 
         self.dailyContentView.addSubviews(challengeTitleLabel, challengeInfoButton, challengeRoutineCardView)

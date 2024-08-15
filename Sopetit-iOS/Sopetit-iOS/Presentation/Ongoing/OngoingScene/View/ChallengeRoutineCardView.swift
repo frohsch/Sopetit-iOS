@@ -130,3 +130,10 @@ private extension ChallengeRoutineCardView {
         }
     }
 }
+
+extension ChallengeRoutineCardView {
+    func setDataBind(data: ChallengeRoutine) {
+        self.themeLabel.text = data.theme
+        self.routineLabel.text = data.routine
+    }
+}

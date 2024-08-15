@@ -56,6 +56,8 @@
 		09BCA9FA2C2A7773006E876D /* ChallengeRoutineCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BCA9F92C2A7773006E876D /* ChallengeRoutineCardView.swift */; };
 		09BCA9FD2C2A77FC006E876D /* NewDailyRoutineCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BCA9FC2C2A77FC006E876D /* NewDailyRoutineCollectionViewCell.swift */; };
 		09BCAA002C2A783C006E876D /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BCA9FF2C2A783C006E876D /* CustomButton.swift */; };
+		09BCAA022C2A7C79006E876D /* GetCottonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BCAA012C2A7C79006E876D /* GetCottonViewController.swift */; };
+		09BCAA042C2A7D6F006E876D /* GetCottonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BCAA032C2A7D6F006E876D /* GetCottonView.swift */; };
 		A42C327C2B3DB8F400C4B477 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C327B2B3DB8F400C4B477 /* AppDelegate.swift */; };
 		A42C327E2B3DB8F400C4B477 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C327D2B3DB8F400C4B477 /* SceneDelegate.swift */; };
 		A42C32852B3DB8F500C4B477 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A42C32842B3DB8F500C4B477 /* Assets.xcassets */; };
@@ -186,6 +188,8 @@
 		09BCA9F92C2A7773006E876D /* ChallengeRoutineCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeRoutineCardView.swift; sourceTree = "<group>"; };
 		09BCA9FC2C2A77FC006E876D /* NewDailyRoutineCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDailyRoutineCollectionViewCell.swift; sourceTree = "<group>"; };
 		09BCA9FF2C2A783C006E876D /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		09BCAA012C2A7C79006E876D /* GetCottonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCottonViewController.swift; sourceTree = "<group>"; };
+		09BCAA032C2A7D6F006E876D /* GetCottonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCottonView.swift; sourceTree = "<group>"; };
 		A42C32782B3DB8F400C4B477 /* Sopetit-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sopetit-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A42C327B2B3DB8F400C4B477 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A42C327D2B3DB8F400C4B477 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -896,6 +900,7 @@
 			isa = PBXGroup;
 			children = (
 				A4648BA12C04348E001EB031 /* OngoingViewController.swift */,
+				09BCAA012C2A7C79006E876D /* GetCottonViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -908,6 +913,7 @@
 				09BCA9F52C2A7751006E876D /* ChallengeRoutineEmptyView.swift */,
 				09BCA9F72C2A7761006E876D /* NewDailyRoutineHeaderView.swift */,
 				09BCA9F92C2A7773006E876D /* ChallengeRoutineCardView.swift */,
+				09BCAA032C2A7D6F006E876D /* GetCottonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1238,11 +1244,13 @@
 				A42C32B72B3EAAD800C4B477 /* ImageLiterals.swift in Sources */,
 				0470C2552B57F9B900CE43D6 /* DailyPatchEntity.swift in Sources */,
 				045DFE7B2B504E38005D69EA /* SettingViewController.swift in Sources */,
+				09BCAA022C2A7C79006E876D /* GetCottonViewController.swift in Sources */,
 				098DFCAD2B58418B0099063D /* DailyRoutineIdEntity.swift in Sources */,
 				09BCA9F42C2A7741006E876D /* RoutineEmptyView.swift in Sources */,
 				A42C32BD2B3EAAF200C4B477 /* SizeLiterals.swift in Sources */,
 				A42C32C52B3EAB2B00C4B477 /* UIButton+.swift in Sources */,
 				045DFE7E2B50F14C005D69EA /* SettingTableViewCell.swift in Sources */,
+				09BCAA042C2A7D6F006E876D /* GetCottonView.swift in Sources */,
 				A49BFDDC2B4D5F5E00035EB6 /* StoryTellingThirdView.swift in Sources */,
 				A42C32CD2B3EAB5600C4B477 /* UILabel+.swift in Sources */,
 				A49BFE282B4E856600035EB6 /* DollNameViewController.swift in Sources */,

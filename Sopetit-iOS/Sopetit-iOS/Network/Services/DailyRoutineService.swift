@@ -20,7 +20,7 @@ final class DailyRoutineService: BaseService {
 
 extension DailyRoutineService {
     func getDailyRoutine(completion: @escaping (NetworkResult<Any>) -> Void) {
-        let url = URLConstant.dailyMemberURL
+        let url = URLConstant.v2DailyMemberURL
         let header: HTTPHeaders = NetworkConstant.hasTokenHeader
         let dataRequest = AF.request(url,
                                      method: .get,
@@ -34,7 +34,7 @@ extension DailyRoutineService {
                 guard let data = response.data else { return }
                 let networkResult = self.judgeStatus(by: statusCode,
                                                      data,
-                                                     DailyRoutineEntity.self)
+                                                     NewDailyRoutineEntity.self)
                 completion(networkResult)
             case .failure:
                 completion(.networkFail)
@@ -82,7 +82,30 @@ extension DailyRoutineService {
                 guard let data = response.data else { return }
                 let networkResult = self.judgeStatus(by: statusCode,
                                                      data,
-                                                     DailyRoutineEntity.self)
+                                                     NewDailyRoutineEntity.self)
+                completion(networkResult)
+            case .failure:
+                completion(.networkFail)
+            }
+        }
+    }
+    
+    func getChallengeRoutine(completion: @escaping (NetworkResult<Any>) -> Void) {
+        let url = URLConstant.v2ChallengeURL
+        let header: HTTPHeaders = NetworkConstant.hasTokenHeader
+        let dataRequest = AF.request(url,
+                                     method: .get,
+                                     encoding: JSONEncoding.default,
+                                     headers: header)
+        
+        dataRequest.responseData { response in
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else { return }
+                guard let data = response.data else { return }
+                let networkResult = self.judgeStatus(by: statusCode,
+                                                     data,
+                                                     ChallengeRoutine.self)
                 completion(networkResult)
             case .failure:
                 completion(.networkFail)

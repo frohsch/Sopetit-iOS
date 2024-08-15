@@ -7,10 +7,16 @@
 
 import UIKit
 
+protocol ButtonProtocol: AnyObject {
+    func tapRadioButton()
+}
+
 final class NewDailyRoutineCollectionViewCell: UICollectionViewCell, UICollectionViewRegisterable {
 
     static let isFromNib: Bool = false
     
+    weak var delegate: ButtonProtocol?
+
     private var index: Int = 0
     
     var isEditing: Bool = false {
@@ -129,6 +135,7 @@ private extension NewDailyRoutineCollectionViewCell {
         switch sender {
         case radioButton:
             print("radioButton tapped")
+            delegate?.tapRadioButton()
         case ellipsisButton:
             print("ellipsisButton tapped")
         default:
