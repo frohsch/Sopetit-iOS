@@ -67,6 +67,8 @@
 		A40F9F1A2C6AD944004DD1A1 /* AddRoutineInfoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F192C6AD943004DD1A1 /* AddRoutineInfoEntity.swift */; };
 		A40F9F1C2C6AE42E004DD1A1 /* RoutineChallengeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F1B2C6AE42E004DD1A1 /* RoutineChallengeEntity.swift */; };
 		A40F9F1E2C6AE65C004DD1A1 /* AddChallengeRoutineHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F1D2C6AE65C004DD1A1 /* AddChallengeRoutineHeaderView.swift */; };
+		A40F9F332C6D92BC004DD1A1 /* AddRoutineDetailBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F322C6D92BC004DD1A1 /* AddRoutineDetailBottomSheetView.swift */; };
+		A40F9F372C6D9C41004DD1A1 /* AddRoutineBottomSheetEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F362C6D9C41004DD1A1 /* AddRoutineBottomSheetEntity.swift */; };
 		A42C327C2B3DB8F400C4B477 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C327B2B3DB8F400C4B477 /* AppDelegate.swift */; };
 		A42C327E2B3DB8F400C4B477 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C327D2B3DB8F400C4B477 /* SceneDelegate.swift */; };
 		A42C32852B3DB8F500C4B477 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A42C32842B3DB8F500C4B477 /* Assets.xcassets */; };
@@ -213,6 +215,8 @@
 		A40F9F192C6AD943004DD1A1 /* AddRoutineInfoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineInfoEntity.swift; sourceTree = "<group>"; };
 		A40F9F1B2C6AE42E004DD1A1 /* RoutineChallengeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineChallengeEntity.swift; sourceTree = "<group>"; };
 		A40F9F1D2C6AE65C004DD1A1 /* AddChallengeRoutineHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChallengeRoutineHeaderView.swift; sourceTree = "<group>"; };
+		A40F9F322C6D92BC004DD1A1 /* AddRoutineDetailBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineDetailBottomSheetView.swift; sourceTree = "<group>"; };
+		A40F9F362C6D9C41004DD1A1 /* AddRoutineBottomSheetEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineBottomSheetEntity.swift; sourceTree = "<group>"; };
 		A42C32782B3DB8F400C4B477 /* Sopetit-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sopetit-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A42C327B2B3DB8F400C4B477 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A42C327D2B3DB8F400C4B477 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -418,6 +422,7 @@
 				A40F9F172C69F35C004DD1A1 /* DailyThemeEntity.swift */,
 				A40F9F192C6AD943004DD1A1 /* AddRoutineInfoEntity.swift */,
 				A40F9F1B2C6AE42E004DD1A1 /* RoutineChallengeEntity.swift */,
+				A40F9F362C6D9C41004DD1A1 /* AddRoutineBottomSheetEntity.swift */,
 			);
 			path = AddRoutine;
 			sourceTree = "<group>";
@@ -455,6 +460,7 @@
 			children = (
 				A40F9F1D2C6AE65C004DD1A1 /* AddChallengeRoutineHeaderView.swift */,
 				A40F9F112C69D0C6004DD1A1 /* AddRoutineDetailView.swift */,
+				A40F9F322C6D92BC004DD1A1 /* AddRoutineDetailBottomSheetView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1400,6 +1406,7 @@
 				A40F9F042C67C3C6004DD1A1 /* MakersCollectionViewCell.swift in Sources */,
 				A40F9F142C69D0CC004DD1A1 /* AddRoutineDetailViewController.swift in Sources */,
 				00A8E39A2B4D8B0D001461CE /* HomeView.swift in Sources */,
+				A40F9F332C6D92BC004DD1A1 /* AddRoutineDetailBottomSheetView.swift in Sources */,
 				A42C32A52B3EA9A000C4B477 /* UserManager.swift in Sources */,
 				00A8E39C2B4D8B20001461CE /* HomeViewController.swift in Sources */,
 				A42C33702B42DAAB00C4B477 /* StringLiterals.swift in Sources */,
@@ -1409,6 +1416,7 @@
 				A42C32BF2B3EAB0E00C4B477 /* UIImage+.swift in Sources */,
 				098DFCA52B568A010099063D /* HappinessRoutineIdEntity.swift in Sources */,
 				A42C33002B3EAE3E00C4B477 /* HomeService.swift in Sources */,
+				A40F9F372C6D9C41004DD1A1 /* AddRoutineBottomSheetEntity.swift in Sources */,
 				098DFCAB2B580A1A0099063D /* DailyRoutinesEntity.swift in Sources */,
 				09BCA9FD2C2A77FC006E876D /* NewDailyRoutineCollectionViewCell.swift in Sources */,
 				A42C32E52B3EAC8B00C4B477 /* GenericResponse.swift in Sources */,
