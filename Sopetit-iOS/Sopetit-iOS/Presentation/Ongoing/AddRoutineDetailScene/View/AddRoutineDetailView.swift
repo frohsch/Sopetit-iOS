@@ -40,7 +40,8 @@ final class AddRoutineDetailView: UIView {
         return label
     }()
     
-    private let cardImageView = UIImageView(image: UIImage(resource: .cardTheme1))
+    private let cardImageView = UIImageView()
+    private let makerImageView = UIImageView()
     
     private let makerNameLabel: UILabel = {
         let label = UILabel()
@@ -211,9 +212,13 @@ private extension AddRoutineDetailView {
     func bindUI(info: AddRoutineInfoEntity) {
         switch info.themeStyle {
         case .maker:
-            cardTitleLabel.isHidden = true
+            cardTitleLabel.text = info.title
+            cardDescriptionLabel.text = info.description
+            cardDescriptionLabel.asLineHeight(.body2)
             makerNameLabel.isHidden = false
+            makerNameLabel.text = info.name
             cardImageView.image = UIImage(resource: .makerCard)
+            makerImageView.kfSetImage(url: info.img)
             makerButton.isHidden = false
             dailyMenuView.isHidden = true
             challengeRoutineTitle.textColor = .Gray700
@@ -223,6 +228,7 @@ private extension AddRoutineDetailView {
         case .routine:
             cardTitleLabel.text = info.title
             cardDescriptionLabel.text = info.description
+            cardDescriptionLabel.asLineHeight(.body2)
             cardImageView.image = {
                 switch info.id {
                 case 1:
@@ -243,6 +249,7 @@ private extension AddRoutineDetailView {
                     return UIImage()
                 }
             }()
+            makerImageView.isHidden = true
             makerNameLabel.text = ""
             makerNameLabel.isHidden = true
             makerButton.isHidden = true
@@ -267,7 +274,8 @@ private extension AddRoutineDetailView {
                                 challengeMenuView,
                                 routineDailyCollectionView
         )
-        cardImageView.addSubview(cardTitleLabel)
+        cardImageView.addSubviews(cardTitleLabel,
+                                  makerImageView)
         dailyMenuView.addSubviews(dailyStackView,
                                   dailyUnderLine)
         dailyStackView.addArrangedSubviews(dailyRoutineTitle,
@@ -304,6 +312,12 @@ private extension AddRoutineDetailView {
         cardTitleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(SizeLiterals.Screen.screenHeight * 100 / 812)
             $0.centerX.equalToSuperview()
+        }
+        
+        makerImageView.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(7)
+            $0.centerX.equalToSuperview()
+            $0.size.equalTo(105)
         }
         
         makerNameLabel.snp.makeConstraints {
