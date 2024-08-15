@@ -147,15 +147,19 @@ extension AddRoutineViewController: UICollectionViewDelegate {
             let nav = AddRoutineDetailViewController()
             let makerTheme: Maker = makersEntity.makers[indexPath.item]
             nav.addRoutineInfoEntity = AddRoutineInfoEntity(themeStyle: .maker,
-                                                            id: makerTheme.makerID,
-                                                            title: "",
-                                                            description: "")
+                                                        id: makerTheme.themeID,
+                                                        name: makerTheme.name,
+                                                        img: makerTheme.profileImageURL,
+                                                        title: makerTheme.content,
+                                                        description: makerTheme.description)
             self.navigationController?.pushViewController(nav, animated: true)
         case routineCollectionView:
             let nav = AddRoutineDetailViewController()
             let routineTheme: Theme = routineEntity.themes[indexPath.item]
             nav.addRoutineInfoEntity = AddRoutineInfoEntity(themeStyle: .routine,
                                                             id: routineTheme.themeID,
+                                                            name: "",
+                                                            img: "",
                                                             title: routineTheme.title,
                                                             description: routineTheme.description)
             self.navigationController?.pushViewController(nav, animated: true)

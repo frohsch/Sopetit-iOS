@@ -15,6 +15,8 @@ enum AddRoutineTheme: Codable {
 struct AddRoutineInfoEntity: Codable {
     let themeStyle: AddRoutineTheme
     let id: Int
+    let name: String
+    let img: String
     let title: String
     let description: String
 }
@@ -22,8 +24,10 @@ struct AddRoutineInfoEntity: Codable {
 extension AddRoutineInfoEntity {
     
     static func addRoutineInfoInitial() -> AddRoutineInfoEntity {
-        return AddRoutineInfoEntity(themeStyle: .routine,
+        return AddRoutineInfoEntity(themeStyle: .maker,
                                     id: 0,
+                                    name: "",
+                                    img: "",
                                     title: "",
                                     description: "")
     }
