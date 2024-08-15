@@ -2,7 +2,7 @@
 //  DailyRoutineService.swift
 //  Sopetit-iOS
 //
-//  Created by 고아라 on 2024/01/12.
+//  Created by Minjoo Kim on 8/16/24.
 //
 
 import Foundation

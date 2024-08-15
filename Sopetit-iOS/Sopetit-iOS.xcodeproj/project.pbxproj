@@ -47,6 +47,7 @@
 		098DFCA92B57EAE40099063D /* DailyThemesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098DFCA82B57EAE40099063D /* DailyThemesEntity.swift */; };
 		098DFCAB2B580A1A0099063D /* DailyRoutinesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098DFCAA2B580A1A0099063D /* DailyRoutinesEntity.swift */; };
 		098DFCAD2B58418B0099063D /* DailyRoutineIdEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098DFCAC2B58418B0099063D /* DailyRoutineIdEntity.swift */; };
+		09A342CC2C6E865700F52C81 /* DailyRoutineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A342CB2C6E865700F52C81 /* DailyRoutineService.swift */; };
 		09BCA9F02C2A76BD006E876D /* NewDailyRoutineEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BCA9EF2C2A76BD006E876D /* NewDailyRoutineEntity.swift */; };
 		09BCA9F22C2A76CE006E876D /* ChallengeRoutine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BCA9F12C2A76CE006E876D /* ChallengeRoutine.swift */; };
 		09BCA9F42C2A7741006E876D /* RoutineEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BCA9F32C2A7741006E876D /* RoutineEmptyView.swift */; };
@@ -55,13 +56,13 @@
 		09BCA9FA2C2A7773006E876D /* ChallengeRoutineCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BCA9F92C2A7773006E876D /* ChallengeRoutineCardView.swift */; };
 		09BCA9FD2C2A77FC006E876D /* NewDailyRoutineCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BCA9FC2C2A77FC006E876D /* NewDailyRoutineCollectionViewCell.swift */; };
 		09BCAA002C2A783C006E876D /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BCA9FF2C2A783C006E876D /* CustomButton.swift */; };
+		09BCAA022C2A7C79006E876D /* GetCottonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BCAA012C2A7C79006E876D /* GetCottonViewController.swift */; };
+		09BCAA042C2A7D6F006E876D /* GetCottonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BCAA032C2A7D6F006E876D /* GetCottonView.swift */; };
 		A40F9EFD2C6798A5004DD1A1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A40F9EFC2C6798A5004DD1A1 /* GoogleService-Info.plist */; };
 		A40F9F012C67C28B004DD1A1 /* MakersEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F002C67C28B004DD1A1 /* MakersEntity.swift */; };
 		A40F9F042C67C3C6004DD1A1 /* MakersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F032C67C3C6004DD1A1 /* MakersCollectionViewCell.swift */; };
 		A40F9F062C67D1AE004DD1A1 /* MakersChipCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F052C67D1AE004DD1A1 /* MakersChipCollectionViewCell.swift */; };
 		A40F9F082C69A06E004DD1A1 /* TotalRoutineCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F072C69A06E004DD1A1 /* TotalRoutineCollectionViewCell.swift */; };
-		09BCAA022C2A7C79006E876D /* GetCottonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BCAA012C2A7C79006E876D /* GetCottonViewController.swift */; };
-		09BCAA042C2A7D6F006E876D /* GetCottonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BCAA032C2A7D6F006E876D /* GetCottonView.swift */; };
 		A42C327C2B3DB8F400C4B477 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C327B2B3DB8F400C4B477 /* AppDelegate.swift */; };
 		A42C327E2B3DB8F400C4B477 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C327D2B3DB8F400C4B477 /* SceneDelegate.swift */; };
 		A42C32852B3DB8F500C4B477 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A42C32842B3DB8F500C4B477 /* Assets.xcassets */; };
@@ -186,6 +187,7 @@
 		098DFCA82B57EAE40099063D /* DailyThemesEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyThemesEntity.swift; sourceTree = "<group>"; };
 		098DFCAA2B580A1A0099063D /* DailyRoutinesEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRoutinesEntity.swift; sourceTree = "<group>"; };
 		098DFCAC2B58418B0099063D /* DailyRoutineIdEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRoutineIdEntity.swift; sourceTree = "<group>"; };
+		09A342CB2C6E865700F52C81 /* DailyRoutineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRoutineService.swift; sourceTree = "<group>"; };
 		09BCA9EF2C2A76BD006E876D /* NewDailyRoutineEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDailyRoutineEntity.swift; sourceTree = "<group>"; };
 		09BCA9F12C2A76CE006E876D /* ChallengeRoutine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeRoutine.swift; sourceTree = "<group>"; };
 		09BCA9F32C2A7741006E876D /* RoutineEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEmptyView.swift; sourceTree = "<group>"; };
@@ -194,6 +196,8 @@
 		09BCA9F92C2A7773006E876D /* ChallengeRoutineCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeRoutineCardView.swift; sourceTree = "<group>"; };
 		09BCA9FC2C2A77FC006E876D /* NewDailyRoutineCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDailyRoutineCollectionViewCell.swift; sourceTree = "<group>"; };
 		09BCA9FF2C2A783C006E876D /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		09BCAA012C2A7C79006E876D /* GetCottonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCottonViewController.swift; sourceTree = "<group>"; };
+		09BCAA032C2A7D6F006E876D /* GetCottonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCottonView.swift; sourceTree = "<group>"; };
 		A40F9EF92C679827004DD1A1 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		A40F9EFB2C67985C004DD1A1 /* ReleaseConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ReleaseConfig.xcconfig; sourceTree = "<group>"; };
 		A40F9EFC2C6798A5004DD1A1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -201,8 +205,6 @@
 		A40F9F032C67C3C6004DD1A1 /* MakersCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakersCollectionViewCell.swift; sourceTree = "<group>"; };
 		A40F9F052C67D1AE004DD1A1 /* MakersChipCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakersChipCollectionViewCell.swift; sourceTree = "<group>"; };
 		A40F9F072C69A06E004DD1A1 /* TotalRoutineCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalRoutineCollectionViewCell.swift; sourceTree = "<group>"; };
-		09BCAA012C2A7C79006E876D /* GetCottonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCottonViewController.swift; sourceTree = "<group>"; };
-		09BCAA032C2A7D6F006E876D /* GetCottonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCottonView.swift; sourceTree = "<group>"; };
 		A42C32782B3DB8F400C4B477 /* Sopetit-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sopetit-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A42C327B2B3DB8F400C4B477 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A42C327D2B3DB8F400C4B477 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -614,6 +616,7 @@
 				A42C33012B3EAE4900C4B477 /* OnboardingService.swift */,
 				A42C32FF2B3EAE3E00C4B477 /* HomeService.swift */,
 				098DFCA62B57EA770099063D /* AddDailyRoutineService.swift */,
+				09A342CB2C6E865700F52C81 /* DailyRoutineService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1324,6 +1327,7 @@
 				A42C32BD2B3EAAF200C4B477 /* SizeLiterals.swift in Sources */,
 				A42C32C52B3EAB2B00C4B477 /* UIButton+.swift in Sources */,
 				045DFE7E2B50F14C005D69EA /* SettingTableViewCell.swift in Sources */,
+				09A342CC2C6E865700F52C81 /* DailyRoutineService.swift in Sources */,
 				09BCAA042C2A7D6F006E876D /* GetCottonView.swift in Sources */,
 				A49BFDDC2B4D5F5E00035EB6 /* StoryTellingThirdView.swift in Sources */,
 				A42C32CD2B3EAB5600C4B477 /* UILabel+.swift in Sources */,

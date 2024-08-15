@@ -24,6 +24,7 @@ class OngoingViewController: UIViewController {
         setDelegate()
         setRegister()
         setData()
+        setAddTarget()
         getDailyRoutine()
         getChallengeRoutine()
     }
@@ -56,6 +57,32 @@ private extension OngoingViewController {
     func setData() {
         if challengeRoutine.theme == "" || challengeRoutine.theme.isEmpty {
             ongoingView.setChallengeRoutineEmpty()
+        }
+    }
+    
+    func setAddTarget() {
+        ongoingView.routineEmptyView.addRoutineButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+        ongoingView.challengeInfoButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+        ongoingView.dailyInfoButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+        ongoingView.floatingButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+    }
+    
+    @objc func tapButton(_ sender: UIButton) {
+        switch sender {
+        case ongoingView.routineEmptyView.addRoutineButton:
+            print("addRoutineButton tapped")
+            let vc = AddRoutineViewController()
+            self.present(vc, animated: true)
+        case ongoingView.challengeInfoButton:
+            print("challengeInfoButton tapped")
+        case ongoingView.dailyInfoButton:
+            print("dailyInfoButton tapped")
+        case ongoingView.floatingButton:
+            print("floatingButton tapped")
+            let vc = AddRoutineViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+        default:
+            break
         }
     }
 }
@@ -147,27 +174,8 @@ extension OngoingViewController: ButtonProtocol {
     }
 }
 
-extension OngoingViewController: OngoingButtonProtocol {
-    
-    func tapChallengeInfoButton() {
-        print("tapChallengeInfoButtonVC")
-    }
-    
-    func tapDailyInfoButton() {
-        print("tapDailyInfoButtonVC")
-    }
-    
-    func tapFloatingButton() {
-        print("tapFloatingButtonVC")
-        let vc = AddRoutineViewController()
-        self.present(vc, animated: true)
-        
-    }
-}
-
 extension OngoingViewController {
     func getDailyRoutine() {
-        print("💚💚💚💚💚💚💚")
         DailyRoutineService.shared.getDailyRoutine { networkResult in
             switch networkResult {
             case .success(let data):
@@ -176,10 +184,8 @@ extension OngoingViewController {
                         self.dailyRoutineEntity = listData
                     }
                     if self.dailyRoutineEntity.routines.isEmpty {
-                        print("????")
                         self.ongoingView.setEmptyView()
                     } else {
-                        print("💚💚aaa💚💚💚💚💚")
                         self.ongoingView.dailyCollectionView.reloadData()
                     }
                 }
@@ -192,16 +198,13 @@ extension OngoingViewController {
     }
     
     func getChallengeRoutine() {
-        print("💚💚💚💚💚💚💚")
         DailyRoutineService.shared.getChallengeRoutine { networkResult in
             switch networkResult {
             case .success(let data):
-                print("aaaaaaa")
                 if let data = data as? GenericResponse<ChallengeRoutine> {
                     if let listData = data.data {
                         self.challengeRoutine = listData
                     }
-                    print("💚💚aaa💚💚💚💚💚")
                     if self.challengeRoutine.theme.isEmpty {
                         self.ongoingView.setChallengeRoutineEmpty()
                     } else {
@@ -209,7 +212,6 @@ extension OngoingViewController {
                     }
                 }
             case .requestErr, .serverErr:
-                print("DDDDD")
                 break
             default:
                 break
