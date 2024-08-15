@@ -15,20 +15,29 @@ final class RoutineChoiceCollectionViewCell: UICollectionViewCell, UICollectionV
 
     static let isFromNib: Bool = false
     
+    override var isSelected: Bool {
+        didSet {
+            routineChoiceButton.isSelected = isSelected
+        }
+    }
+    
     // MARK: - UI Components
     
     let routineLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .SoftieWhite
-        label.layer.borderColor = UIColor.Gray100.cgColor
-        label.layer.borderWidth = 1
-        label.layer.cornerRadius = 25
-        label.clipsToBounds = true
-        label.textColor = .Gray400
-        label.font = .fontGuide(.body2)
         label.textAlignment = .center
         label.numberOfLines = 0
+        label.textColor = .Gray700
+        label.font = .fontGuide(.body2)
+        label.asLineHeight(.body2)
         return label
+    }()
+    
+    private let routineChoiceButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(resource: .btnAdd), for: .normal)
+        button.setImage(UIImage(resource: .btnCheck), for: .selected)
+        return button
     }()
     
     // MARK: - Life Cycles
@@ -36,6 +45,7 @@ final class RoutineChoiceCollectionViewCell: UICollectionViewCell, UICollectionV
     override init(frame: CGRect) {
         super.init(frame: frame)
     
+        setUI()
         setHierarchy()
         setLayout()
     }
@@ -47,40 +57,40 @@ final class RoutineChoiceCollectionViewCell: UICollectionViewCell, UICollectionV
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        isSelected = false
-        routineLabel.backgroundColor = .SoftieWhite
-        routineLabel.layer.borderColor = UIColor.Gray100.cgColor
-        routineLabel.layer.borderWidth = 1
+        self.isSelected = false
     }
 }
 
 // MARK: - Extensions
 
 extension RoutineChoiceCollectionViewCell {
+    
+    func setUI() {
+        self.backgroundColor = .SoftieWhite
+        self.layer.cornerRadius = 10
+        self.layer.borderColor = UIColor.Gray200.cgColor
+        self.layer.borderWidth = 1
+    }
 
     func setHierarchy() {
-        addSubview(routineLabel)
+        addSubviews(routineLabel, routineChoiceButton)
     }
     
     func setLayout() {
         routineLabel.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.centerY.equalToSuperview()
+            $0.leading.equalToSuperview().inset(16)
+        }
+        
+        routineChoiceButton.snp.makeConstraints {
+            $0.centerY.equalToSuperview()
+            $0.trailing.equalToSuperview().inset(16)
+            $0.size.equalTo(24)
         }
     }
     
     func setDataBind(model: Routine) {
         routineLabel.text = model.content
-        if model.content.contains("\n") {
-            routineLabel.layer.cornerRadius = 35
-        } else {
-            routineLabel.layer.cornerRadius = 25
-        }
-    }
-    
-    func setCellSelected(selected: Bool) {
-        isSelected = selected
-        routineLabel.backgroundColor = selected ? .Gray100 : .SoftieWhite
-        routineLabel.layer.borderColor = selected ? UIColor.Gray400.cgColor : UIColor.Gray100.cgColor
-        routineLabel.layer.borderWidth = selected ? 2 : 1
+        routineLabel.asLineHeight(.body2)
     }
 }

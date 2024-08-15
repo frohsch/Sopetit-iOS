@@ -36,6 +36,13 @@ private extension OngoingViewController {
         heightForContentView(numberOfSection: dailyRoutineEntity.routines.count, texts: dailyRoutineEntity)
     }
     
+    @objc
+    func buttonTapped() {
+        let nav = AddRoutineViewController()
+        nav.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(nav, animated: true)
+    }
+    
     func setDelegate() {
         ongoingView.dailyCollectionView.delegate = self
         ongoingView.dailyCollectionView.dataSource = self

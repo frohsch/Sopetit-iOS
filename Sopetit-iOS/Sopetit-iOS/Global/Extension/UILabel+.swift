@@ -102,4 +102,24 @@ extension UILabel {
             self.attributedText = attrString
         }
     }
+    
+    func setLineHeightWithRangeText(text: String, 
+                                    fontStyle: FontLevel,
+                                    targetStrings: [String], 
+                                    textColor: UIColor) {
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = fontStyle.lineHeight / 4
+        paragraphStyle.alignment = self.textAlignment
+        
+        let attributedString = NSMutableAttributedString(string: text)
+        attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: NSRange(location: 0, length: attributedString.length))
+        attributedString.addAttribute(.foregroundColor, value: self.textColor ?? .black, range: NSRange(location: 0, length: attributedString.length))
+        
+        for targetString in targetStrings {
+            let range = (text as NSString).range(of: targetString)
+            attributedString.addAttribute(.foregroundColor, value: textColor, range: range)
+        }
+        
+        self.attributedText = attributedString
+    }
 }

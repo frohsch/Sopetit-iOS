@@ -43,11 +43,7 @@ final class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(false)
         
-        startLoadingIndicator()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            self.getHomeAPI(socialAccessToken: UserManager.shared.getAccessToken)
-        }
+        showTutorial()
     }
     
     override func viewDidLoad() {
@@ -62,6 +58,19 @@ final class HomeViewController: UIViewController {
 // MARK: - Extensions
 
 extension HomeViewController {
+    
+    func showTutorial() {
+        startLoadingIndicator()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.getHomeAPI(socialAccessToken: UserManager.shared.getAccessToken)
+            if !UserManager.shared.isShowTutorial {
+                let nav = TutorialViewController()
+                nav.modalPresentationStyle = .overFullScreen
+                self.present(nav, animated: false)
+            }
+        }
+    }
     
     func setUI() {
         self.navigationController?.navigationBar.isHidden = true

@@ -13,6 +13,12 @@ final class ThemeSelectView: UIView {
 
     // MARK: - UI Components
     
+    let navigationView: CustomNavigationBarView = {
+        let navi = CustomNavigationBarView()
+        navi.isBackButtonIncluded = true
+        return navi
+    }()
+    
     private let progressView = CustomProgressView(progressNum: 3)
     
     private let backgroundView: UIView = {
@@ -57,9 +63,7 @@ final class ThemeSelectView: UIView {
     lazy var collectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
-        flowLayout.minimumInteritemSpacing = SizeLiterals.Screen.screenWidth * 36 / 375
-        flowLayout.minimumLineSpacing = SizeLiterals.Screen.screenHeight * 28 / 812
-        flowLayout.itemSize = CGSize(width: 70, height: 95)
+        flowLayout.minimumInteritemSpacing = 8
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.clipsToBounds = true
@@ -114,12 +118,17 @@ extension ThemeSelectView {
     func setHierarchy() {
         stackview.addArrangedSubviews(bearImage, bubbleImage)
         bubbleImage.addSubview(bubbleLabel)
-        addSubviews(progressView, collectionView, nextButton, backgroundView, stackview)
+        addSubviews(navigationView, progressView, collectionView, nextButton, backgroundView, stackview)
     }
     
     func setLayout() {
+        navigationView.snp.makeConstraints {
+            $0.top.equalTo(safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
         progressView.snp.makeConstraints {
-            $0.top.equalTo(safeAreaLayoutGuide).offset(23)
+            $0.top.equalTo(navigationView.snp.bottom).offset(4)
             $0.leading.trailing.equalToSuperview().inset(20)
             $0.height.equalTo(5)
         }
@@ -151,8 +160,8 @@ extension ThemeSelectView {
         collectionView.snp.makeConstraints {
             $0.top.equalTo(bubbleImage.snp.bottom).offset(SizeLiterals.Screen.screenHeight * 37 / 812)
             $0.centerX.equalToSuperview()
-            $0.width.equalTo(SizeLiterals.Screen.screenWidth * 282 / 375)
-            $0.height.equalTo(SizeLiterals.Screen.screenHeight * 464 / 812)
+            $0.width.equalTo(190)
+            $0.height.equalTo(400)
         }
         
         nextButton.snp.makeConstraints {

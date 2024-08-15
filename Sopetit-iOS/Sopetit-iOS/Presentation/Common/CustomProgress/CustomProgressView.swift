@@ -19,28 +19,28 @@ final class CustomProgressView: UIView {
     
     private var progressView1: UIView = {
         var view = UIView()
-        view.backgroundColor = .Gray100
+        view.backgroundColor = .Gray200
         view.layer.cornerRadius = 3
         return view
     }()
     
     private var progressView2: UIView = {
         var view = UIView()
-        view.backgroundColor = .Gray100
+        view.backgroundColor = .Gray200
         view.layer.cornerRadius = 3
         return view
     }()
     
     private var progressView3: UIView = {
         var view = UIView()
-        view.backgroundColor = .Gray100
+        view.backgroundColor = .Gray200
         view.layer.cornerRadius = 3
         return view
     }()
     
     private var progressView4: UIView = {
         var view = UIView()
-        view.backgroundColor = .Gray100
+        view.backgroundColor = .Gray200
         view.layer.cornerRadius = 3
         return view
     }()

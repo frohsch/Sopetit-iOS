@@ -44,7 +44,7 @@ final class ThemeSelectViewController: UIViewController {
 // MARK: - Extensions
 
 extension ThemeSelectViewController {
-
+    
     func setUI() {
         themeSelectView.bubbleLabel.text = "안녕 난 \(doll)!\n나와 함께 루틴을 만들어볼까?"
         if doll == "안녕" {
@@ -53,12 +53,13 @@ extension ThemeSelectViewController {
             themeSelectView.bubbleLabel.partColorChange(targetString: doll, textColor: .Brown400)
         }
         self.navigationController?.navigationBar.isHidden = true
-        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
     }
     
     func setDelegate() {
         collectionView.delegate = self
         collectionView.dataSource = self
+        themeSelectView.navigationView.delegate = self
     }
     
     func setAddTarget() {
@@ -74,6 +75,13 @@ extension ThemeSelectViewController {
     }
 }
 
+extension ThemeSelectViewController: BackButtonProtocol {
+    
+    func tapBackButton() {
+        self.navigationController?.popViewController(animated: true)
+    }
+}
+
 extension ThemeSelectViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
@@ -84,9 +92,8 @@ extension ThemeSelectViewController: UICollectionViewDelegate {
                     selectedCount += 1
                     selectedCategory.append(themeEntity.themes[indexPath.item].themeID)
                     selectedCell.isSelected = true
-                    selectedCell.themeIcon.backgroundColor = .Gray100
-                    selectedCell.themeIcon.layer.borderColor = UIColor.Gray400.cgColor
-                    selectedCell.themeIcon.layer.borderWidth = 2
+                    selectedCell.backgroundColor = .Gray200
+                    selectedCell.layer.borderColor = UIColor.Gray650.cgColor
                     if selectedCount == 3 {
                         themeSelectView.nextButton.isEnabled = true
                     }
@@ -106,14 +113,22 @@ extension ThemeSelectViewController: UICollectionViewDelegate {
                 }
                 selectedCount -= 1
                 selectedCell.isSelected = false
-                selectedCell.themeIcon.backgroundColor = .SoftieWhite
-                selectedCell.themeIcon.layer.borderColor = UIColor.Gray100.cgColor
-                selectedCell.themeIcon.layer.borderWidth = 1
+                selectedCell.backgroundColor = .SoftieWhite
+                selectedCell.layer.borderColor = UIColor.Gray200.cgColor
                 themeSelectView.nextButton.isEnabled = false
             }
             return true
         }
         return true
+    }
+}
+
+extension ThemeSelectViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let string = themeEntity.themes[indexPath.item].title
+        let cellSize = CGSize(width: string.size(withAttributes: [NSAttributedString.Key.font: UIFont.fontGuide(.body1)]).width + 64, height: 48)
+        return cellSize
     }
 }
 
@@ -142,6 +157,14 @@ private extension ThemeSelectViewController {
                         self.themeEntity = listData
                     }
                     self.collectionView.reloadData()
+                }
+            case .reissue:
+                ReissueService.shared.postReissueAPI(refreshToken: UserManager.shared.getRefreshToken) { success in
+                    if success {
+                        self.getThemeAPI()
+                    } else {
+                        self.makeSessionExpiredAlert()
+                    }
                 }
             case .requestErr, .serverErr:
                 break

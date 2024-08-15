@@ -168,13 +168,6 @@ enum ImageLiterals {
         static var challengeCard7: UIImage { .load(name: "challenge-card-7") }
         
         static var theme: UIImage { .load(name: "theme") }
-        static var theme1: UIImage { .load(name: "theme-1") }
-        static var theme2: UIImage { .load(name: "theme-2") }
-        static var theme3: UIImage { .load(name: "theme-3") }
-        static var theme4: UIImage { .load(name: "theme-4") }
-        static var theme5: UIImage { .load(name: "theme-5") }
-        static var theme6: UIImage { .load(name: "theme-6") }
-        static var theme7: UIImage { .load(name: "theme-7") }
         
         static var icnAddButton: UIImage { .load(name: "icn_add_button") }
         

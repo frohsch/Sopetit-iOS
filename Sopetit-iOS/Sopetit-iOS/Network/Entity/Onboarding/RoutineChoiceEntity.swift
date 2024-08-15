@@ -8,9 +8,21 @@
 import Foundation
 
 struct RoutineChoiceEntity: Codable {
-    let routines: [Routine]
+    let themes: [SelectedTheme]
 }
 
+// MARK: - Theme
+struct SelectedTheme: Codable {
+    let themeID: Int
+    let routines: [Routine]
+
+    enum CodingKeys: String, CodingKey {
+        case themeID = "themeId"
+        case routines
+    }
+}
+
+// MARK: - Routine
 struct Routine: Codable {
     let routineID: Int
     let content: String

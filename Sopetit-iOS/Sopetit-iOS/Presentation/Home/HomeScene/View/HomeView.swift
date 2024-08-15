@@ -11,14 +11,14 @@ import SnapKit
 import Lottie
 import Kingfisher
 
+public enum LottieFrameTime: CGFloat {
+    case start = 0
+    case eatDaily = 21
+    case eatHappy = 45
+    case end = 68
+}
+
 final class HomeView: UIView {
-    
-    enum AnimationKeyFrames: CGFloat {
-        case start = 0
-        case eatDaily = 21
-        case eatHappy = 45
-        case end = 68
-    }
     
     // MARK: - Properties
     
@@ -221,8 +221,8 @@ extension HomeView {
     func dollTapped() {
         if !(isAnimate) {
             isAnimate = true
-            animationView.play(fromFrame: AnimationKeyFrames.start.rawValue,
-                                         toFrame: AnimationKeyFrames.eatDaily.rawValue,
+            animationView.play(fromFrame: LottieFrameTime.start.rawValue,
+                                         toFrame: LottieFrameTime.eatDaily.rawValue,
                                          loopMode: .playOnce)
             refreshBubbleLabel()
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.2) {
