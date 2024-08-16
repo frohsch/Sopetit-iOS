@@ -8,13 +8,12 @@
 import Foundation
 
 struct ChallengeRoutine: Codable {
-    let theme: String
-    let routine: String
-}
-
-extension ChallengeRoutine {
-    static func dummy() -> ChallengeRoutine {
-        return ChallengeRoutine(theme: "관계 쌓기", routine: "주변인의 관심사와 작은 변화를 기록해보고,\n그 사람의 장점을 생각해보기")
-//        return ChallengeRoutine(theme: "", routine: "")
-    }
+    let routineId: Int?
+    let themeId: Int?
+    let themeName: String?
+    let title: String?
+    let content: String?
+    let detailContent: String?
+    let place: String?
+    let timeTaken: String?
 }

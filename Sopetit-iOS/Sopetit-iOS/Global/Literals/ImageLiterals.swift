@@ -110,6 +110,7 @@ enum ImageLiterals {
         static var icCheck: UIImage { .load(name: "ic_check") }
         static var btnRadiobtnNone: UIImage { .load(name: "btn_radiobtn_none") }
         static var btnRadiobtnSelected: UIImage { .load(name: "btn_radiobtn_selected") }
+        static var btnCheck: UIImage { .load(name: "btn_check") }
         static var icAdd: UIImage { .load(name: "ic_add") }
         static var imgDailycardEmpty: UIImage { .load(name: "img_dailycard_empty") }
         static var imgLoadingbear: UIImage { .load(name: "img_loadingbear") }

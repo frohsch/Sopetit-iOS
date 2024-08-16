@@ -5,21 +5,25 @@
 
 import Foundation
 
-struct DailyRoutineEntity: Codable {
+struct NewDailyRoutineEntity: Codable {
     var routines: [DailyRoutines]
 }
 
 struct DailyRoutines: Codable {
-    let routineID: Int
-    let content: String
-    let iconImageURL: String
-    let achieveCount: Int
-    var isAchieve: Bool
+    let themeId: Int
+    let themeName: String
+    let routines: [DailyRoutinev2]
 
     enum CodingKeys: String, CodingKey {
-        case routineID = "routineId"
-        case content
-        case iconImageURL = "iconImageUrl"
-        case achieveCount, isAchieve
+        case themeId = "themeId"
+        case themeName
+        case routines
     }
+}
+
+struct DailyRoutinev2: Codable {
+    let routineId: Int
+    let content: String
+    let achieveCount: Int
+    let isAchieve: Bool
 }

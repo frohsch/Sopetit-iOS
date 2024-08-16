@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 
 class OngoingView: UIView {
-    
+
     private let dateView: UIView = {
         let view = UIView()
         return view
@@ -114,7 +114,6 @@ class OngoingView: UIView {
         setHierarchy()
         setLayout()
         setDateLabel()
-        setAddTarget()
     }
     
     @available(*, unavailable)
@@ -217,23 +216,6 @@ private extension OngoingView {
         let formattedDate = dateFormatter.string(from: currentDate)
         dateLabel.text = formattedDate
     }
-    
-    func setAddTarget() {
-        challengeInfoButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
-        dailyInfoButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
-    }
-    
-    @objc
-    func tapButton(_ sender: UIButton) {
-        switch sender {
-        case challengeInfoButton:
-            print("challengeInfoButton tapped")
-        case dailyInfoButton:
-            print("dailyInfoButton tapped")
-        default:
-            break
-        }
-    }
 }
 
 extension OngoingView {
@@ -244,7 +226,7 @@ extension OngoingView {
         self.challengeRoutineCardView.removeFromSuperview()
         
         self.dailyContentView.addSubview(challengeRoutineEmptyView)
-        
+    
         challengeRoutineEmptyView.snp.makeConstraints {
             $0.top.equalToSuperview()
             $0.horizontalEdges.equalToSuperview()
@@ -258,9 +240,9 @@ extension OngoingView {
         }
     }
     
-    func setChallengeRoutine() {
+    func setChallengeRoutine(routine: ChallengeRoutine) {
+        challengeRoutineCardView.setDataBind(data: routine)
         self.challengeRoutineEmptyView.removeFromSuperview()
-
         self.dailyContentView.addSubviews(challengeTitleLabel, challengeInfoButton, challengeRoutineCardView)
         
         challengeTitleLabel.snp.makeConstraints {
@@ -295,6 +277,75 @@ extension OngoingView {
         
         routineEmptyView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+    }
+    
+    func setDailyRoutine() {
+        routineEmptyView.removeFromSuperview()
+        self.addSubviews(scrollView, floatingButton)
+        self.scrollView.addSubviews(dailyContentView)
+        
+        self.dailyContentView.addSubviews(challengeTitleLabel, challengeInfoButton, challengeRoutineCardView, divisionView, dailyTitleLabel, dailyInfoButton, dailyCollectionView
+        )
+        
+        scrollView.snp.makeConstraints {
+            $0.top.equalTo(dateView.snp.bottom)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalTo(self.safeAreaLayoutGuide)
+        }
+        
+        dailyContentView.snp.makeConstraints {
+            $0.edges.equalTo(scrollView)
+            $0.width.equalTo(scrollView.snp.width)
+        }
+        
+        challengeTitleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(4)
+            $0.leading.equalToSuperview().inset(20)
+            $0.height.equalTo(20)
+        }
+        
+        challengeInfoButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(20)
+            $0.centerY.equalTo(challengeTitleLabel.snp.centerY)
+            $0.size.equalTo(20)
+        }
+        
+        challengeRoutineCardView.snp.makeConstraints {
+            $0.top.equalTo(challengeTitleLabel.snp.bottom).offset(16)
+            $0.horizontalEdges.equalToSuperview().inset(20)
+            $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
+        }
+        
+        divisionView.snp.makeConstraints {
+            $0.top.equalTo(challengeRoutineCardView.snp.bottom).offset(16)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(2)
+        }
+        
+        dailyTitleLabel.snp.makeConstraints {
+            $0.top.equalTo(divisionView.snp.bottom).offset(16)
+            $0.leading.equalToSuperview().inset(20)
+            $0.height.equalTo(20)
+        }
+        
+        dailyInfoButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(20)
+            $0.centerY.equalTo(dailyTitleLabel.snp.centerY)
+            $0.size.equalTo(20)
+        }
+        
+        dailyCollectionView.snp.makeConstraints {
+            $0.top.equalTo(dailyTitleLabel.snp.bottom).offset(12)
+            $0.horizontalEdges.equalToSuperview()
+            $0.height.equalTo(1000)
+            $0.bottom.equalToSuperview()
+        }
+        
+        floatingButton.snp.makeConstraints {
+            $0.trailing.equalToSuperview().inset(20)
+            $0.bottom.equalTo(self.safeAreaLayoutGuide).inset(12)
+            $0.size.equalTo(50)
         }
     }
 }
