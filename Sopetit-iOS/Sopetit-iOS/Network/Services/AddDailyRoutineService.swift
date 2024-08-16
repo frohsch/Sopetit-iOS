@@ -139,25 +139,48 @@ extension AddDailyRoutineService {
     
     func getChallengeRoutine(id: Int,
                              completion: @escaping (NetworkResult<Any>) -> Void) {
-            let url = URLConstant.challengeThemeURL + "\(id)"
-            let header: HTTPHeaders = NetworkConstant.hasTokenHeader
-            let dataRequest = AF.request(url,
-                                         method: .get,
-                                         encoding: JSONEncoding.default,
-                                         headers: header)
-            
-            dataRequest.responseData { response in
-                switch response.result {
-                case .success:
-                    guard let statusCode = response.response?.statusCode else { return }
-                    guard let data = response.data else { return }
-                    let networkResult = self.judgeStatus(by: statusCode,
-                                                         data,
-                                                         RoutineChallengeEntity.self)
-                    completion(networkResult)
-                case .failure:
-                    completion(.networkFail)
-                }
+        let url = URLConstant.challengeThemeURL + "\(id)"
+        let header: HTTPHeaders = NetworkConstant.hasTokenHeader
+        let dataRequest = AF.request(url,
+                                     method: .get,
+                                     encoding: JSONEncoding.default,
+                                     headers: header)
+        
+        dataRequest.responseData { response in
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else { return }
+                guard let data = response.data else { return }
+                let networkResult = self.judgeStatus(by: statusCode,
+                                                     data,
+                                                     RoutineChallengeEntity.self)
+                completion(networkResult)
+            case .failure:
+                completion(.networkFail)
             }
         }
+    }
+    
+    func getChallengeMember(completion: @escaping (NetworkResult<Any>) -> Void) {
+        let url = URLConstant.challengeMemberURL
+        let header: HTTPHeaders = NetworkConstant.hasTokenHeader
+        let dataRequest = AF.request(url,
+                                     method: .get,
+                                     encoding: JSONEncoding.default,
+                                     headers: header)
+        
+        dataRequest.responseData { response in
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else { return }
+                guard let data = response.data else { return }
+                let networkResult = self.judgeStatus(by: statusCode,
+                                                     data,
+                                                     ChallengeMemberEntity.self)
+                completion(networkResult)
+            case .failure:
+                completion(.networkFail)
+            }
+        }
+    }
 }
