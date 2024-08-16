@@ -9,6 +9,7 @@ import Foundation
 
 enum NetworkResult<T> {
     case success(T)
+    case noEntity
     case reissue(T)
     case requestErr(T)
     case pathErr

@@ -14,6 +14,7 @@ class BaseService {
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(GenericResponse<T>.self, from: data) else { return .pathErr }
         switch statusCode {
+        case 204: return .noEntity
         case 200..<300: return .success(decodedData as Any)
         case 401: return .reissue(decodedData as Any)
         case 400..<500: return .requestErr(decodedData as Any)
