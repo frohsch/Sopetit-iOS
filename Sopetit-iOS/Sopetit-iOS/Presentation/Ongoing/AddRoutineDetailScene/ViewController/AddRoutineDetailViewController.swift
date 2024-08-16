@@ -17,8 +17,9 @@ final class AddRoutineDetailViewController: UIViewController {
     private var hasChallengeRoutine: Bool = false
     private var challengeMemberEntity = ChallengeMemberEntity.challengeMemberInitial()
     
-    private var selectedChallengeId: Int = 0
+    private var selectedChallengeId: Int = -1
     private var selectedChallengeContent: String = ""
+    private var selectedDailyId: [Int] = []
     
     // MARK: - UI Components
     
@@ -112,16 +113,23 @@ extension AddRoutineDetailViewController {
     
     @objc
     func addButtonTapped() {
-        if hasChallengeRoutine {
-            addRoutineDetailView.changeBottomSheetView.bindUI(model: ChangeRoutineBottomSheetEntity(existThemeID: challengeMemberEntity.themeID, existContent: challengeMemberEntity.content, choiceThemeID: addRoutineInfoEntity.id, choiceContent: selectedChallengeContent))
-            addRoutineDetailView.changeBottomSheetView.isHidden = false
+        switch addRoutineInfoEntity.themeStyle {
+        case .maker: // 무조건 도전루틴
+            if hasChallengeRoutine {
+                addRoutineDetailView.changeBottomSheetView.bindUI(model: ChangeRoutineBottomSheetEntity(existThemeID: challengeMemberEntity.themeID, existContent: challengeMemberEntity.content, choiceThemeID: addRoutineInfoEntity.id, choiceContent: selectedChallengeContent))
+                addRoutineDetailView.changeBottomSheetView.isHidden = false
+            }
+        case .routine:
+            if selectedChallengeId > -1 { // 도전 루틴 선택
+                if selectedDailyId.count > 0 { // 데일리루틴도 선택
+                    
+                } else { // 도전루틴만 선택
+                    
+                }
+            } else { // 데일리루틴만 선택
+                postAddDailyRoutinAPI(ids: selectedDailyId)
+            }
         }
-//        switch addRoutineInfoEntity.themeStyle {
-//        case .maker:
-//            print("")
-//        case .routine:
-//            print("")
-//        }
     }
 }
 
@@ -212,6 +220,26 @@ extension AddRoutineDetailViewController {
             }
         }
     }
+    
+    func postAddDailyRoutinAPI(ids: [Int]) {
+        AddDailyRoutineService.shared.postAddDailyMember(routineId: selectedDailyId) { networkResult in
+            switch networkResult {
+            case .success:
+                self.hideBottomSheetAction()
+                self.navigationController?.popToRootViewController(animated: true)
+            case .reissue:
+                ReissueService.shared.postReissueAPI(refreshToken: UserManager.shared.getRefreshToken) { success in
+                    if success {
+                        self.getChallengeMember()
+                    } else {
+                        self.makeSessionExpiredAlert()
+                    }
+                }
+            default:
+                break
+            }
+        }
+    }
 
 }
 
@@ -221,12 +249,23 @@ extension AddRoutineDetailViewController: UICollectionViewDelegate {
                         shouldSelectItemAt indexPath: IndexPath) -> Bool {
         switch collectionView {
         case routineDailyCV:
-            print("🤪🤪🤪")
-            print(dailyThemeEntity.routines[indexPath.item].id)
+            let item = dailyThemeEntity.routines[indexPath.item]
+            if item.existedInMember { // toastmessage 띄우기
+                print("")
+            } else {
+                selectedDailyId.append(dailyThemeEntity.routines[indexPath.item].id)
+            }
+            print(selectedDailyId)
             return true
         case challengeCV:
-            selectedChallengeId = challengeThemeEntity.routines[indexPath.section].challenges[indexPath.item].challengeID
-            selectedChallengeContent = challengeThemeEntity.routines[indexPath.section].challenges[indexPath.item].content.replacingOccurrences(of: "\n", with: "")
+            let item = challengeThemeEntity.routines[indexPath.section].challenges[indexPath.item]
+            if item.hasRoutine { // 추가한 루틴인 경우 toastmessage
+                print("")
+            } else {
+                selectedChallengeId = challengeThemeEntity.routines[indexPath.section].challenges[indexPath.item].challengeID
+                selectedChallengeContent = challengeThemeEntity.routines[indexPath.section].challenges[indexPath.item].content.replacingOccurrences(of: "\n", with: " ")
+            }
+            print(selectedChallengeId)
             return true
         default:
             return false
@@ -235,14 +274,21 @@ extension AddRoutineDetailViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView,
                         shouldDeselectItemAt indexPath: IndexPath) -> Bool {
-        return true
-        //        switch collectionView {
-        //        case routineDailyCV:
-        //            return setDeselectedCell(in: collectionView, at: indexPath, routineIndex: 0)
-        //            return true
-        //        default:
-        //            return false
-        //        }
+        switch collectionView {
+        case routineDailyCV:
+            if let index = selectedDailyId.firstIndex(where: { num in num == dailyThemeEntity.routines[indexPath.item].id }) {
+                selectedDailyId.remove(at: index)
+            }
+            print(selectedDailyId)
+            return true
+        case challengeCV:
+            selectedChallengeId = -1
+            selectedChallengeContent = ""
+            print(selectedChallengeId)
+            return true
+        default:
+            return false
+        }
     }
 }
 
@@ -383,9 +429,10 @@ extension AddRoutineDetailViewController: UICollectionViewDelegateFlowLayout {
         for i in texts {
             let textHeight = heightForView(text: i.content,
                                            font: .fontGuide(.body2),
-                                           width: SizeLiterals.Screen.screenWidth - 80) + 94
+                                           width: SizeLiterals.Screen.screenWidth - 80) + 40
             height += textHeight
         }
+        height += 98
         
         UIView.animate(withDuration: 0.3) {
             self.addRoutineDetailView.routineDailyCollectionView.snp.makeConstraints {
