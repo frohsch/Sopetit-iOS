@@ -139,8 +139,8 @@ extension MakersCollectionViewCell {
     
     func setDataBind(model: Maker) {
         makerProfileImage.kfSetImage(url: model.profileImageURL)
-        makerDescriptionLabel.text = model.description
-        makerContentLabel.text = model.content
+        makerDescriptionLabel.text = model.modifier
+        makerContentLabel.text = model.themeName
         chipData = model.tags
     }
 }

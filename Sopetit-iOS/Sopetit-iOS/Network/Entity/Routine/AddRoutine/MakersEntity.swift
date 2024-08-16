@@ -14,15 +14,20 @@ struct MakersEntity: Codable {
 // MARK: - Maker
 
 struct Maker: Codable {
-    let makerID, themeID: Int
-    let profileImageURL, description, content: String
+    let makerID: Int
+    let content, name: String
+    let profileImageURL: String
     let tags: [String]
+    let themeID: Int
+    let description, themeName, modifier: String
 
     enum CodingKeys: String, CodingKey {
         case makerID = "makerId"
-        case themeID = "themeId"
+        case content, name
         case profileImageURL = "profileImageUrl"
-        case description, content, tags
+        case tags
+        case themeID = "themeId"
+        case description, themeName, modifier
     }
 }
 
@@ -30,10 +35,13 @@ extension MakersEntity {
     
     static func makersInitialEntity() -> MakersEntity {
         return MakersEntity(makers: [Maker(makerID: 0,
-                                           themeID: 0,
-                                           profileImageURL: "",
-                                           description: "",
                                            content: "",
-                                           tags: [])])
+                                           name: "",
+                                           profileImageURL: "",
+                                           tags: [],
+                                           themeID: 0,
+                                           description: "",
+                                           themeName: "",
+                                           modifier: "")])
     }
 }

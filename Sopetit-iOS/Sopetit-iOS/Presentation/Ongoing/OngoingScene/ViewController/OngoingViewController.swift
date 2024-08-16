@@ -18,6 +18,12 @@ class OngoingViewController: UIViewController {
         self.view = ongoingView
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        getChallengeRoutine()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,7 +33,6 @@ class OngoingViewController: UIViewController {
         setData()
         setAddTarget()
         getDailyRoutine()
-        getChallengeRoutine()
     }
 }
 
@@ -81,6 +86,7 @@ private extension OngoingViewController {
         case ongoingView.floatingButton:
             print("floatingButton tapped")
             let vc = AddRoutineViewController()
+            vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
         default:
             break
@@ -199,7 +205,6 @@ extension OngoingViewController {
             switch networkResult {
             case .success(let data):
                 if let data = data as? GenericResponse<ChallengeRoutine> {
-                    print(data)
                     if let listData = data.data {
                         self.challengeRoutine = listData
                     }

@@ -52,6 +52,7 @@ final class SplashViewController: UIViewController {
 private extension SplashViewController {
     
     func setUI() {
+        print(UserManager.shared.getAccessToken)
         Analytics.logEvent("view_splash", parameters: nil)
         
         self.updateAlertView.isHidden = true

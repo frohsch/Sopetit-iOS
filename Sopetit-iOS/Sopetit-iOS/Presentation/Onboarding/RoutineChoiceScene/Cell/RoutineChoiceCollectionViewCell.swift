@@ -21,6 +21,15 @@ final class RoutineChoiceCollectionViewCell: UICollectionViewCell, UICollectionV
         }
     }
     
+    var hasRoutine: Bool = false {
+        didSet {
+            self.backgroundColor = hasRoutine ? .Gray200 : .SoftieWhite
+            self.layer.borderColor = hasRoutine ? UIColor.Gray300.cgColor : UIColor.Gray200.cgColor
+            routineLabel.textColor = hasRoutine ? .Gray400 : .Gray700
+            routineChoiceButton.isHidden = hasRoutine ? true : false
+        }
+    }
+    
     // MARK: - UI Components
     
     let routineLabel: UILabel = {
@@ -92,5 +101,9 @@ extension RoutineChoiceCollectionViewCell {
     func setDataBind(model: Routine) {
         routineLabel.text = model.content
         routineLabel.asLineHeight(.body2)
+    }
+    
+    func setAddRoutineBind(model: Routines) {
+        routineLabel.text = model.content
     }
 }
