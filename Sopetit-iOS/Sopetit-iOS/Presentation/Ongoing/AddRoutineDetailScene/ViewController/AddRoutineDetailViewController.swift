@@ -88,7 +88,9 @@ extension AddRoutineDetailViewController {
     @objc
     func challengeMenuTapped() {
         addRoutineDetailView.setMenuSelected(dailyTapped: false)
-        getChallengeRoutineAPI(id: addRoutineInfoEntity.id)
+        if challengeThemeEntity.routines.isEmpty {
+            getChallengeRoutineAPI(id: addRoutineInfoEntity.id)
+        }
     }
     
     @objc
@@ -141,6 +143,13 @@ extension AddRoutineDetailViewController {
                 self.addRoutineDetailView.existRoutineToast.alpha = 1.0
             })
         }
+    }
+    
+    func updateRoutineAddButton() {
+        let totalCount: Int = selectedDailyId.count + (selectedChallengeId > -1 ? 1 : 0)
+        addRoutineDetailView.routineAddButton.setTitle("루틴 \(totalCount)개 추가하기",
+                                                       for: .normal)
+        addRoutineDetailView.routineAddButton.isEnabled = totalCount > 0
     }
 }
 
@@ -327,14 +336,13 @@ extension AddRoutineDetailViewController: UICollectionViewDelegate {
                 return false
             } else {
                 selectedDailyId.append(dailyThemeEntity.routines[indexPath.item].id)
-                print(selectedDailyId)
+                self.updateRoutineAddButton()
                 return true
             }
         case challengeCV:
             let item = challengeThemeEntity.routines[indexPath.section].challenges[indexPath.item]
             if item.hasRoutine { // 추가한 루틴인 경우 toastmessage
                 self.setToastMessage(type: .ChallengeCountAlert)
-                print(selectedChallengeId)
                 return false
             } else {
                 if selectedChallengeId > -1 {
@@ -344,7 +352,7 @@ extension AddRoutineDetailViewController: UICollectionViewDelegate {
                 }
                 selectedChallengeId = challengeThemeEntity.routines[indexPath.section].challenges[indexPath.item].challengeID
                 selectedChallengeContent = challengeThemeEntity.routines[indexPath.section].challenges[indexPath.item].content.replacingOccurrences(of: "\n", with: " ")
-                print(selectedChallengeId)
+                self.updateRoutineAddButton()
                 return true
             }
         default:
@@ -359,12 +367,12 @@ extension AddRoutineDetailViewController: UICollectionViewDelegate {
             if let index = selectedDailyId.firstIndex(where: { num in num == dailyThemeEntity.routines[indexPath.item].id }) {
                 selectedDailyId.remove(at: index)
             }
-            print(selectedDailyId)
+            self.updateRoutineAddButton()
             return true
         case challengeCV:
             selectedChallengeId = -1
             selectedChallengeContent = ""
-            print(selectedChallengeId)
+            self.updateRoutineAddButton()
             return true
         default:
             return false

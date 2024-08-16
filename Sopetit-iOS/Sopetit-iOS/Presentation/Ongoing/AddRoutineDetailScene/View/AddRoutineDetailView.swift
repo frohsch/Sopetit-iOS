@@ -189,10 +189,10 @@ final class AddRoutineDetailView: UIView {
     let routineAddButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .Gray650
-        button.setTitle("루틴 추가하기", for: .normal)
+        button.setTitle("루틴 0개 추가하기", for: .normal)
         button.titleLabel?.font = .fontGuide(.body1)
-        button.setBackgroundColor(.Gray650, for: .normal)
         button.setBackgroundColor(.Gray650, for: .selected)
+        button.setBackgroundColor(.Gray300, for: .disabled)
         button.layer.cornerRadius = 10
         return button
     }()
@@ -271,6 +271,7 @@ private extension AddRoutineDetailView {
         self.backgroundColor = .Gray50
         challengeCountToast.isHidden = true
         existRoutineToast.isHidden = true
+        routineAddButton.isEnabled = false
     }
     
     func setHierarchy() {
