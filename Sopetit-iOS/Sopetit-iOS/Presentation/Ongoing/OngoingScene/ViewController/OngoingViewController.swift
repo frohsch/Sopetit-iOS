@@ -11,6 +11,7 @@ class OngoingViewController: UIViewController {
     
     private var challengeRoutine = ChallengeRoutine(routineId: 0, themeId: 0, themeName: "", title: "", content: "", detailContent: "", place: "", timeTaken: "")
     private var dailyRoutineEntity = NewDailyRoutineEntity(routines: [])
+    private var patchRoutineEntity = PatchRoutineEntity(routineId: 0, isAchieve: false, achieveCount: 0, hasCotton: false)
     let ongoingView = OngoingView()
     
     override func loadView() {
@@ -105,6 +106,7 @@ extension OngoingViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = NewDailyRoutineCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
         cell.setDataBind(routine: dailyRoutineEntity.routines[indexPath.section].routines[indexPath.item])
+        cell.delegate = self
         return cell
     }
     
@@ -175,13 +177,13 @@ extension OngoingViewController {
                 if let data = data as? GenericResponse<NewDailyRoutineEntity> {
                     if let listData = data.data {
                         self.dailyRoutineEntity = listData
-                    }
-                    if self.dailyRoutineEntity.routines.isEmpty {
-                        self.ongoingView.setEmptyView()
-                    } else {
-                        self.ongoingView.setDailyRoutine()
-                        self.heightForContentView(numberOfSection: self.dailyRoutineEntity.routines.count, texts: self.dailyRoutineEntity)
-                        self.ongoingView.dailyCollectionView.reloadData()
+                        if self.dailyRoutineEntity.routines.isEmpty {
+                            self.ongoingView.setEmptyView()
+                        } else {
+                            self.ongoingView.setDailyRoutine()
+                            self.heightForContentView(numberOfSection: self.dailyRoutineEntity.routines.count, texts: self.dailyRoutineEntity)
+                            self.ongoingView.dailyCollectionView.reloadData()
+                        }
                     }
                 }
             case .requestErr, .serverErr:
@@ -214,19 +216,42 @@ extension OngoingViewController {
             }
         }
     }
+    
+    func patchRoutineAPI(routineId: Int) {
+        DailyRoutineService.shared.patchRoutineAPI(routineId: routineId) { networkResult in
+            switch networkResult {
+            case .success(let data):
+                if let data = data as? GenericResponse<PatchRoutineEntity> {
+                    if let listData = data.data {
+                        self.patchRoutineEntity = listData
+                    }
+                    if self.patchRoutineEntity.hasCotton == true {
+                        self.getCottonView()
+                    } else {
+                        // TODO:
+                        // 이미 솜사탕을 받았습니다.
+                    }
+                }
+            case .requestErr, .serverErr:
+                break
+            default:
+                break
+            }
+        }
+    }
 }
 
 extension OngoingViewController {
     
     func getCottonView() {
         let vc = GetCottonViewController()
+        vc.modalPresentationStyle = UIModalPresentationStyle.overFullScreen
         self.present(vc, animated: false)
     }
 }
 
 extension OngoingViewController: CVCellDelegate {
     func selectedRadioButton(_ index: Int) {
-        print("did Daily Routine")
-        getCottonView()
+        patchRoutineAPI(routineId: index)
     }
 }

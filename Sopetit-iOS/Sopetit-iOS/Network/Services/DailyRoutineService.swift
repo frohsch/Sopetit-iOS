@@ -59,7 +59,7 @@ extension DailyRoutineService {
                     guard let data = response.data else { return }
                     let networkResult = self.judgeStatus(by: statusCode,
                                                          data,
-                                                         DailyPatchEntity.self)
+                                                         PatchRoutineEntity.self)
                     completion(networkResult)
                 case .failure:
                     completion(.networkFail)
@@ -91,9 +91,6 @@ extension DailyRoutineService {
     }
     
     func getChallengeRoutine(completion: @escaping (NetworkResult<Any>) -> Void) {
-        print("❌❌❌❌❌❌❌❌❌")
-        print(UserManager.shared.getAccessToken)
-        print("❌❌❌❌❌❌❌❌❌")
         let url = URLConstant.v2ChallengeURL
         let header: HTTPHeaders = NetworkConstant.hasTokenHeader
         let dataRequest = AF.request(url,

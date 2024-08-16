@@ -32,6 +32,8 @@ class GetCottonViewController: UIViewController {
 private extension GetCottonViewController {
     
     func setUI() {
+        self.view.backgroundColor = .Gray1000
+        self.view.isOpaque = false
         self.navigationController?.navigationBar.isHidden = true
     }
     
@@ -41,7 +43,7 @@ private extension GetCottonViewController {
 //        })
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {
-            self.dismiss(animated: true)
+            self.dismiss(animated: false)
         }
     }
 }

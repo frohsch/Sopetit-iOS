@@ -52,7 +52,6 @@ class GetCottonView: UIView {
 extension GetCottonView {
     
     func setUI() {
-        self.backgroundColor = .Gray1000
         cottonLottieView.loopMode = .loop
         cottonLottieView.contentMode = .scaleAspectFit
         cottonLottieView.frame = self.bounds
