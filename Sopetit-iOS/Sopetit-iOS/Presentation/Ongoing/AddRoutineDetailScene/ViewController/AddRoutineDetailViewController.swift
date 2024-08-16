@@ -121,6 +121,27 @@ extension AddRoutineDetailViewController {
             }
         }
     }
+    
+    func setToastMessage(type: ToastType) {
+        switch type {
+        case .ChallengeCountAlert:
+            addRoutineDetailView.challengeCountToast.isHidden = false
+            UIView.animate(withDuration: 0.5, delay: 0.7, options: .curveEaseOut, animations: {
+                self.addRoutineDetailView.challengeCountToast.alpha = 0.0
+            }, completion: {_ in
+                self.addRoutineDetailView.challengeCountToast.isHidden = true
+                self.addRoutineDetailView.challengeCountToast.alpha = 1.0
+            })
+        case .ExistRoutineAlert:
+            addRoutineDetailView.existRoutineToast.isHidden = false
+            UIView.animate(withDuration: 0.5, delay: 0.7, options: .curveEaseOut, animations: {
+                self.addRoutineDetailView.existRoutineToast.alpha = 0.0
+            }, completion: {_ in
+                self.addRoutineDetailView.existRoutineToast.isHidden = true
+                self.addRoutineDetailView.existRoutineToast.alpha = 1.0
+            })
+        }
+    }
 }
 
 extension AddRoutineDetailViewController: BackButtonProtocol {
@@ -242,7 +263,6 @@ extension AddRoutineDetailViewController {
         AddDailyRoutineService.shared.postAddChallenge(subRoutineId: id) { networkResult in
             switch networkResult {
             case .success:
-                print("🤪🤪🤪🤪")
                 self.dismiss(animated: false)
                 self.navigationController?.popToRootViewController(animated: true)
             case .reissue:
@@ -287,22 +307,25 @@ extension AddRoutineDetailViewController: UICollectionViewDelegate {
         case routineDailyCV:
             let item = dailyThemeEntity.routines[indexPath.item]
             if item.existedInMember { // toastmessage 띄우기
-                print("")
+                self.setToastMessage(type: .ExistRoutineAlert)
+                return false
             } else {
                 selectedDailyId.append(dailyThemeEntity.routines[indexPath.item].id)
+                print(selectedDailyId)
+                return true
             }
-            print(selectedDailyId)
-            return true
         case challengeCV:
             let item = challengeThemeEntity.routines[indexPath.section].challenges[indexPath.item]
             if item.hasRoutine { // 추가한 루틴인 경우 toastmessage
-                print("")
+                self.setToastMessage(type: .ChallengeCountAlert)
+                print(selectedChallengeId)
+                return false
             } else {
                 selectedChallengeId = challengeThemeEntity.routines[indexPath.section].challenges[indexPath.item].challengeID
                 selectedChallengeContent = challengeThemeEntity.routines[indexPath.section].challenges[indexPath.item].content.replacingOccurrences(of: "\n", with: " ")
+                print(selectedChallengeId)
+                return true
             }
-            print(selectedChallengeId)
-            return true
         default:
             return false
         }

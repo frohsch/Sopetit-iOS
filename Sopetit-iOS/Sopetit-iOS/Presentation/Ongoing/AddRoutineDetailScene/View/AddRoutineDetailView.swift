@@ -197,6 +197,9 @@ final class AddRoutineDetailView: UIView {
         return button
     }()
     
+    let challengeCountToast = AddRoutineToastView(type: .ChallengeCountAlert)
+    let existRoutineToast = AddRoutineToastView(type: .ExistRoutineAlert)
+    
     // MARK: - Life Cycles
     
     init(info: AddRoutineInfoEntity) {
@@ -266,12 +269,16 @@ private extension AddRoutineDetailView {
     
     func setUI() {
         self.backgroundColor = .Gray50
+        challengeCountToast.isHidden = true
+        existRoutineToast.isHidden = true
     }
     
     func setHierarchy() {
         addSubviews(scrollView,
                     navigationView,
-                    routineAddButton)
+                    routineAddButton,
+                    challengeCountToast, 
+                    existRoutineToast)
         scrollView.addSubview(contentView)
         contentView.addSubviews(cardImageView,
                                 makerNameLabel,
@@ -305,6 +312,20 @@ private extension AddRoutineDetailView {
             $0.centerX.equalToSuperview()
             $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
             $0.height.equalTo(56)
+        }
+        
+        challengeCountToast.snp.makeConstraints {
+            $0.width.equalTo(234)
+            $0.height.equalTo(44)
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(routineAddButton.snp.top).offset(-26)
+        }
+        
+        existRoutineToast.snp.makeConstraints {
+            $0.width.equalTo(196)
+            $0.height.equalTo(44)
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(routineAddButton.snp.top).offset(-26)
         }
         
         scrollView.snp.makeConstraints {
