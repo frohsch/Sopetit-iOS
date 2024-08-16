@@ -104,7 +104,7 @@ extension OngoingViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = NewDailyRoutineCollectionViewCell.dequeueReusableCell(collectionView: collectionView, indexPath: indexPath)
-        cell.setDataBind(text: dailyRoutineEntity.routines[indexPath.section].routines[indexPath.item].content)
+        cell.setDataBind(routine: dailyRoutineEntity.routines[indexPath.section].routines[indexPath.item])
         return cell
     }
     
@@ -213,5 +213,20 @@ extension OngoingViewController {
                 break
             }
         }
+    }
+}
+
+extension OngoingViewController {
+    
+    func getCottonView() {
+        let vc = GetCottonViewController()
+        self.present(vc, animated: false)
+    }
+}
+
+extension OngoingViewController: CVCellDelegate {
+    func selectedRadioButton(_ index: Int) {
+        print("did Daily Routine")
+        getCottonView()
     }
 }

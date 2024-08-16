@@ -5,11 +5,17 @@
 //  Created by Minjoo Kim on 6/25/24.
 //
 
+protocol CVCellDelegate {
+    func selectedRadioButton(_ index: Int)
+}
+
 import UIKit
 
 final class NewDailyRoutineCollectionViewCell: UICollectionViewCell, UICollectionViewRegisterable {
 
     static let isFromNib: Bool = false
+    
+    var delegate: CVCellDelegate?
     
     private var index: Int = 0
     
@@ -141,6 +147,9 @@ private extension NewDailyRoutineCollectionViewCell {
         case radioButton:
             print("radioButton tapped")
             isRadioButton.toggle()
+            if let delegate = delegate {
+                delegate.selectedRadioButton(self.index)
+            }
         case ellipsisButton:
             print("ellipsisButton tapped")
         default:
@@ -151,8 +160,10 @@ private extension NewDailyRoutineCollectionViewCell {
 
 extension NewDailyRoutineCollectionViewCell {
     
-    func setDataBind(text: String) {
-        routineLabel.text = text
-        routineLabel.setTextWithLineHeight(text: text, lineHeight: 20)
+    func setDataBind(routine: DailyRoutinev2) {
+        self.index = routine.routineId
+        routineLabel.text = routine.content
+        routineLabel.setTextWithLineHeight(text: routine.content, lineHeight: 20)
+        isRadioButton = routine.isAchieve
     }
 }
