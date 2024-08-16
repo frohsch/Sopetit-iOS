@@ -1,8 +1,8 @@
 //
-//  ChangeChallengeBottomSheetView.swift
+//  ChangeChallengeBSViewController.swift
 //  Sopetit-iOS
 //
-//  Created by 고아라 on 8/15/24.
+//  Created by 고아라 on 8/16/24.
 //
 
 
@@ -10,22 +10,23 @@ import UIKit
 
 import SnapKit
 
-final class ChangeChallengeBottomSheetView: UIView {
+final class ChangeChallengeBSViewController: UIViewController {
     
     // MARK: - Properties
     
-    var bottomHeight: CGFloat = SizeLiterals.Screen.screenHeight * 430 / 812
+    private var bottomHeight: CGFloat = SizeLiterals.Screen.screenHeight * 430 / 812
+    var entity: ChangeRoutineBottomSheetEntity = ChangeRoutineBottomSheetEntity.changeBottomSheetInitial()
     
     // MARK: - UI Components
     
-    let backgroundView: UIView = {
+    private let backgroundView: UIView = {
         let view = UIView()
         view.backgroundColor = .Gray1000
         view.isUserInteractionEnabled = true
         return view
     }()
     
-    let changeBottomSheetView: UIView = {
+    private let bottomSheet: UIView = {
         let view = UIView()
         view.backgroundColor = .SoftieWhite
         view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
@@ -116,22 +117,24 @@ final class ChangeChallengeBottomSheetView: UIView {
     
     // MARK: - Life Cycles
     
-    override init(frame: CGRect) {
-        super.init(frame: .zero)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
+        bindUI(model: entity)
         setHierarchy()
         setLayout()
+        setDismissAction()
     }
     
-    @available(*, unavailable)
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        showBottomSheet()
     }
 }
 
 // MARK: - Extensions
-
-extension ChangeChallengeBottomSheetView {
+extension ChangeChallengeBSViewController {
     
     func bindUI(model: ChangeRoutineBottomSheetEntity) {
         existChallengeContent.text = model.existContent.replacingOccurrences(of: "\n", with: " ")
@@ -167,9 +170,9 @@ extension ChangeChallengeBottomSheetView {
     }
     
     func setHierarchy() {
-        addSubviews(backgroundView,
-                    changeBottomSheetView)
-        changeBottomSheetView.addSubviews(changeTitleLabel,
+        view.addSubviews(backgroundView,
+                         bottomSheet)
+        bottomSheet.addSubviews(changeTitleLabel,
                                           changeSubTitleLabel,
                                           existChallengeCard,
                                           arrowIcon,
@@ -189,7 +192,7 @@ extension ChangeChallengeBottomSheetView {
             $0.edges.equalToSuperview()
         }
         
-        changeBottomSheetView.snp.makeConstraints {
+        bottomSheet.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview()
             $0.height.equalTo(bottomHeight)
         }
@@ -271,5 +274,48 @@ extension ChangeChallengeBottomSheetView {
             $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
             $0.height.equalTo(56)
         }
+    }
+    
+    func showBottomSheet() {
+        DispatchQueue.main.async {
+            self.bottomSheet.snp.remakeConstraints {
+                $0.leading.trailing.bottom.equalToSuperview()
+                $0.top.equalToSuperview().inset(SizeLiterals.Screen.screenHeight - self.bottomHeight)
+            }
+            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
+                self.backgroundView.backgroundColor = .Gray1000
+                self.view.layoutIfNeeded()
+            })
+        }
+    }
+    
+    func hideBottomSheet() {
+        DispatchQueue.main.async {
+            self.bottomSheet.snp.remakeConstraints {
+                $0.leading.trailing.bottom.equalToSuperview()
+            }
+            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut, animations: {
+                self.backgroundView.backgroundColor = .clear
+                self.view.layoutIfNeeded()
+            }, completion: { _ in
+                if self.presentingViewController != nil {
+                    self.dismiss(animated: true, completion: nil)
+                }
+            })
+        }
+    }
+    
+    func setDismissAction() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideBottomSheetAction))
+        backgroundView.addGestureRecognizer(tapGesture)
+        
+        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(hideBottomSheetAction))
+        swipeGesture.direction = .down
+        view.addGestureRecognizer(swipeGesture)
+    }
+    
+    @objc
+    func hideBottomSheetAction() {
+        hideBottomSheet()
     }
 }

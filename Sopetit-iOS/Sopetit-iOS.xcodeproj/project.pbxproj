@@ -65,11 +65,11 @@
 		A40F9F1A2C6AD944004DD1A1 /* AddRoutineInfoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F192C6AD943004DD1A1 /* AddRoutineInfoEntity.swift */; };
 		A40F9F1C2C6AE42E004DD1A1 /* RoutineChallengeEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F1B2C6AE42E004DD1A1 /* RoutineChallengeEntity.swift */; };
 		A40F9F1E2C6AE65C004DD1A1 /* AddChallengeRoutineHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F1D2C6AE65C004DD1A1 /* AddChallengeRoutineHeaderView.swift */; };
-		A40F9F332C6D92BC004DD1A1 /* AddRoutineDetailBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F322C6D92BC004DD1A1 /* AddRoutineDetailBottomSheetView.swift */; };
 		A40F9F372C6D9C41004DD1A1 /* AddRoutineBottomSheetEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F362C6D9C41004DD1A1 /* AddRoutineBottomSheetEntity.swift */; };
-		A40F9F392C6DDB0E004DD1A1 /* ChangeChallengeBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F382C6DDB0D004DD1A1 /* ChangeChallengeBottomSheetView.swift */; };
 		A40F9F3B2C6DE9BA004DD1A1 /* ChangeRoutineBottomSheetEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F3A2C6DE9BA004DD1A1 /* ChangeRoutineBottomSheetEntity.swift */; };
 		A40F9F3D2C6DEAAF004DD1A1 /* ChallengeMemberEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F3C2C6DEAAF004DD1A1 /* ChallengeMemberEntity.swift */; };
+		A40F9F3F2C6EE7B5004DD1A1 /* AddRoutinDetailBSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F3E2C6EE7B5004DD1A1 /* AddRoutinDetailBSViewController.swift */; };
+		A40F9F412C6EEC4D004DD1A1 /* ChangeChallengeBSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F402C6EEC4D004DD1A1 /* ChangeChallengeBSViewController.swift */; };
 		A42C327C2B3DB8F400C4B477 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C327B2B3DB8F400C4B477 /* AppDelegate.swift */; };
 		A42C327E2B3DB8F400C4B477 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C327D2B3DB8F400C4B477 /* SceneDelegate.swift */; };
 		A42C32852B3DB8F500C4B477 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A42C32842B3DB8F500C4B477 /* Assets.xcassets */; };
@@ -214,11 +214,11 @@
 		A40F9F192C6AD943004DD1A1 /* AddRoutineInfoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineInfoEntity.swift; sourceTree = "<group>"; };
 		A40F9F1B2C6AE42E004DD1A1 /* RoutineChallengeEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineChallengeEntity.swift; sourceTree = "<group>"; };
 		A40F9F1D2C6AE65C004DD1A1 /* AddChallengeRoutineHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChallengeRoutineHeaderView.swift; sourceTree = "<group>"; };
-		A40F9F322C6D92BC004DD1A1 /* AddRoutineDetailBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineDetailBottomSheetView.swift; sourceTree = "<group>"; };
 		A40F9F362C6D9C41004DD1A1 /* AddRoutineBottomSheetEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineBottomSheetEntity.swift; sourceTree = "<group>"; };
-		A40F9F382C6DDB0D004DD1A1 /* ChangeChallengeBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeChallengeBottomSheetView.swift; sourceTree = "<group>"; };
 		A40F9F3A2C6DE9BA004DD1A1 /* ChangeRoutineBottomSheetEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRoutineBottomSheetEntity.swift; sourceTree = "<group>"; };
 		A40F9F3C2C6DEAAF004DD1A1 /* ChallengeMemberEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeMemberEntity.swift; sourceTree = "<group>"; };
+		A40F9F3E2C6EE7B5004DD1A1 /* AddRoutinDetailBSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutinDetailBSViewController.swift; sourceTree = "<group>"; };
+		A40F9F402C6EEC4D004DD1A1 /* ChangeChallengeBSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeChallengeBSViewController.swift; sourceTree = "<group>"; };
 		A42C32782B3DB8F400C4B477 /* Sopetit-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sopetit-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A42C327B2B3DB8F400C4B477 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A42C327D2B3DB8F400C4B477 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -454,6 +454,8 @@
 		A40F9F0A2C69D02D004DD1A1 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				A40F9F3E2C6EE7B5004DD1A1 /* AddRoutinDetailBSViewController.swift */,
+				A40F9F402C6EEC4D004DD1A1 /* ChangeChallengeBSViewController.swift */,
 				A40F9F132C69D0CC004DD1A1 /* AddRoutineDetailViewController.swift */,
 			);
 			path = ViewController;
@@ -464,8 +466,6 @@
 			children = (
 				A40F9F1D2C6AE65C004DD1A1 /* AddChallengeRoutineHeaderView.swift */,
 				A40F9F112C69D0C6004DD1A1 /* AddRoutineDetailView.swift */,
-				A40F9F322C6D92BC004DD1A1 /* AddRoutineDetailBottomSheetView.swift */,
-				A40F9F382C6DDB0D004DD1A1 /* ChangeChallengeBottomSheetView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1363,6 +1363,7 @@
 				00CCDCC62B51B5C8007DD0E6 /* SplashThreeView.swift in Sources */,
 				09BCA9FA2C2A7773006E876D /* ChallengeRoutineCardView.swift in Sources */,
 				A4D9F6E92C5D2F8600A9F719 /* TutorialViewController.swift in Sources */,
+				A40F9F412C6EEC4D004DD1A1 /* ChangeChallengeBSViewController.swift in Sources */,
 				A42C32E32B3EAC8200C4B477 /* NetworkResult.swift in Sources */,
 				A49BFDD72B4D5F2800035EB6 /* StroyTellingFirstView.swift in Sources */,
 				A49BFDE52B4D7EDF00035EB6 /* CustomProgressView.swift in Sources */,
@@ -1398,7 +1399,6 @@
 				A4648BA42C0434A9001EB031 /* AddRoutineViewController.swift in Sources */,
 				A42C32CB2B3EAB4B00C4B477 /* NSObject+.swift in Sources */,
 				A42C32CF2B3EAB7700C4B477 /* UIColor+.swift in Sources */,
-				A40F9F392C6DDB0E004DD1A1 /* ChangeChallengeBottomSheetView.swift in Sources */,
 				098DFCA32B567E500099063D /* HappinessMemberEntity.swift in Sources */,
 				A49BFDDA2B4D5F4600035EB6 /* StoryTellingSecondView.swift in Sources */,
 				A42C32F62B3EADE300C4B477 /* HomeEntity.swift in Sources */,
@@ -1409,7 +1409,6 @@
 				A40F9F042C67C3C6004DD1A1 /* MakersCollectionViewCell.swift in Sources */,
 				A40F9F142C69D0CC004DD1A1 /* AddRoutineDetailViewController.swift in Sources */,
 				00A8E39A2B4D8B0D001461CE /* HomeView.swift in Sources */,
-				A40F9F332C6D92BC004DD1A1 /* AddRoutineDetailBottomSheetView.swift in Sources */,
 				A42C32A52B3EA9A000C4B477 /* UserManager.swift in Sources */,
 				00A8E39C2B4D8B20001461CE /* HomeViewController.swift in Sources */,
 				A42C33702B42DAAB00C4B477 /* StringLiterals.swift in Sources */,
@@ -1474,6 +1473,7 @@
 				A4648B9E2C043406001EB031 /* OngoingView.swift in Sources */,
 				A40F9F182C69F35C004DD1A1 /* DailyThemeEntity.swift in Sources */,
 				A42C327E2B3DB8F400C4B477 /* SceneDelegate.swift in Sources */,
+				A40F9F3F2C6EE7B5004DD1A1 /* AddRoutinDetailBSViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

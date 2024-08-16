@@ -197,9 +197,6 @@ final class AddRoutineDetailView: UIView {
         return button
     }()
     
-    let detailBottomSheetView = AddRoutineDetailBottomSheetView()
-    let changeBottomSheetView = ChangeChallengeBottomSheetView()
-    
     // MARK: - Life Cycles
     
     init(info: AddRoutineInfoEntity) {
@@ -269,16 +266,12 @@ private extension AddRoutineDetailView {
     
     func setUI() {
         self.backgroundColor = .Gray50
-        detailBottomSheetView.isHidden = true
-        changeBottomSheetView.isHidden = true
     }
     
     func setHierarchy() {
         addSubviews(scrollView,
                     navigationView,
-                    routineAddButton,
-                    detailBottomSheetView,
-                    changeBottomSheetView)
+                    routineAddButton)
         scrollView.addSubview(contentView)
         contentView.addSubviews(cardImageView,
                                 makerNameLabel,
@@ -305,14 +298,6 @@ private extension AddRoutineDetailView {
         navigationView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview()
-        }
-        
-        detailBottomSheetView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-        
-        changeBottomSheetView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
         }
         
         routineAddButton.snp.makeConstraints {

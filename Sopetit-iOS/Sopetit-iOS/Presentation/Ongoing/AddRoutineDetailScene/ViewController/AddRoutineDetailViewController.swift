@@ -73,22 +73,6 @@ extension AddRoutineDetailViewController {
                                                       action: #selector(challengeMenuTapped))
         addRoutineDetailView.dailyMenuView.addGestureRecognizer(tapDailyMenu)
         addRoutineDetailView.challengeMenuView.addGestureRecognizer(tapChallengeMenu)
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideBottomSheetAction))
-        addRoutineDetailView.detailBottomSheetView.backgroundView.addGestureRecognizer(tapGesture)
-        addRoutineDetailView.changeBottomSheetView.backgroundView.addGestureRecognizer(tapGesture)
-        
-        let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(hideBottomSheetAction))
-        swipeGesture.direction = .down
-        addRoutineDetailView.addGestureRecognizer(swipeGesture)
-        
-        addRoutineDetailView.detailBottomSheetView.detailCheckButton.addTarget(self, 
-                                                                         action:  #selector(hideBottomSheetAction),
-                                                                         for: .touchUpInside)
-        addRoutineDetailView.changeBottomSheetView.changeButton.addTarget(self,
-                                                                         action:  #selector(hideBottomSheetAction),
-                                                                         for: .touchUpInside)
-        
         addRoutineDetailView.routineAddButton.addTarget(self,
                                                         action:  #selector(addButtonTapped),
                                                         for: .touchUpInside)
@@ -106,25 +90,30 @@ extension AddRoutineDetailViewController {
     }
     
     @objc
-    func hideBottomSheetAction() {
-        addRoutineDetailView.detailBottomSheetView.isHidden = true
-        addRoutineDetailView.changeBottomSheetView.isHidden = true
-    }
-    
-    @objc
     func addButtonTapped() {
+        let nav = ChangeChallengeBSViewController()
+        nav.entity = ChangeRoutineBottomSheetEntity(existThemeID: challengeMemberEntity.themeID,
+                                                    existContent: challengeMemberEntity.content,
+                                                    choiceThemeID: addRoutineInfoEntity.id,
+                                                    choiceContent: selectedChallengeContent)
+        nav.modalPresentationStyle = .overFullScreen
+        
         switch addRoutineInfoEntity.themeStyle {
         case .maker: // 무조건 도전루틴
             if hasChallengeRoutine {
-                addRoutineDetailView.changeBottomSheetView.bindUI(model: ChangeRoutineBottomSheetEntity(existThemeID: challengeMemberEntity.themeID, existContent: challengeMemberEntity.content, choiceThemeID: addRoutineInfoEntity.id, choiceContent: selectedChallengeContent))
-                addRoutineDetailView.changeBottomSheetView.isHidden = false
+                self.present(nav, animated: false)
+            } else {
+                // 도전루틴 api 호출
             }
         case .routine:
             if selectedChallengeId > -1 { // 도전 루틴 선택
-                if selectedDailyId.count > 0 { // 데일리루틴도 선택
-                    
-                } else { // 도전루틴만 선택
-                    
+                if hasChallengeRoutine {
+                    self.present(nav, animated: false)
+                } else {
+                    // 도전루틴 api 호출
+                    if selectedDailyId.count > 0 { // 데일리루틴 + 도전루틴(새로운)
+                        postAddDailyRoutinAPI(ids: selectedDailyId)
+                    }
                 }
             } else { // 데일리루틴만 선택
                 postAddDailyRoutinAPI(ids: selectedDailyId)
@@ -225,7 +214,7 @@ extension AddRoutineDetailViewController {
         AddDailyRoutineService.shared.postAddDailyMember(routineId: selectedDailyId) { networkResult in
             switch networkResult {
             case .success:
-                self.hideBottomSheetAction()
+                self.dismiss(animated: false)
                 self.navigationController?.popToRootViewController(animated: true)
             case .reissue:
                 ReissueService.shared.postReissueAPI(refreshToken: UserManager.shared.getRefreshToken) { success in
@@ -322,8 +311,10 @@ extension AddRoutineDetailViewController: UICollectionViewDataSource {
                                                                     description: routines.description,
                                                                     time: routines.requiredTime,
                                                                     place: routines.place)
-                self?.addRoutineDetailView.detailBottomSheetView.isHidden = false
-                self?.addRoutineDetailView.detailBottomSheetView.bindUI(model: bottomSheetEntity)
+                let nav = AddRoutinDetailBSViewController()
+                nav.entity = bottomSheetEntity
+                nav.modalPresentationStyle = .overFullScreen
+                self?.present(nav, animated: false)
             }
             return cell
         default:
