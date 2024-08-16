@@ -69,6 +69,9 @@
 		A40F9F1E2C6AE65C004DD1A1 /* AddChallengeRoutineHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F1D2C6AE65C004DD1A1 /* AddChallengeRoutineHeaderView.swift */; };
 		A40F9F332C6D92BC004DD1A1 /* AddRoutineDetailBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F322C6D92BC004DD1A1 /* AddRoutineDetailBottomSheetView.swift */; };
 		A40F9F372C6D9C41004DD1A1 /* AddRoutineBottomSheetEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F362C6D9C41004DD1A1 /* AddRoutineBottomSheetEntity.swift */; };
+		A40F9F392C6DDB0E004DD1A1 /* ChangeChallengeBottomSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F382C6DDB0D004DD1A1 /* ChangeChallengeBottomSheetView.swift */; };
+		A40F9F3B2C6DE9BA004DD1A1 /* ChangeRoutineBottomSheetEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F3A2C6DE9BA004DD1A1 /* ChangeRoutineBottomSheetEntity.swift */; };
+		A40F9F3D2C6DEAAF004DD1A1 /* ChallengeMemberEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F3C2C6DEAAF004DD1A1 /* ChallengeMemberEntity.swift */; };
 		A42C327C2B3DB8F400C4B477 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C327B2B3DB8F400C4B477 /* AppDelegate.swift */; };
 		A42C327E2B3DB8F400C4B477 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C327D2B3DB8F400C4B477 /* SceneDelegate.swift */; };
 		A42C32852B3DB8F500C4B477 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A42C32842B3DB8F500C4B477 /* Assets.xcassets */; };
@@ -217,6 +220,9 @@
 		A40F9F1D2C6AE65C004DD1A1 /* AddChallengeRoutineHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChallengeRoutineHeaderView.swift; sourceTree = "<group>"; };
 		A40F9F322C6D92BC004DD1A1 /* AddRoutineDetailBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineDetailBottomSheetView.swift; sourceTree = "<group>"; };
 		A40F9F362C6D9C41004DD1A1 /* AddRoutineBottomSheetEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineBottomSheetEntity.swift; sourceTree = "<group>"; };
+		A40F9F382C6DDB0D004DD1A1 /* ChangeChallengeBottomSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeChallengeBottomSheetView.swift; sourceTree = "<group>"; };
+		A40F9F3A2C6DE9BA004DD1A1 /* ChangeRoutineBottomSheetEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRoutineBottomSheetEntity.swift; sourceTree = "<group>"; };
+		A40F9F3C2C6DEAAF004DD1A1 /* ChallengeMemberEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeMemberEntity.swift; sourceTree = "<group>"; };
 		A42C32782B3DB8F400C4B477 /* Sopetit-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sopetit-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A42C327B2B3DB8F400C4B477 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A42C327D2B3DB8F400C4B477 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -423,6 +429,8 @@
 				A40F9F192C6AD943004DD1A1 /* AddRoutineInfoEntity.swift */,
 				A40F9F1B2C6AE42E004DD1A1 /* RoutineChallengeEntity.swift */,
 				A40F9F362C6D9C41004DD1A1 /* AddRoutineBottomSheetEntity.swift */,
+				A40F9F3A2C6DE9BA004DD1A1 /* ChangeRoutineBottomSheetEntity.swift */,
+				A40F9F3C2C6DEAAF004DD1A1 /* ChallengeMemberEntity.swift */,
 			);
 			path = AddRoutine;
 			sourceTree = "<group>";
@@ -461,6 +469,7 @@
 				A40F9F1D2C6AE65C004DD1A1 /* AddChallengeRoutineHeaderView.swift */,
 				A40F9F112C69D0C6004DD1A1 /* AddRoutineDetailView.swift */,
 				A40F9F322C6D92BC004DD1A1 /* AddRoutineDetailBottomSheetView.swift */,
+				A40F9F382C6DDB0D004DD1A1 /* ChangeChallengeBottomSheetView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1390,12 +1399,14 @@
 				A49BFDEE2B4DA42600035EB6 /* ThemeSelectViewController.swift in Sources */,
 				A4A516D32C36C7DA00ED9CC1 /* ThemeDetailEntity.swift in Sources */,
 				A42C32D72B3EAC1300C4B477 /* MakeVibrate.swift in Sources */,
+				A40F9F3B2C6DE9BA004DD1A1 /* ChangeRoutineBottomSheetEntity.swift in Sources */,
 				09BCA9F22C2A76CE006E876D /* ChallengeRoutine.swift in Sources */,
 				A42C32B92B3EAAE300C4B477 /* ColorLiterals.swift in Sources */,
 				A42C32A72B3EA9BF00C4B477 /* UserDefaultWrapper.swift in Sources */,
 				A4648BA42C0434A9001EB031 /* AddRoutineViewController.swift in Sources */,
 				A42C32CB2B3EAB4B00C4B477 /* NSObject+.swift in Sources */,
 				A42C32CF2B3EAB7700C4B477 /* UIColor+.swift in Sources */,
+				A40F9F392C6DDB0E004DD1A1 /* ChangeChallengeBottomSheetView.swift in Sources */,
 				098DFCA32B567E500099063D /* HappinessMemberEntity.swift in Sources */,
 				A49BFDDA2B4D5F4600035EB6 /* StoryTellingSecondView.swift in Sources */,
 				A42C32F62B3EADE300C4B477 /* HomeEntity.swift in Sources */,
@@ -1445,6 +1456,7 @@
 				045DFE792B504E26005D69EA /* SettingView.swift in Sources */,
 				A49BFE1D2B4E541C00035EB6 /* RoutineChoiceViewController.swift in Sources */,
 				045DFE862B539BC3005D69EA /* WithdrawView.swift in Sources */,
+				A40F9F3D2C6DEAAF004DD1A1 /* ChallengeMemberEntity.swift in Sources */,
 				09BCA9F62C2A7751006E876D /* ChallengeRoutineEmptyView.swift in Sources */,
 				A4D9F6ED2C5D2F9900A9F719 /* TutorialCollectionViewCell.swift in Sources */,
 				A40F9F082C69A06E004DD1A1 /* TotalRoutineCollectionViewCell.swift in Sources */,

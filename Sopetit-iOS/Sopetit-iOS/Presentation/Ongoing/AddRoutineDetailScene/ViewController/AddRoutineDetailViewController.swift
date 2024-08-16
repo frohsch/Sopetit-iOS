@@ -14,6 +14,11 @@ final class AddRoutineDetailViewController: UIViewController {
     private var dailyThemeEntity = DailyThemeEntity(routines: [])
     private var challengeThemeEntity = RoutineChallengeEntity(routines: [])
     var addRoutineInfoEntity = AddRoutineInfoEntity.addRoutineInfoInitial()
+    private var hasChallengeRoutine: Bool = false
+    private var challengeMemberEntity = ChallengeMemberEntity.challengeMemberInitial()
+    
+    private var selectedChallengeId: Int = 0
+    private var selectedChallengeContent: String = ""
     
     // MARK: - UI Components
     
@@ -33,6 +38,7 @@ final class AddRoutineDetailViewController: UIViewController {
         setUI()
         setDelegate()
         setAddGesture()
+        getChallengeMember()
     }
 }
 
@@ -68,13 +74,23 @@ extension AddRoutineDetailViewController {
         addRoutineDetailView.challengeMenuView.addGestureRecognizer(tapChallengeMenu)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(hideBottomSheetAction))
-        addRoutineDetailView.bottomSheetView.backgroundView.addGestureRecognizer(tapGesture)
+        addRoutineDetailView.detailBottomSheetView.backgroundView.addGestureRecognizer(tapGesture)
+        addRoutineDetailView.changeBottomSheetView.backgroundView.addGestureRecognizer(tapGesture)
         
         let swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(hideBottomSheetAction))
         swipeGesture.direction = .down
         addRoutineDetailView.addGestureRecognizer(swipeGesture)
         
-        addRoutineDetailView.bottomSheetView.detailCheckButton.addTarget(self, action:  #selector(hideBottomSheetAction), for: .touchUpInside)
+        addRoutineDetailView.detailBottomSheetView.detailCheckButton.addTarget(self, 
+                                                                         action:  #selector(hideBottomSheetAction),
+                                                                         for: .touchUpInside)
+        addRoutineDetailView.changeBottomSheetView.changeButton.addTarget(self,
+                                                                         action:  #selector(hideBottomSheetAction),
+                                                                         for: .touchUpInside)
+        
+        addRoutineDetailView.routineAddButton.addTarget(self,
+                                                        action:  #selector(addButtonTapped),
+                                                        for: .touchUpInside)
     }
     
     @objc
@@ -90,7 +106,22 @@ extension AddRoutineDetailViewController {
     
     @objc
     func hideBottomSheetAction() {
-        addRoutineDetailView.bottomSheetView.isHidden = true
+        addRoutineDetailView.detailBottomSheetView.isHidden = true
+        addRoutineDetailView.changeBottomSheetView.isHidden = true
+    }
+    
+    @objc
+    func addButtonTapped() {
+        if hasChallengeRoutine {
+            addRoutineDetailView.changeBottomSheetView.bindUI(model: ChangeRoutineBottomSheetEntity(existThemeID: challengeMemberEntity.themeID, existContent: challengeMemberEntity.content, choiceThemeID: addRoutineInfoEntity.id, choiceContent: selectedChallengeContent))
+            addRoutineDetailView.changeBottomSheetView.isHidden = false
+        }
+//        switch addRoutineInfoEntity.themeStyle {
+//        case .maker:
+//            print("")
+//        case .routine:
+//            print("")
+//        }
     }
 }
 
@@ -155,20 +186,51 @@ extension AddRoutineDetailViewController {
             }
         }
     }
+    
+    func getChallengeMember() {
+        AddDailyRoutineService.shared.getChallengeMember{ networkResult in
+            switch networkResult {
+            case .noEntity:
+                self.hasChallengeRoutine = false
+            case .success(let data):
+                self.hasChallengeRoutine = true
+                if let data = data as? GenericResponse<ChallengeMemberEntity> {
+                    if let listData = data.data {
+                        self.challengeMemberEntity = listData
+                    }
+                }
+            case .reissue:
+                ReissueService.shared.postReissueAPI(refreshToken: UserManager.shared.getRefreshToken) { success in
+                    if success {
+                        self.getChallengeMember()
+                    } else {
+                        self.makeSessionExpiredAlert()
+                    }
+                }
+            default:
+                break
+            }
+        }
+    }
+
 }
 
 extension AddRoutineDetailViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView,
                         shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-        //        switch collectionView {
-        //        case routineDailyCV:
-        //            return true
-        //            return setSelectedCell(in: collectionView, at: indexPath, routineIndex: 0)
-        //        default:
-        //            return false
-        //        }
+        switch collectionView {
+        case routineDailyCV:
+            print("🤪🤪🤪")
+            print(dailyThemeEntity.routines[indexPath.item].id)
+            return true
+        case challengeCV:
+            selectedChallengeId = challengeThemeEntity.routines[indexPath.section].challenges[indexPath.item].challengeID
+            selectedChallengeContent = challengeThemeEntity.routines[indexPath.section].challenges[indexPath.item].content.replacingOccurrences(of: "\n", with: "")
+            return true
+        default:
+            return false
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -214,8 +276,8 @@ extension AddRoutineDetailViewController: UICollectionViewDataSource {
                                                                     description: routines.description,
                                                                     time: routines.requiredTime,
                                                                     place: routines.place)
-                self?.addRoutineDetailView.bottomSheetView.isHidden = false
-                self?.addRoutineDetailView.bottomSheetView.bindUI(model: bottomSheetEntity)
+                self?.addRoutineDetailView.detailBottomSheetView.isHidden = false
+                self?.addRoutineDetailView.detailBottomSheetView.bindUI(model: bottomSheetEntity)
             }
             return cell
         default:

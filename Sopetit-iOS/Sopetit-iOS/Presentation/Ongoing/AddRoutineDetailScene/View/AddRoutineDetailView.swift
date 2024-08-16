@@ -186,7 +186,19 @@ final class AddRoutineDetailView: UIView {
         return collectionView
     }()
     
-    let bottomSheetView = AddRoutineDetailBottomSheetView()
+    let routineAddButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .Gray650
+        button.setTitle("루틴 추가하기", for: .normal)
+        button.titleLabel?.font = .fontGuide(.body1)
+        button.setBackgroundColor(.Gray650, for: .normal)
+        button.setBackgroundColor(.Gray650, for: .selected)
+        button.layer.cornerRadius = 10
+        return button
+    }()
+    
+    let detailBottomSheetView = AddRoutineDetailBottomSheetView()
+    let changeBottomSheetView = ChangeChallengeBottomSheetView()
     
     // MARK: - Life Cycles
     
@@ -257,13 +269,16 @@ private extension AddRoutineDetailView {
     
     func setUI() {
         self.backgroundColor = .Gray50
-        bottomSheetView.isHidden = true
+        detailBottomSheetView.isHidden = true
+        changeBottomSheetView.isHidden = true
     }
     
     func setHierarchy() {
         addSubviews(scrollView,
                     navigationView,
-                    bottomSheetView)
+                    routineAddButton,
+                    detailBottomSheetView,
+                    changeBottomSheetView)
         scrollView.addSubview(contentView)
         contentView.addSubviews(cardImageView,
                                 makerNameLabel,
@@ -292,8 +307,19 @@ private extension AddRoutineDetailView {
             $0.leading.trailing.equalToSuperview()
         }
         
-        bottomSheetView.snp.makeConstraints {
+        detailBottomSheetView.snp.makeConstraints {
             $0.edges.equalToSuperview()
+        }
+        
+        changeBottomSheetView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        
+        routineAddButton.snp.makeConstraints {
+            $0.bottom.equalToSuperview().inset(32)
+            $0.centerX.equalToSuperview()
+            $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
+            $0.height.equalTo(56)
         }
         
         scrollView.snp.makeConstraints {
