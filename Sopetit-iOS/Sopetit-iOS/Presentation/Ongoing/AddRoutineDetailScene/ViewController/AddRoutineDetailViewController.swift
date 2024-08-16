@@ -154,6 +154,9 @@ extension AddRoutineDetailViewController: BackButtonProtocol {
 extension AddRoutineDetailViewController: BottomSheetButtonDelegate {
     
     func changeButtonTapped() {
+        if selectedDailyId.count > 0 {
+            postAddDailyRoutinAPI(ids: selectedDailyId)
+        }
         delChallengeAPI(id: challengeMemberEntity.routineID)
     }
 }
@@ -299,7 +302,20 @@ extension AddRoutineDetailViewController {
     }
 }
 
+// MARK: - CollectionView
+
 extension AddRoutineDetailViewController: UICollectionViewDelegate {
+    
+    private func getIndexPathForChallenge(with challengeID: Int) -> IndexPath? {
+        for (sectionIndex, routine) in challengeThemeEntity.routines.enumerated() {
+            for (itemIndex, challenge) in routine.challenges.enumerated() {
+                if challenge.challengeID == challengeID {
+                    return IndexPath(item: itemIndex, section: sectionIndex)
+                }
+            }
+        }
+        return nil
+    }
     
     func collectionView(_ collectionView: UICollectionView,
                         shouldSelectItemAt indexPath: IndexPath) -> Bool {
@@ -321,6 +337,11 @@ extension AddRoutineDetailViewController: UICollectionViewDelegate {
                 print(selectedChallengeId)
                 return false
             } else {
+                if selectedChallengeId > -1 {
+                    if let previousIndexPath = getIndexPathForChallenge(with: selectedChallengeId) {
+                        collectionView.deselectItem(at: previousIndexPath, animated: true)
+                    }
+                }
                 selectedChallengeId = challengeThemeEntity.routines[indexPath.section].challenges[indexPath.item].challengeID
                 selectedChallengeContent = challengeThemeEntity.routines[indexPath.section].challenges[indexPath.item].content.replacingOccurrences(of: "\n", with: " ")
                 print(selectedChallengeId)
