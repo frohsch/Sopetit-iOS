@@ -71,6 +71,7 @@
 		A40F9F3F2C6EE7B5004DD1A1 /* AddRoutinDetailBSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F3E2C6EE7B5004DD1A1 /* AddRoutinDetailBSViewController.swift */; };
 		A40F9F412C6EEC4D004DD1A1 /* ChangeChallengeBSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F402C6EEC4D004DD1A1 /* ChangeChallengeBSViewController.swift */; };
 		A40F9F452C6F0E05004DD1A1 /* EmptyEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F442C6F0E05004DD1A1 /* EmptyEntity.swift */; };
+		A40F9F472C6F1451004DD1A1 /* AddRoutineToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F462C6F1451004DD1A1 /* AddRoutineToastView.swift */; };
 		A42C327C2B3DB8F400C4B477 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C327B2B3DB8F400C4B477 /* AppDelegate.swift */; };
 		A42C327E2B3DB8F400C4B477 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C327D2B3DB8F400C4B477 /* SceneDelegate.swift */; };
 		A42C32852B3DB8F500C4B477 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A42C32842B3DB8F500C4B477 /* Assets.xcassets */; };
@@ -221,6 +222,7 @@
 		A40F9F3E2C6EE7B5004DD1A1 /* AddRoutinDetailBSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutinDetailBSViewController.swift; sourceTree = "<group>"; };
 		A40F9F402C6EEC4D004DD1A1 /* ChangeChallengeBSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeChallengeBSViewController.swift; sourceTree = "<group>"; };
 		A40F9F442C6F0E05004DD1A1 /* EmptyEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyEntity.swift; sourceTree = "<group>"; };
+		A40F9F462C6F1451004DD1A1 /* AddRoutineToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineToastView.swift; sourceTree = "<group>"; };
 		A42C32782B3DB8F400C4B477 /* Sopetit-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Sopetit-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A42C327B2B3DB8F400C4B477 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A42C327D2B3DB8F400C4B477 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -469,6 +471,7 @@
 			children = (
 				A40F9F1D2C6AE65C004DD1A1 /* AddChallengeRoutineHeaderView.swift */,
 				A40F9F112C69D0C6004DD1A1 /* AddRoutineDetailView.swift */,
+				A40F9F462C6F1451004DD1A1 /* AddRoutineToastView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1358,6 +1361,7 @@
 				A40F9F122C69D0C6004DD1A1 /* AddRoutineDetailView.swift in Sources */,
 				A4D9F6E32C5D2D7700A9F719 /* HomeTutorialEntity.swift in Sources */,
 				A42C32FC2B3EAE0000C4B477 /* HappinessEntity.swift in Sources */,
+				A40F9F472C6F1451004DD1A1 /* AddRoutineToastView.swift in Sources */,
 				A40F9F1C2C6AE42E004DD1A1 /* RoutineChallengeEntity.swift in Sources */,
 				A42C32D52B3EABAF00C4B477 /* UICollectionViewRegisterable.swift in Sources */,
 				A40F9F062C67D1AE004DD1A1 /* MakersChipCollectionViewCell.swift in Sources */,
