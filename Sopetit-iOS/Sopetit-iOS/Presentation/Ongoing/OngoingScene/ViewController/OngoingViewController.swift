@@ -9,7 +9,7 @@ import UIKit
 
 class OngoingViewController: UIViewController {
     
-    private var challengeRoutine = ChallengeRoutine(theme: "", routine: "")
+    private var challengeRoutine = ChallengeRoutine(routineId: 0, themeId: 0, themeName: "", title: "", content: "", detailContent: "", place: "", timeTaken: "")
     private var dailyRoutineEntity = NewDailyRoutineEntity(routines: [])
     let ongoingView = OngoingView()
     
@@ -55,7 +55,7 @@ private extension OngoingViewController {
     }
     
     func setData() {
-        if challengeRoutine.theme == "" || challengeRoutine.theme.isEmpty {
+        if challengeRoutine.themeId == 0 {
             ongoingView.setChallengeRoutineEmpty()
         }
     }
@@ -91,13 +91,14 @@ extension OngoingViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         if dailyRoutineEntity.routines.isEmpty {
+            print("EEEEEEEEEEEE")
             ongoingView.setEmptyView()
         }
         return dailyRoutineEntity.routines.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(dailyRoutineEntity.routines[section].routines.count)
+        print(dailyRoutineEntity.routines[section].routines.count, "⬆️⬆️⬆️⬆️⬆️")
         return dailyRoutineEntity.routines[section].routines.count
     }
     
@@ -114,7 +115,7 @@ extension OngoingViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             let headerView = NewDailyRoutineHeaderView.dequeueReusableHeaderView(collectionView: ongoingView.dailyCollectionView, indexPath: indexPath)
-            headerView.setDataBind(text: dailyRoutineEntity.routines[indexPath.section].themeName)
+            headerView.setDataBind(text: dailyRoutineEntity.routines[indexPath.section].themeName, image: dailyRoutineEntity.routines[indexPath.section].themeId)
             return headerView
         }
         return UICollectionReusableView()
@@ -166,14 +167,6 @@ extension OngoingViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension OngoingViewController: ButtonProtocol {
-    func tapRadioButton() {
-        print("aaa")
-        let vc = GetCottonViewController()
-        self.present(vc, animated: true)
-    }
-}
-
 extension OngoingViewController {
     func getDailyRoutine() {
         DailyRoutineService.shared.getDailyRoutine { networkResult in
@@ -186,6 +179,8 @@ extension OngoingViewController {
                     if self.dailyRoutineEntity.routines.isEmpty {
                         self.ongoingView.setEmptyView()
                     } else {
+                        self.ongoingView.setDailyRoutine()
+                        self.heightForContentView(numberOfSection: self.dailyRoutineEntity.routines.count, texts: self.dailyRoutineEntity)
                         self.ongoingView.dailyCollectionView.reloadData()
                     }
                 }
@@ -202,10 +197,11 @@ extension OngoingViewController {
             switch networkResult {
             case .success(let data):
                 if let data = data as? GenericResponse<ChallengeRoutine> {
+                    print(data)
                     if let listData = data.data {
                         self.challengeRoutine = listData
                     }
-                    if self.challengeRoutine.theme.isEmpty {
+                    if self.challengeRoutine.themeId == 0 {
                         self.ongoingView.setChallengeRoutineEmpty()
                     } else {
                         self.ongoingView.setChallengeRoutine(routine: self.challengeRoutine)

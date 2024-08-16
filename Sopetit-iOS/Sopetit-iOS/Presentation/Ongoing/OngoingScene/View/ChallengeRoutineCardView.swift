@@ -13,13 +13,11 @@ class ChallengeRoutineCardView: UIView {
     
     private let themeImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ImageLiterals.ActiveRoutine.theme
         return imageView
     }()
     
     private let themeLabel: UILabel = {
         let label = UILabel()
-        label.text = "관계 쌓기"
         label.font = .fontGuide(.caption1)
         label.textColor = .Gray500
         return label
@@ -33,7 +31,6 @@ class ChallengeRoutineCardView: UIView {
     
     private let routineLabel: UILabel = {
         let label = UILabel()
-        label.text = "주변인의 관심사와 작은 변화를 기록해보고, \n그 사람의 장점을 생각해보기"
         label.font = .fontGuide(.body2)
         label.textColor = .Gray700
         label.setTextWithLineHeight(text: label.text, lineHeight: 20)
@@ -53,7 +50,6 @@ class ChallengeRoutineCardView: UIView {
     
     let cardImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ImageLiterals.ActiveRoutine.challengeCard
         return imageView
     }()
     
@@ -79,12 +75,11 @@ private extension ChallengeRoutineCardView {
         self.layer.borderColor = UIColor.Gray200.cgColor
         self.layer.borderWidth = 1
         self.roundCorners(cornerRadius: 10, maskedCorners: [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner])
-        self.backgroundColor = .Pink50
     }
     
     func setHierarchy() {
         
-        self.addSubviews(themeImageView, themeLabel, ellipsisButton, cardImageView, routineLabel, completeButton)
+        self.addSubviews(cardImageView, themeImageView, themeLabel, ellipsisButton, routineLabel, completeButton)
         
     }
     
@@ -92,6 +87,10 @@ private extension ChallengeRoutineCardView {
         
         self.snp.makeConstraints {
             $0.height.equalTo(140)
+        }
+        
+        cardImageView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
         
         themeImageView.snp.makeConstraints {
@@ -123,17 +122,14 @@ private extension ChallengeRoutineCardView {
             $0.width.equalTo(66)
             $0.height.equalTo(34)
         }
-        
-        cardImageView.snp.makeConstraints {
-            $0.bottom.equalToSuperview()
-            $0.trailing.equalToSuperview().inset(12)
-        }
     }
 }
 
 extension ChallengeRoutineCardView {
     func setDataBind(data: ChallengeRoutine) {
-        self.themeLabel.text = data.theme
-        self.routineLabel.text = data.routine
+        self.themeImageView.image = UIImage(named: "theme\(data.themeId ?? 0)")
+        self.cardImageView.image = UIImage(named: "challenge-\(data.themeId ?? 0)")
+        self.themeLabel.text = data.themeName
+        self.routineLabel.text = data.content
     }
 }

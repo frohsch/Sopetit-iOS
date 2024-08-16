@@ -91,6 +91,9 @@ extension DailyRoutineService {
     }
     
     func getChallengeRoutine(completion: @escaping (NetworkResult<Any>) -> Void) {
+        print("❌❌❌❌❌❌❌❌❌")
+        print(UserManager.shared.getAccessToken)
+        print("❌❌❌❌❌❌❌❌❌")
         let url = URLConstant.v2ChallengeURL
         let header: HTTPHeaders = NetworkConstant.hasTokenHeader
         let dataRequest = AF.request(url,

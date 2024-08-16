@@ -7,16 +7,10 @@
 
 import UIKit
 
-protocol ButtonProtocol: AnyObject {
-    func tapRadioButton()
-}
-
 final class NewDailyRoutineCollectionViewCell: UICollectionViewCell, UICollectionViewRegisterable {
 
     static let isFromNib: Bool = false
     
-    weak var delegate: ButtonProtocol?
-
     private var index: Int = 0
     
     var isEditing: Bool = false {
@@ -28,6 +22,17 @@ final class NewDailyRoutineCollectionViewCell: UICollectionViewCell, UICollectio
 
             case false:
                 radioButton.isHidden = true
+            }
+        }
+    }
+    
+    var isRadioButton: Bool = false {
+        didSet {
+            switch isRadioButton {
+            case true:
+                radioButton.setImage(ImageLiterals.DailyRoutine.btnCheck, for: .normal)
+            case false:
+                radioButton.setImage(ImageLiterals.DailyRoutine.btnRadiobtnNone, for: .normal)
             }
         }
     }
@@ -135,7 +140,7 @@ private extension NewDailyRoutineCollectionViewCell {
         switch sender {
         case radioButton:
             print("radioButton tapped")
-            delegate?.tapRadioButton()
+            isRadioButton.toggle()
         case ellipsisButton:
             print("ellipsisButton tapped")
         default:
