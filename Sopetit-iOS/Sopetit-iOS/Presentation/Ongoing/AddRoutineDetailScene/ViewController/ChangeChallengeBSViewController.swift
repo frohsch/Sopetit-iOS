@@ -10,12 +10,17 @@ import UIKit
 
 import SnapKit
 
+protocol BottomSheetButtonDelegate: AnyObject {
+    func changeButtonTapped()
+}
+
 final class ChangeChallengeBSViewController: UIViewController {
     
     // MARK: - Properties
     
     private var bottomHeight: CGFloat = SizeLiterals.Screen.screenHeight * 430 / 812
     var entity: ChangeRoutineBottomSheetEntity = ChangeRoutineBottomSheetEntity.changeBottomSheetInitial()
+    weak var buttonDelegate: BottomSheetButtonDelegate?
     
     // MARK: - UI Components
     
@@ -124,6 +129,7 @@ final class ChangeChallengeBSViewController: UIViewController {
         setHierarchy()
         setLayout()
         setDismissAction()
+        setAddTarget()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -317,5 +323,16 @@ extension ChangeChallengeBSViewController {
     @objc
     func hideBottomSheetAction() {
         hideBottomSheet()
+    }
+    
+    func setAddTarget() {
+        changeButton.addTarget(self, 
+                               action: #selector(changeTapped),
+                               for: .touchUpInside)
+    }
+    
+    @objc
+    func changeTapped() {
+        buttonDelegate?.changeButtonTapped()
     }
 }

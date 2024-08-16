@@ -16,6 +16,7 @@ final class AddRoutineDetailViewController: UIViewController {
     var addRoutineInfoEntity = AddRoutineInfoEntity.addRoutineInfoInitial()
     private var hasChallengeRoutine: Bool = false
     private var challengeMemberEntity = ChallengeMemberEntity.challengeMemberInitial()
+    private let changeBSVC = ChangeChallengeBSViewController()
     
     private var selectedChallengeId: Int = -1
     private var selectedChallengeContent: String = ""
@@ -64,6 +65,7 @@ extension AddRoutineDetailViewController {
         routineDailyCV.dataSource = self
         challengeCV.delegate = self
         challengeCV.dataSource = self
+        changeBSVC.buttonDelegate = self
     }
     
     func setAddGesture() {
@@ -91,26 +93,25 @@ extension AddRoutineDetailViewController {
     
     @objc
     func addButtonTapped() {
-        let nav = ChangeChallengeBSViewController()
-        nav.entity = ChangeRoutineBottomSheetEntity(existThemeID: challengeMemberEntity.themeID,
+        changeBSVC.entity = ChangeRoutineBottomSheetEntity(existThemeID: challengeMemberEntity.themeID,
                                                     existContent: challengeMemberEntity.content,
                                                     choiceThemeID: addRoutineInfoEntity.id,
                                                     choiceContent: selectedChallengeContent)
-        nav.modalPresentationStyle = .overFullScreen
+        changeBSVC.modalPresentationStyle = .overFullScreen
         
         switch addRoutineInfoEntity.themeStyle {
         case .maker: // 무조건 도전루틴
             if hasChallengeRoutine {
-                self.present(nav, animated: false)
+                self.present(changeBSVC, animated: false)
             } else {
-                // 도전루틴 api 호출
+                self.postAddChallengeAPI(id: self.selectedChallengeId)
             }
         case .routine:
             if selectedChallengeId > -1 { // 도전 루틴 선택
                 if hasChallengeRoutine {
-                    self.present(nav, animated: false)
+                    self.present(changeBSVC, animated: false)
                 } else {
-                    // 도전루틴 api 호출
+                    self.postAddChallengeAPI(id: self.selectedChallengeId)
                     if selectedDailyId.count > 0 { // 데일리루틴 + 도전루틴(새로운)
                         postAddDailyRoutinAPI(ids: selectedDailyId)
                     }
@@ -126,6 +127,13 @@ extension AddRoutineDetailViewController: BackButtonProtocol {
     
     func tapBackButton() {
         self.navigationController?.popViewController(animated: true)
+    }
+}
+
+extension AddRoutineDetailViewController: BottomSheetButtonDelegate {
+    
+    func changeButtonTapped() {
+        delChallengeAPI(id: challengeMemberEntity.routineID)
     }
 }
 
@@ -219,7 +227,28 @@ extension AddRoutineDetailViewController {
             case .reissue:
                 ReissueService.shared.postReissueAPI(refreshToken: UserManager.shared.getRefreshToken) { success in
                     if success {
-                        self.getChallengeMember()
+                        self.postAddDailyRoutinAPI(ids: self.selectedDailyId)
+                    } else {
+                        self.makeSessionExpiredAlert()
+                    }
+                }
+            default:
+                break
+            }
+        }
+    }
+    
+    func postAddChallengeAPI(id: Int) {
+        AddDailyRoutineService.shared.postAddChallenge(subRoutineId: id) { networkResult in
+            switch networkResult {
+            case .success:
+                print("🤪🤪🤪🤪")
+                self.dismiss(animated: false)
+                self.navigationController?.popToRootViewController(animated: true)
+            case .reissue:
+                ReissueService.shared.postReissueAPI(refreshToken: UserManager.shared.getRefreshToken) { success in
+                    if success {
+                        self.postAddChallengeAPI(id: id)
                     } else {
                         self.makeSessionExpiredAlert()
                     }
@@ -230,6 +259,24 @@ extension AddRoutineDetailViewController {
         }
     }
 
+    func delChallengeAPI(id: Int) {
+        AddDailyRoutineService.shared.delChallenge(routineId: id) { networkResult in
+            switch networkResult {
+            case .success:
+                self.postAddChallengeAPI(id: self.selectedChallengeId)
+            case .reissue:
+                ReissueService.shared.postReissueAPI(refreshToken: UserManager.shared.getRefreshToken) { success in
+                    if success {
+                        self.delChallengeAPI(id: id)
+                    } else {
+                        self.makeSessionExpiredAlert()
+                    }
+                }
+            default:
+                break
+            }
+        }
+    }
 }
 
 extension AddRoutineDetailViewController: UICollectionViewDelegate {

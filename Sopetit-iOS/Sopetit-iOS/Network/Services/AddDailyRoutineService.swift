@@ -42,6 +42,56 @@ extension AddDailyRoutineService {
         }
     }
     
+    func postAddChallenge(subRoutineId: Int,
+                          completion: @escaping (NetworkResult<Any>) -> Void) {
+        let url = URLConstant.happinessMemberURL
+        let header: HTTPHeaders = NetworkConstant.hasTokenHeader
+        let body: Parameters = [ "subRoutineId": subRoutineId ]
+        let dataRequest = AF.request(url,
+                                     method: .post,
+                                     parameters: body,
+                                     encoding: JSONEncoding.default,
+                                     headers: header)
+        dataRequest.responseData { response in
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else { return }
+                guard let data = response.data else { return }
+                let networkResult = self.judgeStatus(by: statusCode,
+                                                     data,
+                                                     EmptyEntity.self)
+                completion(networkResult)
+            case .failure:
+                completion(.networkFail)
+            }
+        }
+    }
+    
+    func delChallenge(routineId: Int,
+                      completion: @escaping (NetworkResult<Any>) -> Void) {
+        let url = URLConstant.happinessMemberRoutineURL + "\(routineId)"
+        let header: HTTPHeaders = NetworkConstant.hasTokenHeader
+        let dataRequest = AF.request(url,
+                                     method: .delete,
+                                     encoding: JSONEncoding.default,
+                                     headers: header)
+        dataRequest.responseData { response in
+            switch response.result {
+            case .success:
+                guard let statusCode = response.response?.statusCode else { return }
+                guard let data = response.data else { return }
+                let networkResult = self.judgeStatus(by: statusCode,
+                                                     data,
+                                                     EmptyEntity.self)
+                print(networkResult)
+                print("🔥🔥🔥🔥")
+                completion(networkResult)
+            case .failure:
+                completion(.networkFail)
+            }
+        }
+    }
+    
     // AddRoutineService
     
     func getMakers(completion: @escaping (NetworkResult<Any>) -> Void) {
