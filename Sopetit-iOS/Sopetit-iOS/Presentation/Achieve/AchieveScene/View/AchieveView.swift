@@ -13,13 +13,6 @@ final class AchieveView: UIView {
     
     // MARK: - UI Components
     
-    private let ongoingStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.axis = .vertical
-        stackView.spacing = 12
-        return stackView
-    }()
-    
     private let ongoingReadyImage = UIImageView(image: UIImage(resource: .imgAchieveReady))
     
     private let ongoingReadyTitle: UILabel = {
@@ -59,25 +52,21 @@ private extension AchieveView {
     }
     
     func setHierarchy() {
-        ongoingStackView.addArrangedSubviews(ongoingReadyImage, ongoingReadyTitle)
-        self.addSubview(ongoingStackView)
+        addSubviews(ongoingReadyImage,
+                    ongoingReadyTitle)
     }
     
     func setLayout() {
-        ongoingStackView.snp.makeConstraints {
-            $0.top.equalTo(self.safeAreaLayoutGuide).offset(SizeLiterals.Screen.screenHeight * 210 / 812)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(147)
-        }
-        
         ongoingReadyImage.snp.makeConstraints {
-            $0.top.equalToSuperview()
+            $0.top.equalTo(safeAreaLayoutGuide).offset(SizeLiterals.Screen.screenHeight * 210 / 812)
+            $0.centerX.equalToSuperview()
             $0.width.equalTo(110)
             $0.height.equalTo(120)
         }
         
         ongoingReadyTitle.snp.makeConstraints {
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.top.equalTo(ongoingReadyImage.snp.bottom).offset(12)
+            $0.centerX.equalToSuperview()
         }
     }
 }
