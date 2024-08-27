@@ -23,8 +23,8 @@ final class TotalRoutineCollectionViewCell: UICollectionViewCell,
     private let routineSubTitleLabel: UILabel = {
         let label = UILabel()
         label.textColor = .Gray500
-        label.font = .fontGuide(.caption2)
-        label.asLineHeight(.caption2)
+        label.font = .fontGuide(.caption1)
+        label.asLineHeight(.caption1)
         return label
     }()
     
@@ -66,6 +66,7 @@ private extension TotalRoutineCollectionViewCell {
         layer.cornerRadius = 10
         layer.borderWidth = 1
         layer.borderColor = UIColor.Gray200.cgColor
+        routineImage.contentMode = .scaleAspectFill
     }
     
     func setHierarchy() {
@@ -106,26 +107,7 @@ extension TotalRoutineCollectionViewCell {
         routineTitleLabel.text = model.title
         routineTitleLabel.asLineHeight(.head3)
         routineSubTitleLabel.text = model.subTitle
-        routineSubTitleLabel.asLineHeight(.caption2)
-        routineImage.image = {
-            switch model.themeID {
-            case 1:
-                return UIImage(resource: .theme1)
-            case 2:
-                return UIImage(resource: .theme5)
-            case 3:
-                return UIImage(resource: .theme7)
-            case 4:
-                return UIImage(resource: .theme2)
-            case 5:
-                return UIImage(resource: .theme6)
-            case 6:
-                return UIImage(resource: .theme3)
-            case 7:
-                return UIImage(resource: .theme4)
-            default:
-                return UIImage()
-            }
-        }()
+        routineSubTitleLabel.asLineHeight(.caption1)
+        routineImage.image = UIImage(named: "theme\(model.themeID)") ?? UIImage()
     }
 }

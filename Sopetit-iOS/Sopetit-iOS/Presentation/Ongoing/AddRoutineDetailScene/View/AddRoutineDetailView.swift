@@ -239,26 +239,7 @@ private extension AddRoutineDetailView {
             cardTitleLabel.text = info.title
             cardDescriptionLabel.text = info.description
             cardDescriptionLabel.asLineHeight(.body2)
-            cardImageView.image = {
-                switch info.id {
-                case 1:
-                    return UIImage(resource: .cardTheme1)
-                case 2:
-                    return UIImage(resource: .cardTheme5)
-                case 3:
-                    return UIImage(resource: .cardTheme7)
-                case 4:
-                    return UIImage(resource: .cardTheme2)
-                case 5:
-                    return UIImage(resource: .cardTheme6)
-                case 6:
-                    return UIImage(resource: .cardTheme3)
-                case 7:
-                    return UIImage(resource: .cardTheme4)
-                default:
-                    return UIImage()
-                }
-            }()
+            cardImageView.image = UIImage(named: "card_theme\(info.id)") ?? UIImage()
             makerImageView.isHidden = true
             makerNameLabel.text = ""
             makerNameLabel.isHidden = true
