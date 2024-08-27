@@ -107,6 +107,7 @@ final class AddRoutinDetailBSViewController: UIViewController {
         setHierarchy()
         setLayout()
         setDismissAction()
+        setAddTarget()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -251,5 +252,11 @@ extension AddRoutinDetailBSViewController {
     @objc
     func hideBottomSheetAction() {
         hideBottomSheet()
+    }
+    
+    func setAddTarget() {
+        detailCheckButton.addTarget(self,
+                                    action: #selector(hideBottomSheetAction),
+                                    for: .touchUpInside)
     }
 }
