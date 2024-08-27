@@ -186,6 +186,20 @@ final class AddRoutineDetailView: UIView {
         return collectionView
     }()
     
+    private let gradientView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }()
+    
+    private let gradientLayer: CAGradientLayer = {
+        let gradient = CAGradientLayer()
+        gradient.colors = [UIColor.SoftieWhite.withAlphaComponent(0).cgColor,
+                           UIColor.SoftieWhite.withAlphaComponent(1).cgColor]
+        gradient.locations = [0.0, 0.46]
+        return gradient
+    }()
+    
     let routineAddButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = .Gray650
@@ -216,6 +230,12 @@ final class AddRoutineDetailView: UIView {
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        setGradient()
     }
 }
 
@@ -258,6 +278,7 @@ private extension AddRoutineDetailView {
     func setHierarchy() {
         addSubviews(scrollView,
                     navigationView,
+                    gradientView,
                     routineAddButton,
                     challengeCountToast, 
                     existRoutineToast)
@@ -287,6 +308,13 @@ private extension AddRoutineDetailView {
         navigationView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
             $0.leading.trailing.equalToSuperview()
+        }
+        
+        gradientView.snp.makeConstraints {
+            $0.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
+            $0.width.equalToSuperview()
+            $0.height.equalTo(146)
         }
         
         routineAddButton.snp.makeConstraints {
@@ -426,6 +454,11 @@ private extension AddRoutineDetailView {
         RoutineChoiceCollectionViewCell.register(target: routineDailyCollectionView)
         AddChallengeRoutineCollectionViewCell.register(target: challengeCollectionView)
         AddChallengeRoutineHeaderView.register(target: challengeCollectionView)
+    }
+    
+    func setGradient() {
+        gradientLayer.frame = gradientView.bounds
+        gradientView.layer.addSublayer(gradientLayer)
     }
 }
 
