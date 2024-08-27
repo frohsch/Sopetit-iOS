@@ -78,7 +78,8 @@ private extension OngoingViewController {
         case ongoingView.routineEmptyView.addRoutineButton:
             print("addRoutineButton tapped")
             let vc = AddRoutineViewController()
-            self.present(vc, animated: true)
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
         case ongoingView.challengeInfoButton:
             print("challengeInfoButton tapped")
         case ongoingView.dailyInfoButton:

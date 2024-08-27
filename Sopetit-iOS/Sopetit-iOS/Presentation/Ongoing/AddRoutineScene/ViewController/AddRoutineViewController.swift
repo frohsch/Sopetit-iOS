@@ -150,7 +150,7 @@ extension AddRoutineViewController: UICollectionViewDelegate {
                                                         id: makerTheme.themeID,
                                                         name: makerTheme.name,
                                                         img: makerTheme.profileImageURL,
-                                                        title: makerTheme.content,
+                                                        title: makerTheme.themeName,
                                                         description: makerTheme.description)
             self.navigationController?.pushViewController(nav, animated: true)
         case routineCollectionView:
@@ -165,6 +165,27 @@ extension AddRoutineViewController: UICollectionViewDelegate {
             self.navigationController?.pushViewController(nav, animated: true)
         default:
             break
+        }
+    }
+}
+
+extension AddRoutineViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        switch collectionView {
+        case makerCollectionView:
+            return makersEntity.makers.count < 2 ?
+                    CGSize(width: SizeLiterals.Screen.screenWidth - 40,
+                           height: 168) :
+                    CGSize(width: 254,
+                           height: 168)
+        case routineCollectionView:
+            return CGSize(width: SizeLiterals.Screen.screenWidth - 40,
+                          height: 80)
+        default:
+            return CGSize()
         }
     }
 }
