@@ -75,12 +75,12 @@ final class RoutineChoiceView: UIView {
         flowLayout.minimumLineSpacing = 4
         flowLayout.itemSize = CGSize(width: SizeLiterals.Screen.screenWidth - 40, height: 56)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        collectionView.showsHorizontalScrollIndicator = true
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.allowsSelection = true
         collectionView.isScrollEnabled = true
         collectionView.allowsMultipleSelection = true
         collectionView.backgroundColor = .clear
-        collectionView.contentInset = UIEdgeInsets(top: 7, left: 0, bottom: 0, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 7, left: 0, bottom: 20, right: 0)
         return collectionView
     }()
     
@@ -90,12 +90,12 @@ final class RoutineChoiceView: UIView {
         flowLayout.minimumLineSpacing = 4
         flowLayout.itemSize = CGSize(width: SizeLiterals.Screen.screenWidth - 40, height: 56)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        collectionView.showsHorizontalScrollIndicator = true
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.allowsSelection = true
         collectionView.isScrollEnabled = true
         collectionView.allowsMultipleSelection = true
         collectionView.backgroundColor = .clear
-        collectionView.contentInset = UIEdgeInsets(top: 7, left: 0, bottom: 0, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 7, left: 0, bottom: 20, right: 0)
         return collectionView
     }()
     
@@ -105,12 +105,12 @@ final class RoutineChoiceView: UIView {
         flowLayout.minimumLineSpacing = 4
         flowLayout.itemSize = CGSize(width: SizeLiterals.Screen.screenWidth - 40, height: 56)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-        collectionView.showsHorizontalScrollIndicator = true
+        collectionView.showsVerticalScrollIndicator = false
         collectionView.allowsSelection = true
         collectionView.isScrollEnabled = true
         collectionView.allowsMultipleSelection = true
         collectionView.backgroundColor = .clear
-        collectionView.contentInset = UIEdgeInsets(top: 7, left: 0, bottom: 0, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 7, left: 0, bottom: 20, right: 0)
         return collectionView
     }()
     
@@ -204,12 +204,22 @@ extension RoutineChoiceView {
     }
     
     func setHierarchy() {
-        stackview.addArrangedSubviews(bearImage, bubbleImage)
-        toastStackview.addArrangedSubviews(toastImage, toastLabel)
+        stackview.addArrangedSubviews(bearImage, 
+                                      bubbleImage)
+        toastStackview.addArrangedSubviews(toastImage, 
+                                           toastLabel)
         bubbleImage.addSubview(bubbleLabel)
         toastView.addSubview(toastStackview)
-        addSubviews(navigationView, progressView, stackview, themeCollectionView, gradientView, nextButton,
-                    routineFirstCollectionView, routineSecondCollectionView, routineThirdCollectionView, toastView)
+        addSubviews(navigationView, 
+                    progressView,
+                    stackview,
+                    themeCollectionView,
+                    routineFirstCollectionView,
+                    routineSecondCollectionView,
+                    routineThirdCollectionView, 
+                    gradientView,
+                    nextButton,
+                    toastView)
     }
     
     func setLayout() {
