@@ -6,13 +6,7 @@
 //
 
 struct HomeEntity: Codable {
-    let name, dollType, frameImageURL: String
+    let name, dollType: String
     let dailyCottonCount, happinessCottonCount: Int
     let conversations: [String]
-
-    enum CodingKeys: String, CodingKey {
-        case name, dollType
-        case frameImageURL = "frameImageUrl"
-        case dailyCottonCount, happinessCottonCount, conversations
-    }
 }

@@ -243,17 +243,8 @@ extension HomeView {
         UserManager.shared.updateDoll(model.dollType)
         setDoll(dollType: UserManager.shared.getDollType)
         bubbleLabelList = model.conversations
-        refreshBubbleLabel()
+        bubbleLabel.text = model.conversations[0]
         dollNameLabel.text = model.name
-        guard let url = URL(string: model.frameImageURL) else {return}
-        KingfisherManager.shared.retrieveImage(with: url) { [weak self] result in
-            guard let self else {return}
-            switch result {
-            case .success(let image):
-                self.backgroundImageView.image = image.image
-            case .failure:
-                return
-            }
-        }
+        backgroundImageView.image = UIImage(named: "img_homeback_all_\(model.dollType.lowercased())")
     }
 }
