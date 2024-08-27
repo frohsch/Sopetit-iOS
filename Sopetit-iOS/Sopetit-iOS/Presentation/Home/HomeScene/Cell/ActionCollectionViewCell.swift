@@ -43,7 +43,7 @@ final class ActionCollectionViewCell: UICollectionViewCell, UICollectionViewRegi
     private let actionLabel: UILabel = {
         let label = UILabel()
         label.font = .fontGuide(.body2)
-        label.textColor = UIColor.Gray500
+        label.textColor = .Gray700
         label.asLineHeight(.body2)
         return label
     }()
