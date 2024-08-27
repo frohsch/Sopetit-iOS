@@ -42,7 +42,6 @@ final class RoutineChoiceViewController: UIViewController {
         setDelegate()
         setAddTarget()
         getRoutineAPI()
-        getDollAPI()
     }
 }
 
@@ -150,13 +149,7 @@ extension RoutineChoiceViewController: BackButtonProtocol {
 
 extension RoutineChoiceViewController {
     func getRoutineAPI() {
-        let orderArray = [1, 4, 6, 7, 2, 10, 3]
-        let orderDict = Dictionary(uniqueKeysWithValues: orderArray.enumerated().map { ($1, $0) })
-        selectedTheme.sort { (a, b) -> Bool in
-            let orderA = orderDict[a] ?? Int.max
-            let orderB = orderDict[b] ?? Int.max
-            return orderA < orderB
-        }
+        selectedTheme.sort()
         let routineID = selectedTheme.map { String($0) }.joined(separator: ",")
         
         OnBoardingService.shared.getOnboardingRoutineAPI(routineID: routineID) { networkResult in
@@ -173,24 +166,6 @@ extension RoutineChoiceViewController {
                             self.routineThirdCollectionView.reloadData()
                         }
                     }
-                }
-            case .requestErr, .serverErr:
-                break
-            default:
-                break
-            }
-        }
-    }
-    
-    func getDollAPI() {
-        OnBoardingService.shared.getOnboardingDollAPI(dollType: UserManager.shared.getDollType) { networkResult in
-            switch networkResult {
-            case .success(let data):
-                if let data = data as? GenericResponse<DollImageEntity> {
-                    if let listData = data.data {
-                        self.dollEntity = listData
-                    }
-                    self.routineChoiceView.setDataBind(model: self.dollEntity)
                 }
             case .requestErr, .serverErr:
                 break

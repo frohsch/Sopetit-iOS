@@ -23,7 +23,7 @@ final class RoutineChoiceView: UIView {
     
     private let bearImage: UIImageView = {
         let image = UIImageView()
-        image.image = ImageLiterals.Onboarding.imgFaceBrown
+        image.image = UIImage(named: "img_face_\(UserManager.shared.getDollType.lowercased())")
         image.contentMode = .scaleAspectFit
         return image
     }()
@@ -114,6 +114,20 @@ final class RoutineChoiceView: UIView {
         return collectionView
     }()
     
+    private let gradientView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
+    }()
+    
+    private let gradientLayer: CAGradientLayer = {
+        let gradient = CAGradientLayer()
+        gradient.colors = [UIColor.SoftieWhite.withAlphaComponent(0).cgColor,
+                           UIColor.SoftieWhite.withAlphaComponent(1).cgColor]
+        gradient.locations = [0.0, 0.46]
+        return gradient
+    }()
+    
     lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle(I18N.Onboarding.routineBackButtonTitle, for: .disabled)
@@ -126,12 +140,6 @@ final class RoutineChoiceView: UIView {
         button.layer.cornerRadius = 10
         button.isEnabled = false
         return button
-    }()
-    
-    private lazy var bottomLayer: CAGradientLayer = {
-        let gradient = CAGradientLayer()
-        gradient.colors = [UIColor.SoftieWhite.withAlphaComponent(0).cgColor, UIColor.SoftieWhite.withAlphaComponent(1).cgColor]
-        return gradient
     }()
     
     private let toastView: UIView = {
@@ -174,18 +182,8 @@ final class RoutineChoiceView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-//        topLayer.frame = CGRect(x: SizeLiterals.Screen.screenWidth * 20 / 375,
-//                                    y: collectionView.frame.origin.y,
-//                                    width: SizeLiterals.Screen.screenWidth * 335 / 375,
-//                                    height: 30)
-//        self.layer.addSublayer(topLayer)
-//        let collectionViewBottomY = collectionView.frame.origin.y + collectionView.frame.size.height
-//        bottomLayer.frame = CGRect(x: SizeLiterals.Screen.screenWidth * 20 / 375,
-//                                   y: collectionViewBottomY - 30,
-//                                   width: SizeLiterals.Screen.screenWidth * 335 / 375,
-//                                   height: 30)
-//        self.layer.addSublayer(bottomLayer)
+
+        setGradient()
     }
     
     @available(*, unavailable)
@@ -210,7 +208,7 @@ extension RoutineChoiceView {
         toastStackview.addArrangedSubviews(toastImage, toastLabel)
         bubbleImage.addSubview(bubbleLabel)
         toastView.addSubview(toastStackview)
-        addSubviews(navigationView, progressView, stackview, themeCollectionView, nextButton,
+        addSubviews(navigationView, progressView, stackview, themeCollectionView, gradientView, nextButton,
                     routineFirstCollectionView, routineSecondCollectionView, routineThirdCollectionView, toastView)
     }
     
@@ -255,23 +253,30 @@ extension RoutineChoiceView {
         
         routineFirstCollectionView.snp.makeConstraints {
             $0.top.equalTo(themeCollectionView.snp.bottom).offset(5)
-            $0.bottom.equalTo(nextButton.snp.top).offset(-20)
+            $0.bottom.equalTo(nextButton.snp.top)
             $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
             $0.centerX.equalToSuperview()
         }
         
         routineSecondCollectionView.snp.makeConstraints {
             $0.top.equalTo(themeCollectionView.snp.bottom).offset(5)
-            $0.bottom.equalTo(nextButton.snp.top).offset(-20)
+            $0.bottom.equalTo(nextButton.snp.top)
             $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
             $0.centerX.equalToSuperview()
         }
         
         routineThirdCollectionView.snp.makeConstraints {
             $0.top.equalTo(themeCollectionView.snp.bottom).offset(5)
-            $0.bottom.equalTo(nextButton.snp.top).offset(-20)
+            $0.bottom.equalTo(nextButton.snp.top)
             $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
             $0.centerX.equalToSuperview()
+        }
+        
+        gradientView.snp.makeConstraints {
+            $0.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
+            $0.width.equalToSuperview()
+            $0.height.equalTo(146)
         }
         
         nextButton.snp.makeConstraints {
@@ -313,5 +318,10 @@ extension RoutineChoiceView {
         UIView.animate(withDuration: 0.5, delay: 0.7, options: .curveEaseOut, animations: {
             self.toastView.alpha = 0.0
         })
+    }
+    
+    func setGradient() {
+        gradientLayer.frame = gradientView.bounds
+        gradientView.layer.addSublayer(gradientLayer)
     }
 }

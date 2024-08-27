@@ -39,7 +39,7 @@ final class ThemeSelectView: UIView {
     
     private let bearImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(resource: .variant6)
+        image.image = UIImage(named: "img_face_\(UserManager.shared.getDollType.lowercased())")
         image.contentMode = .scaleAspectFit
         return image
     }()
