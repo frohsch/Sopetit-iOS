@@ -151,7 +151,8 @@ extension AddRoutineViewController: UICollectionViewDelegate {
                                                         name: makerTheme.name,
                                                         img: makerTheme.profileImageURL,
                                                         title: makerTheme.themeName,
-                                                        description: makerTheme.description)
+                                                        description: makerTheme.description,
+                                                        makerUrl: makerTheme.introductionURL)
             self.navigationController?.pushViewController(nav, animated: true)
         case routineCollectionView:
             let nav = AddRoutineDetailViewController()
@@ -161,7 +162,8 @@ extension AddRoutineViewController: UICollectionViewDelegate {
                                                             name: "",
                                                             img: "",
                                                             title: routineTheme.title,
-                                                            description: routineTheme.description)
+                                                            description: routineTheme.description,
+                                                            makerUrl: "")
             self.navigationController?.pushViewController(nav, animated: true)
         default:
             break

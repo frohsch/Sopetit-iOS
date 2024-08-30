@@ -19,6 +19,7 @@ struct AddRoutineInfoEntity: Codable {
     let img: String
     let title: String
     let description: String
+    let makerUrl: String
 }
 
 extension AddRoutineInfoEntity {
@@ -29,6 +30,7 @@ extension AddRoutineInfoEntity {
                                     name: "",
                                     img: "",
                                     title: "",
-                                    description: "")
+                                    description: "",
+                                    makerUrl: "")
     }
 }
