@@ -314,7 +314,7 @@ private extension AddRoutineDetailView {
             $0.bottom.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
             $0.width.equalToSuperview()
-            $0.height.equalTo(146)
+            $0.height.equalTo(SizeLiterals.Screen.deviceRatio > 0.5 ? 105 : 130)
         }
         
         routineAddButton.snp.makeConstraints {
@@ -352,7 +352,7 @@ private extension AddRoutineDetailView {
             $0.top.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
             $0.width.equalTo(SizeLiterals.Screen.screenWidth)
-            $0.height.equalTo(SizeLiterals.Screen.screenHeight * 256 / 812)
+            $0.height.equalTo(SizeLiterals.Screen.deviceRatio > 0.5 ? 229 : SizeLiterals.Screen.screenHeight * 256 / 812)
         }
         
         cardTitleLabel.snp.makeConstraints {

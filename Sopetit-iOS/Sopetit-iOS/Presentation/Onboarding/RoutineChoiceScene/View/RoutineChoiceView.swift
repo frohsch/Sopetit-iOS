@@ -286,7 +286,7 @@ extension RoutineChoiceView {
             $0.bottom.equalToSuperview()
             $0.leading.trailing.equalToSuperview()
             $0.width.equalToSuperview()
-            $0.height.equalTo(146)
+            $0.height.equalTo(SizeLiterals.Screen.deviceRatio > 0.5 ? 100 : 130)
         }
         
         nextButton.snp.makeConstraints {

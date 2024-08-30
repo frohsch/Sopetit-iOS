@@ -18,7 +18,7 @@ final class ChangeChallengeBSViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var bottomHeight: CGFloat = SizeLiterals.Screen.screenHeight * 430 / 812
+    private var bottomHeight: CGFloat = 430
     var entity: ChangeRoutineBottomSheetEntity = ChangeRoutineBottomSheetEntity.changeBottomSheetInitial()
     weak var buttonDelegate: BottomSheetButtonDelegate?
     

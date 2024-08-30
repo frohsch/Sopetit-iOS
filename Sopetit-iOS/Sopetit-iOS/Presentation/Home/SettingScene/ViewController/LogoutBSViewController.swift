@@ -145,7 +145,7 @@ extension LogoutBSViewController {
             }
             $0.leading.equalToSuperview().inset(21)
             $0.width.equalTo(SizeLiterals.Screen.screenWidth * 162 / 375)
-            $0.height.equalTo(56)
+            $0.height.equalTo(SizeLiterals.Screen.screenHeight * 56 / 812)
         }
         
         rightButton.snp.makeConstraints {
@@ -156,7 +156,7 @@ extension LogoutBSViewController {
             }
             $0.trailing.equalToSuperview().inset(21)
             $0.width.equalTo(SizeLiterals.Screen.screenWidth * 162 / 375)
-            $0.height.equalTo(56)
+            $0.height.equalTo(SizeLiterals.Screen.screenHeight * 56 / 812)
         }
     }
     

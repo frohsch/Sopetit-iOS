@@ -13,7 +13,7 @@ final class AddRoutinDetailBSViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var bottomHeight: CGFloat = SizeLiterals.Screen.screenHeight * 412 / 812
+    private var bottomHeight: CGFloat = SizeLiterals.Screen.deviceRatio > 0.5 ? 456 : 412
     var entity: AddRoutineBottomSheetEntity = AddRoutineBottomSheetEntity.bottomSheetInitial()
     
     // MARK: - UI Components

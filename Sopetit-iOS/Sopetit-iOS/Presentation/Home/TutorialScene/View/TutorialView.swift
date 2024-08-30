@@ -101,7 +101,7 @@ extension TutorialView {
         
         tutorialView.snp.makeConstraints {
             $0.leading.trailing.bottom.equalToSuperview()
-            $0.height.equalTo(567)
+            $0.height.equalTo(SizeLiterals.Screen.deviceRatio > 0.5 ? 500 : 567)
         }
         
         tutorialCollectionView.snp.makeConstraints {
