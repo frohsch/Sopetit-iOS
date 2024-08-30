@@ -14,6 +14,9 @@ final class RoutineChoiceViewController: UIViewController {
     var selectedTheme: [Int] = []
     var userDollName: String = ""
     private var selectedCount: Int = 0
+    private var selectedFirstCount: Int = 0
+    private var selectedSecondCount: Int = 0
+    private var selectedThirdCount: Int = 0
     private var selectedRoutine: [Int] = []
     private var selectedThemeIndexPath: IndexPath? = [0, 0]
     private var routineEntity: [[Routine]] = Array(repeating: [], count: 3)
@@ -98,10 +101,39 @@ extension RoutineChoiceViewController {
         }
     }
     
-    func setSelectedCell(in collectionView: UICollectionView, at indexPath: IndexPath, routineIndex: Int) -> Bool {
+    func setSelectedCount(routineIndex: Int) {
+        let bindCnt = switch routineIndex {
+        case 0:
+            selectedFirstCount
+        case 1:
+            selectedSecondCount
+        case 2:
+            selectedThirdCount
+        default:
+            0
+        }
+        if let selectedTheme = themeCollectionView.cellForItem(at: [0, routineIndex]) as? RoutineThemeCollectionViewCell {
+            selectedTheme.setCountDataBind(cnt: bindCnt)
+        }
+    }
+    
+    func setSelectedCell(in collectionView: UICollectionView, 
+                         at indexPath: IndexPath,
+                         routineIndex: Int) -> Bool {
         if let selectedCell = collectionView.cellForItem(at: indexPath) as? RoutineChoiceCollectionViewCell {
             if !selectedCell.isSelected {
                 if selectedCount < 3 {
+                    switch routineIndex {
+                    case 0:
+                        selectedFirstCount += 1
+                    case 1:
+                        selectedSecondCount += 1
+                    case 2:
+                        selectedThirdCount += 1
+                    default:
+                        break
+                    }
+                    setSelectedCount(routineIndex: routineIndex)
                     makeVibrate()
                     selectedCount += 1
                     selectedRoutine.append(routineEntity[routineIndex][indexPath.item].routineID)
@@ -120,12 +152,25 @@ extension RoutineChoiceViewController {
         return true
     }
     
-    func setDeselectedCell(in collectionView: UICollectionView, at indexPath: IndexPath, routineIndex: Int) -> Bool {
+    func setDeselectedCell(in collectionView: UICollectionView, 
+                           at indexPath: IndexPath,
+                           routineIndex: Int) -> Bool {
         if let deselectedCell = collectionView.cellForItem(at: indexPath) as? RoutineChoiceCollectionViewCell {
             if deselectedCell.isSelected {
                 if let index = selectedRoutine.firstIndex(where: { num in num == routineEntity[routineIndex][indexPath.item].routineID }) {
                     selectedRoutine.remove(at: index)
                 }
+                switch routineIndex {
+                case 0:
+                    selectedFirstCount -= 1
+                case 1:
+                    selectedSecondCount -= 1
+                case 2:
+                    selectedThirdCount -= 1
+                default:
+                    break
+                }
+                setSelectedCount(routineIndex: routineIndex)
                 selectedCount -= 1
                 deselectedCell.isSelected = false
                 routineChoiceView.bubbleLabel.text = "아래에서 루틴을 골라봐\n지금까지 \(selectedCount)/3개를 추가했어!"
@@ -207,6 +252,7 @@ extension RoutineChoiceViewController: UICollectionViewDelegate {
                     previousCell.isSelected = false
                     previousCell.backgroundColor = .clear
                     previousCell.routineThemeLabel.textColor = .Gray500
+                    previousCell.routineThemeCount.textColor = .Gray500
                 }
             }
             
@@ -214,6 +260,7 @@ extension RoutineChoiceViewController: UICollectionViewDelegate {
                 cell.isSelected = true
                 cell.backgroundColor = .SoftieWhite
                 cell.routineThemeLabel.textColor = .Gray700
+                cell.routineThemeCount.textColor = .Gray700
             }
             selectedThemeIndexPath = indexPath
             self.setCollectionView(idx: indexPath.item)
