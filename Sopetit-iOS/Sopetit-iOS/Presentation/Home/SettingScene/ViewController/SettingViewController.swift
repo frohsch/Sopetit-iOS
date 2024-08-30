@@ -15,6 +15,7 @@ final class SettingViewController: UIViewController {
     // MARK: - Properties
     
     let sectionCellCounts = [2, 1, 1, 2]
+    private let userAppVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     
     // MARK: - UI Components
     
@@ -170,7 +171,7 @@ extension SettingViewController: UITableViewDataSource {
             cell.iconImage.image = ImageLiterals.Setting.icFeedback
             cell.settingLabel.text = I18N.Setting.feedbackTitle
         case [2, 0]:
-            cell.settingLabel.text = I18N.Setting.versionTitle
+            cell.settingLabel.text = "현재 버전 \(userAppVersion ?? "")"
             cell.iconImage.snp.updateConstraints {
                 $0.size.equalTo(0)
             }
