@@ -496,4 +496,14 @@ extension AddRoutineDetailView {
             }
         }
     }
+    
+    func setCountDataBind(cnt: Int,
+                          theme: RoutineTheme) {
+        switch theme {
+        case .daily:
+            dailyRoutineCount.text = cnt < 1 ? "" : String(cnt)
+        case .challenge:
+            challengeRoutineCount.text = cnt < 1 ? "" : String(cnt)
+        }
+    }
 }

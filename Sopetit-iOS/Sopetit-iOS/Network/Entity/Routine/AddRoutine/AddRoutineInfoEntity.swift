@@ -12,6 +12,11 @@ enum AddRoutineTheme: Codable {
     case maker
 }
 
+enum RoutineTheme: Codable {
+    case daily
+    case challenge
+}
+
 struct AddRoutineInfoEntity: Codable {
     let themeStyle: AddRoutineTheme
     let id: Int

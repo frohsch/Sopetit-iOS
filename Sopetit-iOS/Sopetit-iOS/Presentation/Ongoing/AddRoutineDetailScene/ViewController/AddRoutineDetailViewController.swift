@@ -346,6 +346,8 @@ extension AddRoutineDetailViewController: UICollectionViewDelegate {
                 return false
             } else {
                 selectedDailyId.append(dailyThemeEntity.routines[indexPath.item].id)
+                addRoutineDetailView.setCountDataBind(cnt: selectedDailyId.count,
+                                                      theme: .daily)
                 self.updateRoutineAddButton()
                 return true
             }
@@ -362,6 +364,8 @@ extension AddRoutineDetailViewController: UICollectionViewDelegate {
                 }
                 selectedChallengeId = challengeThemeEntity.routines[indexPath.section].challenges[indexPath.item].challengeID
                 selectedChallengeContent = challengeThemeEntity.routines[indexPath.section].challenges[indexPath.item].content.replacingOccurrences(of: "\n", with: " ")
+                addRoutineDetailView.setCountDataBind(cnt: 1,
+                                                      theme: .challenge)
                 self.updateRoutineAddButton()
                 return true
             }
@@ -377,11 +381,15 @@ extension AddRoutineDetailViewController: UICollectionViewDelegate {
             if let index = selectedDailyId.firstIndex(where: { num in num == dailyThemeEntity.routines[indexPath.item].id }) {
                 selectedDailyId.remove(at: index)
             }
+            addRoutineDetailView.setCountDataBind(cnt: selectedDailyId.count,
+                                                  theme: .daily)
             self.updateRoutineAddButton()
             return true
         case challengeCV:
             selectedChallengeId = -1
             selectedChallengeContent = ""
+            addRoutineDetailView.setCountDataBind(cnt: 0,
+                                                  theme: .challenge)
             self.updateRoutineAddButton()
             return true
         default:
