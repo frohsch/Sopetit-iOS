@@ -22,7 +22,7 @@ final class AddRoutineDetailView: UIView {
         return navi
     }()
     
-    private let scrollView: UIScrollView = {
+    let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsVerticalScrollIndicator = false
         scrollView.contentInsetAdjustmentBehavior = .never
@@ -72,88 +72,14 @@ final class AddRoutineDetailView: UIView {
         return button
     }()
     
-    let dailyMenuView: UIView = {
+    let stickyBackView: UIView = {
         let view = UIView()
-        view.backgroundColor = .clear
-        view.isUserInteractionEnabled = true
+        view.backgroundColor = .Gray50
         return view
     }()
     
-    private let dailyStackView: UIStackView = {
-        let stackview = UIStackView()
-        stackview.axis = .horizontal
-        stackview.spacing = 4
-        return stackview
-    }()
-    
-    private let dailyRoutineTitle: UILabel = {
-        let label = UILabel()
-        label.text = "데일리 루틴"
-        label.textColor = .Gray700
-        label.font = .fontGuide(.body2)
-        label.asLineHeight(.body2)
-        return label
-    }()
-    
-    private let dailyRoutineCount: UILabel = {
-        let label = UILabel()
-        label.text = ""
-        label.textColor = .Gray700
-        label.font = .fontGuide(.body2)
-        label.asLineHeight(.body2)
-        return label
-    }()
-    
-    private let dailyUnderLine: UIView = {
-        let view = UIView()
-        view.backgroundColor = .Gray650
-        return view
-    }()
-    
-    let challengeMenuView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .clear
-        view.isUserInteractionEnabled = true
-        return view
-    }()
-    
-    private let challengeStackView: UIStackView = {
-        let stackview = UIStackView()
-        stackview.axis = .horizontal
-        stackview.spacing = 4
-        return stackview
-    }()
-    
-    private let challengeRoutineTitle: UILabel = {
-        let label = UILabel()
-        label.text = "도전 루틴"
-        label.textColor = .Gray400
-        label.font = .fontGuide(.body2)
-        label.asLineHeight(.body2)
-        return label
-    }()
-    
-    private let challengeRoutineCount: UILabel = {
-        let label = UILabel()
-        label.text = ""
-        label.textColor = .Gray700
-        label.font = .fontGuide(.body2)
-        label.asLineHeight(.body2)
-        return label
-    }()
-    
-    private let challengeUnderLine: UIView = {
-        let view = UIView()
-        view.backgroundColor = .Gray650
-        view.isHidden = true
-        return view
-    }()
-    
-    let menuUnderlineView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .Gray200
-        return view
-    }()
+    lazy var menuInScroll = AddRoutineMenuStickyView(info: theme)
+    lazy var menuStickyView = AddRoutineMenuStickyView(info: theme)
     
     lazy var routineDailyCollectionView: UICollectionView = {
         let flowLayout = UICollectionViewFlowLayout()
@@ -236,6 +162,9 @@ final class AddRoutineDetailView: UIView {
         super.layoutSubviews()
         
         setGradient()
+        
+        stickyBackView.isHidden = true
+        menuStickyView.isHidden = true
     }
 }
 
@@ -254,7 +183,6 @@ private extension AddRoutineDetailView {
             cardImageView.image = UIImage(resource: .makerCard)
             makerImageView.kfSetImage(url: info.img)
             makerButton.isHidden = false
-            dailyMenuView.isHidden = true
         case .routine:
             cardTitleLabel.text = info.title
             cardDescriptionLabel.text = info.description
@@ -264,7 +192,6 @@ private extension AddRoutineDetailView {
             makerNameLabel.text = ""
             makerNameLabel.isHidden = true
             makerButton.isHidden = true
-            dailyMenuView.isHidden = false
         }
     }
     
@@ -277,7 +204,9 @@ private extension AddRoutineDetailView {
     
     func setHierarchy() {
         addSubviews(scrollView,
+                    stickyBackView,
                     navigationView,
+                    menuStickyView,
                     gradientView,
                     routineAddButton,
                     challengeCountToast, 
@@ -287,26 +216,27 @@ private extension AddRoutineDetailView {
                                 makerNameLabel,
                                 cardDescriptionLabel,
                                 makerButton,
-                                menuUnderlineView,
-                                dailyMenuView,
-                                challengeMenuView,
+                                menuInScroll,
                                 routineDailyCollectionView
         )
         cardImageView.addSubviews(cardTitleLabel,
                                   makerImageView)
-        dailyMenuView.addSubviews(dailyStackView,
-                                  dailyUnderLine)
-        dailyStackView.addArrangedSubviews(dailyRoutineTitle,
-                                           dailyRoutineCount)
-        challengeMenuView.addSubviews(challengeStackView,
-                                  challengeUnderLine)
-        challengeStackView.addArrangedSubviews(challengeRoutineTitle,
-                                           challengeRoutineCount)
     }
     
     func setLayout() {
+        stickyBackView.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(150)
+        }
+        
         navigationView.snp.makeConstraints {
             $0.top.equalTo(safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
+        }
+        
+        menuStickyView.snp.makeConstraints {
+            $0.top.equalTo(navigationView.snp.bottom)
             $0.leading.trailing.equalToSuperview()
         }
         
@@ -388,62 +318,18 @@ private extension AddRoutineDetailView {
             $0.height.equalTo(44)
         }
         
-        menuUnderlineView.snp.makeConstraints {
+        menuInScroll.snp.makeConstraints {
             switch theme {
             case .maker:
-                $0.top.equalTo(makerButton.snp.bottom).offset(52)
+                $0.top.equalTo(makerButton.snp.bottom).offset(16)
             case .routine:
-                $0.top.equalTo(cardDescriptionLabel.snp.bottom).offset(52)
+                $0.top.equalTo(cardDescriptionLabel.snp.bottom).offset(16)
             }
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(2)
-        }
-        
-        dailyMenuView.snp.makeConstraints {
-            $0.leading.equalToSuperview().inset(20)
-            $0.bottom.equalTo(menuUnderlineView.snp.bottom)
-            $0.width.equalTo(104)
-            $0.height.equalTo(38)
-        }
-        
-        dailyStackView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(6)
-            $0.centerX.equalToSuperview()
-        }
-        
-        dailyUnderLine.snp.makeConstraints {
-            $0.bottom.equalToSuperview()
-            $0.centerX.equalToSuperview()
-            $0.width.equalToSuperview()
-            $0.height.equalTo(2)
-        }
-        
-        challengeMenuView.snp.makeConstraints {
-            switch theme {
-            case .maker:
-                $0.leading.equalToSuperview().inset(27)
-            case .routine:
-                $0.leading.equalTo(dailyMenuView.snp.trailing)
-            }
-            $0.bottom.equalTo(menuUnderlineView.snp.bottom)
-            $0.width.equalTo(104)
-            $0.height.equalTo(38)
-        }
-        
-        challengeStackView.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(6)
-            $0.centerX.equalToSuperview()
-        }
-        
-        challengeUnderLine.snp.makeConstraints {
-            $0.bottom.equalToSuperview()
-            $0.centerX.equalToSuperview()
-            $0.width.equalToSuperview()
-            $0.height.equalTo(2)
         }
         
         routineDailyCollectionView.snp.makeConstraints {
-            $0.top.equalTo(menuUnderlineView.snp.bottom).offset(20)
+            $0.top.equalTo(menuInScroll.snp.bottom).offset(20)
             $0.centerX.equalToSuperview()
             $0.bottom.equalToSuperview()
             $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
@@ -465,22 +351,11 @@ private extension AddRoutineDetailView {
 extension AddRoutineDetailView {
     
     func setMenuSelected(dailyTapped: Bool) {
-        [dailyRoutineTitle,
-         dailyRoutineCount].forEach {
-            $0.textColor = dailyTapped ? .Gray700 : .Gray400
-        }
-        [challengeRoutineTitle,
-         challengeRoutineCount].forEach {
-            $0.textColor = dailyTapped ? .Gray400 : .Gray700
-        }
-        dailyUnderLine.isHidden = dailyTapped ? false : true
-        challengeUnderLine.isHidden = dailyTapped ? true : false
-        
         if dailyTapped {
             challengeCollectionView.removeFromSuperview()
             contentView.addSubview(routineDailyCollectionView)
             routineDailyCollectionView.snp.makeConstraints {
-                $0.top.equalTo(menuUnderlineView.snp.bottom).offset(20)
+                $0.top.equalTo(menuInScroll.snp.bottom).offset(20)
                 $0.centerX.equalToSuperview()
                 $0.bottom.equalToSuperview()
                 $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
@@ -489,21 +364,11 @@ extension AddRoutineDetailView {
             routineDailyCollectionView.removeFromSuperview()
             contentView.addSubview(challengeCollectionView)
             challengeCollectionView.snp.makeConstraints {
-                $0.top.equalTo(menuUnderlineView.snp.bottom)
+                $0.top.equalTo(menuInScroll.snp.bottom)
                 $0.centerX.equalToSuperview()
                 $0.bottom.equalToSuperview()
                 $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
             }
-        }
-    }
-    
-    func setCountDataBind(cnt: Int,
-                          theme: RoutineTheme) {
-        switch theme {
-        case .daily:
-            dailyRoutineCount.text = cnt < 1 ? "" : String(cnt)
-        case .challenge:
-            challengeRoutineCount.text = cnt < 1 ? "" : String(cnt)
         }
     }
 }

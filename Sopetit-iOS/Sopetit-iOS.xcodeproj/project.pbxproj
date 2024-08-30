@@ -137,6 +137,7 @@
 		A49706372C815C0F008D2D57 /* MakerDetailWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49706362C815C0F008D2D57 /* MakerDetailWebView.swift */; };
 		A49706392C815C35008D2D57 /* MakerDetailWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49706382C815C35008D2D57 /* MakerDetailWebViewController.swift */; };
 		A497063D2C81E1D1008D2D57 /* LogoutBSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A497063C2C81E1D1008D2D57 /* LogoutBSViewController.swift */; };
+		A49706412C820825008D2D57 /* AddRoutineMenuStickyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49706402C820825008D2D57 /* AddRoutineMenuStickyView.swift */; };
 		A49BFDD52B4D5F0800035EB6 /* StroyTellingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49BFDD42B4D5F0800035EB6 /* StroyTellingViewController.swift */; };
 		A49BFDD72B4D5F2800035EB6 /* StroyTellingFirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49BFDD62B4D5F2800035EB6 /* StroyTellingFirstView.swift */; };
 		A49BFDDA2B4D5F4600035EB6 /* StoryTellingSecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49BFDD92B4D5F4600035EB6 /* StoryTellingSecondView.swift */; };
@@ -294,6 +295,7 @@
 		A49706362C815C0F008D2D57 /* MakerDetailWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakerDetailWebView.swift; sourceTree = "<group>"; };
 		A49706382C815C35008D2D57 /* MakerDetailWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakerDetailWebViewController.swift; sourceTree = "<group>"; };
 		A497063C2C81E1D1008D2D57 /* LogoutBSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutBSViewController.swift; sourceTree = "<group>"; };
+		A49706402C820825008D2D57 /* AddRoutineMenuStickyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineMenuStickyView.swift; sourceTree = "<group>"; };
 		A49BFDD42B4D5F0800035EB6 /* StroyTellingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StroyTellingViewController.swift; sourceTree = "<group>"; };
 		A49BFDD62B4D5F2800035EB6 /* StroyTellingFirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StroyTellingFirstView.swift; sourceTree = "<group>"; };
 		A49BFDD92B4D5F4600035EB6 /* StoryTellingSecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTellingSecondView.swift; sourceTree = "<group>"; };
@@ -493,6 +495,7 @@
 				A40F9F112C69D0C6004DD1A1 /* AddRoutineDetailView.swift */,
 				A40F9F462C6F1451004DD1A1 /* AddRoutineToastView.swift */,
 				A49706362C815C0F008D2D57 /* MakerDetailWebView.swift */,
+				A49706402C820825008D2D57 /* AddRoutineMenuStickyView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1503,6 +1506,7 @@
 				A42C32C12B3EAB1A00C4B477 /* UIView+.swift in Sources */,
 				A42C32E72B3EAC9500C4B477 /* NetworkConstant.swift in Sources */,
 				09BCAA002C2A783C006E876D /* CustomButton.swift in Sources */,
+				A49706412C820825008D2D57 /* AddRoutineMenuStickyView.swift in Sources */,
 				0084F19B2B4A895700F87860 /* LoginView.swift in Sources */,
 				095903B62B5487E600D0AF39 /* HappinessThemesEntity.swift in Sources */,
 				A40F9F452C6F0E05004DD1A1 /* EmptyEntity.swift in Sources */,

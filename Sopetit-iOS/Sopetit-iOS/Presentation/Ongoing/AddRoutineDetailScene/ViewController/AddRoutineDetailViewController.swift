@@ -42,6 +42,15 @@ final class AddRoutineDetailViewController: UIViewController {
         setAddGesture()
         getChallengeMember()
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        let safeAreaInsets = view.safeAreaInsets.top
+        addRoutineDetailView.stickyBackView.snp.updateConstraints {
+            $0.height.equalTo(safeAreaInsets + 82)
+        }
+    }
 }
 
 // MARK: - Extensions
@@ -66,15 +75,23 @@ extension AddRoutineDetailViewController {
         challengeCV.delegate = self
         challengeCV.dataSource = self
         changeBSVC.buttonDelegate = self
+        addRoutineDetailView.scrollView.delegate = self
     }
     
     func setAddGesture() {
-        let tapDailyMenu = UITapGestureRecognizer(target: self,
-                                                  action: #selector(dailyMenuTapped))
-        let tapChallengeMenu = UITapGestureRecognizer(target: self,
-                                                      action: #selector(challengeMenuTapped))
-        addRoutineDetailView.dailyMenuView.addGestureRecognizer(tapDailyMenu)
-        addRoutineDetailView.challengeMenuView.addGestureRecognizer(tapChallengeMenu)
+        let tapDailyMenuForSticky = UITapGestureRecognizer(target: self, 
+                                                           action: #selector(dailyMenuTapped))
+        let tapDailyMenuForScroll = UITapGestureRecognizer(target: self, 
+                                                           action: #selector(dailyMenuTapped))
+        let tapChallengeMenuForSticky = UITapGestureRecognizer(target: self, 
+                                                               action: #selector(challengeMenuTapped))
+        let tapChallengeMenuForScroll = UITapGestureRecognizer(target: self, 
+                                                               action: #selector(challengeMenuTapped))
+        addRoutineDetailView.menuStickyView.dailyMenuView.addGestureRecognizer(tapDailyMenuForSticky)
+        addRoutineDetailView.menuStickyView.challengeMenuView.addGestureRecognizer(tapChallengeMenuForSticky)
+        addRoutineDetailView.menuInScroll.dailyMenuView.addGestureRecognizer(tapDailyMenuForScroll)
+        addRoutineDetailView.menuInScroll.challengeMenuView.addGestureRecognizer(tapChallengeMenuForScroll)
+        
         addRoutineDetailView.routineAddButton.addTarget(self,
                                                         action: #selector(addButtonTapped),
                                                         for: .touchUpInside)
@@ -86,11 +103,15 @@ extension AddRoutineDetailViewController {
     @objc
     func dailyMenuTapped() {
         addRoutineDetailView.setMenuSelected(dailyTapped: true)
+        addRoutineDetailView.menuStickyView.setStickyMenuTapped(dailyTapped: true)
+        addRoutineDetailView.menuInScroll.setStickyMenuTapped(dailyTapped: true)
     }
     
     @objc
     func challengeMenuTapped() {
         addRoutineDetailView.setMenuSelected(dailyTapped: false)
+        addRoutineDetailView.menuStickyView.setStickyMenuTapped(dailyTapped: false)
+        addRoutineDetailView.menuInScroll.setStickyMenuTapped(dailyTapped: false)
         if challengeThemeEntity.routines.isEmpty {
             getChallengeRoutineAPI(id: addRoutineInfoEntity.id)
         }
@@ -99,9 +120,9 @@ extension AddRoutineDetailViewController {
     @objc
     func addButtonTapped() {
         changeBSVC.entity = ChangeRoutineBottomSheetEntity(existThemeID: challengeMemberEntity.themeID,
-                                                    existContent: challengeMemberEntity.content,
-                                                    choiceThemeID: addRoutineInfoEntity.id,
-                                                    choiceContent: selectedChallengeContent)
+                                                           existContent: challengeMemberEntity.content,
+                                                           choiceThemeID: addRoutineInfoEntity.id,
+                                                           choiceContent: selectedChallengeContent)
         changeBSVC.modalPresentationStyle = .overFullScreen
         
         switch addRoutineInfoEntity.themeStyle {
@@ -160,6 +181,33 @@ extension AddRoutineDetailViewController {
         addRoutineDetailView.routineAddButton.setTitle("루틴 \(totalCount)개 추가하기",
                                                        for: .normal)
         addRoutineDetailView.routineAddButton.isEnabled = totalCount > 0
+    }
+}
+
+extension AddRoutineDetailViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        let menuInScrollPosition = addRoutineDetailView.menuInScroll.frame.origin.y
+        let navigationHeight = addRoutineDetailView.navigationView.frame.height
+        
+        let threshold = menuInScrollPosition - navigationHeight - view.safeAreaInsets.top
+        let alpha: CGFloat
+            if offsetY >= threshold {
+                // Smoothly transition to visible
+                alpha = 1
+                addRoutineDetailView.menuStickyView.isHidden = false
+                addRoutineDetailView.stickyBackView.isHidden = false
+            } else {
+                // Hide completely
+                alpha = 0
+                addRoutineDetailView.menuStickyView.isHidden = true
+                addRoutineDetailView.stickyBackView.isHidden = true
+            }
+//        let alpha: CGFloat = (offsetY >= threshold) ? 1 : 0
+        
+        addRoutineDetailView.menuStickyView.alpha = alpha
+        addRoutineDetailView.stickyBackView.alpha = alpha
     }
 }
 
@@ -300,7 +348,7 @@ extension AddRoutineDetailViewController {
             }
         }
     }
-
+    
     func delChallengeAPI(id: Int) {
         AddDailyRoutineService.shared.delChallenge(routineId: id) { networkResult in
             switch networkResult {
@@ -346,8 +394,10 @@ extension AddRoutineDetailViewController: UICollectionViewDelegate {
                 return false
             } else {
                 selectedDailyId.append(dailyThemeEntity.routines[indexPath.item].id)
-                addRoutineDetailView.setCountDataBind(cnt: selectedDailyId.count,
-                                                      theme: .daily)
+                addRoutineDetailView.menuInScroll.setCountDataBind(cnt: selectedDailyId.count,
+                                                                   theme: .daily)
+                addRoutineDetailView.menuStickyView.setCountDataBind(cnt: selectedDailyId.count,
+                                                                     theme: .daily)
                 self.updateRoutineAddButton()
                 return true
             }
@@ -364,8 +414,10 @@ extension AddRoutineDetailViewController: UICollectionViewDelegate {
                 }
                 selectedChallengeId = challengeThemeEntity.routines[indexPath.section].challenges[indexPath.item].challengeID
                 selectedChallengeContent = challengeThemeEntity.routines[indexPath.section].challenges[indexPath.item].content.replacingOccurrences(of: "\n", with: " ")
-                addRoutineDetailView.setCountDataBind(cnt: 1,
-                                                      theme: .challenge)
+                addRoutineDetailView.menuInScroll.setCountDataBind(cnt: 1,
+                                                                   theme: .challenge)
+                addRoutineDetailView.menuStickyView.setCountDataBind(cnt: 1,
+                                                                     theme: .challenge)
                 self.updateRoutineAddButton()
                 return true
             }
@@ -381,15 +433,19 @@ extension AddRoutineDetailViewController: UICollectionViewDelegate {
             if let index = selectedDailyId.firstIndex(where: { num in num == dailyThemeEntity.routines[indexPath.item].id }) {
                 selectedDailyId.remove(at: index)
             }
-            addRoutineDetailView.setCountDataBind(cnt: selectedDailyId.count,
-                                                  theme: .daily)
+            addRoutineDetailView.menuInScroll.setCountDataBind(cnt: selectedDailyId.count,
+                                                               theme: .daily)
+            addRoutineDetailView.menuStickyView.setCountDataBind(cnt: selectedDailyId.count,
+                                                                 theme: .daily)
             self.updateRoutineAddButton()
             return true
         case challengeCV:
             selectedChallengeId = -1
             selectedChallengeContent = ""
-            addRoutineDetailView.setCountDataBind(cnt: 0,
-                                                  theme: .challenge)
+            addRoutineDetailView.menuInScroll.setCountDataBind(cnt: 0,
+                                                               theme: .challenge)
+            addRoutineDetailView.menuStickyView.setCountDataBind(cnt: 0,
+                                                                 theme: .challenge)
             self.updateRoutineAddButton()
             return true
         default:
@@ -521,7 +577,7 @@ extension AddRoutineDetailViewController: UICollectionViewDelegateFlowLayout {
         
         UIView.animate(withDuration: 0.3) {
             self.addRoutineDetailView.challengeCollectionView.snp.makeConstraints {
-                $0.top.equalTo(self.addRoutineDetailView.menuUnderlineView.snp.bottom)
+                $0.top.equalTo(self.addRoutineDetailView.menuInScroll.snp.bottom)
                 $0.centerX.equalToSuperview()
                 $0.bottom.equalToSuperview()
                 $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
@@ -544,7 +600,7 @@ extension AddRoutineDetailViewController: UICollectionViewDelegateFlowLayout {
         
         UIView.animate(withDuration: 0.3) {
             self.addRoutineDetailView.routineDailyCollectionView.snp.makeConstraints {
-                $0.top.equalTo(self.addRoutineDetailView.menuUnderlineView.snp.bottom).offset(20)
+                $0.top.equalTo(self.addRoutineDetailView.menuInScroll.snp.bottom).offset(20)
                 $0.centerX.equalToSuperview()
                 $0.bottom.equalToSuperview()
                 $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
