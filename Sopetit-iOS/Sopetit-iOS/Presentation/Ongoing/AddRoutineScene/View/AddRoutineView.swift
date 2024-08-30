@@ -53,7 +53,6 @@ final class AddRoutineView: UIView {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
         flowLayout.minimumInteritemSpacing = 8
-        flowLayout.itemSize = CGSize(width: 254, height: 168)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.clipsToBounds = true
@@ -78,8 +77,6 @@ final class AddRoutineView: UIView {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
         flowLayout.minimumInteritemSpacing = 4
-        flowLayout.itemSize = CGSize(width: SizeLiterals.Screen.screenWidth - 40,
-                                     height: 80)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.showsVerticalScrollIndicator = false
         collectionView.clipsToBounds = true

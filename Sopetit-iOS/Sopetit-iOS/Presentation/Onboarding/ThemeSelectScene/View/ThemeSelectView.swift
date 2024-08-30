@@ -39,7 +39,7 @@ final class ThemeSelectView: UIView {
     
     private let bearImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(resource: .variant6)
+        image.image = UIImage(named: "img_face_\(UserManager.shared.getDollType.lowercased())")
         image.contentMode = .scaleAspectFit
         return image
     }()
@@ -158,7 +158,7 @@ extension ThemeSelectView {
         }
         
         collectionView.snp.makeConstraints {
-            $0.top.equalTo(bubbleImage.snp.bottom).offset(SizeLiterals.Screen.screenHeight * 37 / 812)
+            $0.top.equalTo(bubbleImage.snp.bottom).offset(SizeLiterals.Screen.screenHeight > 0.5 ? 16 : SizeLiterals.Screen.screenHeight * 37 / 812)
             $0.centerX.equalToSuperview()
             $0.width.equalTo(190)
             $0.height.equalTo(400)

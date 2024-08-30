@@ -36,7 +36,7 @@ final class RoutineThemeCollectionViewCell: UICollectionViewCell, UICollectionVi
         return label
     }()
     
-    private let routineThemeCount: UILabel = {
+     let routineThemeCount: UILabel = {
         let label = UILabel()
         label.text = ""
         label.textColor = .Gray700

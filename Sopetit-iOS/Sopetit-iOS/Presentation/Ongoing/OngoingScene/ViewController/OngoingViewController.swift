@@ -77,9 +77,13 @@ private extension OngoingViewController {
     
     @objc func tapButton(_ sender: UIButton) {
         switch sender {
-//        case ongoingView.challengeInfoButton:
-//            print("challengeInfoButton tapped")
-//            challengeInfo()
+        case ongoingView.routineEmptyView.addRoutineButton:
+            print("addRoutineButton tapped")
+            let vc = AddRoutineViewController()
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
+        case ongoingView.challengeInfoButton:
+            print("challengeInfoButton tapped")
         case ongoingView.dailyInfoButton:
             popDailyInfo()
         case ongoingView.floatingButton:
