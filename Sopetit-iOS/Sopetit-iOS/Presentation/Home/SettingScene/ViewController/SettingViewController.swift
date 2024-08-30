@@ -20,7 +20,6 @@ final class SettingViewController: UIViewController {
     
     let customNaviBar = CustomNavigationBarView()
     let settingView = SettingView()
-//    private let logoutBottom = BottomSheetViewController(bottomStyle: .logoutBottom)
     
     // MARK: - Life Cycles
     
@@ -42,7 +41,6 @@ extension SettingViewController {
     func setUI() {
         self.view.backgroundColor = .SoftieWhite
         self.navigationController?.navigationBar.isHidden = true
-//        logoutBottom.modalPresentationStyle = .overFullScreen
     }
     
     func setHierarchy() {
@@ -65,7 +63,6 @@ extension SettingViewController {
     func setDelegate() {
         settingView.tableView.delegate = self
         settingView.tableView.dataSource = self
-//        logoutBottom.buttonDelegate = self
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
 }
@@ -131,7 +128,6 @@ extension SettingViewController: UITableViewDelegate {
     }
     
     private func presentLogoutBottom() {
-//        self.present(logoutBottom, animated: false, completion: nil)
     }
     
     private func pushWithdrawView() {
