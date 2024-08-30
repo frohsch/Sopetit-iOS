@@ -1,18 +1,18 @@
 //
-//  GetCottonViewController.swift
+//  GetRainbowCottonViewController.swift
 //  Sopetit-iOS
 //
-//  Created by Minjoo Kim on 6/25/24.
+//  Created by Minjoo Kim on 8/29/24.
 //
 
 import UIKit
 
-class GetCottonViewController: UIViewController {
+class GetRainbowCottonViewController: UIViewController {
     
-    let getCottonView = GetCottonView()
+    let getRainbowCottonView = GetRainbowCottonView()
     
     override func loadView() {
-        self.view = getCottonView
+        self.view = getRainbowCottonView
     }
     
     override func viewDidLoad() {
@@ -24,12 +24,12 @@ class GetCottonViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        getCottonView.cottonLottieView.play()
+        getRainbowCottonView.cottonLottieView.play()
         setAnimation()
     }
 }
 
-private extension GetCottonViewController {
+private extension GetRainbowCottonViewController {
     
     func setUI() {
         self.view.backgroundColor = .Gray1000
@@ -38,9 +38,9 @@ private extension GetCottonViewController {
     }
     
     func setAnimation() {
-        self.getCottonView.toastImageView.alpha = 0
+        self.getRainbowCottonView.toastImageView.alpha = 0
         UIView.animate(withDuration: 0.5, delay: 0.5, animations: {
-            self.getCottonView.toastImageView.alpha = 1
+            self.getRainbowCottonView.toastImageView.alpha = 1
         })
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 3) {

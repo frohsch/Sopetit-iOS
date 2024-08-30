@@ -115,6 +115,13 @@ enum ImageLiterals {
         static var imgDailycardEmpty: UIImage { .load(name: "img_dailycard_empty") }
         static var imgLoadingbear: UIImage { .load(name: "img_loadingbear") }
         static var variant6: UIImage { .load(name: "Variant6") }
+        static var toast: UIImage { .load(name: "toast") }
+        static var toastCancel: UIImage { .load(name: "toast_cancel") }
+        static var toastNotCotton: UIImage { .load(name: "toast_not_cotton") }
+        static var toastRainbow: UIImage { .load(name: "toast_rainbow") }
+        static var toastDelete: UIImage { .load(name: "toast_delete") }
+        static var popover: UIImage { .load(name: "popover") }
+        
     }
     
     enum HappyRoutine {

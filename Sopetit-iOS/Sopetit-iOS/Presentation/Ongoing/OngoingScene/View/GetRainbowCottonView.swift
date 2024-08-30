@@ -1,8 +1,8 @@
 //
-//  GetCottonView.swift
+//  GetRainbowCottonView.swift
 //  Sopetit-iOS
 //
-//  Created by Minjoo Kim on 6/25/24.
+//  Created by Minjoo Kim on 8/29/24.
 //
 
 import UIKit
@@ -10,13 +10,13 @@ import UIKit
 import Lottie
 import SnapKit
 
-class GetCottonView: UIView {
+class GetRainbowCottonView: UIView {
     
-    let cottonLottieView = LottieAnimationView(name: "daily_complete_ios")
+    let cottonLottieView = LottieAnimationView(name: "happy_complete_ios")
     
     let toastImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = ImageLiterals.DailyRoutine.toast
+        imageView.image = ImageLiterals.DailyRoutine.toastRainbow
         return imageView
     }()
     // MARK: - Life Cycles
@@ -35,7 +35,7 @@ class GetCottonView: UIView {
     }
 }
 
-extension GetCottonView {
+extension GetRainbowCottonView {
     
     func setUI() {
         cottonLottieView.loopMode = .loop

@@ -12,7 +12,7 @@ struct NewDailyRoutineEntity: Codable {
 struct DailyRoutines: Codable {
     let themeId: Int
     let themeName: String
-    let routines: [DailyRoutinev2]
+    var routines: [DailyRoutinev2]
 
     enum CodingKeys: String, CodingKey {
         case themeId = "themeId"

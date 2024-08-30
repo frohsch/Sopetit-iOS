@@ -20,7 +20,7 @@ class OngoingViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        getDailyRoutine(status: false)
         getChallengeRoutine()
     }
     
@@ -30,9 +30,7 @@ class OngoingViewController: UIViewController {
         setUI()
         setDelegate()
         setRegister()
-        setData()
         setAddTarget()
-        getDailyRoutine()
     }
 }
 
@@ -40,7 +38,6 @@ private extension OngoingViewController {
     
     func setUI() {
         self.navigationController?.navigationBar.isHidden = true
-        heightForContentView(numberOfSection: dailyRoutineEntity.routines.count, texts: dailyRoutineEntity)
     }
     
     @objc
@@ -63,6 +60,8 @@ private extension OngoingViewController {
     func setData() {
         if challengeRoutine.themeId == 0 {
             ongoingView.setChallengeRoutineEmpty()
+        } else {
+            ongoingView.setChallengeRoutine(routine: challengeRoutine)
         }
     }
     
@@ -76,15 +75,17 @@ private extension OngoingViewController {
     @objc func tapButton(_ sender: UIButton) {
         switch sender {
         case ongoingView.routineEmptyView.addRoutineButton:
-            print("addRoutineButton tapped")
+            // TODO :-
+            print("TODO :- addRoutineButton tapped")
             let vc = AddRoutineViewController()
-            self.present(vc, animated: true)
+            vc.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(vc, animated: true)
         case ongoingView.challengeInfoButton:
             print("challengeInfoButton tapped")
+            challengeInfo()
         case ongoingView.dailyInfoButton:
-            print("dailyInfoButton tapped")
+            popDailyInfo()
         case ongoingView.floatingButton:
-            print("floatingButton tapped")
             let vc = AddRoutineViewController()
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
@@ -92,20 +93,49 @@ private extension OngoingViewController {
             break
         }
     }
+    
+    func popDailyInfo() {
+        self.ongoingView.addSubviews(self.ongoingView.dailyInfoView, self.ongoingView.dailyInfoImageView)
+        self.ongoingView.dailyInfoView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        self.ongoingView.dailyInfoImageView.snp.makeConstraints {
+            $0.top.equalTo(self.ongoingView.dailyInfoButton.snp.top)
+            $0.trailing.equalTo(self.ongoingView.dailyInfoButton.snp.trailing)
+        }
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapView(_:)))
+        
+        self.ongoingView.dailyInfoView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    func challengeInfo() {
+        let nav = ChallengeBSViewController()
+        nav.entity = challengeRoutine
+        nav.modalPresentationStyle = .overFullScreen
+        self.present(nav, animated: false)
+    }
+    
+    @objc func didTapView(_ sender: UITapGestureRecognizer) {
+        closeDailyInfo()
+    }
+
+    func closeDailyInfo() {
+        self.ongoingView.dailyInfoImageView.removeFromSuperview()
+        self.ongoingView.dailyInfoView.removeFromSuperview()
+    }
 }
 
 extension OngoingViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         if dailyRoutineEntity.routines.isEmpty {
-            print("EEEEEEEEEEEE")
             ongoingView.setEmptyView()
         }
         return dailyRoutineEntity.routines.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(dailyRoutineEntity.routines[section].routines.count, "⬆️⬆️⬆️⬆️⬆️")
         return dailyRoutineEntity.routines[section].routines.count
     }
     
@@ -139,9 +169,8 @@ extension OngoingViewController: UICollectionViewDelegateFlowLayout {
             label.font = .fontGuide(.body2)
             return label
         }()
-        label.sizeThatFits(CGSize(width: SizeLiterals.Screen.screenWidth - 151, height: 20))
         let height = max(heightForView(text: label.text ?? "", font: label.font, width: SizeLiterals.Screen.screenWidth - 151), 24) + 32
-        print(height)
+        
         
         return CGSize(width: SizeLiterals.Screen.screenWidth - 40, height: height)
     }
@@ -168,21 +197,24 @@ extension OngoingViewController: UICollectionViewDelegateFlowLayout {
             height += 18
         }
         height += Double(16 * (texts.routines.count - 1) + 54)
-        
-        ongoingView.dailyCollectionView.snp.updateConstraints {
+        ongoingView.dailyCollectionView.snp.remakeConstraints {
             $0.height.equalTo(height)
+            $0.top.equalTo(ongoingView.dailyTitleLabel.snp.bottom).offset(12)
+            $0.horizontalEdges.equalToSuperview()
+            $0.bottom.equalToSuperview()
         }
     }
 }
 
 extension OngoingViewController {
-    func getDailyRoutine() {
+    func getDailyRoutine(status: Bool) {
         DailyRoutineService.shared.getDailyRoutine { networkResult in
             switch networkResult {
             case .success(let data):
                 if let data = data as? GenericResponse<NewDailyRoutineEntity> {
                     if let listData = data.data {
                         self.dailyRoutineEntity = listData
+                        self.dailyRoutineEntity.routines.sort(by: {$0.themeId < $1.themeId})
                         if self.dailyRoutineEntity.routines.isEmpty {
                             self.ongoingView.setEmptyView()
                         } else {
@@ -190,6 +222,9 @@ extension OngoingViewController {
                             self.heightForContentView(numberOfSection: self.dailyRoutineEntity.routines.count, texts: self.dailyRoutineEntity)
                             self.ongoingView.dailyCollectionView.reloadData()
                         }
+                    }
+                    if status == true {
+                        self.setDeleteToastView()
                     }
                 }
             case .requestErr, .serverErr:
@@ -207,11 +242,7 @@ extension OngoingViewController {
                 if let data = data as? GenericResponse<ChallengeRoutine> {
                     if let listData = data.data {
                         self.challengeRoutine = listData
-                    }
-                    if self.challengeRoutine.themeId == 0 {
-                        self.ongoingView.setChallengeRoutineEmpty()
-                    } else {
-                        self.ongoingView.setChallengeRoutine(routine: self.challengeRoutine)
+                        self.setData()
                     }
                 }
             case .requestErr, .serverErr:
@@ -233,8 +264,11 @@ extension OngoingViewController {
                     if self.patchRoutineEntity.hasCotton == true {
                         self.getCottonView()
                     } else {
-                        // TODO:
-                        // 이미 솜사탕을 받았습니다.
+                        if self.patchRoutineEntity.isAchieve == false {
+                            self.setCancelToastView()
+                        } else {
+                            self.setNotCottonToastView()
+                        }
                     }
                 }
             case .requestErr, .serverErr:
@@ -253,10 +287,64 @@ extension OngoingViewController {
         vc.modalPresentationStyle = UIModalPresentationStyle.overFullScreen
         self.present(vc, animated: false)
     }
+    
+    func setCancelToastView() {
+        self.ongoingView.addSubviews(ongoingView.cancelToastImageView)
+        self.ongoingView.bringSubviewToFront(self.ongoingView.cancelToastImageView)
+        self.ongoingView.cancelToastImageView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(self.ongoingView.safeAreaLayoutGuide).inset(24)
+        }
+        
+        UIView.animate(withDuration: 0.5, delay: 1, animations: {self.ongoingView.cancelToastImageView.alpha = 0}, completion: {_ in self.ongoingView.cancelToastImageView.removeFromSuperview()
+            self.ongoingView.cancelToastImageView.alpha = 1})
+    }
+    
+    func setNotCottonToastView() {
+        self.ongoingView.addSubviews(ongoingView.notCottonToastImageView)
+        self.ongoingView.bringSubviewToFront(self.ongoingView.notCottonToastImageView)
+        self.ongoingView.notCottonToastImageView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(self.ongoingView.safeAreaLayoutGuide).inset(24)
+        }
+        
+        UIView.animate(withDuration: 0.5, delay: 1, animations: {self.ongoingView.notCottonToastImageView.alpha = 0}, completion: {_ in self.ongoingView.notCottonToastImageView.removeFromSuperview()
+            self.ongoingView.notCottonToastImageView.alpha = 1})
+    }
+    
+    func setDeleteToastView() {
+        self.ongoingView.addSubviews(ongoingView.deleteToastImageView)
+        self.ongoingView.bringSubviewToFront(self.ongoingView.deleteToastImageView)
+        self.ongoingView.deleteToastImageView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(self.ongoingView.safeAreaLayoutGuide).inset(24)
+        }
+        
+        UIView.animate(withDuration: 0.5, delay: 1, animations: {self.ongoingView.deleteToastImageView.alpha = 0}, completion: {_ in self.ongoingView.deleteToastImageView.removeFromSuperview()
+            self.ongoingView.deleteToastImageView.alpha = 1})
+    }
+    
 }
 
 extension OngoingViewController: CVCellDelegate {
     func selectedRadioButton(_ index: Int) {
         patchRoutineAPI(routineId: index)
+    }
+    
+    func tapEllipsisButton(model: DailyRoutinev2) {
+        let contentHeight = heightForView(text: model.content, font: .fontGuide(.body1), width: SizeLiterals.Screen.screenWidth - 80)
+        let nav = DailyBSViewController()
+        nav.delegate = self
+        nav.bottomHeight = contentHeight + 220
+        nav.height = contentHeight
+        nav.entity = model
+        nav.modalPresentationStyle = .overFullScreen
+        self.present(nav, animated: false)
+    }
+}
+
+extension OngoingViewController: DeleteDailyProtocol {
+    func deleteDailyRoutine() {
+        getDailyRoutine(status: true)
     }
 }

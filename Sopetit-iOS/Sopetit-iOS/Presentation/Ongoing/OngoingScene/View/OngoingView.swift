@@ -91,7 +91,7 @@ class OngoingView: UIView {
 
         collectionView.showsVerticalScrollIndicator = false
         collectionView.collectionViewLayout = layout
-        collectionView.backgroundColor = .Gray50
+        collectionView.backgroundColor = .clear
         return collectionView
     }()
     
@@ -105,6 +105,36 @@ class OngoingView: UIView {
         return button
     }()
     
+    let cancelToastImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = ImageLiterals.DailyRoutine.toastCancel
+        return imageView
+    }()
+    
+    let notCottonToastImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = ImageLiterals.DailyRoutine.toastNotCotton
+        return imageView
+    }()
+    
+    let deleteToastImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = ImageLiterals.DailyRoutine.toastDelete
+        return imageView
+    }()
+    
+    let dailyInfoView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .Gray950
+        return view
+    }()
+    
+    let dailyInfoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = ImageLiterals.DailyRoutine.popover
+        return imageView
+    }()
+    
     // MARK: - Life Cycles
     
     override init(frame: CGRect) {
@@ -114,6 +144,7 @@ class OngoingView: UIView {
         setHierarchy()
         setLayout()
         setDateLabel()
+        setChallengeRoutineEmpty()
     }
     
     @available(*, unavailable)
@@ -132,7 +163,7 @@ private extension OngoingView {
         dateView.addSubview(dateLabel)
         self.scrollView.addSubviews(dailyContentView)
         
-        self.dailyContentView.addSubviews(challengeTitleLabel, challengeInfoButton, challengeRoutineCardView, divisionView, dailyTitleLabel, dailyInfoButton, dailyCollectionView
+        self.dailyContentView.addSubviews(divisionView, dailyTitleLabel, dailyInfoButton, dailyCollectionView
         )
     }
     
@@ -159,29 +190,29 @@ private extension OngoingView {
             $0.width.equalTo(scrollView.snp.width)
         }
         
-        challengeTitleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(4)
-            $0.leading.equalToSuperview().inset(20)
-            $0.height.equalTo(20)
-        }
+//        challengeTitleLabel.snp.makeConstraints {
+//            $0.top.equalToSuperview().inset(4)
+//            $0.leading.equalToSuperview().inset(20)
+//            $0.height.equalTo(20)
+//        }
+//        
+//        challengeInfoButton.snp.makeConstraints {
+//            $0.trailing.equalToSuperview().inset(20)
+//            $0.centerY.equalTo(challengeTitleLabel.snp.centerY)
+//            $0.size.equalTo(20)
+//        }
+//        
+//        challengeRoutineCardView.snp.makeConstraints {
+//            $0.top.equalTo(challengeTitleLabel.snp.bottom).offset(16)
+//            $0.horizontalEdges.equalToSuperview().inset(20)
+//            $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
+//        }
         
-        challengeInfoButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(20)
-            $0.centerY.equalTo(challengeTitleLabel.snp.centerY)
-            $0.size.equalTo(20)
-        }
-        
-        challengeRoutineCardView.snp.makeConstraints {
-            $0.top.equalTo(challengeTitleLabel.snp.bottom).offset(16)
-            $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
-        }
-        
-        divisionView.snp.makeConstraints {
-            $0.top.equalTo(challengeRoutineCardView.snp.bottom).offset(16)
-            $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(2)
-        }
+//        divisionView.snp.makeConstraints {
+//            $0.top.equalTo(challengeRoutineCardView.snp.bottom).offset(16)
+//            $0.horizontalEdges.equalToSuperview()
+//            $0.height.equalTo(2)
+//        }
         
         dailyTitleLabel.snp.makeConstraints {
             $0.top.equalTo(divisionView.snp.bottom).offset(16)
@@ -221,6 +252,7 @@ private extension OngoingView {
 extension OngoingView {
     
     func setChallengeRoutineEmpty() {
+        print("setChallengeRoutineEmpty")
         self.challengeTitleLabel.removeFromSuperview()
         self.challengeInfoButton.removeFromSuperview()
         self.challengeRoutineCardView.removeFromSuperview()
@@ -241,6 +273,7 @@ extension OngoingView {
     }
     
     func setChallengeRoutine(routine: ChallengeRoutine) {
+        print("setChallengeRoutine")
         challengeRoutineCardView.setDataBind(data: routine)
         self.challengeRoutineEmptyView.removeFromSuperview()
         self.dailyContentView.addSubviews(challengeTitleLabel, challengeInfoButton, challengeRoutineCardView)
@@ -285,7 +318,9 @@ extension OngoingView {
         self.addSubviews(scrollView, floatingButton)
         self.scrollView.addSubviews(dailyContentView)
         
-        self.dailyContentView.addSubviews(challengeTitleLabel, challengeInfoButton, challengeRoutineCardView, divisionView, dailyTitleLabel, dailyInfoButton, dailyCollectionView
+        self.dailyContentView.addSubviews(
+//            challengeTitleLabel, challengeInfoButton, challengeRoutineCardView,
+            divisionView, dailyTitleLabel, dailyInfoButton, dailyCollectionView
         )
         
         scrollView.snp.makeConstraints {
@@ -299,29 +334,29 @@ extension OngoingView {
             $0.width.equalTo(scrollView.snp.width)
         }
         
-        challengeTitleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(4)
-            $0.leading.equalToSuperview().inset(20)
-            $0.height.equalTo(20)
-        }
+//        challengeTitleLabel.snp.makeConstraints {
+//            $0.top.equalToSuperview().inset(4)
+//            $0.leading.equalToSuperview().inset(20)
+//            $0.height.equalTo(20)
+//        }
+//        
+//        challengeInfoButton.snp.makeConstraints {
+//            $0.trailing.equalToSuperview().inset(20)
+//            $0.centerY.equalTo(challengeTitleLabel.snp.centerY)
+//            $0.size.equalTo(20)
+//        }
+//        
+//        challengeRoutineCardView.snp.makeConstraints {
+//            $0.top.equalTo(challengeTitleLabel.snp.bottom).offset(16)
+//            $0.horizontalEdges.equalToSuperview().inset(20)
+//            $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
+//        }
         
-        challengeInfoButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(20)
-            $0.centerY.equalTo(challengeTitleLabel.snp.centerY)
-            $0.size.equalTo(20)
-        }
-        
-        challengeRoutineCardView.snp.makeConstraints {
-            $0.top.equalTo(challengeTitleLabel.snp.bottom).offset(16)
-            $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
-        }
-        
-        divisionView.snp.makeConstraints {
-            $0.top.equalTo(challengeRoutineCardView.snp.bottom).offset(16)
-            $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(2)
-        }
+//        divisionView.snp.makeConstraints {
+//            $0.top.equalTo(challengeRoutineCardView.snp.bottom).offset(16)
+//            $0.horizontalEdges.equalToSuperview()
+//            $0.height.equalTo(2)
+//        }
         
         dailyTitleLabel.snp.makeConstraints {
             $0.top.equalTo(divisionView.snp.bottom).offset(16)
