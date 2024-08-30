@@ -76,8 +76,11 @@ extension AddRoutineDetailViewController {
         addRoutineDetailView.dailyMenuView.addGestureRecognizer(tapDailyMenu)
         addRoutineDetailView.challengeMenuView.addGestureRecognizer(tapChallengeMenu)
         addRoutineDetailView.routineAddButton.addTarget(self,
-                                                        action:  #selector(addButtonTapped),
+                                                        action: #selector(addButtonTapped),
                                                         for: .touchUpInside)
+        addRoutineDetailView.makerButton.addTarget(self,
+                                                   action: #selector(makerButtonTapped),
+                                                   for: .touchUpInside)
     }
     
     @objc
@@ -122,6 +125,13 @@ extension AddRoutineDetailViewController {
                 postAddDailyRoutinAPI(ids: selectedDailyId)
             }
         }
+    }
+    
+    @objc
+    func makerButtonTapped() {
+        let nav = MakerDetailWebViewController()
+        nav.webUrl = addRoutineInfoEntity.makerUrl
+        self.navigationController?.pushViewController(nav, animated: true)
     }
     
     func setToastMessage(type: ToastType) {

@@ -63,7 +63,7 @@ final class AddRoutineDetailView: UIView {
         return label
     }()
     
-    private let makerButton: UIButton = {
+    let makerButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(resource: .btnMaker), for: .normal)
         button.imageView?.contentMode = .scaleAspectFit

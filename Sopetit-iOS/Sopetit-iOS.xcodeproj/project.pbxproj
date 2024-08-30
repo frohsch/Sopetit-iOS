@@ -133,6 +133,9 @@
 		A4832BAB2B4ACF09007879FF /* omyu-pretty.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A4832BAA2B4ACF09007879FF /* omyu-pretty.ttf */; };
 		A488FE8B2B697BB7000B4809 /* UpdateAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A488FE8A2B697BB7000B4809 /* UpdateAlertView.swift */; };
 		A488FE8E2B697C0E000B4809 /* VersionEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A488FE8D2B697C0E000B4809 /* VersionEntity.swift */; };
+		A49706352C80C4BE008D2D57 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A49706342C80C4BD008D2D57 /* WebKit.framework */; };
+		A49706372C815C0F008D2D57 /* MakerDetailWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49706362C815C0F008D2D57 /* MakerDetailWebView.swift */; };
+		A49706392C815C35008D2D57 /* MakerDetailWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49706382C815C35008D2D57 /* MakerDetailWebViewController.swift */; };
 		A49BFDD52B4D5F0800035EB6 /* StroyTellingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49BFDD42B4D5F0800035EB6 /* StroyTellingViewController.swift */; };
 		A49BFDD72B4D5F2800035EB6 /* StroyTellingFirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49BFDD62B4D5F2800035EB6 /* StroyTellingFirstView.swift */; };
 		A49BFDDA2B4D5F4600035EB6 /* StoryTellingSecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49BFDD92B4D5F4600035EB6 /* StoryTellingSecondView.swift */; };
@@ -286,6 +289,9 @@
 		A4832BAA2B4ACF09007879FF /* omyu-pretty.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "omyu-pretty.ttf"; sourceTree = "<group>"; };
 		A488FE8A2B697BB7000B4809 /* UpdateAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAlertView.swift; sourceTree = "<group>"; };
 		A488FE8D2B697C0E000B4809 /* VersionEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VersionEntity.swift; sourceTree = "<group>"; };
+		A49706342C80C4BD008D2D57 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		A49706362C815C0F008D2D57 /* MakerDetailWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakerDetailWebView.swift; sourceTree = "<group>"; };
+		A49706382C815C35008D2D57 /* MakerDetailWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakerDetailWebViewController.swift; sourceTree = "<group>"; };
 		A49BFDD42B4D5F0800035EB6 /* StroyTellingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StroyTellingViewController.swift; sourceTree = "<group>"; };
 		A49BFDD62B4D5F2800035EB6 /* StroyTellingFirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StroyTellingFirstView.swift; sourceTree = "<group>"; };
 		A49BFDD92B4D5F4600035EB6 /* StoryTellingSecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTellingSecondView.swift; sourceTree = "<group>"; };
@@ -323,6 +329,7 @@
 			files = (
 				00A4AA172BFCD81400FB4D46 /* FirebaseAnalyticsSwift in Frameworks */,
 				00A4AA192BFCD81400FB4D46 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				A49706352C80C4BE008D2D57 /* WebKit.framework in Frameworks */,
 				00A4AA132BFCD81400FB4D46 /* FirebaseAnalytics in Frameworks */,
 				A49BFE5A2B54273E00035EB6 /* SVGKit in Frameworks */,
 				A42C32972B3DBD8600C4B477 /* SnapKit in Frameworks */,
@@ -472,6 +479,7 @@
 				A40F9F3E2C6EE7B5004DD1A1 /* AddRoutinDetailBSViewController.swift */,
 				A40F9F402C6EEC4D004DD1A1 /* ChangeChallengeBSViewController.swift */,
 				A40F9F132C69D0CC004DD1A1 /* AddRoutineDetailViewController.swift */,
+				A49706382C815C35008D2D57 /* MakerDetailWebViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -482,6 +490,7 @@
 				A40F9F1D2C6AE65C004DD1A1 /* AddChallengeRoutineHeaderView.swift */,
 				A40F9F112C69D0C6004DD1A1 /* AddRoutineDetailView.swift */,
 				A40F9F462C6F1451004DD1A1 /* AddRoutineToastView.swift */,
+				A49706362C815C0F008D2D57 /* MakerDetailWebView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -499,6 +508,7 @@
 			children = (
 				A42C327A2B3DB8F400C4B477 /* Sopetit-iOS */,
 				A42C32792B3DB8F400C4B477 /* Products */,
+				A49706332C80C4BD008D2D57 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1048,6 +1058,14 @@
 			path = Version;
 			sourceTree = "<group>";
 		};
+		A49706332C80C4BD008D2D57 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A49706342C80C4BD008D2D57 /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A49BFDD12B4D5EE800035EB6 /* StroyTellingScene */ = {
 			isa = PBXGroup;
 			children = (
@@ -1489,6 +1507,7 @@
 				A42C32D92B3EAC1C00C4B477 /* MakeAlert.swift in Sources */,
 				A49BFE212B4E544400035EB6 /* RoutineChoiceCollectionViewCell.swift in Sources */,
 				A42C32C92B3EAB4500C4B477 /* UIStackView+.swift in Sources */,
+				A49706392C815C35008D2D57 /* MakerDetailWebViewController.swift in Sources */,
 				A488FE8E2B697C0E000B4809 /* VersionEntity.swift in Sources */,
 				0016380D2B8FA1A80099A77D /* LoginViewModel.swift in Sources */,
 				045DFE812B515FAE005D69EA /* WithdrawViewController.swift in Sources */,
@@ -1502,6 +1521,7 @@
 				A40F9F182C69F35C004DD1A1 /* DailyThemeEntity.swift in Sources */,
 				A42C327E2B3DB8F400C4B477 /* SceneDelegate.swift in Sources */,
 				A40F9F3F2C6EE7B5004DD1A1 /* AddRoutinDetailBSViewController.swift in Sources */,
+				A49706372C815C0F008D2D57 /* MakerDetailWebView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
