@@ -64,6 +64,8 @@ extension AddRoutineDetailViewController {
             getDailyThemeAPI(id: addRoutineInfoEntity.id)
         } else {
             addRoutineDetailView.setMenuSelected(dailyTapped: false)
+            addRoutineDetailView.menuInScroll.setStickyMenuTapped(dailyTapped: false)
+            addRoutineDetailView.menuStickyView.setStickyMenuTapped(dailyTapped: false)
             getChallengeRoutineAPI(id: addRoutineInfoEntity.id)
         }
     }
@@ -194,17 +196,14 @@ extension AddRoutineDetailViewController: UIScrollViewDelegate {
         let threshold = menuInScrollPosition - navigationHeight - view.safeAreaInsets.top
         let alpha: CGFloat
             if offsetY >= threshold {
-                // Smoothly transition to visible
                 alpha = 1
                 addRoutineDetailView.menuStickyView.isHidden = false
                 addRoutineDetailView.stickyBackView.isHidden = false
             } else {
-                // Hide completely
                 alpha = 0
                 addRoutineDetailView.menuStickyView.isHidden = true
                 addRoutineDetailView.stickyBackView.isHidden = true
             }
-//        let alpha: CGFloat = (offsetY >= threshold) ? 1 : 0
         
         addRoutineDetailView.menuStickyView.alpha = alpha
         addRoutineDetailView.stickyBackView.alpha = alpha
