@@ -37,7 +37,6 @@ final class ThemeSelectViewController: UIViewController {
         setDelegate()
         setAddTarget()
         getThemeAPI()
-        getDollAPI()
     }
 }
 
@@ -165,24 +164,6 @@ private extension ThemeSelectViewController {
                     } else {
                         self.makeSessionExpiredAlert()
                     }
-                }
-            case .requestErr, .serverErr:
-                break
-            default:
-                break
-            }
-        }
-    }
-    
-    func getDollAPI() {
-        OnBoardingService.shared.getOnboardingDollAPI(dollType: UserManager.shared.getDollType) { networkResult in
-            switch networkResult {
-            case .success(let data):
-                if let data = data as? GenericResponse<DollImageEntity> {
-                    if let listData = data.data {
-                        self.dollEntity = listData
-                    }
-                    self.themeSelectView.setDataBind(model: self.dollEntity)
                 }
             case .requestErr, .serverErr:
                 break

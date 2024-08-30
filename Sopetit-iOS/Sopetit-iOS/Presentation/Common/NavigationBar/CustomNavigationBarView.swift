@@ -45,19 +45,7 @@ final class CustomNavigationBarView: UIView {
         set { backButton.isHidden = !newValue }
     }
     
-//    var isCancelButtonIncluded: Bool {
-//        get { !cancelButton.isHidden }
-//        set { cancelButton.isHidden = !newValue }
-//    }
-//    
-//    var isEditButtonIncluded: Bool {
-//        get { !editButton.isHidden }
-//        set { editButton.isHidden = !newValue }
-//    }
-    
     var backButtonAction: (() -> Void)?
-//    var editButtonAction: (() -> Void)?
-//    var cancelButtonAction: (() -> Void)?
     
     // MARK: - UI Components
     
@@ -95,24 +83,6 @@ final class CustomNavigationBarView: UIView {
         button.configuration?.contentInsets = NSDirectionalEdgeInsets(top: 7, leading: 7, bottom: 7, trailing: 7)
         return button
     }()
-    
-//    lazy var cancelButton: UIButton = {
-//        let button = UIButton()
-//        button.setTitle(I18N.CustomNavi.cancel, for: .normal)
-//        button.setTitleColor(.Gray400, for: .normal)
-//        button.titleLabel?.font = .fontGuide(.head3)
-//        button.isHidden = true
-//        return button
-//    }()
-//    
-//    lazy var editButton: UIButton = {
-//        let button = UIButton()
-//        button.setTitle(I18N.CustomNavi.edit, for: .normal)
-//        button.setTitleColor(.Gray400, for: .normal)
-//        button.titleLabel?.font = .fontGuide(.head3)
-//        button.isHidden = true
-//        return button
-//    }()
     
     // MARK: - Life Cycles
     
@@ -175,39 +145,14 @@ private extension CustomNavigationBarView {
             $0.centerY.equalToSuperview()
             $0.size.equalTo(38)
         }
-        
-//        cancelButton.snp.makeConstraints {
-//            $0.trailing.equalToSuperview().inset(6)
-//            $0.centerY.equalToSuperview()
-//            $0.width.equalTo(53)
-//            $0.height.equalTo(41)
-//        }
-//        
-//        editButton.snp.makeConstraints {
-//            $0.trailing.equalToSuperview().inset(6)
-//            $0.centerY.equalToSuperview()
-//            $0.width.equalTo(53)
-//            $0.height.equalTo(41)
-//        }
     }
     
     func setAddTarget() {
         backButton.addTarget(self, action: #selector(isTapped), for: .touchUpInside)
-//        cancelButton.addTarget(self, action: #selector(isTapped), for: .touchUpInside)
-//        editButton.addTarget(self, action: #selector(isTapped), for: .touchUpInside)
     }
     
     @objc
     func isTapped(_ sender: UIButton) {
-        switch sender {
-        case backButton:
-            delegate?.tapBackButton()
-//        case cancelButton:
-//            cancelButtonAction?()
-//        case editButton:
-//            editButtonAction?()
-        default:
-            break
-        }
+        delegate?.tapBackButton()
     }
 }

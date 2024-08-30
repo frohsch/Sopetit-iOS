@@ -13,7 +13,7 @@ final class AddRoutinDetailBSViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var bottomHeight: CGFloat = SizeLiterals.Screen.screenHeight * 412 / 812
+    private var bottomHeight: CGFloat = SizeLiterals.Screen.deviceRatio > 0.5 ? 456 : 412
     var entity: AddRoutineBottomSheetEntity = AddRoutineBottomSheetEntity.bottomSheetInitial()
     
     // MARK: - UI Components
@@ -107,6 +107,7 @@ final class AddRoutinDetailBSViewController: UIViewController {
         setHierarchy()
         setLayout()
         setDismissAction()
+        setAddTarget()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -251,5 +252,11 @@ extension AddRoutinDetailBSViewController {
     @objc
     func hideBottomSheetAction() {
         hideBottomSheet()
+    }
+    
+    func setAddTarget() {
+        detailCheckButton.addTarget(self,
+                                    action: #selector(hideBottomSheetAction),
+                                    for: .touchUpInside)
     }
 }

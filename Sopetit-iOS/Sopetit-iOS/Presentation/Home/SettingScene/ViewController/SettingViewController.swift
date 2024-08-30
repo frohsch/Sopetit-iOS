@@ -15,12 +15,12 @@ final class SettingViewController: UIViewController {
     // MARK: - Properties
     
     let sectionCellCounts = [2, 1, 1, 2]
+    private let userAppVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
     
     // MARK: - UI Components
     
     let customNaviBar = CustomNavigationBarView()
     let settingView = SettingView()
-//    private let logoutBottom = BottomSheetViewController(bottomStyle: .logoutBottom)
     
     // MARK: - Life Cycles
     
@@ -42,7 +42,6 @@ extension SettingViewController {
     func setUI() {
         self.view.backgroundColor = .SoftieWhite
         self.navigationController?.navigationBar.isHidden = true
-//        logoutBottom.modalPresentationStyle = .overFullScreen
     }
     
     func setHierarchy() {
@@ -65,7 +64,6 @@ extension SettingViewController {
     func setDelegate() {
         settingView.tableView.delegate = self
         settingView.tableView.dataSource = self
-//        logoutBottom.buttonDelegate = self
         self.navigationController?.interactivePopGestureRecognizer?.delegate = self
     }
 }
@@ -131,7 +129,9 @@ extension SettingViewController: UITableViewDelegate {
     }
     
     private func presentLogoutBottom() {
-//        self.present(logoutBottom, animated: false, completion: nil)
+        let nav = LogoutBSViewController()
+        nav.modalPresentationStyle = .overFullScreen
+        self.present(nav, animated: false)
     }
     
     private func pushWithdrawView() {
@@ -171,7 +171,7 @@ extension SettingViewController: UITableViewDataSource {
             cell.iconImage.image = ImageLiterals.Setting.icFeedback
             cell.settingLabel.text = I18N.Setting.feedbackTitle
         case [2, 0]:
-            cell.settingLabel.text = I18N.Setting.versionTitle
+            cell.settingLabel.text = "현재 버전 \(userAppVersion ?? "")"
             cell.iconImage.snp.updateConstraints {
                 $0.size.equalTo(0)
             }
@@ -220,27 +220,6 @@ extension SettingViewController {
         customNaviBar.isTitleLabelIncluded = I18N.Setting.settingTitle
         customNaviBar.backgroundColor = .clear
         customNaviBar.delegate = self
-    }
-    
-    func postLogoutAPI() {
-        AuthService.shared.postLogoutAPI { networkResult in
-            switch networkResult {
-            case .success(let data):
-                if data is GenericResponse<LogoutEntity> {
-                    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                          let keyWindow = windowScene.windows.first else {
-                        return
-                    }
-                    UserManager.shared.clearAll()
-                    let nav = LoginViewController()
-                    keyWindow.rootViewController = UINavigationController(rootViewController: nav)
-                }
-            case .requestErr, .serverErr:
-                break
-            default:
-                break
-            }
-        }
     }
 }
 

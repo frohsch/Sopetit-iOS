@@ -12,6 +12,11 @@ enum AddRoutineTheme: Codable {
     case maker
 }
 
+enum RoutineTheme: Codable {
+    case daily
+    case challenge
+}
+
 struct AddRoutineInfoEntity: Codable {
     let themeStyle: AddRoutineTheme
     let id: Int
@@ -19,6 +24,7 @@ struct AddRoutineInfoEntity: Codable {
     let img: String
     let title: String
     let description: String
+    let makerUrl: String
 }
 
 extension AddRoutineInfoEntity {
@@ -29,6 +35,7 @@ extension AddRoutineInfoEntity {
                                     name: "",
                                     img: "",
                                     title: "",
-                                    description: "")
+                                    description: "",
+                                    makerUrl: "")
     }
 }

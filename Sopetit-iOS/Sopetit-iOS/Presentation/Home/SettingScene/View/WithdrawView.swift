@@ -33,7 +33,7 @@ final class WithdrawView: UIView {
         let button = UIButton()
         button.backgroundColor = .Gray100
         button.setTitle("더 써볼래", for: .normal)
-        button.setTitleColor(.Gray100, for: .normal)
+        button.setTitleColor(.Gray400, for: .normal)
         button.titleLabel?.font = .fontGuide(.body1)
         button.layer.cornerRadius = 12
         button.clipsToBounds = true
@@ -44,7 +44,7 @@ final class WithdrawView: UIView {
         let button = UIButton()
         button.backgroundColor = .Red200
         button.setTitle("탈퇴할래", for: .normal)
-        button.setTitleColor(.Red200, for: .normal)
+        button.setTitleColor(.SoftieWhite, for: .normal)
         button.titleLabel?.font = .fontGuide(.body1)
         button.layer.cornerRadius = 12
         button.clipsToBounds = true
@@ -59,7 +59,7 @@ final class WithdrawView: UIView {
     
     let bubbleImage: UIImageView = {
         let image = UIImageView()
-        image.image = UIImage(named: "img_speech_happy")
+        image.image = ImageLiterals.Home.pngSpeechHome
         return image
     }()
     
@@ -94,7 +94,7 @@ final class WithdrawView: UIView {
 extension WithdrawView {
 
     func setUI() {
-        self.backgroundColor = .Gray50
+        self.backgroundColor = .SoftieWhite
     }
     
     func setHierarchy() {

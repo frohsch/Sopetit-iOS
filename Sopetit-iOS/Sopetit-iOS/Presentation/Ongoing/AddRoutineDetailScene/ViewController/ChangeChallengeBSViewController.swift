@@ -18,7 +18,7 @@ final class ChangeChallengeBSViewController: UIViewController {
     
     // MARK: - Properties
     
-    private var bottomHeight: CGFloat = SizeLiterals.Screen.screenHeight * 430 / 812
+    private var bottomHeight: CGFloat = 430
     var entity: ChangeRoutineBottomSheetEntity = ChangeRoutineBottomSheetEntity.changeBottomSheetInitial()
     weak var buttonDelegate: BottomSheetButtonDelegate?
     
@@ -155,23 +155,14 @@ extension ChangeChallengeBSViewController {
     }
     
     func setCardTitle(id: Int) -> (String, UIImage, UIImage){
-        switch id {
-        case 1:
-            return ("관계 쌓기", UIImage(resource: .theme1), UIImage(resource: .addChallenge1))
-        case 2:
-            return ("한 걸음 성장", UIImage(resource: .theme5), UIImage(resource: .addChallenge5))
-        case 3:
-            return ("나와 친해지기", UIImage(resource: .theme7), UIImage(resource: .addChallenge7))
-        case 4:
-            return ("마음챙김", UIImage(resource: .theme2), UIImage(resource: .addChallenge2))
-        case 5:
-            return ("건강한 몸", UIImage(resource: .theme6), UIImage(resource: .addChallenge6))
-        case 6:
-            return ("통통한 통장", UIImage(resource: .theme3), UIImage(resource: .addChallenge3))
-        case 7:
-            return ("산뜻한 일상", UIImage(resource: .theme4), UIImage(resource: .addChallenge4))
-        default:
-            return ("루틴메이커", UIImage(resource: .theme8), UIImage(resource: .addChallenge8))
+        if id < 8 {
+            return (ThemeDetailEntity.getTheme(id: id).themeTitle,
+                    ThemeDetailEntity.getTheme(id: id).themeImage,
+                    UIImage(named: "add_challenge\(id)") ?? UIImage())
+        } else {
+            return ("루틴메이커",
+                    UIImage(resource: .theme8),
+                    UIImage(resource: .addChallenge8))
         }
     }
     

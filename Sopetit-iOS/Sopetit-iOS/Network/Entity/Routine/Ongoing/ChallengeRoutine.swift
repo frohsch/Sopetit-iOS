@@ -8,12 +8,12 @@
 import Foundation
 
 struct ChallengeRoutine: Codable {
-    let routineId: Int?
-    let themeId: Int?
-    let themeName: String?
-    let title: String?
-    let content: String?
-    let detailContent: String?
-    let place: String?
-    let timeTaken: String?
+    let routineId: Int
+    let themeId: Int
+    let themeName: String
+    let title: String
+    let content: String
+    let detailContent: String
+    let place: String
+    let timeTaken: String
 }

@@ -22,7 +22,7 @@ final class HomeViewController: UIViewController {
     
     // MARK: - Properties
     
-    var homeEntity = HomeEntity(name: "", dollType: "", frameImageURL: "", dailyCottonCount: 0, happinessCottonCount: 0, conversations: [])
+    var homeEntity = HomeEntity(name: "", dollType: "", dailyCottonCount: 0, happinessCottonCount: 0, conversations: [])
     var cottonDailyNum: Int = 0
     var cottonHappyyNum: Int = 0
     private var homeCottonEntity = HomeCottonEntity(cottonCount: 0)
