@@ -121,6 +121,7 @@ enum ImageLiterals {
         static var toastRainbow: UIImage { .load(name: "toast_rainbow") }
         static var toastDelete: UIImage { .load(name: "toast_delete") }
         static var popover: UIImage { .load(name: "popover") }
+        static var popoverChallenge: UIImage { .load(name: "popover_challenge") }
         
     }
     

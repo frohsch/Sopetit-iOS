@@ -16,3 +16,4 @@ struct PatchRoutineEntity: Codable {
 
 struct DeleteDailyEntity: Codable {}
 struct DeleteChallengeEntity: Codable {}
+struct PatchChallengeEntity: Codable {}

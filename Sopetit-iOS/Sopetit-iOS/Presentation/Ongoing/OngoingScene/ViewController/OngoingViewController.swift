@@ -50,6 +50,9 @@ private extension OngoingViewController {
     func setDelegate() {
         ongoingView.dailyCollectionView.delegate = self
         ongoingView.dailyCollectionView.dataSource = self
+        ongoingView.challengeRoutineEmptyView.delegate = self
+        ongoingView.challengeRoutineCardView.delegate = self
+        ongoingView.delegate = self
     }
     
     func setRegister() {
@@ -66,23 +69,17 @@ private extension OngoingViewController {
     }
     
     func setAddTarget() {
-        ongoingView.routineEmptyView.addRoutineButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
-        ongoingView.challengeInfoButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+//        ongoingView.routineEmptyView.addRoutineButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+//        ongoingView.challengeInfoButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
         ongoingView.dailyInfoButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
         ongoingView.floatingButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
     }
     
     @objc func tapButton(_ sender: UIButton) {
         switch sender {
-        case ongoingView.routineEmptyView.addRoutineButton:
-            // TODO :-
-            print("TODO :- addRoutineButton tapped")
-            let vc = AddRoutineViewController()
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
-        case ongoingView.challengeInfoButton:
-            print("challengeInfoButton tapped")
-            challengeInfo()
+//        case ongoingView.challengeInfoButton:
+//            print("challengeInfoButton tapped")
+//            challengeInfo()
         case ongoingView.dailyInfoButton:
             popDailyInfo()
         case ongoingView.floatingButton:
@@ -109,7 +106,22 @@ private extension OngoingViewController {
         self.ongoingView.dailyInfoView.addGestureRecognizer(tapGestureRecognizer)
     }
     
-    func challengeInfo() {
+    func popChallengeInfo() {
+        self.ongoingView.addSubviews(self.ongoingView.dailyInfoView, self.ongoingView.challengeInfoImageView)
+        self.ongoingView.dailyInfoView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
+        self.ongoingView.challengeInfoImageView.snp.makeConstraints {
+            $0.top.equalTo(self.ongoingView.challengeInfoButton.snp.top)
+            $0.trailing.equalTo(self.ongoingView.challengeInfoButton.snp.trailing)
+        }
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapChallengeView(_:)))
+        
+        self.ongoingView.dailyInfoView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    func moreChallenge() {
         let nav = ChallengeBSViewController()
         nav.entity = challengeRoutine
         nav.modalPresentationStyle = .overFullScreen
@@ -119,9 +131,18 @@ private extension OngoingViewController {
     @objc func didTapView(_ sender: UITapGestureRecognizer) {
         closeDailyInfo()
     }
+    
+    @objc func didTapChallengeView(_ sender: UITapGestureRecognizer) {
+        closeChallengeInfo()
+    }
 
     func closeDailyInfo() {
         self.ongoingView.dailyInfoImageView.removeFromSuperview()
+        self.ongoingView.dailyInfoView.removeFromSuperview()
+    }
+    
+    func closeChallengeInfo() {
+        self.ongoingView.challengeInfoImageView.removeFromSuperview()
         self.ongoingView.dailyInfoView.removeFromSuperview()
     }
 }
@@ -170,7 +191,6 @@ extension OngoingViewController: UICollectionViewDelegateFlowLayout {
             return label
         }()
         let height = max(heightForView(text: label.text ?? "", font: label.font, width: SizeLiterals.Screen.screenWidth - 151), 24) + 32
-        
         
         return CGSize(width: SizeLiterals.Screen.screenWidth - 40, height: height)
     }
@@ -278,12 +298,48 @@ extension OngoingViewController {
             }
         }
     }
+    
+    func patchChallengeRoutine(routineId: Int) {
+        print("patchChallengeRoutine")
+        DailyRoutineService.shared.patchChallengeAPI(routineId: routineId) { networkResult in
+            switch networkResult {
+            case .success(let data):
+                if let data = data as? GenericResponse<PatchRoutineEntity> {
+                    print(data)
+                    
+                    self.getRainbowCottonView()
+                    if let listData = data.data {
+                        self.patchRoutineEntity = listData
+                    }
+//                    if self.patchRoutineEntity.hasCotton == true {
+//                        self.getCottonView()
+//                    } else {
+//                        if self.patchRoutineEntity.isAchieve == false {
+//                            self.setCancelToastView()
+//                        } else {
+//                            self.setNotCottonToastView()
+//                        }
+//                    }
+                }
+            case .requestErr, .serverErr:
+                break
+            default:
+                break
+            }
+        }
+    }
 }
 
 extension OngoingViewController {
     
     func getCottonView() {
         let vc = GetCottonViewController()
+        vc.modalPresentationStyle = UIModalPresentationStyle.overFullScreen
+        self.present(vc, animated: false)
+    }
+    
+    func getRainbowCottonView() {
+        let vc = GetRainbowCottonViewController()
         vc.modalPresentationStyle = UIModalPresentationStyle.overFullScreen
         self.present(vc, animated: false)
     }
@@ -346,5 +402,36 @@ extension OngoingViewController: CVCellDelegate {
 extension OngoingViewController: DeleteDailyProtocol {
     func deleteDailyRoutine() {
         getDailyRoutine(status: true)
+    }
+}
+
+extension OngoingViewController: AddRoutineProtocol {
+    func tapAddChallengeRoutine() {
+        let vc = AddRoutineViewController()
+        vc.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension OngoingViewController: ChallengeInfoProtocol {
+    func tapChallengeInfoButton() {
+        print("aaaa")
+        popChallengeInfo()
+    }
+}
+
+extension OngoingViewController: ChallengeCardProtocol {
+    func tapCompleteButton(routineId: Int) {
+        patchChallengeRoutine(routineId: routineId)
+    }
+    
+    func tapEllipsisButton() {
+        moreChallenge()
+    }
+}
+
+extension OngoingViewController: DeleteChallengeProtocol {
+    func deleteChallengeRoutine() {
+        getChallengeRoutine()
     }
 }

@@ -9,7 +9,13 @@ import UIKit
 
 import SnapKit
 
+protocol ChallengeInfoProtocol: AnyObject {
+    func tapChallengeInfoButton()
+}
+
 class OngoingView: UIView {
+    
+    weak var delegate: ChallengeInfoProtocol?
 
     private let dateView: UIView = {
         let view = UIView()
@@ -135,6 +141,12 @@ class OngoingView: UIView {
         return imageView
     }()
     
+    let challengeInfoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = ImageLiterals.DailyRoutine.popoverChallenge
+        return imageView
+    }()
+    
     // MARK: - Life Cycles
     
     override init(frame: CGRect) {
@@ -145,6 +157,7 @@ class OngoingView: UIView {
         setLayout()
         setDateLabel()
         setChallengeRoutineEmpty()
+        setAddTarget()
     }
     
     @available(*, unavailable)
@@ -246,6 +259,14 @@ private extension OngoingView {
         dateFormatter.dateFormat = "yyyy년 M월 d일"
         let formattedDate = dateFormatter.string(from: currentDate)
         dateLabel.text = formattedDate
+    }
+    
+    func setAddTarget() {
+        challengeInfoButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+    }
+    
+    @objc func tapButton() {
+        delegate?.tapChallengeInfoButton()
     }
 }
 

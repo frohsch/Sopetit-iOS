@@ -98,8 +98,7 @@ final class ChallengeBSViewController: UIViewController {
         button.backgroundColor = .Gray650
         button.setTitle("삭제하기", for: .normal)
         button.titleLabel?.font = .fontGuide(.body1)
-        button.setBackgroundColor(.Gray650, for: .normal)
-        button.setBackgroundColor(.Gray650, for: .selected)
+        button.setBackgroundColor(.Red200, for: .normal)
         button.layer.cornerRadius = 10
         return button
     }()
@@ -114,6 +113,7 @@ final class ChallengeBSViewController: UIViewController {
         setHierarchy()
         setLayout()
         setDismissAction()
+        setAddTarget()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -266,10 +266,10 @@ extension ChallengeBSViewController {
     
     @objc
     func tapDeleteButton() {
-        deleteRoutineListAPI(routineId: entity.routineId ?? 0)
+        deleteChallengeAPI(routineId: entity.routineId ?? 0)
     }
     
-    func deleteRoutineListAPI(routineId: Int) {
+    func deleteChallengeAPI(routineId: Int) {
         DailyRoutineService.shared.deleteChallengeAPI(routineId: routineId) { networkResult in
             print(networkResult)
             switch networkResult {

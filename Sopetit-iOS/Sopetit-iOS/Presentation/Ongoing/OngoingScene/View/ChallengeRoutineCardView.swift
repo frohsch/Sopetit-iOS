@@ -9,7 +9,16 @@ import UIKit
 
 import SnapKit
 
+protocol ChallengeCardProtocol: AnyObject {
+    func tapCompleteButton(routineId: Int)
+    func tapEllipsisButton()
+}
+
 class ChallengeRoutineCardView: UIView {
+    
+    weak var delegate: ChallengeCardProtocol?
+    
+    private var challengeRoutine: ChallengeRoutine = ChallengeRoutine(routineId: 0, themeId: 0, themeName: "", title: "", content: "", detailContent: "", place: "", timeTaken: "")
     
     private let themeImageView: UIImageView = {
         let imageView = UIImageView()
@@ -61,6 +70,7 @@ class ChallengeRoutineCardView: UIView {
         setUI()
         setHierarchy()
         setLayout()
+        setAddTarget()
     }
     
     @available(*, unavailable)
@@ -112,8 +122,7 @@ private extension ChallengeRoutineCardView {
         
         routineLabel.snp.makeConstraints {
             $0.top.equalTo(ellipsisButton.snp.bottom).offset(6)
-            $0.leading.equalToSuperview().inset(20)
-            $0.trailing.equalToSuperview().inset(35)
+            $0.leading.trailing.equalToSuperview().inset(20)
         }
         
         completeButton.snp.makeConstraints {
@@ -121,6 +130,22 @@ private extension ChallengeRoutineCardView {
             $0.bottom.equalToSuperview().inset(16)
             $0.width.equalTo(66)
             $0.height.equalTo(34)
+        }
+    }
+    
+    func setAddTarget() {
+        completeButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+        ellipsisButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+    }
+    
+    @objc func tapButton(_ sender: UIButton) {
+        switch sender {
+        case completeButton:
+            delegate?.tapCompleteButton(routineId: challengeRoutine.routineId ?? 0)
+        case ellipsisButton:
+            delegate?.tapEllipsisButton()
+        default:
+            break
         }
     }
 }

@@ -9,7 +9,13 @@ import UIKit
 
 import SnapKit
 
+protocol AddRoutineProtocol: AnyObject {
+    func tapAddChallengeRoutine()
+}
+
 class ChallengeRoutineEmptyView: UIView {
+    
+    weak var delegate: AddRoutineProtocol?
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -93,6 +99,7 @@ private extension ChallengeRoutineEmptyView {
         switch sender {
         case addRoutineButton:
             print("addRoutineButton tapped")
+            delegate?.tapAddChallengeRoutine()
         default:
             break
         }
