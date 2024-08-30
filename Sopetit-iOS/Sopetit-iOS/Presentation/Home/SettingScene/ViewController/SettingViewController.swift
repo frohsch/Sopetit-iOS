@@ -128,6 +128,9 @@ extension SettingViewController: UITableViewDelegate {
     }
     
     private func presentLogoutBottom() {
+        let nav = LogoutBSViewController()
+        nav.modalPresentationStyle = .overFullScreen
+        self.present(nav, animated: false)
     }
     
     private func pushWithdrawView() {
@@ -216,27 +219,6 @@ extension SettingViewController {
         customNaviBar.isTitleLabelIncluded = I18N.Setting.settingTitle
         customNaviBar.backgroundColor = .clear
         customNaviBar.delegate = self
-    }
-    
-    func postLogoutAPI() {
-        AuthService.shared.postLogoutAPI { networkResult in
-            switch networkResult {
-            case .success(let data):
-                if data is GenericResponse<LogoutEntity> {
-                    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                          let keyWindow = windowScene.windows.first else {
-                        return
-                    }
-                    UserManager.shared.clearAll()
-                    let nav = LoginViewController()
-                    keyWindow.rootViewController = UINavigationController(rootViewController: nav)
-                }
-            case .requestErr, .serverErr:
-                break
-            default:
-                break
-            }
-        }
     }
 }
 

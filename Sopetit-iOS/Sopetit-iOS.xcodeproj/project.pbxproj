@@ -136,6 +136,7 @@
 		A49706352C80C4BE008D2D57 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A49706342C80C4BD008D2D57 /* WebKit.framework */; };
 		A49706372C815C0F008D2D57 /* MakerDetailWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49706362C815C0F008D2D57 /* MakerDetailWebView.swift */; };
 		A49706392C815C35008D2D57 /* MakerDetailWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49706382C815C35008D2D57 /* MakerDetailWebViewController.swift */; };
+		A497063D2C81E1D1008D2D57 /* LogoutBSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A497063C2C81E1D1008D2D57 /* LogoutBSViewController.swift */; };
 		A49BFDD52B4D5F0800035EB6 /* StroyTellingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49BFDD42B4D5F0800035EB6 /* StroyTellingViewController.swift */; };
 		A49BFDD72B4D5F2800035EB6 /* StroyTellingFirstView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49BFDD62B4D5F2800035EB6 /* StroyTellingFirstView.swift */; };
 		A49BFDDA2B4D5F4600035EB6 /* StoryTellingSecondView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A49BFDD92B4D5F4600035EB6 /* StoryTellingSecondView.swift */; };
@@ -292,6 +293,7 @@
 		A49706342C80C4BD008D2D57 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		A49706362C815C0F008D2D57 /* MakerDetailWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakerDetailWebView.swift; sourceTree = "<group>"; };
 		A49706382C815C35008D2D57 /* MakerDetailWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakerDetailWebViewController.swift; sourceTree = "<group>"; };
+		A497063C2C81E1D1008D2D57 /* LogoutBSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutBSViewController.swift; sourceTree = "<group>"; };
 		A49BFDD42B4D5F0800035EB6 /* StroyTellingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StroyTellingViewController.swift; sourceTree = "<group>"; };
 		A49BFDD62B4D5F2800035EB6 /* StroyTellingFirstView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StroyTellingFirstView.swift; sourceTree = "<group>"; };
 		A49BFDD92B4D5F4600035EB6 /* StoryTellingSecondView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryTellingSecondView.swift; sourceTree = "<group>"; };
@@ -882,6 +884,7 @@
 			children = (
 				045DFE7A2B504E38005D69EA /* SettingViewController.swift */,
 				045DFE802B515FAE005D69EA /* WithdrawViewController.swift */,
+				A497063C2C81E1D1008D2D57 /* LogoutBSViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1445,6 +1448,7 @@
 				A42C32CF2B3EAB7700C4B477 /* UIColor+.swift in Sources */,
 				098DFCA32B567E500099063D /* HappinessMemberEntity.swift in Sources */,
 				A49BFDDA2B4D5F4600035EB6 /* StoryTellingSecondView.swift in Sources */,
+				A497063D2C81E1D1008D2D57 /* LogoutBSViewController.swift in Sources */,
 				A42C32F62B3EADE300C4B477 /* HomeEntity.swift in Sources */,
 				09BCA9F82C2A7761006E876D /* NewDailyRoutineHeaderView.swift in Sources */,
 				A42C327C2B3DB8F400C4B477 /* AppDelegate.swift in Sources */,
