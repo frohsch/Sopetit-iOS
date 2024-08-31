@@ -114,7 +114,7 @@ extension DailyRoutineService {
     }
     
     func patchChallengeAPI(routineId: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
-        let url = URLConstant.happinessMemberRoutineURL + "/\(routineId)"
+        let url = URLConstant.happinessMemberRoutineURL + "\(routineId)"
         let header: HTTPHeaders = NetworkConstant.hasTokenHeader
         let dataRequest = AF.request(url,
                                      method: .patch,

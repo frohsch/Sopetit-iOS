@@ -53,6 +53,7 @@ private extension OngoingViewController {
         ongoingView.challengeRoutineEmptyView.delegate = self
         ongoingView.challengeRoutineCardView.delegate = self
         ongoingView.delegate = self
+        
     }
     
     func setRegister() {
@@ -128,6 +129,7 @@ private extension OngoingViewController {
     func moreChallenge() {
         let nav = ChallengeBSViewController()
         nav.entity = challengeRoutine
+        nav.delegate = self
         nav.modalPresentationStyle = .overFullScreen
         self.present(nav, animated: false)
     }
@@ -304,26 +306,15 @@ extension OngoingViewController {
     }
     
     func patchChallengeRoutine(routineId: Int) {
-        print("patchChallengeRoutine")
         DailyRoutineService.shared.patchChallengeAPI(routineId: routineId) { networkResult in
+            print(networkResult)
             switch networkResult {
             case .success(let data):
-                if let data = data as? GenericResponse<PatchRoutineEntity> {
-                    print(data)
-                    
+                if let data = data as? GenericResponse<PatchChallengeEntity> {
                     self.getRainbowCottonView()
-                    if let listData = data.data {
-                        self.patchRoutineEntity = listData
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                        self.ongoingView.setChallengeRoutineEmpty()
                     }
-//                    if self.patchRoutineEntity.hasCotton == true {
-//                        self.getCottonView()
-//                    } else {
-//                        if self.patchRoutineEntity.isAchieve == false {
-//                            self.setCancelToastView()
-//                        } else {
-//                            self.setNotCottonToastView()
-//                        }
-//                    }
                 }
             case .requestErr, .serverErr:
                 break
@@ -384,6 +375,17 @@ extension OngoingViewController {
             self.ongoingView.deleteToastImageView.alpha = 1})
     }
     
+    func setDeleteChallengeToastView() {
+        self.ongoingView.addSubviews(ongoingView.deleteToastChallengeImageView)
+        self.ongoingView.bringSubviewToFront(self.ongoingView.deleteToastChallengeImageView)
+        self.ongoingView.deleteToastChallengeImageView.snp.makeConstraints {
+            $0.centerX.equalToSuperview()
+            $0.bottom.equalTo(self.ongoingView.safeAreaLayoutGuide).inset(24)
+        }
+        
+        UIView.animate(withDuration: 0.5, delay: 1, animations: {self.ongoingView.deleteToastChallengeImageView.alpha = 0}, completion: {_ in self.ongoingView.deleteToastChallengeImageView.removeFromSuperview()
+            self.ongoingView.deleteToastChallengeImageView.alpha = 1})
+    }
 }
 
 extension OngoingViewController: CVCellDelegate {
@@ -425,8 +427,8 @@ extension OngoingViewController: ChallengeInfoProtocol {
 }
 
 extension OngoingViewController: ChallengeCardProtocol {
-    func tapCompleteButton(routineId: Int) {
-        patchChallengeRoutine(routineId: routineId)
+    func tapCompleteButton() {
+        patchChallengeRoutine(routineId: challengeRoutine.routineId)
     }
     
     func tapEllipsisButton() {
@@ -436,6 +438,7 @@ extension OngoingViewController: ChallengeCardProtocol {
 
 extension OngoingViewController: DeleteChallengeProtocol {
     func deleteChallengeRoutine() {
-        getChallengeRoutine()
+        self.ongoingView.setChallengeRoutineEmpty()
+        self.setDeleteChallengeToastView()
     }
 }
