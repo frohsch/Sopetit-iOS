@@ -122,7 +122,8 @@ private extension ChallengeRoutineCardView {
         
         routineLabel.snp.makeConstraints {
             $0.top.equalTo(ellipsisButton.snp.bottom).offset(6)
-            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.leading.equalToSuperview().inset(20)
+            $0.trailing.equalToSuperview().inset(35)
         }
         
         completeButton.snp.makeConstraints {
@@ -166,8 +167,9 @@ extension ChallengeRoutineCardView {
         self.themeImageView.image = UIImage(named: "theme\(data.themeId)") ?? UIImage()
         self.cardImageView.image = UIImage(named: "challenge-\(data.themeId)") ?? UIImage()
         self.themeLabel.text = data.themeName
-        self.routineLabel.text = data.content
-        let height = max(heightForView(text: data.content, font: .fontGuide(.body2), width: SizeLiterals.Screen.screenWidth - 80), 40)
+        self.routineLabel.text = data.content.replacingOccurrences(of: "\n", with: " ")
+        self.routineLabel.asLineHeight(.body2)
+        let height = min(heightForView(text: data.content, font: .fontGuide(.body2), width: SizeLiterals.Screen.screenWidth - 95), 40)
         self.snp.remakeConstraints {
             $0.height.equalTo(height + 114)
         }

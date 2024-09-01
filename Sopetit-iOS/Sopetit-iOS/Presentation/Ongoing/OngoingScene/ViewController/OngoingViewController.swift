@@ -7,6 +7,8 @@
 
 import UIKit
 
+import SnapKit
+
 class OngoingViewController: UIViewController {
     
     private var challengeRoutine = ChallengeRoutine(routineId: 0, themeId: 0, themeName: "", title: "", content: "", detailContent: "", place: "", timeTaken: "")
@@ -20,6 +22,7 @@ class OngoingViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
         getDailyRoutine(status: false)
         getChallengeRoutine()
     }
@@ -70,7 +73,7 @@ private extension OngoingViewController {
     }
     
     func setAddTarget() {
-//        ongoingView.routineEmptyView.addRoutineButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+        ongoingView.routineEmptyView.addRoutineButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
 //        ongoingView.challengeInfoButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
         ongoingView.dailyInfoButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
         ongoingView.floatingButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
@@ -79,7 +82,6 @@ private extension OngoingViewController {
     @objc func tapButton(_ sender: UIButton) {
         switch sender {
         case ongoingView.routineEmptyView.addRoutineButton:
-            print("addRoutineButton tapped")
             let vc = AddRoutineViewController()
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
@@ -196,7 +198,7 @@ extension OngoingViewController: UICollectionViewDelegateFlowLayout {
             label.font = .fontGuide(.body2)
             return label
         }()
-        let height = max(heightForView(text: label.text ?? "", font: label.font, width: SizeLiterals.Screen.screenWidth - 151), 24) + 32
+        let height = max(heightForView(text: label.text ?? "", font: label.font, width: SizeLiterals.Screen.screenWidth - 151), 24) + 50
         
         return CGSize(width: SizeLiterals.Screen.screenWidth - 40, height: height)
     }
@@ -217,7 +219,7 @@ extension OngoingViewController: UICollectionViewDelegateFlowLayout {
         
         for i in texts.routines {
             for j in i.routines {
-                let textHeight = heightForView(text: j.content, font: .fontGuide(.body2), width: SizeLiterals.Screen.screenWidth - 151) + 36
+                let textHeight = heightForView(text: j.content, font: .fontGuide(.body2), width: SizeLiterals.Screen.screenWidth - 151) + 50
                 height += textHeight
             }
             height += 18
@@ -309,12 +311,10 @@ extension OngoingViewController {
         DailyRoutineService.shared.patchChallengeAPI(routineId: routineId) { networkResult in
             print(networkResult)
             switch networkResult {
-            case .success(let data):
-                if let data = data as? GenericResponse<PatchChallengeEntity> {
-                    self.getRainbowCottonView()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                        self.ongoingView.setChallengeRoutineEmpty()
-                    }
+            case .success:
+                self.getRainbowCottonView()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                    self.ongoingView.setChallengeRoutineEmpty()
                 }
             case .requestErr, .serverErr:
                 break
