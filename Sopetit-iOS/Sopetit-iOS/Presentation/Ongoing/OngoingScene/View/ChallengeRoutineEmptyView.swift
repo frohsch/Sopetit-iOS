@@ -9,7 +9,13 @@ import UIKit
 
 import SnapKit
 
+protocol AddRoutineProtocol: AnyObject {
+    func tapAddChallengeRoutine()
+}
+
 class ChallengeRoutineEmptyView: UIView {
+    
+    weak var delegate: AddRoutineProtocol?
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -86,15 +92,22 @@ private extension ChallengeRoutineEmptyView {
     
     func setAddTarget() {
         addRoutineButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
+        self.addGestureRecognizer(tapGesture)
     }
     
     @objc
     func tapButton(_ sender: UIButton) {
         switch sender {
         case addRoutineButton:
-            print("addRoutineButton tapped")
+            delegate?.tapAddChallengeRoutine()
         default:
             break
         }
+    }
+    
+    @objc
+    func viewTapped() {
+        delegate?.tapAddChallengeRoutine()
     }
 }

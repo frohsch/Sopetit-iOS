@@ -107,4 +107,32 @@ extension UIColor {
     static var Pink50: UIColor {
         return UIColor(hex: "#F9EAEC")
     }
+    
+    static var Pink100: UIColor {
+        return UIColor(hex: "#FFAAB2")
+    }
+    
+    static var Orange50: UIColor {
+        return UIColor(hex: "#FFEED4")
+    }
+    
+    static var Yellow50: UIColor {
+        return UIColor(hex: "#FFF7D5")
+    }
+    
+    static var Green50: UIColor {
+        return UIColor(hex: "#DAF3DE")
+    }
+    
+    static var Sky50: UIColor {
+        return UIColor(hex: "#E0F2FF")
+    }
+    
+    static var Blue50: UIColor {
+        return UIColor(hex: "#E1EAFF")
+    }
+    
+    static var Purple50: UIColor {
+        return UIColor(hex: "#E5E1FF")
+    }
 }

@@ -47,6 +47,10 @@
 		098DFCA72B57EA770099063D /* AddDailyRoutineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098DFCA62B57EA770099063D /* AddDailyRoutineService.swift */; };
 		098DFCAB2B580A1A0099063D /* DailyRoutinesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098DFCAA2B580A1A0099063D /* DailyRoutinesEntity.swift */; };
 		09A342CC2C6E865700F52C81 /* DailyRoutineService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A342CB2C6E865700F52C81 /* DailyRoutineService.swift */; };
+		09A9F91F2C804E3500FE5836 /* GetRainbowCottonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A9F91E2C804E3500FE5836 /* GetRainbowCottonViewController.swift */; };
+		09A9F9212C804FB400FE5836 /* GetRainbowCottonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A9F9202C804FB400FE5836 /* GetRainbowCottonView.swift */; };
+		09A9F9292C81448800FE5836 /* DailyBSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A9F9282C81448800FE5836 /* DailyBSViewController.swift */; };
+		09A9F92B2C81588E00FE5836 /* ChallengeBSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A9F92A2C81588E00FE5836 /* ChallengeBSViewController.swift */; };
 		09BCA9F02C2A76BD006E876D /* NewDailyRoutineEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BCA9EF2C2A76BD006E876D /* NewDailyRoutineEntity.swift */; };
 		09BCA9F22C2A76CE006E876D /* ChallengeRoutine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BCA9F12C2A76CE006E876D /* ChallengeRoutine.swift */; };
 		09BCA9F42C2A7741006E876D /* RoutineEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BCA9F32C2A7741006E876D /* RoutineEmptyView.swift */; };
@@ -206,6 +210,10 @@
 		098DFCA62B57EA770099063D /* AddDailyRoutineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDailyRoutineService.swift; sourceTree = "<group>"; };
 		098DFCAA2B580A1A0099063D /* DailyRoutinesEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRoutinesEntity.swift; sourceTree = "<group>"; };
 		09A342CB2C6E865700F52C81 /* DailyRoutineService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRoutineService.swift; sourceTree = "<group>"; };
+		09A9F91E2C804E3500FE5836 /* GetRainbowCottonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRainbowCottonViewController.swift; sourceTree = "<group>"; };
+		09A9F9202C804FB400FE5836 /* GetRainbowCottonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRainbowCottonView.swift; sourceTree = "<group>"; };
+		09A9F9282C81448800FE5836 /* DailyBSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBSViewController.swift; sourceTree = "<group>"; };
+		09A9F92A2C81588E00FE5836 /* ChallengeBSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeBSViewController.swift; sourceTree = "<group>"; };
 		09BCA9EF2C2A76BD006E876D /* NewDailyRoutineEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDailyRoutineEntity.swift; sourceTree = "<group>"; };
 		09BCA9F12C2A76CE006E876D /* ChallengeRoutine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeRoutine.swift; sourceTree = "<group>"; };
 		09BCA9F32C2A7741006E876D /* RoutineEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineEmptyView.swift; sourceTree = "<group>"; };
@@ -1031,6 +1039,9 @@
 			children = (
 				A4648BA12C04348E001EB031 /* OngoingViewController.swift */,
 				09BCAA012C2A7C79006E876D /* GetCottonViewController.swift */,
+				09A9F91E2C804E3500FE5836 /* GetRainbowCottonViewController.swift */,
+				09A9F9282C81448800FE5836 /* DailyBSViewController.swift */,
+				09A9F92A2C81588E00FE5836 /* ChallengeBSViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -1044,6 +1055,7 @@
 				09BCA9F72C2A7761006E876D /* NewDailyRoutineHeaderView.swift */,
 				09BCA9F92C2A7773006E876D /* ChallengeRoutineCardView.swift */,
 				09BCAA032C2A7D6F006E876D /* GetCottonView.swift */,
+				09A9F9202C804FB400FE5836 /* GetRainbowCottonView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1446,6 +1458,7 @@
 				09BCA9F22C2A76CE006E876D /* ChallengeRoutine.swift in Sources */,
 				A42C32B92B3EAAE300C4B477 /* ColorLiterals.swift in Sources */,
 				A42C32A72B3EA9BF00C4B477 /* UserDefaultWrapper.swift in Sources */,
+				09A9F9292C81448800FE5836 /* DailyBSViewController.swift in Sources */,
 				A4648BA42C0434A9001EB031 /* AddRoutineViewController.swift in Sources */,
 				A42C32CB2B3EAB4B00C4B477 /* NSObject+.swift in Sources */,
 				A42C32CF2B3EAB7700C4B477 /* UIColor+.swift in Sources */,
@@ -1466,6 +1479,7 @@
 				004029062B4EDCF6002127BC /* ActionCollectionViewCell.swift in Sources */,
 				A42C32C72B3EAB3B00C4B477 /* UIViewController+.swift in Sources */,
 				A42C32C32B3EAB2400C4B477 /* UITextField+.swift in Sources */,
+				09A9F9212C804FB400FE5836 /* GetRainbowCottonView.swift in Sources */,
 				A42C32BF2B3EAB0E00C4B477 /* UIImage+.swift in Sources */,
 				098DFCA52B568A010099063D /* HappinessRoutineIdEntity.swift in Sources */,
 				A42C33002B3EAE3E00C4B477 /* HomeService.swift in Sources */,
@@ -1487,6 +1501,7 @@
 				0084F19D2B4A896500F87860 /* LoginViewController.swift in Sources */,
 				A4648B9C2C043387001EB031 /* AchieveViewController.swift in Sources */,
 				A4D9F6EB2C5D2F8C00A9F719 /* TutorialView.swift in Sources */,
+				09A9F91F2C804E3500FE5836 /* GetRainbowCottonViewController.swift in Sources */,
 				A49BFDF22B4DA53A00035EB6 /* ThemeSelectEntity.swift in Sources */,
 				A49BFDE92B4D873400035EB6 /* DollChoiceCollectionViewCell.swift in Sources */,
 				00CCDCC22B51B5AF007DD0E6 /* SplashOneView.swift in Sources */,
@@ -1507,6 +1522,7 @@
 				A42C32E72B3EAC9500C4B477 /* NetworkConstant.swift in Sources */,
 				09BCAA002C2A783C006E876D /* CustomButton.swift in Sources */,
 				A49706412C820825008D2D57 /* AddRoutineMenuStickyView.swift in Sources */,
+				09A9F92B2C81588E00FE5836 /* ChallengeBSViewController.swift in Sources */,
 				0084F19B2B4A895700F87860 /* LoginView.swift in Sources */,
 				095903B62B5487E600D0AF39 /* HappinessThemesEntity.swift in Sources */,
 				A40F9F452C6F0E05004DD1A1 /* EmptyEntity.swift in Sources */,

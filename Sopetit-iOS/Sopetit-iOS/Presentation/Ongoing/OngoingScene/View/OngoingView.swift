@@ -9,7 +9,13 @@ import UIKit
 
 import SnapKit
 
+protocol ChallengeInfoProtocol: AnyObject {
+    func tapChallengeInfoButton()
+}
+
 class OngoingView: UIView {
+    
+    weak var delegate: ChallengeInfoProtocol?
 
     private let dateView: UIView = {
         let view = UIView()
@@ -91,7 +97,7 @@ class OngoingView: UIView {
 
         collectionView.showsVerticalScrollIndicator = false
         collectionView.collectionViewLayout = layout
-        collectionView.backgroundColor = .Gray50
+        collectionView.backgroundColor = .clear
         return collectionView
     }()
     
@@ -105,6 +111,48 @@ class OngoingView: UIView {
         return button
     }()
     
+    let cancelToastImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = ImageLiterals.DailyRoutine.toastCancel
+        return imageView
+    }()
+    
+    let notCottonToastImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = ImageLiterals.DailyRoutine.toastNotCotton
+        return imageView
+    }()
+    
+    let deleteToastImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = ImageLiterals.DailyRoutine.toastDelete
+        return imageView
+    }()
+    
+    let dailyInfoView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .Gray950
+        return view
+    }()
+    
+    let dailyInfoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = ImageLiterals.DailyRoutine.popover
+        return imageView
+    }()
+    
+    let challengeInfoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = ImageLiterals.DailyRoutine.popoverChallenge
+        return imageView
+    }()
+    
+    let deleteToastChallengeImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = ImageLiterals.DailyRoutine.toastChallengeDelete
+        return imageView
+    }()
+    
     // MARK: - Life Cycles
     
     override init(frame: CGRect) {
@@ -114,6 +162,8 @@ class OngoingView: UIView {
         setHierarchy()
         setLayout()
         setDateLabel()
+        setChallengeRoutineEmpty()
+        setAddTarget()
     }
     
     @available(*, unavailable)
@@ -132,7 +182,7 @@ private extension OngoingView {
         dateView.addSubview(dateLabel)
         self.scrollView.addSubviews(dailyContentView)
         
-        self.dailyContentView.addSubviews(challengeTitleLabel, challengeInfoButton, challengeRoutineCardView, divisionView, dailyTitleLabel, dailyInfoButton, dailyCollectionView
+        self.dailyContentView.addSubviews(divisionView, dailyTitleLabel, dailyInfoButton, dailyCollectionView
         )
     }
     
@@ -157,30 +207,6 @@ private extension OngoingView {
         dailyContentView.snp.makeConstraints {
             $0.edges.equalTo(scrollView)
             $0.width.equalTo(scrollView.snp.width)
-        }
-        
-        challengeTitleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(4)
-            $0.leading.equalToSuperview().inset(20)
-            $0.height.equalTo(20)
-        }
-        
-        challengeInfoButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(20)
-            $0.centerY.equalTo(challengeTitleLabel.snp.centerY)
-            $0.size.equalTo(20)
-        }
-        
-        challengeRoutineCardView.snp.makeConstraints {
-            $0.top.equalTo(challengeTitleLabel.snp.bottom).offset(16)
-            $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
-        }
-        
-        divisionView.snp.makeConstraints {
-            $0.top.equalTo(challengeRoutineCardView.snp.bottom).offset(16)
-            $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(2)
         }
         
         dailyTitleLabel.snp.makeConstraints {
@@ -216,11 +242,20 @@ private extension OngoingView {
         let formattedDate = dateFormatter.string(from: currentDate)
         dateLabel.text = formattedDate
     }
+    
+    func setAddTarget() {
+        challengeInfoButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+    }
+    
+    @objc func tapButton() {
+        delegate?.tapChallengeInfoButton()
+    }
 }
 
 extension OngoingView {
     
     func setChallengeRoutineEmpty() {
+        print("setChallengeRoutineEmpty")
         self.challengeTitleLabel.removeFromSuperview()
         self.challengeInfoButton.removeFromSuperview()
         self.challengeRoutineCardView.removeFromSuperview()
@@ -285,8 +320,7 @@ extension OngoingView {
         self.addSubviews(scrollView, floatingButton)
         self.scrollView.addSubviews(dailyContentView)
         
-        self.dailyContentView.addSubviews(challengeTitleLabel, challengeInfoButton, challengeRoutineCardView, divisionView, dailyTitleLabel, dailyInfoButton, dailyCollectionView
-        )
+        self.dailyContentView.addSubviews(divisionView, dailyTitleLabel, dailyInfoButton, dailyCollectionView)
         
         scrollView.snp.makeConstraints {
             $0.top.equalTo(dateView.snp.bottom)
@@ -297,30 +331,6 @@ extension OngoingView {
         dailyContentView.snp.makeConstraints {
             $0.edges.equalTo(scrollView)
             $0.width.equalTo(scrollView.snp.width)
-        }
-        
-        challengeTitleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(4)
-            $0.leading.equalToSuperview().inset(20)
-            $0.height.equalTo(20)
-        }
-        
-        challengeInfoButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(20)
-            $0.centerY.equalTo(challengeTitleLabel.snp.centerY)
-            $0.size.equalTo(20)
-        }
-        
-        challengeRoutineCardView.snp.makeConstraints {
-            $0.top.equalTo(challengeTitleLabel.snp.bottom).offset(16)
-            $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
-        }
-        
-        divisionView.snp.makeConstraints {
-            $0.top.equalTo(challengeRoutineCardView.snp.bottom).offset(16)
-            $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(2)
         }
         
         dailyTitleLabel.snp.makeConstraints {

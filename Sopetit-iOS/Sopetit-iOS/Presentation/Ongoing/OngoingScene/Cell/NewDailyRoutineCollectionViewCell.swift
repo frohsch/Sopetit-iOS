@@ -7,6 +7,7 @@
 
 protocol CVCellDelegate {
     func selectedRadioButton(_ index: Int)
+    func tapEllipsisButton(model: DailyRoutinev2)
 }
 
 import UIKit
@@ -18,6 +19,7 @@ final class NewDailyRoutineCollectionViewCell: UICollectionViewCell, UICollectio
     var delegate: CVCellDelegate?
     
     private var index: Int = 0
+    private var routine = DailyRoutinev2(routineId: 0, content: "", achieveCount: 0, isAchieve: false)
     
     var isEditing: Bool = false {
         didSet {
@@ -96,7 +98,6 @@ final class NewDailyRoutineCollectionViewCell: UICollectionViewCell, UICollectio
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        radioButton.isHidden = true
         radioButton.setImage(ImageLiterals.DailyRoutine.btnRadiobtnNone, for: .normal)
     }
     
@@ -152,6 +153,9 @@ private extension NewDailyRoutineCollectionViewCell {
             }
         case ellipsisButton:
             print("ellipsisButton tapped")
+            if let delegate = delegate {
+                delegate.tapEllipsisButton(model: routine)
+            }
         default:
             break
         }
@@ -161,6 +165,7 @@ private extension NewDailyRoutineCollectionViewCell {
 extension NewDailyRoutineCollectionViewCell {
     
     func setDataBind(routine: DailyRoutinev2) {
+        self.routine = routine
         self.index = routine.routineId
         routineLabel.text = routine.content
         routineLabel.setTextWithLineHeight(text: routine.content, lineHeight: 20)

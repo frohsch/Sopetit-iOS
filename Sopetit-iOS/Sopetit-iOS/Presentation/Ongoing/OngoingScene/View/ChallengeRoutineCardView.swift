@@ -9,7 +9,16 @@ import UIKit
 
 import SnapKit
 
+protocol ChallengeCardProtocol: AnyObject {
+    func tapCompleteButton()
+    func tapEllipsisButton()
+}
+
 class ChallengeRoutineCardView: UIView {
+    
+    weak var delegate: ChallengeCardProtocol?
+    
+    private var challengeRoutine: ChallengeRoutine = ChallengeRoutine(routineId: 0, themeId: 0, themeName: "", title: "", content: "", detailContent: "", place: "", timeTaken: "")
     
     private let themeImageView: UIImageView = {
         let imageView = UIImageView()
@@ -61,6 +70,7 @@ class ChallengeRoutineCardView: UIView {
         setUI()
         setHierarchy()
         setLayout()
+        setAddTarget()
     }
     
     @available(*, unavailable)
@@ -107,21 +117,47 @@ private extension ChallengeRoutineCardView {
         ellipsisButton.snp.makeConstraints {
             $0.top.equalToSuperview().inset(16)
             $0.trailing.equalToSuperview().inset(20)
-            $0.size.equalTo(24)
+            $0.size.equalTo(38)
         }
         
         routineLabel.snp.makeConstraints {
             $0.top.equalTo(ellipsisButton.snp.bottom).offset(6)
-            $0.leading.equalToSuperview().inset(20)
-            $0.trailing.equalToSuperview().inset(35)
+            $0.leading.trailing.equalToSuperview().inset(20)
         }
         
         completeButton.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(20)
-            $0.bottom.equalToSuperview().inset(16)
+            $0.bottom.equalToSuperview().inset(12)
             $0.width.equalTo(66)
             $0.height.equalTo(34)
         }
+    }
+    
+    func setAddTarget() {
+        completeButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+        ellipsisButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+    }
+    
+    @objc func tapButton(_ sender: UIButton) {
+        switch sender {
+        case completeButton:
+            delegate?.tapCompleteButton()
+        case ellipsisButton:
+            delegate?.tapEllipsisButton()
+        default:
+            break
+        }
+    }
+    
+    func heightForView(text: String, font: UIFont, width: CGFloat) -> CGFloat {
+        let label: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: width, height: CGFloat.greatestFiniteMagnitude))
+        label.numberOfLines = 0
+        label.lineBreakMode = NSLineBreakMode.byWordWrapping
+        label.font = font
+        label.text = text
+        label.setTextWithLineHeight(text: label.text, lineHeight: 20)
+        label.sizeToFit()
+        return label.frame.height
     }
 }
 
@@ -131,5 +167,9 @@ extension ChallengeRoutineCardView {
         self.cardImageView.image = UIImage(named: "challenge-\(data.themeId)") ?? UIImage()
         self.themeLabel.text = data.themeName
         self.routineLabel.text = data.content
+        let height = max(heightForView(text: data.content, font: .fontGuide(.body2), width: SizeLiterals.Screen.screenWidth - 80), 40)
+        self.snp.remakeConstraints {
+            $0.height.equalTo(height + 114)
+        }
     }
 }
