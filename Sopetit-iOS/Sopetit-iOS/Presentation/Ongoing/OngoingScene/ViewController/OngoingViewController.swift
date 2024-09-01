@@ -224,7 +224,7 @@ extension OngoingViewController: UICollectionViewDelegateFlowLayout {
             }
             height += 18
         }
-        height += Double(16 * (texts.routines.count - 1) + 54)
+        height += Double(16 * (texts.routines.count - 1) + 108)
         ongoingView.dailyCollectionView.snp.remakeConstraints {
             $0.height.equalTo(height)
             $0.top.equalTo(ongoingView.dailyTitleLabel.snp.bottom).offset(12)

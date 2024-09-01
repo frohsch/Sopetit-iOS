@@ -95,10 +95,10 @@ class OngoingView: UIView {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
         collectionView.isScrollEnabled = false
         collectionView.scrollsToTop = false
-
         collectionView.showsVerticalScrollIndicator = false
         collectionView.collectionViewLayout = layout
         collectionView.backgroundColor = .clear
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 54, right: 0)
         return collectionView
     }()
     
