@@ -209,15 +209,10 @@ extension DailyBSViewController {
     
     func deleteRoutineListAPI(routineId: Int) {
         DailyRoutineService.shared.deleteRoutineListAPI(routineIdList: "\(routineId)") { networkResult in
-            print(networkResult)
             switch networkResult {
-            case .success(let data):
+            case .success:
                 self.dismiss(animated: false)
                 self.delegate?.deleteDailyRoutine()
-                if let data = data as? GenericResponse<DeleteDailyEntity> {
-                    if let listData = data.data {
-                    }
-                }
             case .requestErr, .serverErr:
                 break
             default:
