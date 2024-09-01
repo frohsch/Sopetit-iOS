@@ -17,7 +17,7 @@ final class RoutineChoiceCollectionViewCell: UICollectionViewCell, UICollectionV
     
     override var isSelected: Bool {
         didSet {
-            routineChoiceButton.isSelected = isSelected
+            routineChoiceButton.image = UIImage(resource: isSelected ? .btnCheck : .btnAdd)
         }
     }
     
@@ -42,12 +42,7 @@ final class RoutineChoiceCollectionViewCell: UICollectionViewCell, UICollectionV
         return label
     }()
     
-    private let routineChoiceButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(resource: .btnAdd), for: .normal)
-        button.setImage(UIImage(resource: .btnCheck), for: .selected)
-        return button
-    }()
+    private let routineChoiceButton = UIImageView(image: UIImage(resource: .btnAdd))
     
     // MARK: - Life Cycles
     
