@@ -38,8 +38,10 @@ final class NewDailyRoutineCollectionViewCell: UICollectionViewCell, UICollectio
         didSet {
             switch isRadioButton {
             case true:
+                routineLabel.textColor = .Gray400
                 radioButton.setImage(ImageLiterals.DailyRoutine.btnCheck, for: .normal)
             case false:
+                routineLabel.textColor = .Gray700
                 radioButton.setImage(ImageLiterals.DailyRoutine.btnRadiobtnNone, for: .normal)
             }
         }
