@@ -12,6 +12,8 @@ protocol CVCellDelegate {
 
 import UIKit
 
+import SnapKit
+
 final class NewDailyRoutineCollectionViewCell: UICollectionViewCell, UICollectionViewRegisterable {
 
     static let isFromNib: Bool = false
@@ -79,7 +81,7 @@ final class NewDailyRoutineCollectionViewCell: UICollectionViewCell, UICollectio
     
     let ellipsisButton: CustomButton = {
         let button = CustomButton()
-        button.setImage(ImageLiterals.ActiveRoutine.icnMore, for: .normal)
+        button.setImage(UIImage(resource: .icMore), for: .normal)
         return button
     }()
     

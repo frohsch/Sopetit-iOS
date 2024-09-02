@@ -34,7 +34,7 @@ class ChallengeRoutineCardView: UIView {
     
     let ellipsisButton: UIButton = {
         let button = UIButton()
-        button.setImage(ImageLiterals.ActiveRoutine.icnMore, for: .normal)
+        button.setImage(UIImage(resource: .icMore), for: .normal)
         return button
     }()
     
@@ -117,7 +117,7 @@ private extension ChallengeRoutineCardView {
         ellipsisButton.snp.makeConstraints {
             $0.top.equalToSuperview().inset(16)
             $0.trailing.equalToSuperview().inset(20)
-            $0.size.equalTo(38)
+            $0.size.equalTo(24)
         }
         
         routineLabel.snp.makeConstraints {
