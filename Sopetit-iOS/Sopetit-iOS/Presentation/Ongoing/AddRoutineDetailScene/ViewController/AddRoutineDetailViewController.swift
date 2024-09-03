@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import FirebaseAnalytics
 
 final class AddRoutineDetailViewController: UIViewController {
     
@@ -332,6 +333,7 @@ extension AddRoutineDetailViewController {
         AddDailyRoutineService.shared.postAddChallenge(subRoutineId: id) { networkResult in
             switch networkResult {
             case .success:
+                Analytics.logEvent("add_challenge", parameters: nil)
                 self.dismiss(animated: false)
                 self.navigationController?.popToRootViewController(animated: true)
             case .reissue:

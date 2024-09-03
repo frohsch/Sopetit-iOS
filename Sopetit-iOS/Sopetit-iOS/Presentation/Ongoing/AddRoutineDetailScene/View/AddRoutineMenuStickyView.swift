@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import FirebaseAnalytics
 
 final class AddRoutineMenuStickyView: UIView {
     
@@ -207,6 +208,9 @@ extension AddRoutineMenuStickyView {
         }
         dailyUnderLine.isHidden = dailyTapped ? false : true
         challengeUnderLine.isHidden = dailyTapped ? true : false
+        if !dailyTapped {
+            Analytics.logEvent("click_challenge", parameters: nil)
+        }
     }
     
     func setCountDataBind(cnt: Int,
