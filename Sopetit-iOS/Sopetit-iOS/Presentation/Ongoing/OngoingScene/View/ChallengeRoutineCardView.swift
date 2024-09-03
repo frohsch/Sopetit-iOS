@@ -59,6 +59,7 @@ class ChallengeRoutineCardView: UIView {
     
     let cardImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -169,9 +170,9 @@ extension ChallengeRoutineCardView {
         self.themeLabel.text = data.themeName
         self.routineLabel.text = data.content.replacingOccurrences(of: "\n", with: " ")
         self.routineLabel.asLineHeight(.body2)
-        let height = min(heightForView(text: data.content, font: .fontGuide(.body2), width: SizeLiterals.Screen.screenWidth - 95), 40)
+        let height = heightForView(text: data.content, font: .fontGuide(.body2), width: SizeLiterals.Screen.screenWidth - 95) - 20
         self.snp.remakeConstraints {
-            $0.height.equalTo(height + 114)
+            $0.height.equalTo(height + 102)
         }
     }
 }
