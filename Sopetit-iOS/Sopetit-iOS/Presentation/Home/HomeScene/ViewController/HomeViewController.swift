@@ -125,6 +125,7 @@ extension HomeViewController {
                     if let listData = data.data {
                         self.homeEntity = listData
                     }
+                    self.homeView.bubbleLabelList = self.homeEntity.conversations
                     self.cottonDailyNum = self.homeEntity.dailyCottonCount
                     self.cottonHappyyNum = self.homeEntity.happinessCottonCount
                     self.setDataBind(model: self.homeEntity)
