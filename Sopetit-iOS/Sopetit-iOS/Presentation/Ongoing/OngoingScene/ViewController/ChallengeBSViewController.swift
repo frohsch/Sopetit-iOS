@@ -19,7 +19,7 @@ final class ChallengeBSViewController: UIViewController {
     
     weak var delegate: DeleteChallengeProtocol?
     
-    var bottomHeight: CGFloat = SizeLiterals.Screen.screenHeight * 412 / 812
+    var bottomHeight: CGFloat = 430
     var height: CGFloat = 0
     var entity: ChallengeRoutine = ChallengeRoutine(routineId: 0, themeId: 0, themeName: "", title: "", content: "", detailContent: "", place: "", timeTaken: "")
     
@@ -266,20 +266,16 @@ extension ChallengeBSViewController {
     
     @objc
     func tapDeleteButton() {
-        deleteChallengeAPI(routineId: entity.routineId ?? 0)
+        deleteChallengeAPI(routineId: entity.routineId)
     }
     
     func deleteChallengeAPI(routineId: Int) {
         DailyRoutineService.shared.deleteChallengeAPI(routineId: routineId) { networkResult in
             print(networkResult)
             switch networkResult {
-            case .success(let data):
+            case .success:
                 self.dismiss(animated: false)
                 self.delegate?.deleteChallengeRoutine()
-                if let data = data as? GenericResponse<DeleteChallengeEntity> {
-                    if let listData = data.data {
-                    }
-                }
             case .requestErr, .serverErr:
                 break
             default:

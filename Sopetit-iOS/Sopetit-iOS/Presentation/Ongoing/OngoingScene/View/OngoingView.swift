@@ -33,6 +33,7 @@ class OngoingView: UIView {
     
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
         return scrollView
     }()
 
@@ -94,10 +95,10 @@ class OngoingView: UIView {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
         collectionView.isScrollEnabled = false
         collectionView.scrollsToTop = false
-
         collectionView.showsVerticalScrollIndicator = false
         collectionView.collectionViewLayout = layout
         collectionView.backgroundColor = .clear
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 54, right: 0)
         return collectionView
     }()
     
@@ -190,11 +191,11 @@ private extension OngoingView {
         dateView.snp.makeConstraints {
             $0.top.equalTo(self.safeAreaLayoutGuide)
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(40)
+            $0.height.equalTo(56)
         }
         
         dateLabel.snp.makeConstraints {
-            $0.top.equalToSuperview()
+            $0.centerY.equalToSuperview()
             $0.leading.equalToSuperview().inset(20)
         }
         
@@ -224,7 +225,6 @@ private extension OngoingView {
         dailyCollectionView.snp.makeConstraints {
             $0.top.equalTo(dailyTitleLabel.snp.bottom).offset(12)
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(1000)
             $0.bottom.equalToSuperview()
         }
         
@@ -348,7 +348,6 @@ extension OngoingView {
         dailyCollectionView.snp.makeConstraints {
             $0.top.equalTo(dailyTitleLabel.snp.bottom).offset(12)
             $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(1000)
             $0.bottom.equalToSuperview()
         }
         
