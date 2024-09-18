@@ -29,7 +29,7 @@ class OngoingViewController: UIViewController {
         
         setUI()
         setDelegate()
-        setRegister()
+//        setRegister()
         setAddTarget()
     }
 }
@@ -48,31 +48,26 @@ private extension OngoingViewController {
     }
     
     func setDelegate() {
-        ongoingView.dailyCollectionView.delegate = self
-        ongoingView.dailyCollectionView.dataSource = self
+        ongoingView.dailyRoutineView.dailyCollectionView.delegate = self
+        ongoingView.dailyRoutineView.dailyCollectionView.dataSource = self
         ongoingView.challengeRoutineEmptyView.delegate = self
-        ongoingView.challengeRoutineCardView.delegate = self
+        ongoingView.challengeRoutineView.challengeRoutineCardView.delegate = self
         ongoingView.delegate = self
         
     }
     
-    func setRegister() {
-        NewDailyRoutineCollectionViewCell.register(target: ongoingView.dailyCollectionView)
-        NewDailyRoutineHeaderView.register(target: ongoingView.dailyCollectionView)
-    }
-    
     func setData() {
         if challengeRoutine.themeId == 0 {
-            ongoingView.setChallengeRoutineEmpty()
+            print()
+//            ongoingView.setChallengeRoutineEmpty()
         } else {
-            ongoingView.setChallengeRoutine(routine: challengeRoutine)
+            print()
+//            ongoingView.setChallengeRoutine(routine: challengeRoutine)
         }
     }
     
     func setAddTarget() {
-//        ongoingView.routineEmptyView.addRoutineButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
-//        ongoingView.challengeInfoButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
-        ongoingView.dailyInfoButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
+        ongoingView.dailyRoutineView.dailyInfoButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
         ongoingView.floatingButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
     }
     
@@ -83,9 +78,9 @@ private extension OngoingViewController {
             let vc = AddRoutineViewController()
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
-        case ongoingView.challengeInfoButton:
+        case ongoingView.challengeRoutineView.challengeInfoButton:
             print("challengeInfoButton tapped")
-        case ongoingView.dailyInfoButton:
+        case ongoingView.dailyRoutineView.dailyInfoButton:
             popDailyInfo()
         case ongoingView.floatingButton:
             let vc = AddRoutineViewController()
@@ -102,8 +97,8 @@ private extension OngoingViewController {
             $0.edges.equalToSuperview()
         }
         self.ongoingView.dailyInfoImageView.snp.makeConstraints {
-            $0.top.equalTo(self.ongoingView.dailyInfoButton.snp.top)
-            $0.trailing.equalTo(self.ongoingView.dailyInfoButton.snp.trailing)
+            $0.top.equalTo(self.ongoingView.dailyRoutineView.dailyInfoButton.snp.top)
+            $0.trailing.equalTo(self.ongoingView.dailyRoutineView.dailyInfoButton.snp.trailing)
         }
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapView(_:)))
@@ -117,8 +112,8 @@ private extension OngoingViewController {
             $0.edges.equalToSuperview()
         }
         self.ongoingView.challengeInfoImageView.snp.makeConstraints {
-            $0.top.equalTo(self.ongoingView.challengeInfoButton.snp.top)
-            $0.trailing.equalTo(self.ongoingView.challengeInfoButton.snp.trailing)
+            $0.top.equalTo(self.ongoingView.challengeRoutineView.challengeInfoButton.snp.top)
+            $0.trailing.equalTo(self.ongoingView.challengeRoutineView.challengeInfoButton.snp.trailing)
         }
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapChallengeView(_:)))
@@ -157,7 +152,8 @@ extension OngoingViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         if dailyRoutineEntity.routines.isEmpty {
-            ongoingView.setEmptyView()
+            print("emptyView")
+//            ongoingView.setEmptyView()
         }
         return dailyRoutineEntity.routines.count
     }
@@ -179,7 +175,7 @@ extension OngoingViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
-            let headerView = NewDailyRoutineHeaderView.dequeueReusableHeaderView(collectionView: ongoingView.dailyCollectionView, indexPath: indexPath)
+            let headerView = NewDailyRoutineHeaderView.dequeueReusableHeaderView(collectionView: ongoingView.dailyRoutineView.dailyCollectionView, indexPath: indexPath)
             headerView.setDataBind(text: dailyRoutineEntity.routines[indexPath.section].themeName, image: dailyRoutineEntity.routines[indexPath.section].themeId)
             return headerView
         }
@@ -223,9 +219,9 @@ extension OngoingViewController: UICollectionViewDelegateFlowLayout {
             height += 18
         }
         height += Double(16 * (texts.routines.count - 1) + 54)
-        ongoingView.dailyCollectionView.snp.remakeConstraints {
+        ongoingView.dailyRoutineView.dailyCollectionView.snp.remakeConstraints {
             $0.height.equalTo(height)
-            $0.top.equalTo(ongoingView.dailyTitleLabel.snp.bottom).offset(12)
+            $0.top.equalTo(ongoingView.dailyRoutineView.dailyTitleLabel.snp.bottom).offset(12)
             $0.horizontalEdges.equalToSuperview()
             $0.bottom.equalToSuperview()
         }
@@ -242,11 +238,13 @@ extension OngoingViewController {
                         self.dailyRoutineEntity = listData
                         self.dailyRoutineEntity.routines.sort(by: {$0.themeId < $1.themeId})
                         if self.dailyRoutineEntity.routines.isEmpty {
-                            self.ongoingView.setEmptyView()
+                            print("empty view")
+                            self.ongoingView.isDaily = false
                         } else {
-                            self.ongoingView.setDailyRoutine()
+                            print("dailyRoutine")
+                            self.ongoingView.isDaily = true
                             self.heightForContentView(numberOfSection: self.dailyRoutineEntity.routines.count, texts: self.dailyRoutineEntity)
-                            self.ongoingView.dailyCollectionView.reloadData()
+                            self.ongoingView.dailyRoutineView.dailyCollectionView.reloadData()
                         }
                     }
                     if status == true {
@@ -269,6 +267,12 @@ extension OngoingViewController {
                     if let listData = data.data {
                         self.challengeRoutine = listData
                         self.setData()
+                        if self.challengeRoutine.routineId != 0 {
+                            self.ongoingView.isChallenge = true
+                        }
+                        else {
+                            self.ongoingView.isChallenge = false
+                        }
                     }
                 }
             case .requestErr, .serverErr:
@@ -313,7 +317,8 @@ extension OngoingViewController {
                 if let data = data as? GenericResponse<PatchChallengeEntity> {
                     self.getRainbowCottonView()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-                        self.ongoingView.setChallengeRoutineEmpty()
+                        print("setChallengeRoutineEmpty")
+//                        self.ongoingView.setChallengeRoutineEmpty()
                     }
                 }
             case .requestErr, .serverErr:
@@ -438,7 +443,8 @@ extension OngoingViewController: ChallengeCardProtocol {
 
 extension OngoingViewController: DeleteChallengeProtocol {
     func deleteChallengeRoutine() {
-        self.ongoingView.setChallengeRoutineEmpty()
+        print("setChallengeRoutineEmpty")
+//        self.ongoingView.setChallengeRoutineEmpty()
         self.setDeleteChallengeToastView()
     }
 }

@@ -61,6 +61,9 @@
 		09BCAA002C2A783C006E876D /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BCA9FF2C2A783C006E876D /* CustomButton.swift */; };
 		09BCAA022C2A7C79006E876D /* GetCottonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BCAA012C2A7C79006E876D /* GetCottonViewController.swift */; };
 		09BCAA042C2A7D6F006E876D /* GetCottonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BCAA032C2A7D6F006E876D /* GetCottonView.swift */; };
+		09CC26C62C8A80BD00C3BD3B /* DailyRoutineEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CC26C52C8A80BD00C3BD3B /* DailyRoutineEmptyView.swift */; };
+		09CC26C82C8A836000C3BD3B /* NewDailyRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CC26C72C8A836000C3BD3B /* NewDailyRoutineView.swift */; };
+		09CC26CA2C8A839100C3BD3B /* ChallengeRoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CC26C92C8A839100C3BD3B /* ChallengeRoutineView.swift */; };
 		A40F9EFD2C6798A5004DD1A1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A40F9EFC2C6798A5004DD1A1 /* GoogleService-Info.plist */; };
 		A40F9F012C67C28B004DD1A1 /* MakersEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F002C67C28B004DD1A1 /* MakersEntity.swift */; };
 		A40F9F042C67C3C6004DD1A1 /* MakersCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A40F9F032C67C3C6004DD1A1 /* MakersCollectionViewCell.swift */; };
@@ -224,6 +227,9 @@
 		09BCA9FF2C2A783C006E876D /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		09BCAA012C2A7C79006E876D /* GetCottonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCottonViewController.swift; sourceTree = "<group>"; };
 		09BCAA032C2A7D6F006E876D /* GetCottonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetCottonView.swift; sourceTree = "<group>"; };
+		09CC26C52C8A80BD00C3BD3B /* DailyRoutineEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRoutineEmptyView.swift; sourceTree = "<group>"; };
+		09CC26C72C8A836000C3BD3B /* NewDailyRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewDailyRoutineView.swift; sourceTree = "<group>"; };
+		09CC26C92C8A839100C3BD3B /* ChallengeRoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeRoutineView.swift; sourceTree = "<group>"; };
 		A40F9EF92C679827004DD1A1 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		A40F9EFB2C67985C004DD1A1 /* ReleaseConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = ReleaseConfig.xcconfig; sourceTree = "<group>"; };
 		A40F9EFC2C6798A5004DD1A1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -1056,6 +1062,9 @@
 				09BCA9F92C2A7773006E876D /* ChallengeRoutineCardView.swift */,
 				09BCAA032C2A7D6F006E876D /* GetCottonView.swift */,
 				09A9F9202C804FB400FE5836 /* GetRainbowCottonView.swift */,
+				09CC26C52C8A80BD00C3BD3B /* DailyRoutineEmptyView.swift */,
+				09CC26C72C8A836000C3BD3B /* NewDailyRoutineView.swift */,
+				09CC26C92C8A839100C3BD3B /* ChallengeRoutineView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1410,10 +1419,13 @@
 				00CCDCD22B53CB40007DD0E6 /* SplashViewController.swift in Sources */,
 				A42C333A2B3EB02A00C4B477 /* TabBarController.swift in Sources */,
 				A40F9F122C69D0C6004DD1A1 /* AddRoutineDetailView.swift in Sources */,
+				09CC26CA2C8A839100C3BD3B /* ChallengeRoutineView.swift in Sources */,
 				A4D9F6E32C5D2D7700A9F719 /* HomeTutorialEntity.swift in Sources */,
 				A42C32FC2B3EAE0000C4B477 /* HappinessEntity.swift in Sources */,
+				09CC26C62C8A80BD00C3BD3B /* DailyRoutineEmptyView.swift in Sources */,
 				A40F9F472C6F1451004DD1A1 /* AddRoutineToastView.swift in Sources */,
 				A40F9F1C2C6AE42E004DD1A1 /* RoutineChallengeEntity.swift in Sources */,
+				09CC26C82C8A836000C3BD3B /* NewDailyRoutineView.swift in Sources */,
 				A42C32D52B3EABAF00C4B477 /* UICollectionViewRegisterable.swift in Sources */,
 				A40F9F062C67D1AE004DD1A1 /* MakersChipCollectionViewCell.swift in Sources */,
 				A42C32BB2B3EAAEA00C4B477 /* FontLiterals.swift in Sources */,
