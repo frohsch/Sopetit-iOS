@@ -29,7 +29,7 @@ final class AddChallengeRoutineCollectionViewCell: UICollectionViewCell,
     
     override var isSelected: Bool {
         didSet {
-            challengeChoiceButton.isSelected = isSelected
+            challengeChoiceButton.image = UIImage(resource: isSelected ? .btnChallengeCheck : .btnChallengeAdd)
         }
     }
     
@@ -57,12 +57,7 @@ final class AddChallengeRoutineCollectionViewCell: UICollectionViewCell,
         return button
     }()
     
-    private let challengeChoiceButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(resource: .btnAdd), for: .normal)
-        button.setImage(UIImage(resource: .btnCheck), for: .selected)
-        return button
-    }()
+    private let challengeChoiceButton = UIImageView(image: UIImage(resource: .btnChallengeAdd))
     
     // MARK: - Life Cycles
     

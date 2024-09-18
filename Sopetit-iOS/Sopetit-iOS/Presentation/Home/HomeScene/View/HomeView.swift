@@ -23,7 +23,7 @@ final class HomeView: UIView {
     // MARK: - Properties
     
     var isAnimate: Bool = false
-    private var bubbleLabelList: [String] = []
+    var bubbleLabelList: [String] = []
     
     // MARK: - UI Components
     
@@ -219,7 +219,7 @@ extension HomeView {
     
     @objc
     func dollTapped() {
-        if !(isAnimate) {
+        if !(isAnimate) && !bubbleLabelList.isEmpty {
             isAnimate = true
             animationView.play(fromFrame: LottieFrameTime.start.rawValue,
                                          toFrame: LottieFrameTime.eatDaily.rawValue,
@@ -242,8 +242,7 @@ extension HomeView {
     func setDataBind(model: HomeEntity) {
         UserManager.shared.updateDoll(model.dollType)
         setDoll(dollType: UserManager.shared.getDollType)
-        bubbleLabelList = model.conversations
-        bubbleLabel.text = model.conversations[0]
+        refreshBubbleLabel()
         dollNameLabel.text = model.name
         backgroundImageView.image = UIImage(named: "img_homeback_all_\(model.dollType.lowercased())")
     }

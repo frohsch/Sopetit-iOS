@@ -34,7 +34,7 @@ class ChallengeRoutineCardView: UIView {
     
     let ellipsisButton: UIButton = {
         let button = UIButton()
-        button.setImage(ImageLiterals.ActiveRoutine.icnMore, for: .normal)
+        button.setImage(UIImage(resource: .icMore), for: .normal)
         return button
     }()
     
@@ -59,6 +59,7 @@ class ChallengeRoutineCardView: UIView {
     
     let cardImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -117,12 +118,13 @@ private extension ChallengeRoutineCardView {
         ellipsisButton.snp.makeConstraints {
             $0.top.equalToSuperview().inset(16)
             $0.trailing.equalToSuperview().inset(20)
-            $0.size.equalTo(38)
+            $0.size.equalTo(24)
         }
         
         routineLabel.snp.makeConstraints {
             $0.top.equalTo(ellipsisButton.snp.bottom).offset(6)
-            $0.leading.trailing.equalToSuperview().inset(20)
+            $0.leading.equalToSuperview().inset(20)
+            $0.trailing.equalToSuperview().inset(35)
         }
         
         completeButton.snp.makeConstraints {
@@ -166,10 +168,11 @@ extension ChallengeRoutineCardView {
         self.themeImageView.image = UIImage(named: "theme\(data.themeId)") ?? UIImage()
         self.cardImageView.image = UIImage(named: "challenge-\(data.themeId)") ?? UIImage()
         self.themeLabel.text = data.themeName
-        self.routineLabel.text = data.content
-        let height = max(heightForView(text: data.content, font: .fontGuide(.body2), width: SizeLiterals.Screen.screenWidth - 80), 40)
+        self.routineLabel.text = data.content.replacingOccurrences(of: "\n", with: " ")
+        self.routineLabel.asLineHeight(.body2)
+        let height = heightForView(text: data.content, font: .fontGuide(.body2), width: SizeLiterals.Screen.screenWidth - 95) - 20
         self.snp.remakeConstraints {
-            $0.height.equalTo(height + 114)
+            $0.height.equalTo(height + 102)
         }
     }
 }

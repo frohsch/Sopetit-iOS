@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import FirebaseAnalytics
 
 final class AddRoutineViewController: UIViewController {
     
@@ -141,7 +142,8 @@ extension AddRoutineViewController {
 }
 
 extension AddRoutineViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, 
+                        didSelectItemAt indexPath: IndexPath) {
         switch collectionView {
         case makerCollectionView:
             let nav = AddRoutineDetailViewController()
@@ -153,6 +155,8 @@ extension AddRoutineViewController: UICollectionViewDelegate {
                                                         title: makerTheme.themeName,
                                                         description: makerTheme.description,
                                                         makerUrl: makerTheme.introductionURL)
+            Analytics.logEvent("click_maker", parameters: nil)
+            Analytics.logEvent("maker_\(makerTheme.name)", parameters: nil)
             self.navigationController?.pushViewController(nav, animated: true)
         case routineCollectionView:
             let nav = AddRoutineDetailViewController()

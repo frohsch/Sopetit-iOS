@@ -12,6 +12,8 @@ protocol CVCellDelegate {
 
 import UIKit
 
+import SnapKit
+
 final class NewDailyRoutineCollectionViewCell: UICollectionViewCell, UICollectionViewRegisterable {
 
     static let isFromNib: Bool = false
@@ -38,8 +40,10 @@ final class NewDailyRoutineCollectionViewCell: UICollectionViewCell, UICollectio
         didSet {
             switch isRadioButton {
             case true:
+                routineLabel.textColor = .Gray400
                 radioButton.setImage(ImageLiterals.DailyRoutine.btnCheck, for: .normal)
             case false:
+                routineLabel.textColor = .Gray700
                 radioButton.setImage(ImageLiterals.DailyRoutine.btnRadiobtnNone, for: .normal)
             }
         }
@@ -77,7 +81,7 @@ final class NewDailyRoutineCollectionViewCell: UICollectionViewCell, UICollectio
     
     let ellipsisButton: CustomButton = {
         let button = CustomButton()
-        button.setImage(ImageLiterals.ActiveRoutine.icnMore, for: .normal)
+        button.setImage(UIImage(resource: .icMore), for: .normal)
         return button
     }()
     

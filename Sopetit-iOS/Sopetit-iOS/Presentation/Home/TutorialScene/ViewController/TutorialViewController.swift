@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import FirebaseAnalytics
 
 final class TutorialViewController: UIViewController {
     
@@ -37,6 +38,8 @@ final class TutorialViewController: UIViewController {
 extension TutorialViewController {
     
     func setUI() {
+        Analytics.logEvent("tutorial_time",
+                           parameters: ["time": "tutorial_start"])
         self.view.backgroundColor = .clear
         self.navigationController?.navigationBar.isHidden = true
     }
@@ -61,6 +64,8 @@ extension TutorialViewController {
             collectionView.scrollToItem(at: nextIndexPath, at: .centeredHorizontally, animated: true)
         } else {
             UserManager.shared.setShowTutorial()
+            Analytics.logEvent("tutorial_time",
+                               parameters: ["time": "tutorial_end"])
             self.dismiss(animated: false)
         }
     }
