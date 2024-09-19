@@ -232,10 +232,8 @@ extension OngoingViewController {
                         self.dailyRoutineEntity = listData
                         self.dailyRoutineEntity.routines.sort(by: {$0.themeId < $1.themeId})
                         if self.dailyRoutineEntity.routines.isEmpty {
-                            print("empty view")
                             self.ongoingView.isDaily = false
                         } else {
-                            print("dailyRoutine")
                             self.ongoingView.isDaily = true
                             self.heightForContentView(numberOfSection: self.dailyRoutineEntity.routines.count, texts: self.dailyRoutineEntity)
                             self.ongoingView.dailyRoutineView.dailyCollectionView.reloadData()
