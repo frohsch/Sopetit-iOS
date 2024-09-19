@@ -96,10 +96,6 @@ private extension ChallengeRoutineCardView {
     
     func setLayout() {
         
-        self.snp.makeConstraints {
-            $0.height.equalTo(140)
-        }
-        
         cardImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
@@ -170,8 +166,11 @@ extension ChallengeRoutineCardView {
         self.themeLabel.text = data.themeName
         self.routineLabel.text = data.content.replacingOccurrences(of: "\n", with: " ")
         self.routineLabel.asLineHeight(.body2)
-        let height = heightForView(text: data.content, font: .fontGuide(.body2), width: SizeLiterals.Screen.screenWidth - 95) - 20
+        var height = heightForView(text: data.content, font: .fontGuide(.body2), width: SizeLiterals.Screen.screenWidth - 95) - 20
+        height = height < 40 ? 40 : height
         self.snp.remakeConstraints {
+            $0.top.equalToSuperview().inset(40)
+            $0.horizontalEdges.equalToSuperview().inset(20)
             $0.height.equalTo(height + 102)
         }
     }

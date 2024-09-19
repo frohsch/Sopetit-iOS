@@ -9,14 +9,20 @@ import UIKit
 
 import SnapKit
 
-protocol ChallengeInfoProtocol: AnyObject {
-    func tapChallengeInfoButton()
-}
-
 class OngoingView: UIView {
-    
-    weak var delegate: ChallengeInfoProtocol?
 
+    var isChallenge: Bool = false {
+        didSet(status) {
+            setRoutineView(challenge: isChallenge, daily: isDaily)
+        }
+    }
+    
+    var isDaily: Bool = false {
+        didSet(status) {
+            setRoutineView(challenge: isChallenge, daily: isDaily)
+        }
+    }
+    
     private let dateView: UIView = {
         let view = UIView()
         return view
@@ -31,33 +37,8 @@ class OngoingView: UIView {
     
     let routineEmptyView = RoutineEmptyView()
     
-    let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.showsVerticalScrollIndicator = false
-        return scrollView
-    }()
-
-    private let challengeTitleLabel: UILabel = {
-        let label = UILabel()
-        label.text = I18N.ActiveRoutine.challengeTitle
-        label.font = .fontGuide(.body3)
-        label.textColor = .Gray700
-        return label
-    }()
-    
-    let challengeInfoButton: CustomButton = {
-        let button = CustomButton()
-        button.setTitle("?", for: .normal)
-        button.setTitleColor(.Gray500, for: .normal)
-        button.titleLabel?.font = .fontGuide(.caption2)
-        button.setBackgroundColor(.Gray200, for: .normal)
-        button.roundCorners(cornerRadius: 4, maskedCorners: [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner])
-        return button
-    }()
-    
-    let challengeRoutineCardView = ChallengeRoutineCardView()
-    
     let challengeRoutineEmptyView = ChallengeRoutineEmptyView()
+    let challengeRoutineView = ChallengeRoutineView()
     
     let divisionView: UIView = {
         let view = UIView()
@@ -65,22 +46,13 @@ class OngoingView: UIView {
         return view
     }()
     
-    let dailyTitleLabel: UILabel = {
-        let label = UILabel()
-        label.text = I18N.ActiveRoutine.dailyTitle
-        label.font = .fontGuide(.body3)
-        label.textColor = .Gray700
-        return label
-    }()
+    let dailyRoutineEmptyView = DailyRoutineEmptyView()
+    let dailyRoutineView = NewDailyRoutineView()
     
-    let dailyInfoButton: CustomButton = {
-        let button = CustomButton()
-        button.setTitle("?", for: .normal)
-        button.setTitleColor(.Gray500, for: .normal)
-        button.titleLabel?.font = .fontGuide(.caption2)
-        button.setBackgroundColor(.Gray200, for: .normal)
-        button.roundCorners(cornerRadius: 4, maskedCorners: [.layerMaxXMaxYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner, .layerMinXMinYCorner])
-        return button
+    let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
+        return scrollView
     }()
     
     let dailyContentView: UIView = {
@@ -156,15 +128,12 @@ class OngoingView: UIView {
     
     // MARK: - Life Cycles
     
-    override init(frame: CGRect) {
+    override init (frame: CGRect) {
         super.init(frame: frame)
-        
         setUI()
         setHierarchy()
         setLayout()
         setDateLabel()
-        setChallengeRoutineEmpty()
-        setAddTarget()
     }
     
     @available(*, unavailable)
@@ -179,12 +148,9 @@ private extension OngoingView {
     }
     
     func setHierarchy() {
-        self.addSubviews(dateView, scrollView, floatingButton)
+        self.addSubviews(dateView, scrollView)
         dateView.addSubview(dateLabel)
-        self.scrollView.addSubviews(dailyContentView)
-        
-        self.dailyContentView.addSubviews(divisionView, dailyTitleLabel, dailyInfoButton, dailyCollectionView
-        )
+        scrollView.addSubview(dailyContentView)
     }
     
     func setLayout() {
@@ -206,32 +172,10 @@ private extension OngoingView {
         }
         
         dailyContentView.snp.makeConstraints {
-            $0.edges.equalTo(scrollView)
-            $0.width.equalTo(scrollView.snp.width)
-        }
-        
-        dailyTitleLabel.snp.makeConstraints {
-            $0.top.equalTo(divisionView.snp.bottom).offset(16)
-            $0.leading.equalToSuperview().inset(20)
-            $0.height.equalTo(20)
-        }
-        
-        dailyInfoButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(20)
-            $0.centerY.equalTo(dailyTitleLabel.snp.centerY)
-            $0.size.equalTo(20)
-        }
-        
-        dailyCollectionView.snp.makeConstraints {
-            $0.top.equalTo(dailyTitleLabel.snp.bottom).offset(12)
+            $0.top.equalTo(scrollView)
             $0.horizontalEdges.equalToSuperview()
+            $0.width.equalTo(scrollView.snp.width)
             $0.bottom.equalToSuperview()
-        }
-        
-        floatingButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(20)
-            $0.bottom.equalTo(self.safeAreaLayoutGuide).inset(12)
-            $0.size.equalTo(50)
         }
     }
     
@@ -242,119 +186,68 @@ private extension OngoingView {
         let formattedDate = dateFormatter.string(from: currentDate)
         dateLabel.text = formattedDate
     }
-    
-    func setAddTarget() {
-        challengeInfoButton.addTarget(self, action: #selector(tapButton), for: .touchUpInside)
-    }
-    
-    @objc func tapButton() {
-        delegate?.tapChallengeInfoButton()
-    }
 }
 
 extension OngoingView {
     
-    func setChallengeRoutineEmpty() {
-        print("setChallengeRoutineEmpty")
-        self.challengeTitleLabel.removeFromSuperview()
-        self.challengeInfoButton.removeFromSuperview()
-        self.challengeRoutineCardView.removeFromSuperview()
-        
-        self.dailyContentView.addSubview(challengeRoutineEmptyView)
-    
-        challengeRoutineEmptyView.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(142)
-        }
-        
-        divisionView.snp.remakeConstraints {
-            $0.top.equalTo(challengeRoutineEmptyView.snp.bottom)
-            $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(2)
-        }
-    }
-    
-    func setChallengeRoutine(routine: ChallengeRoutine) {
-        challengeRoutineCardView.setDataBind(data: routine)
-        self.challengeRoutineEmptyView.removeFromSuperview()
-        self.dailyContentView.addSubviews(challengeTitleLabel, challengeInfoButton, challengeRoutineCardView)
-        
-        challengeTitleLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(4)
-            $0.leading.equalToSuperview().inset(20)
-            $0.height.equalTo(20)
-        }
-        
-        challengeInfoButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(20)
-            $0.centerY.equalTo(challengeTitleLabel.snp.centerY)
-            $0.size.equalTo(20)
-        }
-        
-        challengeRoutineCardView.snp.makeConstraints {
-            $0.top.equalTo(challengeTitleLabel.snp.bottom).offset(16)
-            $0.horizontalEdges.equalToSuperview().inset(20)
-            $0.width.equalTo(SizeLiterals.Screen.screenWidth - 40)
-        }
-        
-        divisionView.snp.remakeConstraints {
-            $0.top.equalTo(challengeRoutineCardView.snp.bottom).offset(16)
-            $0.horizontalEdges.equalToSuperview()
-            $0.height.equalTo(2)
-        }
-    }
-    
-    func setEmptyView() {
-        scrollView.removeFromSuperview()
-        floatingButton.removeFromSuperview()
-        self.addSubviews(routineEmptyView)
-        
-        routineEmptyView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
-    }
-    
-    func setDailyRoutine() {
-        routineEmptyView.removeFromSuperview()
-        self.addSubviews(scrollView, floatingButton)
-        self.scrollView.addSubviews(dailyContentView)
-        
-        self.dailyContentView.addSubviews(divisionView, dailyTitleLabel, dailyInfoButton, dailyCollectionView)
-        
-        scrollView.snp.makeConstraints {
-            $0.top.equalTo(dateView.snp.bottom)
-            $0.horizontalEdges.equalToSuperview()
-            $0.bottom.equalTo(self.safeAreaLayoutGuide)
-        }
-        
-        dailyContentView.snp.makeConstraints {
-            $0.edges.equalTo(scrollView)
-            $0.width.equalTo(scrollView.snp.width)
-        }
-        
-        dailyTitleLabel.snp.makeConstraints {
-            $0.top.equalTo(divisionView.snp.bottom).offset(16)
-            $0.leading.equalToSuperview().inset(20)
-            $0.height.equalTo(20)
-        }
-        
-        dailyInfoButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(20)
-            $0.centerY.equalTo(dailyTitleLabel.snp.centerY)
-            $0.size.equalTo(20)
-        }
-        
-        dailyCollectionView.snp.makeConstraints {
-            $0.top.equalTo(dailyTitleLabel.snp.bottom).offset(12)
-            $0.horizontalEdges.equalToSuperview()
-            $0.bottom.equalToSuperview()
-        }
-        
-        floatingButton.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(20)
-            $0.bottom.equalTo(self.safeAreaLayoutGuide).inset(12)
-            $0.size.equalTo(50)
+    func setRoutineView(challenge: Bool, daily: Bool) {
+        if challenge == false && daily == false {
+            self.dailyContentView.subviews.forEach { $0.removeFromSuperview() }
+            self.floatingButton.removeFromSuperview()
+        } else {
+            self.addSubviews(floatingButton)
+            
+            floatingButton.snp.makeConstraints {
+                $0.trailing.equalToSuperview().inset(20)
+                $0.bottom.equalTo(self.safeAreaLayoutGuide).inset(12)
+                $0.size.equalTo(50)
+            }
+            
+            self.dailyContentView.addSubview(divisionView)
+            
+            if challenge == true {
+                challengeRoutineEmptyView.removeFromSuperview()
+                dailyContentView.addSubview(challengeRoutineView)
+                challengeRoutineView.snp.makeConstraints {
+                    $0.top.horizontalEdges.equalToSuperview()
+                    $0.height.equalTo(198)
+                }
+                
+                divisionView.snp.makeConstraints {
+                    $0.top.equalTo(challengeRoutineView.snp.bottom)
+                    $0.horizontalEdges.equalToSuperview()
+                    $0.height.equalTo(2)
+                }
+            } else {
+                challengeRoutineView.removeFromSuperview()
+                dailyContentView.addSubview(challengeRoutineEmptyView)
+                challengeRoutineEmptyView.snp.makeConstraints {
+                    $0.top.horizontalEdges.equalToSuperview()
+                    $0.height.equalTo(140)
+                }
+                
+                divisionView.snp.makeConstraints {
+                    $0.top.equalTo(challengeRoutineEmptyView.snp.bottom)
+                    $0.horizontalEdges.equalToSuperview()
+                    $0.height.equalTo(2)
+                }
+            }
+            
+            if daily == true {
+                dailyRoutineEmptyView.removeFromSuperview()
+                dailyContentView.addSubview(dailyRoutineView)
+                dailyRoutineView.snp.makeConstraints {
+                    $0.top.equalTo(divisionView)
+                    $0.horizontalEdges.bottom.equalToSuperview()
+                }
+            } else {
+                dailyRoutineView.removeFromSuperview()
+                dailyContentView.addSubview(dailyRoutineEmptyView)
+                dailyRoutineEmptyView.snp.makeConstraints {
+                    $0.top.equalTo(divisionView)
+                    $0.horizontalEdges.bottom.equalToSuperview()
+                }
+            }
         }
     }
 }

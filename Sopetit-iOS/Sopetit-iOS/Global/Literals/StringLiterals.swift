@@ -141,5 +141,6 @@ enum I18N {
         static let addChallenge = "도전 루틴을 추가해 볼까요?"
         static let addChallengeButton = "루틴 추가하기"
         static let emptyRoutine = "진행 중인 루틴이 없어요"
+        static let emptyDaily = "데일리 루틴을 추가해 볼까요?"
     }
 }
