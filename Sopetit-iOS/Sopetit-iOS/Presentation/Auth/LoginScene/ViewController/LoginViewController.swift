@@ -62,7 +62,7 @@ extension LoginViewController: LoginDelegate {
                                 self.viewModel.checkKakaoUser()
                                 if self.viewModel.kakaoEntity!.isMemberDollExist {
                                     UserManager.shared.hasPostMember()
-                                    let nav = TabBarController()
+                                    let nav = OngoingViewController()
                                     self.navigationController?.pushViewController(nav, animated: true)
                                 } else {
                                     let nav = StoryTellingViewController()
@@ -137,7 +137,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                         self.viewModel.checkAppleUser()
                         if self.viewModel.appleEntity!.isMemberDollExist {
                             UserManager.shared.hasPostMember()
-                            let nav = TabBarController()
+                            let nav = OngoingViewController()
                             self.navigationController?.pushViewController(nav, animated: true)
                         } else {
                             let nav = StoryTellingViewController()

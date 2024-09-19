@@ -19,7 +19,7 @@ class DailyRoutineEmptyView: UIView {
     
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = I18N.ActiveRoutine.emptyRoutine
+        label.text = I18N.ActiveRoutine.emptyDaily
         label.font = .fontGuide(.body2)
         label.textColor = .Gray500
         label.textAlignment = .center
@@ -73,8 +73,7 @@ extension DailyRoutineEmptyView {
         
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(bearImageView.snp.bottom).offset(12)
-            $0.centerX.equalToSuperview()
-            $0.width.equalTo(150)
+            $0.horizontalEdges.equalToSuperview()
             $0.height.equalTo(24)
         }
         
