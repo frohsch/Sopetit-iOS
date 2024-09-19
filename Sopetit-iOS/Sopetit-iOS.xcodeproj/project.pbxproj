@@ -38,6 +38,7 @@
 		0463F89B2B4ADE4A0089B526 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0463F89A2B4ADE4A0089B526 /* TabBarItem.swift */; };
 		0470C2532B57F03100CE43D6 /* DailyDeleteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0470C2522B57F03100CE43D6 /* DailyDeleteEntity.swift */; };
 		0470C2552B57F9B900CE43D6 /* DailyPatchEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0470C2542B57F9B900CE43D6 /* DailyPatchEntity.swift */; };
+		091C5F1A2C9BFC7500287AB8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091C5F192C9BFC7500287AB8 /* TabBarController.swift */; };
 		093C1E072B4CFDDF00EF84AB /* CustomNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 093C1E062B4CFDDF00EF84AB /* CustomNavigationBarView.swift */; };
 		095903B62B5487E600D0AF39 /* HappinessThemesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095903B52B5487E600D0AF39 /* HappinessThemesEntity.swift */; };
 		097E04872C6F24D700A350E8 /* PatchRoutineEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097E04862C6F24D700A350E8 /* PatchRoutineEntity.swift */; };
@@ -126,7 +127,6 @@
 		A42C33002B3EAE3E00C4B477 /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C32FF2B3EAE3E00C4B477 /* HomeService.swift */; };
 		A42C33022B3EAE4900C4B477 /* OnboardingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C33012B3EAE4900C4B477 /* OnboardingService.swift */; };
 		A42C33042B3EAE4F00C4B477 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C33032B3EAE4F00C4B477 /* AuthService.swift */; };
-		A42C333A2B3EB02A00C4B477 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A42C33392B3EB02A00C4B477 /* TabBarController.swift */; };
 		A42C33642B413F2100C4B477 /* Pretendard-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = A42C33622B413F2100C4B477 /* Pretendard-SemiBold.otf */; };
 		A42C33652B413F2100C4B477 /* Pretendard-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = A42C33632B413F2100C4B477 /* Pretendard-Medium.otf */; };
 		A42C336C2B41EF2F00C4B477 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A42C336B2B41EF2F00C4B477 /* .swiftlint.yml */; };
@@ -204,6 +204,7 @@
 		0463F89A2B4ADE4A0089B526 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		0470C2522B57F03100CE43D6 /* DailyDeleteEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyDeleteEntity.swift; sourceTree = "<group>"; };
 		0470C2542B57F9B900CE43D6 /* DailyPatchEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPatchEntity.swift; sourceTree = "<group>"; };
+		091C5F192C9BFC7500287AB8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		093C1E062B4CFDDF00EF84AB /* CustomNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationBarView.swift; sourceTree = "<group>"; };
 		095903B52B5487E600D0AF39 /* HappinessThemesEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HappinessThemesEntity.swift; sourceTree = "<group>"; };
 		097E04862C6F24D700A350E8 /* PatchRoutineEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatchRoutineEntity.swift; sourceTree = "<group>"; };
@@ -291,7 +292,6 @@
 		A42C32FF2B3EAE3E00C4B477 /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		A42C33012B3EAE4900C4B477 /* OnboardingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingService.swift; sourceTree = "<group>"; };
 		A42C33032B3EAE4F00C4B477 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
-		A42C33392B3EB02A00C4B477 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		A42C33622B413F2100C4B477 /* Pretendard-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-SemiBold.otf"; sourceTree = "<group>"; };
 		A42C33632B413F2100C4B477 /* Pretendard-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Pretendard-Medium.otf"; sourceTree = "<group>"; };
 		A42C336B2B41EF2F00C4B477 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
@@ -944,7 +944,7 @@
 		A42C33382B3EB01C00C4B477 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				A42C33392B3EB02A00C4B477 /* TabBarController.swift */,
+				091C5F192C9BFC7500287AB8 /* TabBarController.swift */,
 				0463F89A2B4ADE4A0089B526 /* TabBarItem.swift */,
 			);
 			path = TabBar;
@@ -1417,7 +1417,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				00CCDCD22B53CB40007DD0E6 /* SplashViewController.swift in Sources */,
-				A42C333A2B3EB02A00C4B477 /* TabBarController.swift in Sources */,
 				A40F9F122C69D0C6004DD1A1 /* AddRoutineDetailView.swift in Sources */,
 				09CC26CA2C8A839100C3BD3B /* ChallengeRoutineView.swift in Sources */,
 				A4D9F6E32C5D2D7700A9F719 /* HomeTutorialEntity.swift in Sources */,
@@ -1542,6 +1541,7 @@
 				A42C33022B3EAE4900C4B477 /* OnboardingService.swift in Sources */,
 				A42C32D92B3EAC1C00C4B477 /* MakeAlert.swift in Sources */,
 				A49BFE212B4E544400035EB6 /* RoutineChoiceCollectionViewCell.swift in Sources */,
+				091C5F1A2C9BFC7500287AB8 /* TabBarController.swift in Sources */,
 				A42C32C92B3EAB4500C4B477 /* UIStackView+.swift in Sources */,
 				A49706392C815C35008D2D57 /* MakerDetailWebViewController.swift in Sources */,
 				A488FE8E2B697C0E000B4809 /* VersionEntity.swift in Sources */,
